@@ -59,6 +59,6 @@ namespace Terradue.GeoJson.Feature {
         /// </value>
         //[JsonConverter(typeof(GeometryConverter))]
         [DataMember(Name = "geometry")]
-        public LineString Geometry { get; set; }
+        public new LineString Geometry { get; set; }
     }
 }

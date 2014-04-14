@@ -36,7 +36,6 @@ namespace Terradue.GeoJson.Feature {
         /// <param name="json">Json.</param>
         public new static NoGeometryFeature ParseJson(string json) {
 
-            MultiPolygon geometry = new MultiPolygon();
             var mpObj = JsonObject.Parse(json);
 
             NoGeometryFeature mp = new NoGeometryFeature(mpObj.JsonTo<Dictionary<string, object>>("properties"));
