@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terradue.GeoJson", "Terradue.GeoJson.csproj", "{26AD29FF-862F-46D9-9F25-473E2977A7C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terradue.GeoJson", "Terradue.GeoJson\Terradue.GeoJson.csproj", "{26AD29FF-862F-46D9-9F25-473E2977A7C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +15,6 @@ Global
 		{26AD29FF-862F-46D9-9F25-473E2977A7C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Terradue.GeoJson.csproj
+		StartupItem = Terradue.GeoJson\Terradue.GeoJson.csproj
 	EndGlobalSection
 EndGlobal
