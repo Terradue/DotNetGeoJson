@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Terradue.GeoJson</id>
+    <version>1.3.1.0</version>
+    <title>GeoJson library for .Net</title>
+    <authors>Terradue</authors>
+    <projectUrl>https://github.com/Terradue/Terradue.GeoJson</projectUrl>
+    <licenseUrl>https://github.com/Terradue.GeoJson/Terradue.GeoJson/blob/master/LICENSE.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Terradue.GeoJson is a library targeting .NET 4.0 and above that provides an easy way to manage GeoJson objects with serialization and deserialization functions based on ServiceStack and transformation functions from GML and Well Known Text (WKT)</description>
+    <summary>GeoJson library for .Net</summary>
+    <dependencies>
+      <dependency id="ServiceStack.Text" version="3.9.71" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Terradue.GeoJson/bin/Terradue.GeoJson.dll" target="lib/net40/Terradue.GeoJson.dll" />
+  </files>
+
+</package>
