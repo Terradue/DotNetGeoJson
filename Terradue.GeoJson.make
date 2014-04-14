@@ -18,7 +18,7 @@ BUILD_DIR = bin/Debug
 
 TERRADUE_GEOJSON_DLL_MDB_SOURCE=bin/Debug/Terradue.GeoJson.dll.mdb
 TERRADUE_GEOJSON_DLL_MDB=$(BUILD_DIR)/Terradue.GeoJson.dll.mdb
-SERVICESTACK_TEXT_DLL_SOURCE=../packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
+SERVICESTACK_TEXT_DLL_SOURCE=packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
 
 endif
 
@@ -32,7 +32,7 @@ PROJECT_REFERENCES =
 BUILD_DIR = bin/Release
 
 TERRADUE_GEOJSON_DLL_MDB=
-SERVICESTACK_TEXT_DLL_SOURCE=../packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
+SERVICESTACK_TEXT_DLL_SOURCE=packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
 
 endif
 
@@ -107,7 +107,7 @@ REFERENCES =  \
 	System.Core
 
 DLL_REFERENCES =  \
-	../packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
+	packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
 
 CLEANFILES = $(PROGRAMFILES) $(LINUX_PKGCONFIG) 
 

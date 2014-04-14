@@ -1,5 +1,5 @@
 
-EXTRA_DIST = Terradue.GeoJson.make rules.make configure Makefile.include ../packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
+EXTRA_DIST = Terradue.GeoJson.make rules.make configure Makefile.include packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
 
 all: all-recursive
 
