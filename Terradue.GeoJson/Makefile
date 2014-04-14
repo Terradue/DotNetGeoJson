@@ -11,13 +11,13 @@ include $(top_srcdir)/config.make
 ifeq ($(CONFIG),DEBUG)
 ASSEMBLY_COMPILER_COMMAND = dmcs
 ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:4 -optimize- -debug "-define:DEBUG;"
-ASSEMBLY = bin/Debug/Terradue.GeoJson.dll
+ASSEMBLY = bin/Terradue.GeoJson.dll
 ASSEMBLY_MDB = $(ASSEMBLY).mdb
 COMPILE_TARGET = library
 PROJECT_REFERENCES = 
-BUILD_DIR = bin/Debug
+BUILD_DIR = bin
 
-TERRADUE_GEOJSON_DLL_MDB_SOURCE=bin/Debug/Terradue.GeoJson.dll.mdb
+TERRADUE_GEOJSON_DLL_MDB_SOURCE=bin/Terradue.GeoJson.dll.mdb
 TERRADUE_GEOJSON_DLL_MDB=$(BUILD_DIR)/Terradue.GeoJson.dll.mdb
 SERVICESTACK_TEXT_DLL_SOURCE=../packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
 
@@ -26,11 +26,11 @@ endif
 ifeq ($(CONFIG),RELEASE)
 ASSEMBLY_COMPILER_COMMAND = dmcs
 ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:4 -optimize+
-ASSEMBLY = bin/Release/Terradue.GeoJson.dll
+ASSEMBLY = bin/Terradue.GeoJson.dll
 ASSEMBLY_MDB = 
 COMPILE_TARGET = library
 PROJECT_REFERENCES = 
-BUILD_DIR = bin/Release
+BUILD_DIR = bin
 
 TERRADUE_GEOJSON_DLL_MDB=
 SERVICESTACK_TEXT_DLL_SOURCE=../packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
