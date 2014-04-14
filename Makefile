@@ -1,5 +1,5 @@
 
-EXTRA_DIST = Terradue.GeoJson.make rules.make configure Makefile.include packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
+EXTRA_DIST =  rules.make configure Makefile.include packages/ServiceStack.Text.3.9.71/lib/net35/ServiceStack.Text.dll
 
 all: all-recursive
 
@@ -12,14 +12,12 @@ include $(top_srcdir)/rules.make
 
 #Warning: This is an automatically generated file, do not edit!
 ifeq ($(CONFIG),DEBUG)
- SUBDIRS =  . 
+ SUBDIRS =  Terradue.GeoJson
 endif
 ifeq ($(CONFIG),RELEASE)
- SUBDIRS =  . 
+ SUBDIRS =  Terradue.GeoJson
 endif
 
-# Include project specific makefile
-include Terradue.GeoJson.make
 
 CONFIG_MAKE=$(top_srcdir)/config.make
 
