@@ -22,8 +22,6 @@ JsonSerializer.SerializeToStream(fc, Console.OpenStandardOutput());
 
 ## Getting Started
 
-## Getting Started
-
 Terradue.GeoJson is available as NuGet package in releases.
 
 ```
