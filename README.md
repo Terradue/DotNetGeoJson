@@ -1,8 +1,8 @@
-# Terradue.GeoJson - GeoJson library for .Net
+# DotNetGeoJson - GeoJson library for .Net
 
-Terradue.GeoJson is a library targeting .NET 4.0 and above that provides an easy
-way to manage GeoJson objects with serialization and deserialization functions based on ServiceStack
-and transformation functions from GML and Well Known Text (WKT)
+Terradue.GeoJson is a library targeting .NET 4.0 and above providing an easy
+way to manage [GeoJson](http://en.wikipedia.org/wiki/GeoJSON) objects with serialization and deserialization functions based on [ServiceStack](https://github.com/ServiceStack/ServiceStack)
+and transformation functions from [GML](http://en.wikipedia.org/wiki/Geography_Markup_Language) and [Well Known Text (WKT)](http://en.wikipedia.org/wiki/Well-known_text)
 
 ## Usage examples
 
@@ -30,12 +30,13 @@ Install-Package Terradue.GeoJson
 
 ## Build
 
-Terradue.GeoJson is a single assembly designed to be easy to deploy anywhere. If you 
-prefer to compile it yourself, you’ll need:
+Terradue.GeoJson is a single assembly designed to be easily deployed anywhere. 
+
+To compile it yourself, you’ll need:
 
 * Visual Studio 2012 or later, or Xamarin Studio
 
-To clone it locally click the "Clone in Desktop" button above or run the 
+To clone it locally, click the "Clone in Desktop" button above or run the 
 following git commands.
 
 ```
