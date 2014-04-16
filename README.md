@@ -1,7 +1,7 @@
 # DotNetGeoJson - GeoJson library for .Net
 
 Terradue.GeoJson is a library targeting .NET 4.0 and above providing an easy
-way to manage GeoJson objects with serialization and deserialization functions based on [ServiceStack](https://github.com/ServiceStack/ServiceStack)
+way to manage [GeoJson](http://en.wikipedia.org/wiki/GeoJSON) objects with serialization and deserialization functions based on [ServiceStack](https://github.com/ServiceStack/ServiceStack)
 and transformation functions from [GML](http://en.wikipedia.org/wiki/Geography_Markup_Language) and [Well Known Text (WKT)](http://en.wikipedia.org/wiki/Well-known_text)
 
 ## Usage examples
