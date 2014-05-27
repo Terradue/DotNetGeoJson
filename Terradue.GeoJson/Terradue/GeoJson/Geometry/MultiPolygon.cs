@@ -23,7 +23,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <summary>
         /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.MultiPolygon"/> class.
         /// </summary>
-        internal MultiPolygon() {
+        public MultiPolygon() {
             this.Polygons = new List<Polygon>();
 
             this.Type = GeoJsonObjectType.MultiPolygon;
