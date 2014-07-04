@@ -41,9 +41,6 @@ following git commands.
 
 ```
 git clone git@github.com:Terradue/Terradue.GeoJson.git Terradue.GeoJson
-cd Terradue.GeoJson
-./configure
-./make
 ```
 
 ## Copyright and License
