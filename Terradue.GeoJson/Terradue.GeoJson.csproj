@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Terradue.GeoJson.csproj" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

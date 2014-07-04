@@ -439,12 +439,10 @@ namespace Terradue.GeoJson.Geometry {
 
             if (element.SelectNodes("PolygonPatch").Count > 1) {
                 throw new NotImplementedException("Multi patch is not supported yet.");
-
-                return FromGMLPatch(element);
-
             }
 
-            return null;
+            return FromGMLPatch(element);
+
         }
 
         private static Polygon FromGMLPatch(XmlElement gml) {
