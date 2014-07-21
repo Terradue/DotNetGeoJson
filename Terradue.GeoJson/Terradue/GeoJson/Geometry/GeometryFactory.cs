@@ -114,9 +114,8 @@ namespace Terradue.GeoJson.Geometry {
         /// </summary>
         /// <param name="wkt">The geometry in WKT to convert</param>
         public static GeometryObject WktToGeometry(string wkt) {
-            wkt.Trim();
-            wkt = wkt.Replace(", ", ",");
-            Match match = Regex.Match(wkt, @"^([A-Z]+)\((.+)\)$");
+            wkt = wkt.Trim().Replace(", ", ",");
+            Match match = Regex.Match(wkt, @"^([A-Z]+)\s*\((.+)\)$");
             if (match.Success) {
                 switch (match.Groups[1].Value) {
                     case "MULTIPOLYGON":
