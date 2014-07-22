@@ -26,11 +26,8 @@ namespace Terradue.GeoJson.Feature {
         /// </summary>
         /// <param name="geometry">The Geometry Object.</param>
         /// <param name="properties">The properties.</param>
-        public LineStringFeature(LineString geometry, Dictionary<string, object> properties = null) {
-            this.Geometry = geometry;
-            this.Properties = properties;
-
-            this.Type = GeoJsonObjectType.Feature;
+        public LineStringFeature(LineString geometry, Dictionary<string, object> properties = null) : base(geometry, properties) {
+            Geometry = geometry;
         }
 
         /// <summary>

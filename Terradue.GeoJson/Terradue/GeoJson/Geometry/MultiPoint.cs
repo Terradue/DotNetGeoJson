@@ -58,7 +58,13 @@ namespace Terradue.GeoJson.Geometry {
                 return coordinates;
             }
 
-            set{ }
+            set{ 
+                foreach (var list in value) {
+                    Point point = new Point();
+                    point.Coordinates = list;
+                    this.Points.Add(point);
+                }
+            }
         }
     }
 }

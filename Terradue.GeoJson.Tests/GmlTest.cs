@@ -2,6 +2,7 @@
 using System;
 using System.Xml;
 using Terradue.GeoJson.Geometry;
+using Terradue.GeoJson.Feature;
 
 namespace Terradue.GeoJson.Tests { 
 
@@ -19,6 +20,14 @@ namespace Terradue.GeoJson.Tests {
             var geom = GeometryFactory.GmlToGeometry(e);
 
             Assert.IsTrue(geom is MultiLineString);
+
+            var feature = GeometryFactory.GmlToFeature(e);
+
+            Assert.IsTrue(feature is MultiLineStringFeature);
+
+            MultiLineStringFeature feature2 = new MultiLineStringFeature((MultiLineString)feature.Geometry, feature.Properties);
+
+            Assert.IsTrue(feature2 is MultiLineStringFeature);
 
         }
     }
