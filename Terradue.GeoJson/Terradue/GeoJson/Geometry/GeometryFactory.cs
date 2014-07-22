@@ -497,12 +497,21 @@ namespace Terradue.GeoJson.Geometry {
         private static MultiLineString FromGMLMultiCurve(XmlElement gml) {
             List<LineString> linestrings = new List<LineString>();
 			
-            /* MutltiCurve/curveMember */
-            foreach (XmlNode node in gml.SelectNodes("gml:curveMember/*",GmlXmlNamespaceManager())) {
+            /* MutltiCurve/curveMember/LineString */
+            foreach (XmlNode node in gml.SelectNodes("gml:curveMember/gml:LineString",GmlXmlNamespaceManager())) {
+                linestrings.Add(FromGMLLineString((XmlElement)node));
+            }
+            /* MutltiCurve/curveMember/LineString */
+            foreach (XmlNode node in gml.SelectNodes("gml32:curveMember/gml32:LineString",GmlXmlNamespaceManager())) {
+                linestrings.Add(FromGMLLineString((XmlElement)node));
+            }
+
+            /* MutltiCurve/curveMember/Curve */
+            foreach (XmlNode node in gml.SelectNodes("gml:curveMember/gml:Curve",GmlXmlNamespaceManager())) {
                 linestrings.Add(FromGMLCurve((XmlElement)node));
             }
-            /* MutltiCurve/curveMember */
-            foreach (XmlNode node in gml.SelectNodes("gml32:curveMember/*",GmlXmlNamespaceManager())) {
+            /* MutltiCurve/curveMember/Curve */
+            foreach (XmlNode node in gml.SelectNodes("gml32:curveMember/gml32:Curve",GmlXmlNamespaceManager())) {
                 linestrings.Add(FromGMLCurve((XmlElement)node));
             }
 			
