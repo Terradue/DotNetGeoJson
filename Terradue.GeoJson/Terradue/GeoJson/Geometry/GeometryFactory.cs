@@ -464,7 +464,12 @@ namespace Terradue.GeoJson.Geometry {
             if (gml.ChildNodes == null) return new MultiPoint(null);
 
             /* MultiPoint/pointMember */
-            foreach (XmlNode node in gml.SelectNodes("pointMember")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:pointMember",GmlXmlNamespaceManager())) {
+                points.AddRange(FromGMLData(node.ChildNodes));
+
+            }
+            /* MultiPoint/pointMember */
+            foreach (XmlNode node in gml.SelectNodes("gml32:pointMember",GmlXmlNamespaceManager())) {
                 points.AddRange(FromGMLData(node.ChildNodes));
 
             }
@@ -477,7 +482,12 @@ namespace Terradue.GeoJson.Geometry {
             List<LineString> linestrings = new List<LineString>();
 
             /* MultiLineString/lineStringMember */
-            foreach (XmlNode node in gml.SelectNodes("lineStringMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:lineStringMember/*",GmlXmlNamespaceManager())) {
+                linestrings.Add(FromGMLLineString((XmlElement)node));
+            }
+
+            /* MultiLineString/lineStringMember */
+            foreach (XmlNode node in gml.SelectNodes("gml32:lineStringMember/*",GmlXmlNamespaceManager())) {
                 linestrings.Add(FromGMLLineString((XmlElement)node));
             }
 
@@ -488,7 +498,11 @@ namespace Terradue.GeoJson.Geometry {
             List<LineString> linestrings = new List<LineString>();
 			
             /* MutltiCurve/curveMember */
-            foreach (XmlNode node in gml.SelectNodes("curveMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:curveMember/*",GmlXmlNamespaceManager())) {
+                linestrings.Add(FromGMLCurve((XmlElement)node));
+            }
+            /* MutltiCurve/curveMember */
+            foreach (XmlNode node in gml.SelectNodes("gml32:curveMember/*",GmlXmlNamespaceManager())) {
                 linestrings.Add(FromGMLCurve((XmlElement)node));
             }
 			
@@ -499,7 +513,11 @@ namespace Terradue.GeoJson.Geometry {
             List<Polygon> polygons = new List<Polygon>();
 			
             /* MultiPolygon/polygonMember */
-            foreach (XmlNode node in gml.SelectNodes("polygonMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:polygonMember/*",GmlXmlNamespaceManager())) {
+                polygons.Add(FromGMLPolygon((XmlElement)node));
+            }
+            /* MultiPolygon/polygonMember */
+            foreach (XmlNode node in gml.SelectNodes("gml32:polygonMember/*",GmlXmlNamespaceManager())) {
                 polygons.Add(FromGMLPolygon((XmlElement)node));
             }
 			
@@ -539,16 +557,28 @@ namespace Terradue.GeoJson.Geometry {
              * polygonMember are parts of geometryMember
              * substitution group
              */
-            foreach (XmlNode node in gml.SelectNodes("pointMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:pointMember/*",GmlXmlNamespaceManager())) {
                 geometries.Add(GmlToGeometry((XmlElement)node));
             }
-            foreach (XmlNode node in gml.SelectNodes("lineStringMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:lineStringMember/*",GmlXmlNamespaceManager())) {
                 geometries.Add(GmlToGeometry((XmlElement)node));
             }
-            foreach (XmlNode node in gml.SelectNodes("polygonMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:polygonMember/*",GmlXmlNamespaceManager())) {
                 geometries.Add(GmlToGeometry((XmlElement)node));
             }
-            foreach (XmlNode node in gml.SelectNodes("geometryMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:geometryMember/*",GmlXmlNamespaceManager())) {
+                geometries.Add(GmlToGeometry((XmlElement)node));
+            }
+            foreach (XmlNode node in gml.SelectNodes("gml32:pointMember/*",GmlXmlNamespaceManager())) {
+                geometries.Add(GmlToGeometry((XmlElement)node));
+            }
+            foreach (XmlNode node in gml.SelectNodes("gml32:lineStringMember/*",GmlXmlNamespaceManager())) {
+                geometries.Add(GmlToGeometry((XmlElement)node));
+            }
+            foreach (XmlNode node in gml.SelectNodes("gml32:polygonMember/*",GmlXmlNamespaceManager())) {
+                geometries.Add(GmlToGeometry((XmlElement)node));
+            }
+            foreach (XmlNode node in gml.SelectNodes("gml32:geometryMember/*",GmlXmlNamespaceManager())) {
                 geometries.Add(GmlToGeometry((XmlElement)node));
             }
 			
