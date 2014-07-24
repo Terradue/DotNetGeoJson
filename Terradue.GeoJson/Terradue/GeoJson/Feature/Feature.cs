@@ -9,6 +9,7 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using ServiceStack;
 using ServiceStack.Text;
 
 namespace Terradue.GeoJson.Feature {
@@ -20,7 +21,7 @@ namespace Terradue.GeoJson.Feature {
 	/// <summary>
     /// A GeoJson <see cref="http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
 	/// </summary>
-	public abstract class Feature : GeoJsonObject {
+	public  class Feature : GeoJsonObject {
 		public Feature() {
 			this.Properties = new Dictionary<string, object>();
 			this.Type = GeoJsonObjectType.Feature;

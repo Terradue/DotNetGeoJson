@@ -9,7 +9,6 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
-
 namespace Terradue.GeoJson.Geometry {
     using System.Collections.Generic;
     using System.Runtime.Serialization;
@@ -25,7 +24,6 @@ namespace Terradue.GeoJson.Geometry {
         /// </summary>
         public MultiPolygon() {
             this.Polygons = new List<Polygon>();
-
             this.Type = GeoJsonObjectType.MultiPolygon;
         }
 
@@ -35,7 +33,6 @@ namespace Terradue.GeoJson.Geometry {
         /// <param name="polygons">The polygons contained in this MultiPolygon.</param>
         public MultiPolygon(List<Polygon> polygons = null) {
             this.Polygons = polygons ?? new List<Polygon>();
-
             this.Type = GeoJsonObjectType.MultiPolygon;
         }
 

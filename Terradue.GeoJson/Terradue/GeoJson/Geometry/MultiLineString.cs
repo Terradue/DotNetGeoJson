@@ -20,20 +20,19 @@ namespace Terradue.GeoJson.Geometry {
     [DataContract]
     public class MultiLineString : GeometryObject {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.MultiLineString"/> class.
+        /// </summary>
+        public MultiLineString() {
+            this.LineStrings = new List<LineString>();
+            this.Type = GeoJsonObjectType.MultiLineString;
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MultiLineString"/> class.
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
         public MultiLineString(List<LineString> lineStrings) {
             this.LineStrings = lineStrings ?? new List<LineString>();
-            this.Type = GeoJsonObjectType.MultiLineString;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.MultiLineString"/> class.
-        /// </summary>
-        /// <param name="lineStrings">Line strings.</param>
-        public MultiLineString() {
-            this.LineStrings = new List<LineString>();
             this.Type = GeoJsonObjectType.MultiLineString;
         }
 
@@ -54,7 +53,13 @@ namespace Terradue.GeoJson.Geometry {
                 return coordinates;
             }
 
-            set{ }
+            set{ 
+                foreach (var list in value) {
+                    LineString linestring = new LineString();
+                    linestring.Coordinates = list;
+                    this.LineStrings.Add(linestring);
+                }
+            }
         }
     }
 }
