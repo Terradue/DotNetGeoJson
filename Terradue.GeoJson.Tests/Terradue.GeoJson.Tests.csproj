@@ -32,9 +32,13 @@
     <Reference Include="System" />
     <Reference Include="nunit.framework" />
     <Reference Include="System.Xml" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GmlTest.cs" />
+    <Compile Include="DeserializationTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -45,5 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MultiCurveWithLinearString.gml" />
+    <None Include="MultiPolygon.geojson" />
   </ItemGroup>
 </Project>

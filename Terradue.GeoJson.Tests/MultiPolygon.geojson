@@ -1,0 +1,233 @@
+﻿{ 
+	"id": "20120408T091914260-20120408T092044400_D_T-XS_B",
+	"properties": {
+	  "atom:published": "2014-07-10T05:30:07Z",
+	  "atom:title": "20120408T091914260-20120408T092044400_D_T-XS_B (NOT SET)",
+	  "opt20:EarthObservation": {
+	     "om:phenomenonTime": {
+	        "gml32:TimePeriod": {
+	           "gml32:beginPosition": {
+	              "gml32:beginPosition": "2012-04-08T09:19:14.260000Z"
+	           },
+	           "gml32:endPosition": {
+	              "gml32:endPosition": "2012-04-08T09:20:44.400000Z"
+	           },
+	           "@gml32:id": "14151"
+	        }
+	     },
+	     "om:resultTime": {
+	        "gml32:TimeInstant": {
+	           "gml32:timePosition": {
+	              "gml32:timePosition": "2012-04-08T09:20:44.400000Z"
+	           },
+	           "@gml32:id": "14152"
+	        }
+	     },
+	     "om:procedure": {
+	        "eop20:EarthObservationEquipment": {
+	           "eop20:platform": {
+	              "eop20:Platform": {
+	                 "eop20:shortName": {
+	                    "eop20:shortName": "ENVISAT-1"
+	                 },
+	                 "eop20:serialIdentifier": {
+	                    "eop20:serialIdentifier": "A"
+	                 }
+	              }
+	           },
+	           "eop20:instrument": {
+	              "eop20:Instrument": {
+	                 "eop20:shortName": {
+	                    "eop20:shortName": "ASA"
+	                 }
+	              }
+	           },
+	           "eop20:sensor": {
+	              "eop20:Sensor": {
+	                 "eop20:sensorType": {
+	                    "eop20:sensorType": "RADAR"
+	                 },
+	                 "eop20:operationalMode": {
+	                    "@eop20:codeSpace": "any:sensorMode",
+	                    "eop20:operationalMode": "WS"
+	                 },
+	                 "eop20:swathIdentifier": {
+	                    "eop20:swathIdentifier": "swath400"
+	                 }
+	              }
+	           },
+	           "eop20:acquisitionParameters": {
+	              "eop20:Acquisition": {
+	                 "eop20:orbitNumber": {
+	                    "eop20:orbitNumber": "52866"
+	                 },
+	                 "eop20:orbitDirection": {
+	                    "eop20:orbitDirection": "DESCENDING"
+	                 }
+	              }
+	           },
+	           "@gml32:id": "14153"
+	        }
+	     },
+	     "om:observedProperty": {
+	        "@nilReason": "inapplicable"
+	     },
+	     "om:featureOfInterest": {
+	        "eop20:Footprint": {
+	           "eop20:multiExtentOf": {
+	              "gml32:MultiSurface": {
+	                 "gml32:surfaceMembers": {
+	                    "gml32:Polygon": {
+	                       "gml32:exterior": {
+	                          "gml32:LinearRing": {
+	                             "gml32:posList": {
+	                                "gml32:posList": "61.43 15.97 60.61 23.38 57.58 21.75 55.38 20.7 56.14 14.31 58.36 14.97 61.43 15.97"
+	                             }
+	                          }
+	                       },
+	                       "@gml32:id": "14156"
+	                    }
+	                 },
+	                 "@gml32:id": "14155",
+	                 "@gml32:srsName": "EPSG:4326"
+	              }
+	           },
+	           "eop20:centerOf": {
+	              "gml32:Point": {
+	                 "gml32:pos": {
+	                    "gml32:pos": "50.15 6.09"
+	                 },
+	                 "@gml32:id": "14157",
+	                 "@gml32:srsName": "EPSG:4326"
+	              }
+	           },
+	           "@gml32:id": "14154"
+	        }
+	     },
+	     "om:result": {
+	        "eop20:EarthObservationResult": {
+	           "eop20:product": {
+	              "eop20:ProductInformation": {
+	                 "eop20:fileName": {
+	                    "ows:ServiceReference": {
+	                       "@xlink:href": "http://eoliserv.eo.esa.int/browse/ASARz0WS/ASA_WS__0P/ENVISAT_1/20120408T091914260-20120408T092044400_D_T-XS_B.jpg"
+	                    }
+	                 }
+	              }
+	           },
+	           "@gml32:id": "14158"
+	        }
+	     },
+	     "eop20:metaDataProperty": {
+	        "eop20:EarthObservationMetaData": {
+	           "eop20:identifier": {
+	              "eop20:identifier": "20120408T091914260-20120408T092044400_D_T-XS_B"
+	           },
+	           "eop20:parentIdentifier": {
+	              "eop20:parentIdentifier": "ENVISAT_ASA_WS__0P"
+	           },
+	           "eop20:acquisitionType": {
+	              "eop20:acquisitionType": "NOMINAL"
+	           },
+	           "eop20:productType": {
+	              "eop20:productType": "ASA_WS__0P"
+	           },
+	           "eop20:status": {
+	              "eop20:status": "ARCHIVED"
+	           },
+	           "eop20:downlinkedTo": {
+	              "eop20:DownlinkInformation": {
+	                 "eop20:acquisitionStation": {
+	                    "@eop20:codeSpace": "any:stationCode",
+	                    "eop20:acquisitionStation": "KS"
+	                 }
+	              }
+	           },
+	           "eop20:archivedIn": {
+	              "eop20:ArchivingInformation": {
+	                 "eop20:archivingCenter": {
+	                    "@eop20:codeSpace": "any:stationCode",
+	                    "eop20:archivingCenter": "KS"
+	                 },
+	                 "eop20:archivingDate": {
+	                    "eop20:archivingDate": "2001-08-22T11:02:47Z"
+	                 }
+	              }
+	           },
+	           "eop20:imageQualityStatus": {
+	              "eop20:imageQualityStatus": "DEGRADED"
+	           },
+	           "eop20:imageQualityDegradationTag": {
+	              "@eop20:codeSpace": "urn:eop:SEN1:QualityDegradationTag",
+	              "eop20:imageQualityDegradationTag": "PLATFORM_POINTING"
+	           }
+	        }
+	     },
+	     "@gml32:id": "14150"
+	  },
+	  "dc:identifier": "20120408T091914260-20120408T092044400_D_T-XS_B",
+	  "@namespaces": {
+	     "": "http://geojson.org/ns#",
+	     "atom": "http://www.w3.org/2005/Atom",
+	     "ical": "http://www.w3.org/2002/12/cal/ical#",
+	     "om": "http://www.opengis.net/om/2.0",
+	     "gco": "http://www.isotc211.org/2005/gco",
+	     "xlink": "http://www.w3.org/1999/xlink",
+	     "swe": "http://www.opengis.net/swe/1.0",
+	     "gml32": "http://www.opengis.net/gml/3.2",
+	     "gmd": "http://www.isotc211.org/2005/gmd",
+	     "lang": "http://www.w3.org/2001/SMIL20/Language",
+	     "smil20": "http://www.w3.org/2001/SMIL20/",
+	     "gml": "http://www.opengis.net/gml",
+	     "alt20": "http://www.opengis.net/alt/2.0",
+	     "opt20": "http://www.opengis.net/opt/2.0",
+	     "eop20": "http://www.opengis.net/eop/2.0",
+	     "sar20": "http://www.opengis.net/sar/2.0",
+	     "opt21": "http://www.opengis.net/opt/2.1",
+	     "eop21": "http://www.opengis.net/eop/2.1",
+	     "sar21": "http://www.opengis.net/sar/2.1",
+	     "xsi": "http://www.w3.org/2001/XMLSchema-instance",
+	     "rep": "http://ngeo.eo.esa.int/schema/metadataReport",
+	     "ows": "http://www.opengis.net/ows/2.0"
+	  }
+	},
+	"geometry": {
+	  "coordinates": [
+	     [
+	        [
+	           [
+	              15.97,
+	              61.43
+	           ],
+	           [
+	              23.38,
+	              60.61
+	           ],
+	           [
+	              21.75,
+	              57.58
+	           ],
+	           [
+	              20.7,
+	              55.38
+	           ],
+	           [
+	              14.31,
+	              56.14
+	           ],
+	           [
+	              14.97,
+	              58.36
+	           ],
+	           [
+	              15.97,
+	              61.43
+	           ]
+	        ]
+	     ]
+	  ],
+	  "type": "MultiPolygon"
+	},
+	"type": "Feature"
+	}
+}
