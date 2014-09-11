@@ -93,6 +93,7 @@
     <Compile Include="Terradue\GeoJson\Geometry\Polygon.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\Position.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\ProjectedPosition.cs" />
+    <Compile Include="Terradue\GeoJson\Geometry\FeatureExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

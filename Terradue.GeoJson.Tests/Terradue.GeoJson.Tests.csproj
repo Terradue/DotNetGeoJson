@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="GmlTest.cs" />
     <Compile Include="DeserializationTest.cs" />
+    <Compile Include="WktTransformation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
