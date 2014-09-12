@@ -1,0 +1,6 @@
+language: csharp
+csharp:
+  - mono3
+  - mono2
+  - mono3.6.0
+solution: Terradue.GeoJson.sln
