@@ -43,10 +43,12 @@ namespace Terradue.GeoJson.Geometry {
             }
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
+                geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
                 return new MultiPolygonFeature((MultiPolygon)geometry, properties);
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
+                geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
                 return new PolygonFeature((Polygon)geometry, properties);
             }
 
