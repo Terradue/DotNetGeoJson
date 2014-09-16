@@ -94,7 +94,7 @@ namespace Terradue.GeoJson.Geometry {
             }
 
             if (geometry.GetType() == typeof(Point)) {
-                //return new PointFeature ((Point)geometry, new Dictionary<string,object> ());
+                return new PointFeature ((Point)geometry, new Dictionary<string,object> ());
                 return null;
             }
 

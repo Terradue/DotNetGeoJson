@@ -19,6 +19,17 @@ namespace Terradue.GeoJson.Tests {
             Assert.True(f is MultiPolygonFeature);
 
         }
+
+        [Test()]
+        public void WktDeserialization() {
+
+            string fs = "POINT(-115.278 32.297)";
+
+            Terradue.GeoJson.Feature.Feature point = Geometry.GeometryFactory.WktToFeature(fs);
+
+            Assert.True(point is PointFeature);
+
+        }
     }
 }
 
