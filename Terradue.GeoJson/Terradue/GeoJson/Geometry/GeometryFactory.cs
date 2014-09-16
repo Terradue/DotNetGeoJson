@@ -661,7 +661,7 @@ namespace Terradue.GeoJson.Geometry {
              * x1 y1 z1
              */
             string[] pos = gmlpos.Split(' ');
-            position = new GeographicPosition(pos[1], pos[0], pos[2]);
+            position = new GeographicPosition(pos[0], pos[1], pos[2]);
             return position;
         }
 
@@ -691,8 +691,8 @@ namespace Terradue.GeoJson.Geometry {
             string[] pos = gmlpos.Split(' ');
 
             for (int i = 0; i < pos.Length; i += dim) {
-                if (dim == 2) position.Add(new GeographicPosition(pos[i + 1], pos[i + 0], null));
-                if (dim == 3) position.Add(new GeographicPosition(pos[i + 1], pos[i + 0], pos[i + 2]));
+                if (dim == 2) position.Add(new GeographicPosition(pos[i + 0], pos[i + 1], null));
+                if (dim == 3) position.Add(new GeographicPosition(pos[i + 0], pos[i + 1], pos[i + 2]));
             }
             return position;
         }

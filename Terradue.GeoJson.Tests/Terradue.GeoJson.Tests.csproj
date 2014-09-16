@@ -54,5 +54,6 @@
     <None Include="MultiCurveWithLinearString.gml" />
     <None Include="MultiPolygon.geojson" />
     <None Include="packages.config" />
+    <None Include="posList.gml" />
   </ItemGroup>
 </Project>

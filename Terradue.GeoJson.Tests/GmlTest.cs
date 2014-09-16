@@ -30,6 +30,22 @@ namespace Terradue.GeoJson.Tests {
             Assert.IsTrue(feature2 is MultiLineStringFeature);
 
         }
+
+        [Test()]
+        public void FromGMLPosList() {
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load("../posList.gml");
+
+            XmlElement e = doc.DocumentElement;
+           
+            var geom = GeometryFactory.GmlToGeometry(e);
+
+            Assert.IsTrue(geom is MultiPolygon);
+
+            Assert.AreEqual(36.07, ((GeographicPosition)((MultiPolygon)geom).Polygons[0].LineStrings[0].Positions[0]).Latitude);
+
+        }
     }
 }
 
