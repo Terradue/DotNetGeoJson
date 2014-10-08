@@ -30,15 +30,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework" />
     <Reference Include="System.Xml" />
     <Reference Include="ServiceStack.Text">
       <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GmlTest.cs" />
     <Compile Include="DeserializationTest.cs" />
+    <Compile Include="WktTransformation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -50,5 +53,7 @@
   <ItemGroup>
     <None Include="MultiCurveWithLinearString.gml" />
     <None Include="MultiPolygon.geojson" />
+    <None Include="packages.config" />
+    <None Include="posList.gml" />
   </ItemGroup>
 </Project>
