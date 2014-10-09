@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Terradue/DotNetGeoJson.svg?branch=master)](https://travis-ci.org/Terradue/DotNetGeoJson)
+[![Build Status](https://build.terradue.com/buildStatus/icon?job=DotNetGeoJson)](https://build.terradue.com/job/DotNetGeoJson/)
 
 # DotNetGeoJson - GeoJson library for .Net
 
