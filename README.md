@@ -1,6 +1,6 @@
-# DotNetGeoJson - GeoJson library for .Net
+[![Build Status](https://travis-ci.org/Terradue/DotNetGeoJson.svg?branch=master)](https://travis-ci.org/Terradue/DotNetGeoJson)
 
-[![Build Status](https://build.terradue.com/buildStatus/icon?job=DotNetGeoJson)](https://build.terradue.com/job/DotNetGeoJson/)
+# DotNetGeoJson - GeoJson library for .Net
 
 Terradue.GeoJson is a library targeting .NET 4.0 and above providing an easy
 way to manage [GeoJson](http://en.wikipedia.org/wiki/GeoJSON) objects with serialization and deserialization functions based on [ServiceStack](https://github.com/ServiceStack/ServiceStack)
