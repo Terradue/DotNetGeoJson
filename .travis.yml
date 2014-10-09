@@ -1,6 +1,18 @@
-language: csharp
-csharp:
-  - mono3
-  - mono2
-  - mono3.6.0
-solution: Terradue.GeoJson.sln
+## Travis CI Integration
+
+language: objective-c
+
+env:
+ global:
+  - EnableNuGetPackageRestore=true 
+ matrix:
+  - MONO_VERSION="3.8.0"
+
+before_install:
+ - wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
+ - sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
+
+script:
+  - nuget restore
+  - xbuild
+  - nunit-console4 Terradue.GeoJson.Test/bin/Terradue.GeoJson.Test.dll
