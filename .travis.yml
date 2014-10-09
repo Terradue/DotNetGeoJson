@@ -15,4 +15,4 @@ before_install:
 script:
   - nuget restore
   - xbuild
-  - nunit-console4 Terradue.GeoJson.Test/bin/Terradue.GeoJson.Test.dll
+  - nunit-console4 Terradue.GeoJson.Tests/bin/Terradue.GeoJson.Tests.dll
