@@ -685,8 +685,8 @@ namespace Terradue.GeoJson.Geometry {
             /* We retrieve gml:pos string */
             gmlpos = gml.InnerText.Trim();
 				
-            /* gml:posList pattern:         x1 y1 x2 y2
-         		 *                              x1 y1 z1 x2 y2 z2
+            /* gml:posList pattern:         y1 x1 y2 x2
+         		 *                              y1 x1 z1 y2 x2 z2
          		 */
             string[] pos = gmlpos.Split(' ');
 
