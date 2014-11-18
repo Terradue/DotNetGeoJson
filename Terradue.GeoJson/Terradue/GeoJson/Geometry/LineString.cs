@@ -81,9 +81,9 @@ namespace Terradue.GeoJson.Geometry {
                 List<List<double>> coordinates = new List<List<double>>();
                 foreach (GeographicPosition position in Positions) {
                     List<double> xyz = new List<double>();
-                    xyz.Add(position.Coordinates[0].GetValueOrDefault());
-                    xyz.Add(position.Coordinates[1].GetValueOrDefault());
-                    if (position.Coordinates[2] != null) xyz.Add(position.Coordinates[1].GetValueOrDefault());
+                    xyz.Add(position.Longitude);
+                    xyz.Add(position.Latitude);
+                    if (position.Coordinates[2] != null) xyz.Add(position.Altitude);
                     coordinates.Add(xyz);
                 }
                 return coordinates;
@@ -94,9 +94,9 @@ namespace Terradue.GeoJson.Geometry {
                     double[] positions = list.ToArray();
                     GeographicPosition geographicPosition;
                     if (positions.Length == 2) {
-                        geographicPosition = new GeographicPosition(positions[0], positions[1]);
+                        geographicPosition = new GeographicPosition(positions[1], positions[0]);
                     } else if (positions.Length == 3) {
-                        geographicPosition = new GeographicPosition(positions[0], positions[1], positions[2]);
+                        geographicPosition = new GeographicPosition(positions[1], positions[0], positions[2]);
                     } else {
                         throw new InvalidFormatException("a geographic position must have at least 2 coordinates");
                     }
