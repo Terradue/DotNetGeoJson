@@ -83,7 +83,7 @@ namespace Terradue.GeoJson.Geometry {
                     List<double> xyz = new List<double>();
                     xyz.Add(position.Longitude);
                     xyz.Add(position.Latitude);
-                    if (position.Coordinates[2] != null) xyz.Add(position.Altitude);
+                    if (position.Coordinates[2] != null) xyz.Add(position.Altitude.GetValueOrDefault());
                     coordinates.Add(xyz);
                 }
                 return coordinates;
