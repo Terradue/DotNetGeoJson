@@ -238,6 +238,123 @@ namespace Terradue.GeoJson.Geometry {
         }
 
         /// <summary>
+        /// Initialize a new IGemotry object from a standard WKT geometry
+        /// </summary>
+        /// <param name="wkt">The geometry in WKT to convert</param>
+        public static GeometryObject GeoRSSToGeometry(XmlElement georss) {
+            if (georss == null) throw new ArgumentNullException("GeoRSS Xml Element is null!");
+
+            if (georss.LocalName == "point") return FromGeoRSSPoint(georss);
+
+            if (georss.LocalName == "line") return FromGeoRSSLine(georss);
+
+            if (georss.LocalName == "box") return FromGeoRSSBox(georss);
+
+            if (georss.LocalName == "polygon") return FromGeoRSSPolygon(georss);
+
+            throw new InvalidFormatException("GeoRSS type " + georss.LocalName + "is not supported");
+
+        }
+
+        private static Point FromGeoRSSPoint(XmlElement georss) {
+
+            if (!IsGeoRSSNamespace(georss, true)) return null;
+            if (georss.LocalName != "point") return  null;
+
+
+            /* We retrieve gml:pos string */
+            string georssText = georss.InnerText.Trim();
+
+            /* gml:pos pattern:     
+             * x1 y1
+             * x1 y1 z1
+             */
+            string[] pos = georssText.Split(',');
+            if (pos.Length != 2 ) throw new InvalidFormatException("invalid GeoRSS representation: georss:point members are not 2 :" + georssText);
+
+            return new Point(new GeographicPosition(pos[0], pos[1]));
+        }
+
+        private static LineString FromGeoRSSLine(XmlElement gml) {
+            List<IPosition> position = new List<IPosition>();
+            string georssline;
+
+            if (!IsGeoRSSNamespace(gml, false)) return null;
+
+            /* We retrieve gml:pos string */
+            georssline = gml.InnerText.Trim();
+
+            /* georss:line pattern:         y1 x1, y2 x2
+                 */
+            string[] pos = georssline.Split(' ');
+            if (pos.Length % 2 != 0 ) throw new InvalidFormatException("invalid GeoRSS representation: georss:line members are not by 2 :" + georssline);
+            for (int i = 0; i < pos.Length; i += 2) {
+                position.Add(new GeographicPosition(pos[i + 0], pos[i + 1]));
+            }
+
+            if (position.Count < 2) throw new InvalidFormatException("invalid GML representation: LineString type must have at least 2 positions");
+
+            return new LineString(position);
+        }
+
+        private static Polygon FromGeoRSSPolygon(XmlElement gml) {
+            List<LineString> polygon = new List<LineString>();
+            List<IPosition> positions = null;
+
+            polygon.Add(FromGeoRSSLine(gml));
+
+            return new Polygon(polygon);
+        }
+
+        private static Polygon FromGeoRSSBox(XmlElement gml) {
+            List<IPosition> position = new List<IPosition>();
+            List<LineString> polygon = new List<LineString>();
+            string georssbox;
+
+            if (!IsGeoRSSNamespace(gml, false)) return null;
+
+            /* We retrieve gml:pos string */
+            georssbox = gml.InnerText.Trim();
+
+            /* georss:box pattern:         y1,x1,y2,x2
+                 */
+            string[] pos = georssbox.Split(',');
+
+            if (pos.Length != 4 ) throw new InvalidFormatException("invalid GeoRSS representation: georss:box members are not 4 :" + georssbox);
+
+            position.Add(new GeographicPosition(pos[0], pos[1]));
+            position.Add(new GeographicPosition(pos[0], pos[3]));
+            position.Add(new GeographicPosition(pos[2], pos[3]));
+            position.Add(new GeographicPosition(pos[2], pos[1]));
+            position.Add(new GeographicPosition(pos[0], pos[1]));
+
+            polygon.Add(new LineString(position));
+            return new Polygon(polygon);
+        }
+
+        private static bool IsGeoRSSNamespace(XmlElement element, bool is_strict) {
+            string ns = element.NamespaceURI;
+
+            /*
+             * If no namespace is available we could return true anyway
+             * (because we work only on GML fragment, we don't want to
+             *  'oblige' to add namespace on the geometry root node)
+             */
+            if (ns == null) {
+                return !is_strict;
+            }
+
+            /*
+             * Handle namespaces:
+             *  - http://www.opengis.net/gml      (GML 3.1.1 and priors)
+             *  - http://www.opengis.net/gml/3.2  (GML 3.2.1)
+             */
+            if (ns == "http://www.georss.org/georss") return true;
+
+            return false;
+        }
+
+        /// <summary>
         /// Get an XmlNameSpaceManager with the gmlnamesapces
         /// </summary>
         /// <returns>The xml namespace manager.</returns>
