@@ -20,6 +20,49 @@ namespace Terradue.GeoJson.Geometry {
     /// Static class to hold utilities methods
     /// </summary>
     public static class GeometryFactory {
+
+        public static Terradue.GeoJson.Feature.Feature GeoRSSToFeature(XmlElement element) {
+
+            Dictionary<string,object> properties = new Dictionary<string,object>();
+            IGeometryObject geometry = null;
+
+            if (element == null)
+                return new NoGeometryFeature(properties);
+
+            try {
+                geometry = GeometryFactory.GeoRSSToGeometry(element);
+            } catch (InvalidFormatException e) {
+                properties.Add("Exception", String.Format("The GeoRSS object {0} has an invalid format: {1}", element.LocalName, e.Message));
+                return new NoGeometryFeature(properties);
+            } catch (Exception e) {
+                properties.Add("Exception", String.Format("The GeoRSS object {0} conversion returned an error: {1}", element.LocalName, e.Message));
+                return new NoGeometryFeature(properties);
+            }
+
+            if (geometry.GetType() == typeof(MultiPolygon)) {
+                geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
+                return new MultiPolygonFeature((MultiPolygon)geometry, properties);
+            }
+
+            if (geometry.GetType() == typeof(Polygon)) {
+                geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
+                return new PolygonFeature((Polygon)geometry, properties);
+            }
+
+            if (geometry.GetType() == typeof(MultiPoint)) {
+                return new MultiPointFeature((MultiPoint)geometry, properties);
+            }
+
+            if (geometry.GetType() == typeof(MultiLineString)) {
+                return new MultiLineStringFeature((MultiLineString)geometry, properties);
+            }
+
+            properties.Add("Exception", String.Format("The GeoRSS object {0} is not implemented. Please report", element.LocalName));
+
+
+            return new NoGeometryFeature(properties);
+        }
+
         /// <summary>
         /// Gml Transformer to Feature.
         /// </summary>
@@ -258,6 +301,9 @@ namespace Terradue.GeoJson.Geometry {
 
             if (georss.LocalName == "polygon")
                 return FromGeoRSSPolygon(georss);
+
+            if (georss.LocalName == "where")
+                return GmlToGeometry((XmlElement)georss.FirstChild);
 
             throw new InvalidFormatException("GeoRSS type " + georss.LocalName + "is not supported");
 
