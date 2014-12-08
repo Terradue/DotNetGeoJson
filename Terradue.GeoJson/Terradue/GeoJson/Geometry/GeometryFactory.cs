@@ -227,7 +227,7 @@ namespace Terradue.GeoJson.Geometry {
             for (int i = 0; i < terms.Length; i++) {
                 values = terms[i].Split(' ');
                 string z = (values.Length > 2 ? values[2] : null);
-                GeographicPosition geopos = new GeographicPosition(values[0], values[1], z);
+                GeographicPosition geopos = new GeographicPosition(values[1], values[0], z);
                 positions.Add(geopos);
             }
 
