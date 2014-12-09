@@ -958,8 +958,6 @@ namespace Terradue.GeoJson.Geometry {
             List<IPosition> position = new List<IPosition>();
             string gmlcoord, gmlts, gmlcs, gmldec;
             char ts = ' ', cs = ',', dec = '.';
-            CultureInfo ci;
-            NumberFormatInfo ni = null;
 
             gmlcoord = element.InnerText;
 
@@ -978,10 +976,6 @@ namespace Terradue.GeoJson.Geometry {
             gmldec = element.GetAttribute("decimal");
             if (char.TryParse(gmldec, out dec) != true)
                 dec = '.';
-
-            ci = CultureInfo.InvariantCulture;
-            ni = ci.NumberFormat;
-            ni.NumberDecimalSeparator = dec.ToString();
 			
             if (cs == ts || cs == dec || ts == dec)
                 throw new InvalidFormatException("invalid GML representation: gml:coordinates ambiguity in separators");
@@ -997,11 +991,11 @@ namespace Terradue.GeoJson.Geometry {
 
                 string[] pos = coord.Split(cs);
 
-                double x = double.Parse(pos[0], ni);
-                double y = double.Parse(pos[1], ni);
+                double x = double.Parse(pos[0]);
+                double y = double.Parse(pos[1]);
                 double? z = null;
                 if (pos.Length > 2)
-                    z = double.Parse(pos[2], ni);
+                    z = double.Parse(pos[2]);
 
                 position.Add(new GeographicPosition(y, x, z));
 
