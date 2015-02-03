@@ -57,5 +57,9 @@
     <None Include="packages.config" />
     <None Include="posList.gml" />
     <None Include="polygon.georss" />
+    <None Include="Samples\s1.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Samples\" />
   </ItemGroup>
 </Project>
