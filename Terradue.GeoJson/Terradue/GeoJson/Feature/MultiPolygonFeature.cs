@@ -27,7 +27,7 @@ namespace Terradue.GeoJson.Feature {
         /// </summary>
         /// <param name="geometry">The Geometry Object.</param>
         /// <param name="properties">The properties.</param>
-        public MultiPolygonFeature(MultiPolygon geometry, Dictionary<string, object> properties) : base(geometry, properties) {
+        public MultiPolygonFeature(MultiPolygon geometry, Dictionary<string, object> properties = null) : base(geometry, properties) {
             Geometry = geometry;
         }
 
