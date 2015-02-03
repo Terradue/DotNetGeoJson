@@ -32,20 +32,40 @@ namespace Terradue.GeoJson.Geometry {
                 return PointFeatureToWkt((PointFeature)feature);
             }
 
-            if (feature is MultiPointFeature) {
+            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is Point)) {
+                return PointFeatureToWkt(new PointFeature((Point)feature.Geometry));
+            }
+
+            if (feature is MultiPointFeature ) {
                 return MultiPointFeatureToWkt((MultiPointFeature)feature);
             }
 
-            if (feature is LineStringFeature) {
+            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is MultiPoint)) {
+                return MultiPointFeatureToWkt(new MultiPointFeature((MultiPoint)feature.Geometry));
+            }
+
+            if (feature is LineStringFeature ) {
                 return LineStringFeatureToWkt((LineStringFeature)feature);
             }
 
-            if (feature is PolygonFeature) {
+            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is LineString)) {
+                return LineStringFeatureToWkt(new LineStringFeature((LineString)feature.Geometry));
+            }
+
+            if (feature is PolygonFeature ) {
                 return PolygonFeatureToWkt((PolygonFeature)feature);
             }
 
-            if (feature is MultiPolygonFeature) {
+            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is Polygon)) {
+                return PolygonFeatureToWkt(new PolygonFeature((Polygon)feature.Geometry));
+            }
+
+            if (feature is MultiPolygonFeature ) {
                 return MultiPolygonFeatureToWkt((MultiPolygonFeature)feature);
+            }
+
+            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is MultiPolygon)) {
+                return MultiPolygonFeatureToWkt(new MultiPolygonFeature((MultiPolygon)feature.Geometry));
             }
 
             return null;
