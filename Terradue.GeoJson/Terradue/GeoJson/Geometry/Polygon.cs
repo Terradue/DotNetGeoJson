@@ -26,7 +26,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <summary>
         /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.Polygon"/> class.
         /// </summary>
-        internal Polygon() {
+        public Polygon() {
             this.LineStrings = new List<LineString>();
             this.Type = GeoJsonObjectType.Polygon;
         }
@@ -39,10 +39,6 @@ namespace Terradue.GeoJson.Geometry {
         /// in the array representing the exterior ring. Any subsequent elements represent interior rings (or holes).
         /// </param>
         public Polygon(List<LineString> linearRings = null) {
-            if (linearRings == null) {
-                throw new ArgumentNullException("linearRings");
-            }
-
             // TODO control linear ring
             /*if (linearRings.Any(linearRing => !linearRing.IsLinearRing()))
             {
