@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using ServiceStack.Text;
 using Terradue.GeoJson.Feature;
+using Terradue.GeoJson.Geometry;
 
 namespace Terradue.GeoJson.Tests {
     [TestFixture()]
@@ -28,6 +29,20 @@ namespace Terradue.GeoJson.Tests {
             Terradue.GeoJson.Feature.Feature point = Geometry.GeometryFactory.WktToFeature(fs);
 
             Assert.True(point is PointFeature);
+
+        }
+
+        [Test()]
+        public void PolygonDeserialization() {
+
+            FileStream fs = new FileStream("../Samples/s1.json", FileMode.Open);
+
+            Terradue.GeoJson.Feature.Feature f = JsonSerializer.DeserializeFromStream<Terradue.GeoJson.Feature.Feature>(fs);
+            fs.Close();
+
+            Assert.True(f is PolygonFeature);
+            Console.Out.Write(f.ToWkt());
+            Assert.AreEqual("POLYGON((13.96804 42.817595,12.692281 43.02102,12.369263 41.890703,13.58968 41.69639,13.96804 42.817595))", f.ToWkt());
 
         }
     }
