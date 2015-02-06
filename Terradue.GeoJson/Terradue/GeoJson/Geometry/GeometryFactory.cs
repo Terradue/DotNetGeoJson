@@ -991,8 +991,8 @@ namespace Terradue.GeoJson.Geometry {
 
                 string[] pos = coord.Split(cs);
 
-                double x = double.Parse(pos[0]);
-                double y = double.Parse(pos[1]);
+                double x = double.Parse(pos[1]);
+                double y = double.Parse(pos[0]);
                 double? z = null;
                 if (pos.Length > 2)
                     z = double.Parse(pos[2]);
