@@ -22,12 +22,15 @@
 //
 using System;
 using Terradue.GeoJson.Feature;
+using System.Linq;
+using System.Globalization;
 
 namespace Terradue.GeoJson.Geometry {
     public static class FeatureExtensions {
 
-        public static string ToWkt(this Terradue.GeoJson.Feature.Feature feature)
-        {
+        static readonly IFormatProvider ci = CultureInfo.InvariantCulture;
+
+        public static string ToWkt(this Terradue.GeoJson.Feature.Feature feature) {
             if (feature is PointFeature) {
                 return PointFeatureToWkt((PointFeature)feature);
             }
@@ -36,7 +39,7 @@ namespace Terradue.GeoJson.Geometry {
                 return PointFeatureToWkt(new PointFeature((Point)feature.Geometry));
             }
 
-            if (feature is MultiPointFeature ) {
+            if (feature is MultiPointFeature) {
                 return MultiPointFeatureToWkt((MultiPointFeature)feature);
             }
 
@@ -44,7 +47,7 @@ namespace Terradue.GeoJson.Geometry {
                 return MultiPointFeatureToWkt(new MultiPointFeature((MultiPoint)feature.Geometry));
             }
 
-            if (feature is LineStringFeature ) {
+            if (feature is LineStringFeature) {
                 return LineStringFeatureToWkt((LineStringFeature)feature);
             }
 
@@ -52,7 +55,7 @@ namespace Terradue.GeoJson.Geometry {
                 return LineStringFeatureToWkt(new LineStringFeature((LineString)feature.Geometry));
             }
 
-            if (feature is PolygonFeature ) {
+            if (feature is PolygonFeature) {
                 return PolygonFeatureToWkt((PolygonFeature)feature);
             }
 
@@ -60,7 +63,7 @@ namespace Terradue.GeoJson.Geometry {
                 return PolygonFeatureToWkt(new PolygonFeature((Polygon)feature.Geometry));
             }
 
-            if (feature is MultiPolygonFeature ) {
+            if (feature is MultiPolygonFeature) {
                 return MultiPolygonFeatureToWkt((MultiPolygonFeature)feature);
             }
 
@@ -108,65 +111,31 @@ namespace Terradue.GeoJson.Geometry {
         }
 
         static string GeometryToWktString(Point point) {
-
             return GeometryToWktString(point.Position);
-
         }
 
-        static string GeometryToWktString(MultiPoint multiPoint) {
-
-            string multiPointWkt = "";
-            string sep = "";
-            foreach (var polygon in multiPoint.Points) {
-                multiPointWkt += sep + GeometryToWktString(polygon);
-                sep = ",";
-            }
-
-            return multiPointWkt;
-
+        static string GeometryToWktString(MultiPoint multiPoint) {            
+            return string.Join(",", multiPoint.Points.Select(GeometryToWktString));
         }
 
         static string GeometryToWktString(IPosition position) {
 
-            if ( position is GeographicPosition)
-                return string.Format("{0} {1}", ((GeographicPosition)position).Longitude, ((GeographicPosition)position).Latitude);
+            if (position is GeographicPosition)
+                return string.Format(ci, "{0} {1}", ((GeographicPosition)position).Longitude, ((GeographicPosition)position).Latitude);
 
             return "";
         }
 
-        static string GeometryToWktString(LineString lineString) {
-
-            string linestring = "";
-            string sep = "";
-            foreach (var position in lineString.Positions) {
-                linestring += sep + GeometryToWktString(position);
-                sep = ",";
-            }
-
-            return linestring;
-
+        static string GeometryToWktString(LineString lineString) {          
+            return string.Join(",", lineString.Positions.Select(GeometryToWktString));
         }
 
-        static string GeometryToWktString(Polygon polygon) {
-
-            string polygonWkt = "";
-            foreach (var linestring in polygon.LineStrings) {
-                polygonWkt += "(" + GeometryToWktString(linestring) + ")";
-            }
-
-            return polygonWkt;
-
+        static string GeometryToWktString(Polygon polygon) {            
+            return string.Format("({0})", string.Join(",", polygon.LineStrings.Select(GeometryToWktString)));
         }
 
-        static string GeometryToWktString(MultiPolygon multiPolygon) {
-
-            string multiPolygonWkt = "";
-            foreach (var polygon in multiPolygon.Polygons) {
-                multiPolygonWkt += "(" + GeometryToWktString(polygon) + ")";
-            }
-
-            return multiPolygonWkt;
-
+        static string GeometryToWktString(MultiPolygon multiPolygon) {            
+            return string.Format("({0})", string.Join(",", multiPolygon.Polygons.Select(GeometryToWktString)));
         }
     }
 }
