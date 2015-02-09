@@ -30,8 +30,7 @@ namespace Terradue.GeoJson.Geometry {
 
         static readonly IFormatProvider ci = CultureInfo.InvariantCulture;
 
-        public static string ToWkt(this Terradue.GeoJson.Feature.Feature feature)
-        {
+        public static string ToWkt(this Terradue.GeoJson.Feature.Feature feature) {
             if (feature is PointFeature) {
                 return PointFeatureToWkt((PointFeature)feature);
             }
@@ -40,7 +39,7 @@ namespace Terradue.GeoJson.Geometry {
                 return PointFeatureToWkt(new PointFeature((Point)feature.Geometry));
             }
 
-            if (feature is MultiPointFeature ) {
+            if (feature is MultiPointFeature) {
                 return MultiPointFeatureToWkt((MultiPointFeature)feature);
             }
 
@@ -48,7 +47,7 @@ namespace Terradue.GeoJson.Geometry {
                 return MultiPointFeatureToWkt(new MultiPointFeature((MultiPoint)feature.Geometry));
             }
 
-            if (feature is LineStringFeature ) {
+            if (feature is LineStringFeature) {
                 return LineStringFeatureToWkt((LineStringFeature)feature);
             }
 
@@ -56,7 +55,7 @@ namespace Terradue.GeoJson.Geometry {
                 return LineStringFeatureToWkt(new LineStringFeature((LineString)feature.Geometry));
             }
 
-            if (feature is PolygonFeature ) {
+            if (feature is PolygonFeature) {
                 return PolygonFeatureToWkt((PolygonFeature)feature);
             }
 
@@ -64,7 +63,7 @@ namespace Terradue.GeoJson.Geometry {
                 return PolygonFeatureToWkt(new PolygonFeature((Polygon)feature.Geometry));
             }
 
-            if (feature is MultiPolygonFeature ) {
+            if (feature is MultiPolygonFeature) {
                 return MultiPolygonFeatureToWkt((MultiPolygonFeature)feature);
             }
 
@@ -121,22 +120,22 @@ namespace Terradue.GeoJson.Geometry {
 
         static string GeometryToWktString(IPosition position) {
 
-            if ( position is GeographicPosition)
+            if (position is GeographicPosition)
                 return string.Format(ci, "{0} {1}", ((GeographicPosition)position).Longitude, ((GeographicPosition)position).Latitude);
 
             return "";
         }
 
-        static string GeometryToWktString(LineString lineString) {            
+        static string GeometryToWktString(LineString lineString) {          
             return string.Join(",", lineString.Positions.Select(GeometryToWktString));
         }
 
         static string GeometryToWktString(Polygon polygon) {            
-            return string.Join(",", polygon.LineStrings.Select(GeometryToWktString));
+            return string.Format("({0})", string.Join(",", polygon.LineStrings.Select(GeometryToWktString)));
         }
 
         static string GeometryToWktString(MultiPolygon multiPolygon) {            
-            return string.Join(",", multiPolygon.Polygons.Select(GeometryToWktString));
+            return string.Format("({0})", string.Join(",", multiPolygon.Polygons.Select(GeometryToWktString)));
         }
     }
 }
