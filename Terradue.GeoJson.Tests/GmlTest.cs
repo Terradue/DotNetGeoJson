@@ -3,6 +3,7 @@ using System;
 using System.Xml;
 using Terradue.GeoJson.Geometry;
 using Terradue.GeoJson.Feature;
+using System.Linq;
 
 namespace Terradue.GeoJson.Tests { 
 
@@ -44,6 +45,8 @@ namespace Terradue.GeoJson.Tests {
             Assert.IsTrue(geom is MultiPolygon);
 
             Assert.AreEqual(36.07, ((GeographicPosition)((MultiPolygon)geom).Polygons[0].LineStrings[0].Positions[0]).Latitude);
+
+            Assert.AreEqual(50.31, ((MultiPolygon)geom).Coordinates.First().First().First().First());
 
         }
     }
