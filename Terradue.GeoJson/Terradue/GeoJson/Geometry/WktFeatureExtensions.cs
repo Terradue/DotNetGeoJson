@@ -74,6 +74,30 @@ namespace Terradue.GeoJson.Geometry {
             return null;
         }
 
+        public static string ToWkt(this Terradue.GeoJson.Geometry.GeometryObject geometry) {
+            if (geometry is Point) {
+                return GeometryToWktString((Point)geometry);
+            }
+
+            if (geometry is MultiPoint) {
+                return GeometryToWktString((MultiPoint)geometry);
+            }
+
+            if (geometry is LineString) {
+                return GeometryToWktString((LineString)geometry);
+            }
+
+            if (geometry is Polygon) {
+                return GeometryToWktString((Polygon)geometry);
+            }
+
+            if (geometry is MultiPolygon) {
+                return GeometryToWktString((MultiPolygon)geometry);
+            }
+
+            return null;
+        }
+
         static string PointFeatureToWkt(PointFeature pointFeature) {
 
             string point = GeometryToWktString(pointFeature.Geometry);
