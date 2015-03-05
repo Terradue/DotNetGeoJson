@@ -26,7 +26,7 @@ using System.Linq;
 using System.Globalization;
 
 namespace Terradue.GeoJson.Geometry {
-    public static class FeatureExtensions {
+    public static class WktFeatureExtensions {
 
         static readonly IFormatProvider ci = CultureInfo.InvariantCulture;
 
