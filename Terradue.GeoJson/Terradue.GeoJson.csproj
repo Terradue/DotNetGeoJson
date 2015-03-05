@@ -59,6 +59,7 @@
     <Folder Include="Terradue\GeoJson\CoordinateReferenceSystem\" />
     <Folder Include="Terradue\GeoJson\Feature\" />
     <Folder Include="Terradue\GeoJson\Geometry\" />
+    <Folder Include="Terradue\GeoJson\Gml\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,7 +94,9 @@
     <Compile Include="Terradue\GeoJson\Geometry\Polygon.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\Position.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\ProjectedPosition.cs" />
-    <Compile Include="Terradue\GeoJson\Geometry\FeatureExtensions.cs" />
+    <Compile Include="Terradue\GeoJson\Gml\Gml.cs" />
+    <Compile Include="Terradue\GeoJson\Geometry\WktFeatureExtensions.cs" />
+    <Compile Include="Terradue\GeoJson\Geometry\GmlFeatureExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
