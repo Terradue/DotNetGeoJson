@@ -1061,6 +1061,8 @@ namespace Terradue.GeoJson.Gml
         {
             get
             {
+                if (this.textField == null)
+                    return null;
                 return String.Join(" " ,Array.ConvertAll(this.textField, Convert.ToString));
             }
             set
@@ -3213,6 +3215,8 @@ namespace Terradue.GeoJson.Gml
         {
             get
             {
+                if (this.textField == null)
+                    return null;
                 return String.Join(" " ,Array.ConvertAll(this.textField, Convert.ToString));
             }
             set
@@ -19668,6 +19672,8 @@ namespace Terradue.GeoJson.Gml
         {
             get
             {
+                if (this.textField == null)
+                    return null;
                 return String.Join(" " ,Array.ConvertAll(this.textField, Convert.ToString));
             }
             set
