@@ -1061,11 +1061,12 @@ namespace Terradue.GeoJson.Gml
         {
             get
             {
-                return string.Join(" ", Array.ConvertAll(this.textField, Convert.ToString));
+                return String.Join(" " ,Array.ConvertAll(this.textField, Convert.ToString));
             }
             set
             {
-                this.textField = Array.ConvertAll(value.Split(' '), Double.Parse);
+                string[] values = value.Split(' ');
+                this.textField = Array.ConvertAll(values.Where(s => !string.IsNullOrEmpty(s)).ToArray(), Double.Parse);
             }
         }
     }
@@ -19663,15 +19664,16 @@ namespace Terradue.GeoJson.Gml
         }
 
         [System.Xml.Serialization.XmlTextAttribute()]
-        public string[] Text
+        public string Text
         {
             get
             {
-                return Array.ConvertAll(this.textField, Convert.ToString);
+                return String.Join(" " ,Array.ConvertAll(this.textField, Convert.ToString));
             }
             set
             {
-                this.textField = Array.ConvertAll(value, Double.Parse);
+                string[] values = value.Split(' ');
+                this.textField = Array.ConvertAll(values.Where(s => !string.IsNullOrEmpty(s)).ToArray(), Double.Parse);
             }
         }
     }
