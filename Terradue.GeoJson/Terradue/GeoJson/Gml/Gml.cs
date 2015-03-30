@@ -8979,6 +8979,19 @@ namespace Terradue.GeoJson.Gml
             }
         }
 
+        [XmlIgnore]
+        public TimePositionType beginPosition
+        {
+            get
+            {
+                return (TimePositionType)this.itemField;
+            }
+            set
+            {
+                this.itemField = value;
+            }
+        }
+
         [System.Xml.Serialization.XmlElementAttribute("end", typeof(TimeInstantPropertyType))]
         [System.Xml.Serialization.XmlElementAttribute("endPosition", typeof(TimePositionType))]
         public object Item1
@@ -8986,6 +8999,19 @@ namespace Terradue.GeoJson.Gml
             get
             {
                 return this.item1Field;
+            }
+            set
+            {
+                this.item1Field = value;
+            }
+        }
+
+        [XmlIgnore]
+        public TimePositionType endPosition
+        {
+            get
+            {
+                return (TimePositionType)this.item1Field;
             }
             set
             {
