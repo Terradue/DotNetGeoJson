@@ -1061,11 +1061,14 @@ namespace Terradue.GeoJson.Gml
         {
             get
             {
-                return string.Join(" ", Array.ConvertAll(this.textField, Convert.ToString));
+                if (this.textField == null)
+                    return null;
+                return String.Join(" " ,Array.ConvertAll(this.textField, Convert.ToString));
             }
             set
             {
-                this.textField = Array.ConvertAll(value.Split(' '), Double.Parse);
+                string[] values = value.Split(' ');
+                this.textField = Array.ConvertAll(values.Where(s => !string.IsNullOrEmpty(s)).ToArray(), Double.Parse);
             }
         }
     }
@@ -3212,6 +3215,8 @@ namespace Terradue.GeoJson.Gml
         {
             get
             {
+                if (this.textField == null)
+                    return null;
                 return String.Join(" " ,Array.ConvertAll(this.textField, Convert.ToString));
             }
             set
@@ -8974,6 +8979,19 @@ namespace Terradue.GeoJson.Gml
             }
         }
 
+        [XmlIgnore]
+        public TimePositionType beginPosition
+        {
+            get
+            {
+                return (TimePositionType)this.itemField;
+            }
+            set
+            {
+                this.itemField = value;
+            }
+        }
+
         [System.Xml.Serialization.XmlElementAttribute("end", typeof(TimeInstantPropertyType))]
         [System.Xml.Serialization.XmlElementAttribute("endPosition", typeof(TimePositionType))]
         public object Item1
@@ -8981,6 +8999,19 @@ namespace Terradue.GeoJson.Gml
             get
             {
                 return this.item1Field;
+            }
+            set
+            {
+                this.item1Field = value;
+            }
+        }
+
+        [XmlIgnore]
+        public TimePositionType endPosition
+        {
+            get
+            {
+                return (TimePositionType)this.item1Field;
             }
             set
             {
@@ -19663,15 +19694,18 @@ namespace Terradue.GeoJson.Gml
         }
 
         [System.Xml.Serialization.XmlTextAttribute()]
-        public string[] Text
+        public string Text
         {
             get
             {
-                return Array.ConvertAll(this.textField, Convert.ToString);
+                if (this.textField == null)
+                    return null;
+                return String.Join(" " ,Array.ConvertAll(this.textField, Convert.ToString));
             }
             set
             {
-                this.textField = Array.ConvertAll(value, Double.Parse);
+                string[] values = value.Split(' ');
+                this.textField = Array.ConvertAll(values.Where(s => !string.IsNullOrEmpty(s)).ToArray(), Double.Parse);
             }
         }
     }
