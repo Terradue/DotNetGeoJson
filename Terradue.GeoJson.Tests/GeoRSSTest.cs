@@ -1,27 +1,23 @@
-﻿using NUnit.Framework;
-using System;
-using System.Xml;
+﻿using System.Xml;
+using NUnit.Framework;
 using Terradue.GeoJson.Geometry;
-using Terradue.GeoJson.Feature;
 
-namespace Terradue.GeoJson.Tests { 
+namespace Terradue.GeoJson.Tests
+{
+  [TestFixture]
+  public class GeoRSSTest
+  {
+    [Test]
+    public void PolygonTestCase()
+    {
+      var doc = new XmlDocument();
+      doc.Load("../polygon.georss");
 
-    [TestFixture()]
-    public class GeoRSSTest {
+      var e = doc.DocumentElement;
 
-        [Test()]
-        public void PolygonTestCase() {
+      var geom = GeometryFactory.GeoRSSToGeometry(e);
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load("../polygon.georss");
-
-            XmlElement e = doc.DocumentElement;
-
-            var geom = GeometryFactory.GeoRSSToGeometry(e);
-
-            Assert.IsTrue(geom is Polygon);
-
-        }
+      Assert.IsTrue(geom is Polygon);
     }
+  }
 }
-

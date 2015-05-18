@@ -11,14 +11,14 @@
 
 namespace Terradue.GeoJson.CoordinateReferenceSystem
 {
+  /// <summary>
+  /// Base Interface for CRSBase Object types.
+  /// </summary>
+  public interface ICRSObject
+  {
     /// <summary>
-    /// Base Interface for CRSBase Object types.
+    /// Gets the CRS type.
     /// </summary>
-    public interface ICRSObject
-    {
-        /// <summary>
-        /// Gets the CRS type.
-        /// </summary>
-        CRSType Type { get; }
-    }
+    CRSType Type { get; }
+  }
 }

@@ -1,52 +1,47 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using Terradue.GeoJson.Feature;
 using Terradue.GeoJson.Geometry;
-using System.Collections.Generic;
 
-namespace Terradue.GeoJson.Tests {
+namespace Terradue.GeoJson.Tests
+{
+  [TestFixture]
+  public class WktTransformation
+  {
+    private readonly GeographicPosition Position1 = new GeographicPosition(10, 124);
+    private readonly GeographicPosition Position2 = new GeographicPosition(11, 124);
+    private readonly GeographicPosition Position3 = new GeographicPosition(10, 125);
+    private readonly GeographicPosition Position4 = new GeographicPosition(10, 124);
 
-    [TestFixture()]
-    public class WktTransformation {
-
-        GeographicPosition Position1 = new GeographicPosition(10, 124);
-        GeographicPosition Position2 = new GeographicPosition(11, 124);
-        GeographicPosition Position3 = new GeographicPosition(10, 125);
-        GeographicPosition Position4 = new GeographicPosition(10, 124);
-
-
-        [Test()]
-        public void PointFeatureToWkt() {
-
-            Terradue.GeoJson.Feature.PointFeature pointf = new Terradue.GeoJson.Feature.PointFeature(new Terradue.GeoJson.Geometry.Point(Position1));
-            string wkt = pointf.ToWkt();
-            Assert.AreEqual("POINT(124 10)", wkt);
-
-        }
-
-        [Test()]
-        public void LineStringFeatureToWkt() {
-
-            Terradue.GeoJson.Feature.LineStringFeature linestringf = 
-                new Terradue.GeoJson.Feature.LineStringFeature(new Terradue.GeoJson.Geometry.LineString(
-                    new List<IPosition>(){ Position1, Position2, Position3 }));
-            string wkt = linestringf.ToWkt();
-            Assert.AreEqual("LINESTRING(124 10,124 11,125 10)", wkt);
-
-        }
-
-        [Test()]
-        public void PolygonFeatureToWkt() {
-
-            List<LineString> list = new List<LineString>();
-            list.Add(new Terradue.GeoJson.Geometry.LineString(
-                                        new List<IPosition>(){ Position1, Position2, Position3, Position4 }));
-
-            Terradue.GeoJson.Feature.PolygonFeature polygonf = 
-                new Terradue.GeoJson.Feature.PolygonFeature(new Polygon(list));
-            string wkt = polygonf.ToWkt();
-            Assert.AreEqual("POLYGON((124 10,124 11,125 10,124 10))", wkt);
-
-        }
+    [Test]
+    public void PointFeatureToWkt()
+    {
+      var pointf = new PointFeature(new Point(Position1));
+      var wkt = pointf.ToWkt();
+      Assert.AreEqual("POINT(124 10)", wkt);
     }
-}
 
+    [Test]
+    public void LineStringFeatureToWkt()
+    {
+      var linestringf =
+        new LineStringFeature(new LineString(
+          new List<IPosition> {Position1, Position2, Position3}));
+      var wkt = linestringf.ToWkt();
+      Assert.AreEqual("LINESTRING(124 10,124 11,125 10)", wkt);
+    }
+
+    [Test]
+    public void PolygonFeatureToWkt()
+    {
+      var list = new List<LineString>();
+      list.Add(new LineString(
+        new List<IPosition> {Position1, Position2, Position3, Position4}));
+
+      var polygonf =
+        new PolygonFeature(new Polygon(list));
+      var wkt = polygonf.ToWkt();
+      Assert.AreEqual("POLYGON((124 10,124 11,125 10,124 10))", wkt);
+    }
+  }
+}

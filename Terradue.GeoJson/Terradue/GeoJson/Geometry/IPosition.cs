@@ -8,8 +8,8 @@
 
 namespace Terradue.GeoJson.Geometry
 {
-    public interface IPosition
-    {
-		bool Equals(IPosition positions);
-    }
+  public interface IPosition
+  {
+    bool Equals(IPosition positions);
+  }
 }
