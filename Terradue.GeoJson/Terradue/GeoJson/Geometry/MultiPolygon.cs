@@ -13,7 +13,6 @@ namespace Terradue.GeoJson.Geometry
 {
   using System.Collections.Generic;
   using System.Runtime.Serialization;
-  using System;
 
   /// <summary>
   /// Defines the <see cref="http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
@@ -26,8 +25,8 @@ namespace Terradue.GeoJson.Geometry
     /// </summary>
     public MultiPolygon()
     {
-      this.Polygons = new List<Polygon>();
-      this.Type = GeoJsonObjectType.MultiPolygon;
+      Polygons = new List<Polygon>();
+      Type = GeoJsonObjectType.MultiPolygon;
     }
 
     /// <summary>
@@ -36,8 +35,8 @@ namespace Terradue.GeoJson.Geometry
     /// <param name="polygons">The polygons contained in this MultiPolygon.</param>
     public MultiPolygon(List<Polygon> polygons = null)
     {
-      this.Polygons = polygons ?? new List<Polygon>();
-      this.Type = GeoJsonObjectType.MultiPolygon;
+      Polygons = polygons ?? new List<Polygon>();
+      Type = GeoJsonObjectType.MultiPolygon;
     }
 
     /// <summary>
@@ -66,9 +65,8 @@ namespace Terradue.GeoJson.Geometry
       {
         foreach (var list in value)
         {
-          var polygon = new Polygon();
-          polygon.Coordinates = list;
-          this.Polygons.Add(polygon);
+          var polygon = new Polygon {Coordinates = list};
+          Polygons.Add(polygon);
         }
       }
     }

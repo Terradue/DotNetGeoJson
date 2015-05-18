@@ -13,7 +13,6 @@ namespace Terradue.GeoJson.Geometry
 {
   using System.Collections.Generic;
   using System.Runtime.Serialization;
-  using System;
 
   /// <summary>
   /// Defines the <see cref="http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
@@ -26,8 +25,8 @@ namespace Terradue.GeoJson.Geometry
     /// </summary>
     public MultiLineString()
     {
-      this.LineStrings = new List<LineString>();
-      this.Type = GeoJsonObjectType.MultiLineString;
+      LineStrings = new List<LineString>();
+      Type = GeoJsonObjectType.MultiLineString;
     }
 
     /// <summary>
@@ -36,8 +35,8 @@ namespace Terradue.GeoJson.Geometry
     /// <param name="coordinates">The coordinates.</param>
     public MultiLineString(List<LineString> lineStrings)
     {
-      this.LineStrings = lineStrings ?? new List<LineString>();
-      this.Type = GeoJsonObjectType.MultiLineString;
+      LineStrings = lineStrings ?? new List<LineString>();
+      Type = GeoJsonObjectType.MultiLineString;
     }
 
     /// <summary>
@@ -64,9 +63,8 @@ namespace Terradue.GeoJson.Geometry
       {
         foreach (var list in value)
         {
-          var linestring = new LineString();
-          linestring.Coordinates = list;
-          this.LineStrings.Add(linestring);
+          var linestring = new LineString {Coordinates = list};
+          LineStrings.Add(linestring);
         }
       }
     }

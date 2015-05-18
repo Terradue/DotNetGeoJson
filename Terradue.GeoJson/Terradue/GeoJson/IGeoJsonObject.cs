@@ -11,8 +11,6 @@
 
 namespace Terradue.GeoJson
 {
-  using System.Runtime.Serialization;
-
   /// <summary>
   /// Base Interface for GeoJson types.
   /// </summary>

@@ -34,24 +34,24 @@ namespace Terradue.GeoJson.Geometry
   {
 
     private static readonly IFormatProvider ci = CultureInfo.InvariantCulture;
-    private static readonly XmlSerializer GmlPointSerializer = new XmlSerializer(typeof (Terradue.GeoJson.Gml.PointType));
+    private static readonly XmlSerializer GmlPointSerializer = new XmlSerializer(typeof (Gml.PointType));
 
     private static readonly XmlSerializer GmlMultiPointSerializer =
-      new XmlSerializer(typeof (Terradue.GeoJson.Gml.MultiPointType));
+      new XmlSerializer(typeof (Gml.MultiPointType));
 
     private static readonly XmlSerializer GmlLineStringSerializer =
-      new XmlSerializer(typeof (Terradue.GeoJson.Gml.LineStringType));
+      new XmlSerializer(typeof (Gml.LineStringType));
 
     private static readonly XmlSerializer GmlMultiLineStringSerializer =
-      new XmlSerializer(typeof (Terradue.GeoJson.Gml.MultiCurveType));
+      new XmlSerializer(typeof (Gml.MultiCurveType));
 
     private static readonly XmlSerializer GmlPolygonSerializer =
-      new XmlSerializer(typeof (Terradue.GeoJson.Gml.PolygonType));
+      new XmlSerializer(typeof (Gml.PolygonType));
 
     private static readonly XmlSerializer GmlMultiSurfaceSerializer =
-      new XmlSerializer(typeof (Terradue.GeoJson.Gml.MultiSurfaceType));
+      new XmlSerializer(typeof (Gml.MultiSurfaceType));
 
-    public static XmlElement ToMultiCurveGml(this Terradue.GeoJson.Geometry.GeometryObject geometry)
+    public static XmlElement ToMultiCurveGml(this GeometryObject geometry)
     {
 
       var xdoc = new XmlDocument();
@@ -78,7 +78,7 @@ namespace Terradue.GeoJson.Geometry
       return xdoc.DocumentElement;
     }
 
-    public static XmlElement ToMultiSurfaceGml(this Terradue.GeoJson.Geometry.GeometryObject geometry)
+    public static XmlElement ToMultiSurfaceGml(this GeometryObject geometry)
     {
 
       var xdoc = new XmlDocument();
@@ -105,8 +105,8 @@ namespace Terradue.GeoJson.Geometry
       return xdoc.DocumentElement;
     }
 
-    public static Terradue.GeoJson.Gml.MultiSurfaceType ToMultiSurface(
-      this Terradue.GeoJson.Geometry.GeometryObject geometry)
+    public static Gml.MultiSurfaceType ToMultiSurface(
+      this GeometryObject geometry)
     {
 
       if (geometry is Polygon)
@@ -126,8 +126,8 @@ namespace Terradue.GeoJson.Geometry
 
     }
 
-    public static Terradue.GeoJson.Gml.MultiCurveType ToMultiCurve(
-      this Terradue.GeoJson.Geometry.GeometryObject geometry)
+    public static Gml.MultiCurveType ToMultiCurve(
+      this GeometryObject geometry)
     {
 
       if (geometry is LineString)
@@ -146,7 +146,7 @@ namespace Terradue.GeoJson.Geometry
         return null;
     }
 
-    public static XmlElement ToGml(this Terradue.GeoJson.Geometry.GeometryObject geometry)
+    public static XmlElement ToGml(this GeometryObject geometry)
     {
 
       var xdoc = new XmlDocument();
@@ -188,53 +188,53 @@ namespace Terradue.GeoJson.Geometry
       return xdoc.DocumentElement;
     }
 
-    public static Terradue.GeoJson.Gml.PointType PointFeatureToGml(PointFeature pointFeature)
+    public static Gml.PointType PointFeatureToGml(PointFeature pointFeature)
     {
 
       return GeometryToGml(pointFeature.Geometry);
     }
 
-    public static Terradue.GeoJson.Gml.MultiPointType MultiPointFeatureToGml(MultiPointFeature multiPointFeature)
+    public static Gml.MultiPointType MultiPointFeatureToGml(MultiPointFeature multiPointFeature)
     {
 
       return GeometryToGml(multiPointFeature.Geometry);
     }
 
-    public static Terradue.GeoJson.Gml.LineStringType LineStringFeatureToGml(LineStringFeature lineStringFeature)
+    public static Gml.LineStringType LineStringFeatureToGml(LineStringFeature lineStringFeature)
     {
 
       return GeometryToGml(lineStringFeature.Geometry);
     }
 
-    public static Terradue.GeoJson.Gml.PolygonType PolygonFeatureToGml(PolygonFeature polygonFeature)
+    public static Gml.PolygonType PolygonFeatureToGml(PolygonFeature polygonFeature)
     {
 
       return GeometryToGml(polygonFeature.Geometry);
     }
 
-    public static Terradue.GeoJson.Gml.MultiSurfaceType MultiPolygonFeatureToGml(MultiPolygonFeature multiPolygonFeature)
+    public static Gml.MultiSurfaceType MultiPolygonFeatureToGml(MultiPolygonFeature multiPolygonFeature)
     {
 
       return GeometryToGml(multiPolygonFeature.Geometry);
     }
 
-    public static Terradue.GeoJson.Gml.PointType GeometryToGml(Point point)
+    public static Gml.PointType GeometryToGml(Point point)
     {
-      var gmlPoint = new Terradue.GeoJson.Gml.PointType();
+      var gmlPoint = new Gml.PointType();
       var gmlPos = GeometryToGml(point.Position);
       gmlPoint.srsDimension = gmlPos.srsDimension;
       gmlPoint.Item = gmlPos;
       return gmlPoint;
     }
 
-    public static Terradue.GeoJson.Gml.MultiPointType GeometryToGml(MultiPoint multiPoint)
+    public static Gml.MultiPointType GeometryToGml(MultiPoint multiPoint)
     {
 
-      var gmlMultiPoint = new Terradue.GeoJson.Gml.MultiPointType();
-      var gmlPointMembers = new List<Terradue.GeoJson.Gml.PointPropertyType>();
+      var gmlMultiPoint = new Gml.MultiPointType();
+      var gmlPointMembers = new List<Gml.PointPropertyType>();
       foreach (var point in multiPoint.Points)
       {
-        var gmlPointMember = new Terradue.GeoJson.Gml.PointPropertyType();
+        var gmlPointMember = new Gml.PointPropertyType();
         gmlPointMember.Point = GeometryToGml(point);
         gmlPointMembers.Add(gmlPointMember);
       }
@@ -242,12 +242,12 @@ namespace Terradue.GeoJson.Geometry
       return gmlMultiPoint;
     }
 
-    public static Terradue.GeoJson.Gml.DirectPositionType GeometryToGml(IPosition position)
+    public static Gml.DirectPositionType GeometryToGml(IPosition position)
     {
 
       if (position is GeographicPosition)
       {
-        var gmlPos = new Terradue.GeoJson.Gml.DirectPositionType();
+        var gmlPos = new Gml.DirectPositionType();
         gmlPos.srsDimension = ((GeographicPosition) position).Altitude == null ? "2" : "3";
         var p = (GeographicPosition) position;
         gmlPos.Text = string.Format("{0} {1}{2}", p.Latitude, p.Longitude, p.Altitude == null ? "" : " " + p.Altitude);
@@ -256,12 +256,12 @@ namespace Terradue.GeoJson.Geometry
       return null;
     }
 
-    public static Terradue.GeoJson.Gml.DirectPositionListType GeometryToGml(IPosition[] positions)
+    public static Gml.DirectPositionListType GeometryToGml(IPosition[] positions)
     {
 
       if (positions.Length > 0 && positions[0] is GeographicPosition)
       {
-        var gmlPosList = new Terradue.GeoJson.Gml.DirectPositionListType();
+        var gmlPosList = new Gml.DirectPositionListType();
         gmlPosList.count = positions.Length.ToString();
         gmlPosList.Text = string.Join(" ",
           positions.Cast<GeographicPosition>()
@@ -273,23 +273,22 @@ namespace Terradue.GeoJson.Geometry
       return null;
     }
 
-    public static Terradue.GeoJson.Gml.LineStringType GeometryToGml(LineString lineString)
+    public static Gml.LineStringType GeometryToGml(LineString lineString)
     {
 
-      var gmlLineString = new Terradue.GeoJson.Gml.LineStringType();
-      gmlLineString.ItemsElementName = new Terradue.GeoJson.Gml.ItemsChoiceType[1];
-      gmlLineString.ItemsElementName[0] = Terradue.GeoJson.Gml.ItemsChoiceType.posList;
+      var gmlLineString = new Gml.LineStringType();
+      gmlLineString.ItemsElementName = new Gml.ItemsChoiceType[1];
+      gmlLineString.ItemsElementName[0] = Gml.ItemsChoiceType.posList;
       gmlLineString.Items = new object[1];
       gmlLineString.Items[0] = GeometryToGml(lineString.Positions.ToArray());
       return gmlLineString;
     }
 
-    public static Terradue.GeoJson.Gml.MultiCurveType GeometryToGml(MultiLineString multiLineString)
+    public static Gml.MultiCurveType GeometryToGml(MultiLineString multiLineString)
     {
 
-      var gmlMultiLineString = new Terradue.GeoJson.Gml.MultiCurveType();
-      gmlMultiLineString.curveMembers = new Terradue.GeoJson.Gml.CurveArrayPropertyType();
-      var gmlLineStrings = new List<Terradue.GeoJson.Gml.LineStringType>();
+      var gmlMultiLineString = new Gml.MultiCurveType {curveMembers = new Gml.CurveArrayPropertyType()};
+      var gmlLineStrings = new List<Gml.LineStringType>();
       foreach (var lineString in multiLineString.LineStrings)
       {
         gmlLineStrings.Add(GeometryToGml(lineString));
@@ -298,30 +297,29 @@ namespace Terradue.GeoJson.Geometry
       return gmlMultiLineString;
     }
 
-    public static Terradue.GeoJson.Gml.PolygonType GeometryToGml(Polygon polygon)
+    public static Gml.PolygonType GeometryToGml(Polygon polygon)
     {
-      var gmlPolygon = new Terradue.GeoJson.Gml.PolygonType();
+      var gmlPolygon = new Gml.PolygonType();
       if (polygon.LineStrings.Count > 0)
       {
-        var exterior = new Terradue.GeoJson.Gml.AbstractRingPropertyType();
+        var exterior = new Gml.AbstractRingPropertyType();
         gmlPolygon.exterior = exterior;
-        var linearRing = new Terradue.GeoJson.Gml.LinearRingType();
+        var linearRing = new Gml.LinearRingType();
         exterior.Item = linearRing;
-        linearRing.ItemsElementName = new Terradue.GeoJson.Gml.ItemsChoiceType6[1];
-        linearRing.ItemsElementName[0] = Terradue.GeoJson.Gml.ItemsChoiceType6.posList;
+        linearRing.ItemsElementName = new Gml.ItemsChoiceType6[1];
+        linearRing.ItemsElementName[0] = Gml.ItemsChoiceType6.posList;
         linearRing.Items = new object[1];
         linearRing.Items[0] = GeometryToGml(polygon.LineStrings[0].Positions.ToArray());
         if (polygon.LineStrings.Count > 1)
         {
-          var interiors = new List<Terradue.GeoJson.Gml.AbstractRingPropertyType>();
+          var interiors = new List<Gml.AbstractRingPropertyType>();
           foreach (var lineString in polygon.LineStrings.Take(1))
           {
-            var interior = new Terradue.GeoJson.Gml.AbstractRingPropertyType();
-            linearRing = new Terradue.GeoJson.Gml.LinearRingType();
+            var interior = new Gml.AbstractRingPropertyType();
+            linearRing = new Gml.LinearRingType();
             exterior.Item = linearRing;
-            linearRing = new Terradue.GeoJson.Gml.LinearRingType();
-            linearRing.ItemsElementName = new Terradue.GeoJson.Gml.ItemsChoiceType6[1];
-            linearRing.ItemsElementName[0] = Terradue.GeoJson.Gml.ItemsChoiceType6.posList;
+            linearRing = new Gml.LinearRingType {ItemsElementName = new Gml.ItemsChoiceType6[1]};
+            linearRing.ItemsElementName[0] = Gml.ItemsChoiceType6.posList;
             linearRing.Items = new object[1];
             linearRing.Items[0] = GeometryToGml(lineString.Positions.ToArray());
             interiors.Add(interior);
@@ -333,11 +331,10 @@ namespace Terradue.GeoJson.Geometry
       return gmlPolygon;
     }
 
-    public static Terradue.GeoJson.Gml.MultiSurfaceType GeometryToGml(MultiPolygon multiPolygon)
+    public static Gml.MultiSurfaceType GeometryToGml(MultiPolygon multiPolygon)
     {
-      var gmlMultiSurface = new Terradue.GeoJson.Gml.MultiSurfaceType();
-      gmlMultiSurface.surfaceMembers = new Terradue.GeoJson.Gml.SurfaceArrayPropertyType();
-      var gmlPolygons = new List<Terradue.GeoJson.Gml.PolygonType>();
+      var gmlMultiSurface = new Gml.MultiSurfaceType {surfaceMembers = new Gml.SurfaceArrayPropertyType()};
+      var gmlPolygons = new List<Gml.PolygonType>();
       foreach (var polygon in multiPolygon.Polygons)
       {
         gmlPolygons.Add(GeometryToGml(polygon));

@@ -24,7 +24,7 @@ namespace Terradue.GeoJson.Tests
     [Test]
     public void WktDeserialization()
     {
-      var fs = "POINT(-115.278 32.297)";
+      const string fs = "POINT(-115.278 32.297)";
 
       var point = GeometryFactory.WktToFeature(fs);
 

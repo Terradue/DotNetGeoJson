@@ -41,14 +41,12 @@ namespace Terradue.GeoJson.Feature
     /// <param name="json">Json.</param>
     public new static MultiPointFeature ParseJson(string json)
     {
-
-      var geometry = new MultiPoint();
       var mpObj = JsonObject.Parse(json);
-
-      geometry = mpObj.JsonTo<MultiPoint>("geometry");
-
-      var mp = new MultiPointFeature(geometry, mpObj.JsonTo<Dictionary<string, object>>("properties"));
-      mp.Id = mpObj.JsonTo<string>("id");
+      var geometry = mpObj.JsonTo<MultiPoint>("geometry");
+      var mp = new MultiPointFeature(geometry, mpObj.JsonTo<Dictionary<string, object>>("properties"))
+      {
+        Id = mpObj.JsonTo<string>("id")
+      };
       return mp;
 
     }

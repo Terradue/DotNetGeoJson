@@ -11,9 +11,6 @@
 
 namespace Terradue.GeoJson.Geometry
 {
-  using System.Runtime.Serialization;
-  using System;
-
   /// <summary>
   /// Base Interface for GeometryObject types.
   /// </summary>

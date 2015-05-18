@@ -28,9 +28,9 @@ namespace Terradue.GeoJson.Geometry
     public GeographicPosition(double latitude, double longitude, double? altitude = null)
       : this()
     {
-      this.Latitude = latitude;
-      this.Longitude = longitude;
-      this.Altitude = altitude;
+      Latitude = latitude;
+      Longitude = longitude;
+      Altitude = altitude;
     }
 
     /// <summary>
@@ -77,12 +77,12 @@ namespace Terradue.GeoJson.Geometry
           "Longitude must be a proper lon (+/- double) value, e.g. '-77.008889'.");
       }
 
-      this.Latitude = lat;
-      this.Longitude = lng;
+      Latitude = lat;
+      Longitude = lng;
 
       if (altitude == null)
       {
-        this.Altitude = null;
+        Altitude = null;
       }
       else
       {
@@ -93,7 +93,7 @@ namespace Terradue.GeoJson.Geometry
             "Altitude must be a proper altitude (m(eter) as double) value, e.g. '6500'.");
         }
 
-        this.Altitude = alt;
+        Altitude = alt;
       }
     }
 
@@ -102,7 +102,7 @@ namespace Terradue.GeoJson.Geometry
     /// </summary>
     private GeographicPosition()
     {
-      this.Coordinates = new double?[3];
+      Coordinates = new double?[3];
     }
 
     /// <summary>
@@ -111,9 +111,9 @@ namespace Terradue.GeoJson.Geometry
     /// <value>The latitude.</value>
     public double Latitude
     {
-      get { return this.Coordinates[0].GetValueOrDefault(); }
+      get { return Coordinates[0].GetValueOrDefault(); }
 
-      private set { this.Coordinates[0] = value; }
+      private set { Coordinates[0] = value; }
     }
 
     /// <summary>
@@ -122,9 +122,9 @@ namespace Terradue.GeoJson.Geometry
     /// <value>The longitude.</value>
     public double Longitude
     {
-      get { return this.Coordinates[1].GetValueOrDefault(); }
+      get { return Coordinates[1].GetValueOrDefault(); }
 
-      private set { this.Coordinates[1] = value; }
+      private set { Coordinates[1] = value; }
     }
 
     /// <summary>
@@ -132,12 +132,10 @@ namespace Terradue.GeoJson.Geometry
     /// </summary>
     public double? Altitude
     {
-      get { return this.Coordinates[2]; }
+      get { return Coordinates[2]; }
 
-      private set { this.Coordinates[2] = value; }
+      private set { Coordinates[2] = value; }
     }
-
-    private double?[] coordinates;
 
     /// <summary>
     /// Gets or sets the coordinates, is a 2-size array
@@ -145,11 +143,7 @@ namespace Terradue.GeoJson.Geometry
     /// <value>
     /// The coordinates.
     /// </value>
-    public double?[] Coordinates
-    {
-      get { return coordinates; }
-      set { coordinates = value; }
-    }
+    public double?[] Coordinates { get; set; }
 
     /// <summary>
     /// Returns a <see cref="System.String"/> that represents this instance.
@@ -159,10 +153,10 @@ namespace Terradue.GeoJson.Geometry
     /// </returns>
     public override string ToString()
     {
-      return this.Altitude == null
-        ? string.Format(CultureInfo.InvariantCulture, "Latitude: {0}, Longitude: {1}", this.Latitude, this.Longitude)
-        : string.Format(CultureInfo.InvariantCulture, "Latitude: {0}, Longitude: {1}, Altitude: {2}", this.Latitude,
-          this.Longitude, this.Altitude);
+      return Altitude == null
+        ? string.Format(CultureInfo.InvariantCulture, "Latitude: {0}, Longitude: {1}", Latitude, Longitude)
+        : string.Format(CultureInfo.InvariantCulture, "Latitude: {0}, Longitude: {1}, Altitude: {2}", Latitude,
+          Longitude, Altitude);
     }
 
     /// <summary>
@@ -175,11 +169,11 @@ namespace Terradue.GeoJson.Geometry
     {
       if (pos.GetType() != typeof (GeographicPosition)) return false;
       var position = (GeographicPosition) pos;
-      if (position.Latitude != this.Latitude || position.Longitude != this.Longitude)
+      if (position.Latitude != Latitude || position.Longitude != Longitude)
         return false;
-      if (position.Altitude != null && this.Altitude != null)
+      if (position.Altitude != null && Altitude != null)
       {
-        return position.Altitude.Equals(this.Altitude);
+        return position.Altitude.Equals(Altitude);
       }
 
       return true;

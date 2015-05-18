@@ -40,14 +40,12 @@ namespace Terradue.GeoJson.Feature
     /// <param name="json">Json.</param>
     public new static LineStringFeature ParseJson(string json)
     {
-
-      var geometry = new LineString();
       var mpObj = JsonObject.Parse(json);
-
-      geometry = mpObj.JsonTo<LineString>("geometry");
-
-      var mp = new LineStringFeature(geometry, mpObj.JsonTo<Dictionary<string, object>>("properties"));
-      mp.Id = mpObj.JsonTo<string>("id");
+      var geometry = mpObj.JsonTo<LineString>("geometry");
+      var mp = new LineStringFeature(geometry, mpObj.JsonTo<Dictionary<string, object>>("properties"))
+      {
+        Id = mpObj.JsonTo<string>("id")
+      };
       return mp;
 
     }

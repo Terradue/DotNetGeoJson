@@ -10,11 +10,7 @@ using System.Linq;
 namespace Terradue.GeoJson.Gml
 {
   using System;
-  using System.Diagnostics;
   using System.Xml.Serialization;
-  using System.Collections;
-  using System.Xml.Schema;
-  using System.ComponentModel;
 
 
   [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
@@ -2247,7 +2243,7 @@ namespace Terradue.GeoJson.Gml
     [System.Xml.Serialization.XmlElementAttribute("OrientableSurface", typeof (OrientableSurfaceType))]
     [System.Xml.Serialization.XmlElementAttribute("Polygon", typeof (PolygonType))]
     [System.Xml.Serialization.XmlElementAttribute("Surface", typeof (SurfaceType))]
-    public AbstractSurfaceType[] Items
+    public PolygonType[] Items
     {
       get { return this.itemsField; }
       set { this.itemsField = value; }

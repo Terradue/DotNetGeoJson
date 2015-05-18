@@ -39,8 +39,8 @@ namespace Terradue.GeoJson.Geometry
           "According to the GeoJSON v1.0 spec a LineString must have at least two or more positions.");
       }
 
-      this.Positions = new List<IPosition>(positions);
-      this.Type = GeoJsonObjectType.LineString;
+      Positions = new List<IPosition>(positions);
+      Type = GeoJsonObjectType.LineString;
     }
 
     /// <summary>
@@ -48,8 +48,8 @@ namespace Terradue.GeoJson.Geometry
     /// </summary>
     internal LineString()
     {
-      this.Positions = new List<IPosition>();
-      this.Type = GeoJsonObjectType.LineString;
+      Positions = new List<IPosition>();
+      Type = GeoJsonObjectType.LineString;
     }
 
     /// <summary>
@@ -66,7 +66,7 @@ namespace Terradue.GeoJson.Geometry
     /// </returns>
     public bool IsLinearRing()
     {
-      return this.Positions.Count >= 4 && this.IsClosed();
+      return Positions.Count >= 4 && IsClosed();
     }
 
     /// <summary>
@@ -77,7 +77,7 @@ namespace Terradue.GeoJson.Geometry
     /// </returns>
     public bool IsClosed()
     {
-      return this.Positions[0].Equals(this.Positions[this.Positions.Count - 1]);
+      return Positions[0].Equals(Positions[Positions.Count - 1]);
     }
 
     /// <summary>
@@ -92,9 +92,7 @@ namespace Terradue.GeoJson.Geometry
         var coordinates = new List<List<double>>();
         foreach (GeographicPosition position in Positions)
         {
-          var xyz = new List<double>();
-          xyz.Add(position.Longitude);
-          xyz.Add(position.Latitude);
+          var xyz = new List<double> {position.Longitude, position.Latitude};
           if (position.Coordinates[2] != null) xyz.Add(position.Altitude.GetValueOrDefault());
           coordinates.Add(xyz);
         }
@@ -119,7 +117,7 @@ namespace Terradue.GeoJson.Geometry
           {
             throw new InvalidFormatException("a geographic position must have at least 2 coordinates");
           }
-          this.Positions.Add(geographicPosition);
+          Positions.Add(geographicPosition);
         }
       }
     }

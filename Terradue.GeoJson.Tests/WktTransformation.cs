@@ -34,9 +34,11 @@ namespace Terradue.GeoJson.Tests
     [Test]
     public void PolygonFeatureToWkt()
     {
-      var list = new List<LineString>();
-      list.Add(new LineString(
-        new List<IPosition> {Position1, Position2, Position3, Position4}));
+      var list = new List<LineString>
+      {
+        new LineString(
+          new List<IPosition> {Position1, Position2, Position3, Position4})
+      };
 
       var polygonf =
         new PolygonFeature(new Polygon(list));

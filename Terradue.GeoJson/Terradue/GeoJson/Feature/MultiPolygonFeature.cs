@@ -40,14 +40,12 @@ namespace Terradue.GeoJson.Feature
     /// <param name="json">Json.</param>
     public new static MultiPolygonFeature ParseJson(string json)
     {
-
-      var geometry = new MultiPolygon();
       var mpObj = JsonObject.Parse(json);
-
-      geometry = mpObj.JsonTo<MultiPolygon>("geometry");
-
-      var mp = new MultiPolygonFeature(geometry, mpObj.JsonTo<Dictionary<string, object>>("properties"));
-      mp.Id = mpObj.JsonTo<string>("id");
+      var geometry = mpObj.JsonTo<MultiPolygon>("geometry");
+      var mp = new MultiPolygonFeature(geometry, mpObj.JsonTo<Dictionary<string, object>>("properties"))
+      {
+        Id = mpObj.JsonTo<string>("id")
+      };
       return mp;
 
     }

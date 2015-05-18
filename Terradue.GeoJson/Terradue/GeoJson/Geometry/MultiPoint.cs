@@ -13,7 +13,6 @@ namespace Terradue.GeoJson.Geometry
 {
   using System.Collections.Generic;
   using System.Runtime.Serialization;
-  using System;
 
   /// <summary>
   /// Contains an array of <see cref="Point"/>s.
@@ -28,16 +27,16 @@ namespace Terradue.GeoJson.Geometry
     /// <param name="coordinates">The coordinates.</param>
     public MultiPoint(List<IPosition> points = null)
     {
-      this.Points = new List<Point>();
-      foreach (var ipos in points) this.Points.Add(new Point(ipos));
-      this.Type = GeoJsonObjectType.MultiPoint;
+      Points = new List<Point>();
+      foreach (var ipos in points) Points.Add(new Point(ipos));
+      Type = GeoJsonObjectType.MultiPoint;
     }
 
     internal MultiPoint()
     {
-      this.Points = new List<Point>();
+      Points = new List<Point>();
 
-      this.Type = GeoJsonObjectType.MultiPoint;
+      Type = GeoJsonObjectType.MultiPoint;
     }
 
     /// <summary>
@@ -69,9 +68,8 @@ namespace Terradue.GeoJson.Geometry
       {
         foreach (var list in value)
         {
-          var point = new Point();
-          point.Coordinates = list;
-          this.Points.Add(point);
+          var point = new Point {Coordinates = list};
+          Points.Add(point);
         }
       }
     }

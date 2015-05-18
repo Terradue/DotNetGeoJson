@@ -33,14 +33,14 @@ namespace Terradue.GeoJson.Geometry
         throw new ArgumentNullException("coordinates");
       }
 
-      this.Position = coordinates;
-      this.Type = GeoJsonObjectType.Point;
+      Position = coordinates;
+      Type = GeoJsonObjectType.Point;
     }
 
     internal Point()
     {
-      this.Position = null;
-      this.Type = GeoJsonObjectType.Point;
+      Position = null;
+      Type = GeoJsonObjectType.Point;
     }
 
     /// <summary>

@@ -41,14 +41,14 @@ namespace Terradue.GeoJson.Feature
     /// <param name="json">Json.</param>
     public new static MultiLineStringFeature ParseJson(string json)
     {
-
-      var geometry = new MultiLineString();
       var mpObj = JsonObject.Parse(json);
 
-      geometry = mpObj.JsonTo<MultiLineString>("geometry");
+      var geometry = mpObj.JsonTo<MultiLineString>("geometry");
 
-      var mp = new MultiLineStringFeature(geometry, mpObj.JsonTo<Dictionary<string, object>>("properties"));
-      mp.Id = mpObj.JsonTo<string>("id");
+      var mp = new MultiLineStringFeature(geometry, mpObj.JsonTo<Dictionary<string, object>>("properties"))
+      {
+        Id = mpObj.JsonTo<string>("id")
+      };
       return mp;
 
     }

@@ -25,8 +25,8 @@ namespace Terradue.GeoJson.Feature
     /// </summary>
     public FeatureCollection()
     {
-      this.Features = new List<Feature>();
-      this.Type = GeoJsonObjectType.FeatureCollection;
+      Features = new List<Feature>();
+      Type = GeoJsonObjectType.FeatureCollection;
     }
 
     /// <summary>
@@ -35,8 +35,8 @@ namespace Terradue.GeoJson.Feature
     /// <param name="features">The features.</param>
     public FeatureCollection(List<Feature> features)
     {
-      this.Features = features;
-      this.Type = GeoJsonObjectType.FeatureCollection;
+      Features = features;
+      Type = GeoJsonObjectType.FeatureCollection;
     }
 
     /// <summary>

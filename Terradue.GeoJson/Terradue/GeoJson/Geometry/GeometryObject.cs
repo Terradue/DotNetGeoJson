@@ -12,8 +12,6 @@
 namespace Terradue.GeoJson.Geometry
 {
   using System.Runtime.Serialization;
-  using System.Collections.Generic;
-  using System;
 
   /// <summary>
   /// Base abstract class for GeometryObject types.
