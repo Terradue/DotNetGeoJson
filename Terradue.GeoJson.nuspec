@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Terradue.GeoJson</id>
-    <version>1.3.3.0</version>
-    <title>GeoJson library for .Net</title>
+    <version>1.4.14</version>
+    <title>Terradue.GeoJson</title>
     <authors>Terradue</authors>
     <projectUrl>https://github.com/Terradue/DotNetGeoJson</projectUrl>
     <licenseUrl>https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE</licenseUrl>
@@ -13,6 +13,7 @@
     <dependencies>
       <dependency id="ServiceStack.Text" version="3.9.71" />
     </dependencies>
+	<tags>GeoJSON, gml, json, georss, geometry, WKT</tags>
   </metadata>
   <files>
     <file src="Terradue.GeoJson/bin/Terradue.GeoJson.dll" target="lib/net40/Terradue.GeoJson.dll" />

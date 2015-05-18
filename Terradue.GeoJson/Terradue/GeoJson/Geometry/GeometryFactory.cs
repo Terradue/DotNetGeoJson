@@ -20,6 +20,49 @@ namespace Terradue.GeoJson.Geometry {
     /// Static class to hold utilities methods
     /// </summary>
     public static class GeometryFactory {
+
+        public static Terradue.GeoJson.Feature.Feature GeoRSSToFeature(XmlElement element) {
+
+            Dictionary<string,object> properties = new Dictionary<string,object>();
+            IGeometryObject geometry = null;
+
+            if (element == null)
+                return new NoGeometryFeature(properties);
+
+            try {
+                geometry = GeometryFactory.GeoRSSToGeometry(element);
+            } catch (InvalidFormatException e) {
+                properties.Add("Exception", String.Format("The GeoRSS object {0} has an invalid format: {1}", element.LocalName, e.Message));
+                return new NoGeometryFeature(properties);
+            } catch (Exception e) {
+                properties.Add("Exception", String.Format("The GeoRSS object {0} conversion returned an error: {1}", element.LocalName, e.Message));
+                return new NoGeometryFeature(properties);
+            }
+
+            if (geometry.GetType() == typeof(MultiPolygon)) {
+                geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
+                return new MultiPolygonFeature((MultiPolygon)geometry, properties);
+            }
+
+            if (geometry.GetType() == typeof(Polygon)) {
+                geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
+                return new PolygonFeature((Polygon)geometry, properties);
+            }
+
+            if (geometry.GetType() == typeof(MultiPoint)) {
+                return new MultiPointFeature((MultiPoint)geometry, properties);
+            }
+
+            if (geometry.GetType() == typeof(MultiLineString)) {
+                return new MultiLineStringFeature((MultiLineString)geometry, properties);
+            }
+
+            properties.Add("Exception", String.Format("The GeoRSS object {0} is not implemented. Please report", element.LocalName));
+
+
+            return new NoGeometryFeature(properties);
+        }
+
         /// <summary>
         /// Gml Transformer to Feature.
         /// </summary>
@@ -30,7 +73,8 @@ namespace Terradue.GeoJson.Geometry {
             Dictionary<string,object> properties = new Dictionary<string,object>();
             IGeometryObject geometry = null;
 
-            if (element == null) return new NoGeometryFeature(properties);
+            if (element == null)
+                return new NoGeometryFeature(properties);
 
             try {
                 geometry = GeometryFactory.GmlToGeometry(element);
@@ -43,10 +87,12 @@ namespace Terradue.GeoJson.Geometry {
             }
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
+                geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
                 return new MultiPolygonFeature((MultiPolygon)geometry, properties);
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
+                geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
                 return new PolygonFeature((Polygon)geometry, properties);
             }
 
@@ -73,7 +119,8 @@ namespace Terradue.GeoJson.Geometry {
 
             Dictionary<string,Object> properties = new Dictionary<string, object>();
 
-            if (string.IsNullOrEmpty(wkt)) return new NoGeometryFeature(properties);
+            if (string.IsNullOrEmpty(wkt))
+                return new NoGeometryFeature(properties);
 
             IGeometryObject geometry = GeometryFactory.WktToGeometry(wkt);
 
@@ -92,7 +139,7 @@ namespace Terradue.GeoJson.Geometry {
             }
 
             if (geometry.GetType() == typeof(Point)) {
-                //return new PointFeature ((Point)geometry, new Dictionary<string,object> ());
+                return new PointFeature((Point)geometry, new Dictionary<string,object>());
                 return null;
             }
 
@@ -114,9 +161,8 @@ namespace Terradue.GeoJson.Geometry {
         /// </summary>
         /// <param name="wkt">The geometry in WKT to convert</param>
         public static GeometryObject WktToGeometry(string wkt) {
-            wkt.Trim();
-            wkt = wkt.Replace(", ", ",");
-            Match match = Regex.Match(wkt, @"^([A-Z]+)\((.+)\)$");
+            wkt = wkt.Trim().Replace(", ", ",");
+            Match match = Regex.Match(wkt, @"^([A-Z]+)\s*\((.+)\)$");
             if (match.Success) {
                 switch (match.Groups[1].Value) {
                     case "MULTIPOLYGON":
@@ -181,7 +227,7 @@ namespace Terradue.GeoJson.Geometry {
             for (int i = 0; i < terms.Length; i++) {
                 values = terms[i].Split(' ');
                 string z = (values.Length > 2 ? values[2] : null);
-                GeographicPosition geopos = new GeographicPosition(values[0], values[1], z);
+                GeographicPosition geopos = new GeographicPosition(values[1], values[0], z);
                 positions.Add(geopos);
             }
 
@@ -237,6 +283,140 @@ namespace Terradue.GeoJson.Geometry {
         }
 
         /// <summary>
+        /// Initialize a new IGemotry object from a standard WKT geometry
+        /// </summary>
+        /// <param name="wkt">The geometry in WKT to convert</param>
+        public static GeometryObject GeoRSSToGeometry(XmlElement georss) {
+            if (georss == null)
+                throw new ArgumentNullException("GeoRSS Xml Element is null!");
+
+            if (georss.LocalName == "point")
+                return FromGeoRSSPoint(georss);
+
+            if (georss.LocalName == "line")
+                return FromGeoRSSLine(georss);
+
+            if (georss.LocalName == "box")
+                return FromGeoRSSBox(georss);
+
+            if (georss.LocalName == "polygon")
+                return FromGeoRSSPolygon(georss);
+
+            if (georss.LocalName == "where")
+                return GmlToGeometry((XmlElement)georss.FirstChild);
+
+            throw new InvalidFormatException("GeoRSS type " + georss.LocalName + "is not supported");
+
+        }
+
+        private static Point FromGeoRSSPoint(XmlElement georss) {
+
+            if (!IsGeoRSSNamespace(georss, true))
+                return null;
+            if (georss.LocalName != "point")
+                return  null;
+
+
+            /* We retrieve gml:pos string */
+            string georssText = georss.InnerText.Trim();
+
+            /* gml:pos pattern:     
+             * x1 y1
+             * x1 y1 z1
+             */
+            string[] pos = georssText.Split(' ');
+            if (pos.Length != 2)
+                throw new InvalidFormatException("invalid GeoRSS representation: georss:point members are not 2 :" + georssText);
+
+            return new Point(new GeographicPosition(pos[0], pos[1]));
+        }
+
+        private static LineString FromGeoRSSLine(XmlElement gml) {
+            List<IPosition> position = new List<IPosition>();
+            string georssline;
+
+            if (!IsGeoRSSNamespace(gml, false))
+                return null;
+
+            /* We retrieve gml:pos string */
+            georssline = gml.InnerText.Trim();
+
+            /* georss:line pattern:         y1 x1, y2 x2
+                 */
+            string[] pos = georssline.Split(' ');
+            if (pos.Length % 2 != 0)
+                throw new InvalidFormatException("invalid GeoRSS representation: georss:line members are not by 2 :" + georssline);
+            for (int i = 0; i < pos.Length; i += 2) {
+                position.Add(new GeographicPosition(pos[i + 0], pos[i + 1]));
+            }
+
+            if (position.Count < 2)
+                throw new InvalidFormatException("invalid GML representation: LineString type must have at least 2 positions");
+
+            return new LineString(position);
+        }
+
+        private static Polygon FromGeoRSSPolygon(XmlElement gml) {
+            List<LineString> polygon = new List<LineString>();
+            List<IPosition> positions = null;
+
+            polygon.Add(FromGeoRSSLine(gml));
+
+            return new Polygon(polygon);
+        }
+
+        private static Polygon FromGeoRSSBox(XmlElement gml) {
+            List<IPosition> position = new List<IPosition>();
+            List<LineString> polygon = new List<LineString>();
+            string georssbox;
+
+            if (!IsGeoRSSNamespace(gml, false))
+                return null;
+
+            /* We retrieve gml:pos string */
+            georssbox = gml.InnerText.Trim();
+
+            /* georss:box pattern:         y1,x1,y2,x2
+                 */
+            string[] pos = georssbox.Split(' ');
+
+            if (pos.Length != 4)
+                throw new InvalidFormatException("invalid GeoRSS representation: georss:box members are not 4 :" + georssbox);
+
+            position.Add(new GeographicPosition(pos[0], pos[1]));
+            position.Add(new GeographicPosition(pos[0], pos[3]));
+            position.Add(new GeographicPosition(pos[2], pos[3]));
+            position.Add(new GeographicPosition(pos[2], pos[1]));
+            position.Add(new GeographicPosition(pos[0], pos[1]));
+
+            polygon.Add(new LineString(position));
+            return new Polygon(polygon);
+        }
+
+        private static bool IsGeoRSSNamespace(XmlElement element, bool is_strict) {
+            string ns = element.NamespaceURI;
+
+            /*
+             * If no namespace is available we could return true anyway
+             * (because we work only on GML fragment, we don't want to
+             *  'oblige' to add namespace on the geometry root node)
+             */
+            if (ns == null) {
+                return !is_strict;
+            }
+
+            /*
+             * Handle namespaces:
+             *  - http://www.opengis.net/gml      (GML 3.1.1 and priors)
+             *  - http://www.opengis.net/gml/3.2  (GML 3.2.1)
+             */
+            if (ns == "http://www.georss.org/georss" || ns == "http://www.georss.org/georss/10")
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
         /// Get an XmlNameSpaceManager with the gmlnamesapces
         /// </summary>
         /// <returns>The xml namespace manager.</returns>
@@ -253,54 +433,73 @@ namespace Terradue.GeoJson.Geometry {
         /// <param name="gml">The GML XML element convert</param>
         public static GeometryObject GmlToGeometry(XmlElement gml) {
 				
-            if (gml == null) throw new ArgumentNullException("GML Xml Element is null!");
+            if (gml == null)
+                throw new ArgumentNullException("GML Xml Element is null!");
 			
-            if (gml.LocalName == "Point") return FromGMLPoint(gml);
+            if (gml.LocalName == "Point")
+                return FromGMLPoint(gml);
 
-            if (gml.LocalName == "LineString") return FromGMLLineString(gml);
+            if (gml.LocalName == "LineString")
+                return FromGMLLineString(gml);
 
-            if (gml.LocalName == "Curve") return FromGMLCurve(gml);
+            if (gml.LocalName == "Curve")
+                return FromGMLCurve(gml);
 
-            if (gml.LocalName == "LinearRing") return FromGMLLinearRing(gml);
+            if (gml.LocalName == "LinearRing")
+                return FromGMLLinearRing(gml);
 
-            if (gml.LocalName == "Polygon") return FromGMLPolygon(gml);
+            if (gml.LocalName == "Polygon")
+                return FromGMLPolygon(gml);
 
-            if (gml.LocalName == "Triangle") return FromGMLTriangle(gml);
+            if (gml.LocalName == "Triangle")
+                return FromGMLTriangle(gml);
 
-            if (gml.LocalName == "Surface") return FromGMLSurface(gml);
+            if (gml.LocalName == "Surface")
+                return FromGMLSurface(gml);
 
-            if (gml.LocalName == "MultiPoint") return FromGMLMultiPoint(gml);
+            if (gml.LocalName == "MultiPoint")
+                return FromGMLMultiPoint(gml);
 
-            if (gml.LocalName == "MultiLineString") return FromGMLMultiLineString(gml);
+            if (gml.LocalName == "MultiLineString")
+                return FromGMLMultiLineString(gml);
 
-            if (gml.LocalName == "MultiCurve") return FromGMLMultiCurve(gml);
+            if (gml.LocalName == "MultiCurve")
+                return FromGMLMultiCurve(gml);
 
-            if (gml.LocalName == "MultiPolygon") return FromGMLMultiPolygon(gml);
+            if (gml.LocalName == "MultiPolygon")
+                return FromGMLMultiPolygon(gml);
 
-            if (gml.LocalName == "MultiSurface") return FromGMLMultiSurface(gml);
+            if (gml.LocalName == "MultiSurface")
+                return FromGMLMultiSurface(gml);
 
-            if (gml.LocalName == "PolyhedralSurface") return FromGMLPolyhedralSurface(gml);
+            if (gml.LocalName == "PolyhedralSurface")
+                return FromGMLPolyhedralSurface(gml);
 
-            if (gml.LocalName == "Tin" || gml.LocalName == "TriangulatedSurface") return FromGMLTin(gml);
+            if (gml.LocalName == "Tin" || gml.LocalName == "TriangulatedSurface")
+                return FromGMLTin(gml);
 
-            if (gml.LocalName == "MultiGeometry") return FromGMLMultiGeometry(gml);
+            if (gml.LocalName == "MultiGeometry")
+                return FromGMLMultiGeometry(gml);
 
             throw new InvalidFormatException("gml type " + gml.LocalName + "is not supported");
 
         }
 
         private static Point FromGMLPoint(XmlElement gml) {
-            if (gml.ChildNodes.Count != 1) throw new InvalidFormatException("invalid GML representation: Point type must have 1 child");
+            if (gml.ChildNodes.Count != 1)
+                throw new InvalidFormatException("invalid GML representation: Point type must have 1 child");
 
             return new Point(FromGMLData(gml.ChildNodes)[0]);
         }
 
         private static LineString FromGMLLineString(XmlElement gml) {
-            if (gml.ChildNodes.Count == 0) return new LineString(new List<IPosition>());
+            if (gml.ChildNodes.Count == 0)
+                return new LineString(new List<IPosition>());
 
             List<IPosition> points = FromGMLData(gml.ChildNodes);
 
-            if (points.Count < 2) throw new InvalidFormatException("invalid GML representation: LineString type must have at least 2 positions");
+            if (points.Count < 2)
+                throw new InvalidFormatException("invalid GML representation: LineString type must have at least 2 positions");
 
             return new LineString(points);
         }
@@ -312,39 +511,47 @@ namespace Terradue.GeoJson.Geometry {
             /* Looking for gml:segments */
             foreach (XmlNode node in gml) {
                 XmlElement element = (XmlElement)node;
-                if (!IsGMLNamespace(element, false)) continue;
+                if (!IsGMLNamespace(element, false))
+                    continue;
                 if (element.LocalName == "segments") {
                     found = true;
                     break;
                 }
             }
 
-            if (!found) throw new InvalidFormatException("invalid GML representation: Curve type must have at least 1 segments");
+            if (!found)
+                throw new InvalidFormatException("invalid GML representation: Curve type must have at least 1 segments");
 
             List<IPosition> positions = new List<IPosition>();
 
             /* Processing each gml:LineStringSegment */
             foreach (XmlNode node in gml) {
                 XmlElement element = (XmlElement)node;
-                if (!IsGMLNamespace(element, false)) continue;
-                if (element.LocalName == "LineStringSegment") continue;
+                if (!IsGMLNamespace(element, false))
+                    continue;
+                if (element.LocalName == "LineStringSegment")
+                    continue;
 
                 /* GML SF is resticted to linear interpolation  */
                 interpolation = element.GetAttribute("interpolation");
-                if (interpolation == "linear") throw new InvalidFormatException("invalid GML representation: interpolation of a curve cannot be linear");
+                if (interpolation == "linear")
+                    throw new InvalidFormatException("invalid GML representation: interpolation of a curve cannot be linear");
 
                 List<IPosition> pos = FromGMLData(element.ChildNodes);
 
-                if (pos.Count < 2) throw new InvalidFormatException("invalid GML representation: curve segments must have at least 2 points");
+                if (pos.Count < 2)
+                    throw new InvalidFormatException("invalid GML representation: curve segments must have at least 2 points");
 
                 positions.AddRange(pos);
 
             }
 
-            if (positions.Count == 0) throw new InvalidFormatException("invalid GML representation: curve is empty");
+            if (positions.Count == 0)
+                throw new InvalidFormatException("invalid GML representation: curve is empty");
 
             /* Most common case, a single segment */
-            if (positions.Count == 1) return new LineString(positions);
+            if (positions.Count == 1)
+                return new LineString(positions);
 			
             /*
 	         * "The curve segments are connected to one another, with the end point
@@ -368,7 +575,8 @@ namespace Terradue.GeoJson.Geometry {
             List<IPosition> positions;
             positions = FromGMLData(gml.ChildNodes);
 
-            if (positions.Count < 4 || IsClosed2D(positions)) throw new InvalidFormatException("invalid GML representation: linearring is not a closed ring of minimum 4 positions");
+            if (positions.Count < 4 || IsClosed2D(positions))
+                throw new InvalidFormatException("invalid GML representation: linearring is not a closed ring of minimum 4 positions");
 
             LineString linestring = new LineString(positions);
             List <LineString> linestrings = new List <LineString>();
@@ -390,16 +598,19 @@ namespace Terradue.GeoJson.Geometry {
                 foreach (XmlNode node1 in element) {
                     XmlElement element1 = (XmlElement)node1;
 
-                    if (!IsGMLNamespace(element, true)) continue;
+                    if (!IsGMLNamespace(element, true))
+                        continue;
                     if (element1.LocalName == "LinearRing") {
                         positions = FromGMLData(element1.ChildNodes);
 
-                        if (positions.Count < 4 || !IsClosed2D(positions)) throw new InvalidFormatException("invalid GML representation: polygon outer is not a closed ring of minimum 4 positions");
+                        if (positions.Count < 4 || !IsClosed2D(positions))
+                            throw new InvalidFormatException("invalid GML representation: polygon outer is not a closed ring of minimum 4 positions");
                     }
                 }
             }
 
-            if (positions == null) throw new InvalidFormatException("invalid GML representation: polygon outer is empty");
+            if (positions == null)
+                throw new InvalidFormatException("invalid GML representation: polygon outer is empty");
 
             polygon.Add(new LineString(positions));
 
@@ -412,11 +623,13 @@ namespace Terradue.GeoJson.Geometry {
                 foreach (XmlNode node1 in element) {
                     XmlElement element1 = (XmlElement)node1;
 					
-                    if (!IsGMLNamespace(element, true)) continue;
+                    if (!IsGMLNamespace(element, true))
+                        continue;
                     if (element1.LocalName == "LinearRing") {
                         positions = FromGMLData(element1.ChildNodes);
 					
-                        if (positions.Count < 4 || IsClosed2D(positions)) throw new InvalidFormatException("invalid GML representation: polygon inner is not a closed ring of minimum 4 positions");
+                        if (positions.Count < 4 || IsClosed2D(positions))
+                            throw new InvalidFormatException("invalid GML representation: polygon inner is not a closed ring of minimum 4 positions");
                     }
                 }
 
@@ -435,7 +648,8 @@ namespace Terradue.GeoJson.Geometry {
 			
             /* Looking for gml:patches */
             XmlElement element = (XmlElement)gml.SelectSingleNode("patches");
-            if (element == null) throw new InvalidFormatException("invalid GML representation: surface must have patches");
+            if (element == null)
+                throw new InvalidFormatException("invalid GML representation: surface must have patches");
 
             if (element.SelectNodes("PolygonPatch").Count > 1) {
                 throw new NotImplementedException("Multi patch is not supported yet.");
@@ -447,12 +661,14 @@ namespace Terradue.GeoJson.Geometry {
 
         private static Polygon FromGMLPatch(XmlElement gml) {
             /* PolygonPatch */
-            if (gml.LocalName != "PolygonPatch") throw new InvalidFormatException("invalid GML representation: patch must be PolygonPatch");
+            if (gml.LocalName != "PolygonPatch")
+                throw new InvalidFormatException("invalid GML representation: patch must be PolygonPatch");
 
             /* GML SF is resticted to planar interpolation  */
             string interpolation = gml.GetAttribute("interpolation");
             if (interpolation != null) {
-                if (interpolation != "planar") throw new InvalidFormatException("invalid GML representation: interpolation must be planar");
+                if (interpolation != "planar")
+                    throw new InvalidFormatException("invalid GML representation: interpolation must be planar");
             }
 
             return FromGMLPolygon(gml);
@@ -462,10 +678,16 @@ namespace Terradue.GeoJson.Geometry {
         static private MultiPoint FromGMLMultiPoint(XmlElement gml) {
             List<IPosition> points = new List<IPosition>();
 
-            if (gml.ChildNodes == null) return new MultiPoint(null);
+            if (gml.ChildNodes == null)
+                return new MultiPoint(null);
 
             /* MultiPoint/pointMember */
-            foreach (XmlNode node in gml.SelectNodes("pointMember")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:pointMember",GmlXmlNamespaceManager())) {
+                points.AddRange(FromGMLData(node.ChildNodes));
+
+            }
+            /* MultiPoint/pointMember */
+            foreach (XmlNode node in gml.SelectNodes("gml32:pointMember",GmlXmlNamespaceManager())) {
                 points.AddRange(FromGMLData(node.ChildNodes));
 
             }
@@ -478,7 +700,12 @@ namespace Terradue.GeoJson.Geometry {
             List<LineString> linestrings = new List<LineString>();
 
             /* MultiLineString/lineStringMember */
-            foreach (XmlNode node in gml.SelectNodes("lineStringMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:lineStringMember/*",GmlXmlNamespaceManager())) {
+                linestrings.Add(FromGMLLineString((XmlElement)node));
+            }
+
+            /* MultiLineString/lineStringMember */
+            foreach (XmlNode node in gml.SelectNodes("gml32:lineStringMember/*",GmlXmlNamespaceManager())) {
                 linestrings.Add(FromGMLLineString((XmlElement)node));
             }
 
@@ -488,8 +715,21 @@ namespace Terradue.GeoJson.Geometry {
         private static MultiLineString FromGMLMultiCurve(XmlElement gml) {
             List<LineString> linestrings = new List<LineString>();
 			
-            /* MutltiCurve/curveMember */
-            foreach (XmlNode node in gml.SelectNodes("curveMember/*")) {
+            /* MutltiCurve/curveMember/LineString */
+            foreach (XmlNode node in gml.SelectNodes("gml:curveMember/gml:LineString",GmlXmlNamespaceManager())) {
+                linestrings.Add(FromGMLLineString((XmlElement)node));
+            }
+            /* MutltiCurve/curveMember/LineString */
+            foreach (XmlNode node in gml.SelectNodes("gml32:curveMember/gml32:LineString",GmlXmlNamespaceManager())) {
+                linestrings.Add(FromGMLLineString((XmlElement)node));
+            }
+
+            /* MutltiCurve/curveMember/Curve */
+            foreach (XmlNode node in gml.SelectNodes("gml:curveMember/gml:Curve",GmlXmlNamespaceManager())) {
+                linestrings.Add(FromGMLCurve((XmlElement)node));
+            }
+            /* MutltiCurve/curveMember/Curve */
+            foreach (XmlNode node in gml.SelectNodes("gml32:curveMember/gml32:Curve",GmlXmlNamespaceManager())) {
                 linestrings.Add(FromGMLCurve((XmlElement)node));
             }
 			
@@ -500,7 +740,11 @@ namespace Terradue.GeoJson.Geometry {
             List<Polygon> polygons = new List<Polygon>();
 			
             /* MultiPolygon/polygonMember */
-            foreach (XmlNode node in gml.SelectNodes("polygonMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:polygonMember/*",GmlXmlNamespaceManager())) {
+                polygons.Add(FromGMLPolygon((XmlElement)node));
+            }
+            /* MultiPolygon/polygonMember */
+            foreach (XmlNode node in gml.SelectNodes("gml32:polygonMember/*",GmlXmlNamespaceManager())) {
                 polygons.Add(FromGMLPolygon((XmlElement)node));
             }
 			
@@ -540,16 +784,28 @@ namespace Terradue.GeoJson.Geometry {
              * polygonMember are parts of geometryMember
              * substitution group
              */
-            foreach (XmlNode node in gml.SelectNodes("pointMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:pointMember/*",GmlXmlNamespaceManager())) {
                 geometries.Add(GmlToGeometry((XmlElement)node));
             }
-            foreach (XmlNode node in gml.SelectNodes("lineStringMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:lineStringMember/*",GmlXmlNamespaceManager())) {
                 geometries.Add(GmlToGeometry((XmlElement)node));
             }
-            foreach (XmlNode node in gml.SelectNodes("polygonMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:polygonMember/*",GmlXmlNamespaceManager())) {
                 geometries.Add(GmlToGeometry((XmlElement)node));
             }
-            foreach (XmlNode node in gml.SelectNodes("geometryMember/*")) {
+            foreach (XmlNode node in gml.SelectNodes("gml:geometryMember/*",GmlXmlNamespaceManager())) {
+                geometries.Add(GmlToGeometry((XmlElement)node));
+            }
+            foreach (XmlNode node in gml.SelectNodes("gml32:pointMember/*",GmlXmlNamespaceManager())) {
+                geometries.Add(GmlToGeometry((XmlElement)node));
+            }
+            foreach (XmlNode node in gml.SelectNodes("gml32:lineStringMember/*",GmlXmlNamespaceManager())) {
+                geometries.Add(GmlToGeometry((XmlElement)node));
+            }
+            foreach (XmlNode node in gml.SelectNodes("gml32:polygonMember/*",GmlXmlNamespaceManager())) {
+                geometries.Add(GmlToGeometry((XmlElement)node));
+            }
+            foreach (XmlNode node in gml.SelectNodes("gml32:geometryMember/*",GmlXmlNamespaceManager())) {
                 geometries.Add(GmlToGeometry((XmlElement)node));
             }
 			
@@ -562,13 +818,17 @@ namespace Terradue.GeoJson.Geometry {
             foreach (XmlNode node in nodes) {
                 XmlElement element = (XmlElement)node;
 
-                if (element.LocalName == "pos") position.Add(FromGMLPos(element));
+                if (element.LocalName == "pos")
+                    position.Add(FromGMLPos(element));
 
-                if (element.LocalName == "posList") position.AddRange(FromGMLPosList(element));
+                if (element.LocalName == "posList")
+                    position.AddRange(FromGMLPosList(element));
 
-                if (element.LocalName == "coordinates") position.AddRange(FromGMLCoordinates(element));
+                if (element.LocalName == "coordinates")
+                    position.AddRange(FromGMLCoordinates(element));
 
-                if (element.LocalName == "coord") position.Add(FromGMLCoord(element));
+                if (element.LocalName == "coord")
+                    position.Add(FromGMLCoord(element));
 
                 if (element.LocalName == "pointRep" || element.LocalName == "pointProperty") {
 
@@ -577,7 +837,8 @@ namespace Terradue.GeoJson.Geometry {
                     foreach (XmlNode node1 in element.ChildNodes) {
                         XmlElement el = (XmlElement)node1;
 
-                        if (!IsGMLNamespace(el, true)) continue;
+                        if (!IsGMLNamespace(el, true))
+                            continue;
 
                         if (el.LocalName == "Point") {
                             found = true;
@@ -585,7 +846,8 @@ namespace Terradue.GeoJson.Geometry {
                         }
 
                     }
-                    if (!found) throw new InvalidFormatException("invalid GML representation: pointRep or pointProperty type must have at least 1 child");
+                    if (!found)
+                        throw new InvalidFormatException("invalid GML representation: pointRep or pointProperty type must have at least 1 child");
 					
                     return FromGMLData(element.ChildNodes);
 
@@ -600,17 +862,21 @@ namespace Terradue.GeoJson.Geometry {
             int dim;
             string gmlpos;
 
-            if (!IsGMLNamespace(gml, true)) return null;
-            if (gml.LocalName != "pos") return  null;
+            if (!IsGMLNamespace(gml, true))
+                return null;
+            if (gml.LocalName != "pos")
+                return  null;
 
             string dimension = gml.GetAttribute("srsDimension");
 
             if (dimension == "") /* in GML 3.0.0 it was dimension */
 				dimension = gml.GetAttribute("dimension");
-            if (dimension == "") dim = 2; /* We assume that we are in 2D */
+            if (dimension == "")
+                dim = 2; /* We assume that we are in 2D */
 				else {
                 dim = int.Parse(dimension);
-                if (dim < 2 || dim > 3) throw new InvalidFormatException("invalid GML representation: gml:pos dimension equals " + dim);
+                if (dim < 2 || dim > 3)
+                    throw new InvalidFormatException("invalid GML representation: gml:pos dimension equals " + dim);
             }
 
             /* We retrieve gml:pos string */
@@ -621,7 +887,7 @@ namespace Terradue.GeoJson.Geometry {
              * x1 y1 z1
              */
             string[] pos = gmlpos.Split(' ');
-            position = new GeographicPosition(pos[1], pos[0], pos[2]);
+            position = new GeographicPosition(pos[0], pos[1], pos[2]);
             return position;
         }
 
@@ -630,29 +896,34 @@ namespace Terradue.GeoJson.Geometry {
             int dim;
             string gmlpos, dimension;
 			
-            if (!IsGMLNamespace(gml, false)) return null;
+            if (!IsGMLNamespace(gml, false))
+                return null;
 				
             dimension = gml.GetAttribute("srsDimension");
 				
             if (dimension == "") /* in GML 3.0.0 it was dimension */
 				dimension = gml.GetAttribute("dimension");
-            if (dimension == "") dim = 2; /* We assume that we are in 2D */
+            if (dimension == "")
+                dim = 2; /* We assume that we are in 2D */
 				else {
                 dim = int.Parse(dimension);
-                if (dim < 2 || dim > 3) throw new InvalidFormatException("invalid GML representation: gml:pos dimension equals " + dim);
+                if (dim < 2 || dim > 3)
+                    throw new InvalidFormatException("invalid GML representation: gml:pos dimension equals " + dim);
             }
 				
             /* We retrieve gml:pos string */
             gmlpos = gml.InnerText.Trim();
 				
-            /* gml:posList pattern:         x1 y1 x2 y2
-         		 *                              x1 y1 z1 x2 y2 z2
+            /* gml:posList pattern:         y1 x1 y2 x2
+         		 *                              y1 x1 z1 y2 x2 z2
          		 */
             string[] pos = gmlpos.Split(' ');
 
             for (int i = 0; i < pos.Length; i += dim) {
-                if (dim == 2) position.Add(new GeographicPosition(pos[i + 1], pos[i + 0], null));
-                if (dim == 3) position.Add(new GeographicPosition(pos[i + 1], pos[i + 0], pos[i + 2]));
+                if (dim == 2)
+                    position.Add(new GeographicPosition(pos[i + 0], pos[i + 1], null));
+                if (dim == 3)
+                    position.Add(new GeographicPosition(pos[i + 0], pos[i + 1], pos[i + 2]));
             }
             return position;
         }
@@ -661,17 +932,22 @@ namespace Terradue.GeoJson.Geometry {
             double? x = null, y = null, z = null;
 
             foreach (XmlElement el in element.ChildNodes) {
-                if (!IsGMLNamespace(el, false)) continue;
+                if (!IsGMLNamespace(el, false))
+                    continue;
 
-                if (el.LocalName == "X") x = double.Parse(el.InnerText);
+                if (el.LocalName == "X")
+                    x = double.Parse(el.InnerText);
 
-                if (el.LocalName == "Y") y = double.Parse(el.InnerText);
+                if (el.LocalName == "Y")
+                    y = double.Parse(el.InnerText);
 
-                if (el.LocalName == "Z") z = double.Parse(el.InnerText);
+                if (el.LocalName == "Z")
+                    z = double.Parse(el.InnerText);
             }
 
             /* Check dimension consistancy */
-            if (x == null || y == null) throw new InvalidFormatException("invalid GML representation: gml:coord missing X or Y");
+            if (x == null || y == null)
+                throw new InvalidFormatException("invalid GML representation: gml:coord missing X or Y");
 
             GeographicPosition geopos = new GeographicPosition(y.Value, x.Value, z.Value); 
             return geopos;
@@ -682,14 +958,13 @@ namespace Terradue.GeoJson.Geometry {
             List<IPosition> position = new List<IPosition>();
             string gmlcoord, gmlts, gmlcs, gmldec;
             char ts = ' ', cs = ',', dec = '.';
-            CultureInfo ci;
-            NumberFormatInfo ni = null;
 
             gmlcoord = element.InnerText;
 
             /* Retrieve separator between coordinates tuples */
             gmlts = element.GetAttribute("ts");
-            if (char.TryParse(gmlts, out ts) != true) ts = ' ';
+            if (char.TryParse(gmlts, out ts) != true)
+                ts = ' ';
 
             /* Retrieve separator between each coordinate */
             gmlcs = element.GetAttribute("cs");
@@ -699,17 +974,16 @@ namespace Terradue.GeoJson.Geometry {
 
             /* Retrieve decimal separator */
             gmldec = element.GetAttribute("decimal");
-            if (char.TryParse(gmldec, out dec) != true) dec = '.';
-
-            ci = CultureInfo.InvariantCulture;
-            ni = ci.NumberFormat;
-            ni.NumberDecimalSeparator = dec.ToString();
+            if (char.TryParse(gmldec, out dec) != true)
+                dec = '.';
 			
-            if (cs == ts || cs == dec || ts == dec) throw new InvalidFormatException("invalid GML representation: gml:coordinates ambiguity in separators");
+            if (cs == ts || cs == dec || ts == dec)
+                throw new InvalidFormatException("invalid GML representation: gml:coordinates ambiguity in separators");
 
             /* We retrieve gml:coord string */
             gmlcoord = element.InnerText.Trim();
-            if (gmlcoord == null || gmlcoord == "") throw new InvalidFormatException("invalid GML representation: gml:coordinates is empty");
+            if (gmlcoord == null || gmlcoord == "")
+                throw new InvalidFormatException("invalid GML representation: gml:coordinates is empty");
 
             string[] coordinates = gmlcoord.Split(ts);
 				
@@ -717,10 +991,11 @@ namespace Terradue.GeoJson.Geometry {
 
                 string[] pos = coord.Split(cs);
 
-                double x = double.Parse(pos[0], ni);
-                double y = double.Parse(pos[1], ni);
+                double x = double.Parse(pos[1]);
+                double y = double.Parse(pos[0]);
                 double? z = null;
-                if (pos.Length > 2) z = double.Parse(pos[2], ni);
+                if (pos.Length > 2)
+                    z = double.Parse(pos[2]);
 
                 position.Add(new GeographicPosition(y, x, z));
 
@@ -746,7 +1021,8 @@ namespace Terradue.GeoJson.Geometry {
 	         *  - http://www.opengis.net/gml      (GML 3.1.1 and priors)
 	         *  - http://www.opengis.net/gml/3.2  (GML 3.2.1)
 	         */
-            if (ns == "http://www.opengis.net/gml" || ns == "http://www.opengis.net/gml/3.2") return true;
+            if (ns == "http://www.opengis.net/gml" || ns == "http://www.opengis.net/gml/3.2")
+                return true;
 
             return false;
         }

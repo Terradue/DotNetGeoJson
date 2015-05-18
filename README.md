@@ -1,3 +1,5 @@
+[![Build Status](https://build.terradue.com/buildStatus/icon?job=DotNetGeoJson)](https://build.terradue.com/job/DotNetGeoJson/)
+
 # DotNetGeoJson - GeoJson library for .Net
 
 Terradue.GeoJson is a library targeting .NET 4.0 and above providing an easy
