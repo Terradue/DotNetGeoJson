@@ -1,43 +1,44 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("Tin", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class TinType : SurfaceType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("Tin", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class TinType : SurfaceType
   {
-
+    private LineStringSegmentArrayPropertyType[] breakLinesField;
+    private TinTypeControlPoint controlPointField;
+    private LengthType maxLengthField;
     private LineStringSegmentArrayPropertyType[] stopLinesField;
 
-    private LineStringSegmentArrayPropertyType[] breakLinesField;
-
-    private LengthType maxLengthField;
-
-    private TinTypeControlPoint controlPointField;
-
-    [System.Xml.Serialization.XmlElementAttribute("stopLines")]
+    [XmlElement("stopLines")]
     public LineStringSegmentArrayPropertyType[] stopLines
     {
       get { return stopLinesField; }
       set { stopLinesField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("breakLines")]
+    [XmlElement("breakLines")]
     public LineStringSegmentArrayPropertyType[] breakLines
     {
       get { return breakLinesField; }
       set { breakLinesField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public LengthType maxLength
     {
       get { return maxLengthField; }
       set { maxLengthField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TinTypeControlPoint controlPoint
     {
       get { return controlPointField; }

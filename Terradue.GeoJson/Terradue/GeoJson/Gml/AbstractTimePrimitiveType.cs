@@ -1,23 +1,27 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractTimeTopologyPrimitiveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (TimeEdgeType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (TimeNodeType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractTimeGeometricPrimitiveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (TimePeriodType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (TimeInstantType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractTimePrimitive", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (AbstractTimeTopologyPrimitiveType))]
+  [XmlInclude(typeof (TimeEdgeType))]
+  [XmlInclude(typeof (TimeNodeType))]
+  [XmlInclude(typeof (AbstractTimeGeometricPrimitiveType))]
+  [XmlInclude(typeof (TimePeriodType))]
+  [XmlInclude(typeof (TimeInstantType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractTimePrimitive", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractTimePrimitiveType : AbstractTimeObjectType
+  public abstract class AbstractTimePrimitiveType : AbstractTimeObjectType
   {
-
     private RelatedTimeType[] relatedTimeField;
 
-    [System.Xml.Serialization.XmlElementAttribute("relatedTime")]
+    [XmlElement("relatedTime")]
     public RelatedTimeType[] relatedTime
     {
       get { return relatedTimeField; }

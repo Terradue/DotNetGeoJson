@@ -1,25 +1,28 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gco")]
-  public partial class UomArea_PropertyType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gco")]
+  public class UomArea_PropertyType
   {
-
     private UnitDefinitionType itemField;
-
+    private string nilReasonField;
     private string uuidrefField;
 
-    private string nilReasonField;
-
-    [System.Xml.Serialization.XmlElementAttribute("BaseUnit", typeof (BaseUnitType),
+    [XmlElement("BaseUnit", typeof (BaseUnitType),
       Namespace = "http://www.opengis.net/gml/3.2")]
-    [System.Xml.Serialization.XmlElementAttribute("ConventionalUnit", typeof (ConventionalUnitType),
+    [XmlElement("ConventionalUnit", typeof (ConventionalUnitType),
       Namespace = "http://www.opengis.net/gml/3.2")]
-    [System.Xml.Serialization.XmlElementAttribute("DerivedUnit", typeof (DerivedUnitType),
+    [XmlElement("DerivedUnit", typeof (DerivedUnitType),
       Namespace = "http://www.opengis.net/gml/3.2")]
-    [System.Xml.Serialization.XmlElementAttribute("UnitDefinition", typeof (UnitDefinitionType),
+    [XmlElement("UnitDefinition", typeof (UnitDefinitionType),
       Namespace = "http://www.opengis.net/gml/3.2")]
     public UnitDefinitionType Item
     {
@@ -27,14 +30,14 @@ namespace Terradue.GeoJson.Gml
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string uuidref
     {
       get { return uuidrefField; }
       set { uuidrefField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public string nilReason
     {
       get { return nilReasonField; }

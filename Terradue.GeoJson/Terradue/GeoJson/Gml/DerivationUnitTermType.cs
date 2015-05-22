@@ -1,17 +1,21 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("derivationUnitTerm", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("derivationUnitTerm", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class DerivationUnitTermType : UnitOfMeasureType
+  public class DerivationUnitTermType : UnitOfMeasureType
   {
-
     private string exponentField;
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
+    [XmlAttribute(DataType = "integer")]
     public string exponent
     {
       get { return exponentField; }

@@ -1,48 +1,49 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("Dictionary", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("Dictionary", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class DictionaryType : DefinitionType
+  public class DictionaryType : DefinitionType
   {
-
+    private AggregationType aggregationTypeField;
+    private bool aggregationTypeFieldSpecified;
+    private ItemsChoiceType18[] itemsElementNameField;
     private object[] itemsField;
 
-    private ItemsChoiceType18[] itemsElementNameField;
-
-    private AggregationType aggregationTypeField;
-
-    private bool aggregationTypeFieldSpecified;
-
-    [System.Xml.Serialization.XmlElementAttribute("definitionMember", typeof (DictionaryEntryType))]
-    [System.Xml.Serialization.XmlElementAttribute("dictionaryEntry", typeof (DictionaryEntryType))]
-    [System.Xml.Serialization.XmlElementAttribute("indirectEntry", typeof (IndirectEntryType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("definitionMember", typeof (DictionaryEntryType))]
+    [XmlElement("dictionaryEntry", typeof (DictionaryEntryType))]
+    [XmlElement("indirectEntry", typeof (IndirectEntryType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public object[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType18[] ItemsElementName
     {
       get { return itemsElementNameField; }
       set { itemsElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public AggregationType aggregationType
     {
       get { return aggregationTypeField; }
       set { aggregationTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool aggregationTypeSpecified
     {
       get { return aggregationTypeFieldSpecified; }

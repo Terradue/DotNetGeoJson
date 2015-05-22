@@ -9,18 +9,19 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System;
+using System.Globalization;
+
 namespace Terradue.GeoJson.Geometry
 {
-  using System;
-  using System.Globalization;
-
   /// <summary>
-  /// Defines the Geographic Position type a.k.a. <see cref="http://geojson.org/geojson-spec.html#positions">Geographic Coordinate Reference System</see>.
+  ///   Defines the Geographic Position type a.k.a.
+  ///   <see cref="http://geojson.org/geojson-spec.html#positions">Geographic Coordinate Reference System</see>.
   /// </summary>
   public class GeographicPosition : Position
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="GeographicPosition"/> class.
+    ///   Initializes a new instance of the <see cref="GeographicPosition" /> class.
     /// </summary>
     /// <param name="latitude">The latitude.</param>
     /// <param name="longitude">The longitude.</param>
@@ -34,7 +35,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="GeographicPosition"/> class.
+    ///   Initializes a new instance of the <see cref="GeographicPosition" /> class.
     /// </summary>
     /// <param name="latitude">The latitude, e.g. '38.889722'.</param>
     /// <param name="longitude">The longitude, e.g. '-77.008889'.</param>
@@ -98,7 +99,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Prevents a default instance of the <see cref="GeographicPosition"/> class from being created.
+    ///   Prevents a default instance of the <see cref="GeographicPosition" /> class from being created.
     /// </summary>
     private GeographicPosition()
     {
@@ -106,7 +107,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets the latitude.
+    ///   Gets the latitude.
     /// </summary>
     /// <value>The latitude.</value>
     public double Latitude
@@ -117,7 +118,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets the longitude.
+    ///   Gets the longitude.
     /// </summary>
     /// <value>The longitude.</value>
     public double Longitude
@@ -128,7 +129,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets the altitude.
+    ///   Gets the altitude.
     /// </summary>
     public double? Altitude
     {
@@ -138,18 +139,18 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets or sets the coordinates, is a 2-size array
+    ///   Gets or sets the coordinates, is a 2-size array
     /// </summary>
     /// <value>
-    /// The coordinates.
+    ///   The coordinates.
     /// </value>
     public double?[] Coordinates { get; set; }
 
     /// <summary>
-    /// Returns a <see cref="System.String"/> that represents this instance.
+    ///   Returns a <see cref="System.String" /> that represents this instance.
     /// </summary>
     /// <returns>
-    /// A <see cref="System.String"/> that represents this instance.
+    ///   A <see cref="System.String" /> that represents this instance.
     /// </returns>
     public override string ToString()
     {
@@ -160,11 +161,17 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Determines whether the specified <see cref="Terradue.GeoJson.Geometry.IPosition"/> is equal to the current <see cref="Terradue.GeoJson.Geometry.GeographicPosition"/>.
+    ///   Determines whether the specified <see cref="Terradue.GeoJson.Geometry.IPosition" /> is equal to the current
+    ///   <see cref="Terradue.GeoJson.Geometry.GeographicPosition" />.
     /// </summary>
-    /// <param name="pos">The <see cref="Terradue.GeoJson.Geometry.IPosition"/> to compare with the current <see cref="Terradue.GeoJson.Geometry.GeographicPosition"/>.</param>
-    /// <returns><c>true</c> if the specified <see cref="Terradue.GeoJson.Geometry.IPosition"/> is equal to the current
-    /// <see cref="Terradue.GeoJson.Geometry.GeographicPosition"/>; otherwise, <c>false</c>.</returns>
+    /// <param name="pos">
+    ///   The <see cref="Terradue.GeoJson.Geometry.IPosition" /> to compare with the current
+    ///   <see cref="Terradue.GeoJson.Geometry.GeographicPosition" />.
+    /// </param>
+    /// <returns>
+    ///   <c>true</c> if the specified <see cref="Terradue.GeoJson.Geometry.IPosition" /> is equal to the current
+    ///   <see cref="Terradue.GeoJson.Geometry.GeographicPosition" />; otherwise, <c>false</c>.
+    /// </returns>
     public override bool Equals(IPosition pos)
     {
       if (pos.GetType() != typeof (GeographicPosition)) return false;
@@ -178,6 +185,5 @@ namespace Terradue.GeoJson.Geometry
 
       return true;
     }
-
   }
 }

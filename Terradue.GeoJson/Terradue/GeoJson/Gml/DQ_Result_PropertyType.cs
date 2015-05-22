@@ -1,34 +1,37 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public partial class DQ_Result_PropertyType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public class DQ_Result_PropertyType
   {
-
     private AbstractDQ_Result_Type itemField;
-
+    private string nilReasonField;
     private string uuidrefField;
 
-    private string nilReasonField;
-
-    [System.Xml.Serialization.XmlElementAttribute("DQ_ConformanceResult", typeof (DQ_ConformanceResult_Type))]
-    [System.Xml.Serialization.XmlElementAttribute("DQ_QuantitativeResult", typeof (DQ_QuantitativeResult_Type))]
+    [XmlElement("DQ_ConformanceResult", typeof (DQ_ConformanceResult_Type))]
+    [XmlElement("DQ_QuantitativeResult", typeof (DQ_QuantitativeResult_Type))]
     public AbstractDQ_Result_Type Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string uuidref
     {
       get { return uuidrefField; }
       set { uuidrefField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.isotc211.org/2005/gco")]
     public string nilReason
     {

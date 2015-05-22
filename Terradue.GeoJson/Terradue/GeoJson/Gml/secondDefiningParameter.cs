@@ -1,16 +1,20 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class secondDefiningParameter
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class secondDefiningParameter
   {
-
     private SecondDefiningParameter secondDefiningParameterField;
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public SecondDefiningParameter SecondDefiningParameter
     {
       get { return secondDefiningParameterField; }

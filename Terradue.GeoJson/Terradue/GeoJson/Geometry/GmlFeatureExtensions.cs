@@ -20,52 +20,51 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
+
 using System;
-using Terradue.GeoJson.Feature;
-using System.Linq;
-using System.Globalization;
-using System.Xml;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Xml;
 using System.Xml.Serialization;
+using Terradue.GeoJson.Feature;
+using Terradue.GeoJson.Gml;
 
 namespace Terradue.GeoJson.Geometry
 {
   public static class GmlFeatureExtensions
   {
-
     private static readonly IFormatProvider ci = CultureInfo.InvariantCulture;
-    private static readonly XmlSerializer GmlPointSerializer = new XmlSerializer(typeof (Gml.PointType));
+    private static readonly XmlSerializer GmlPointSerializer = new XmlSerializer(typeof (PointType));
 
     private static readonly XmlSerializer GmlMultiPointSerializer =
-      new XmlSerializer(typeof (Gml.MultiPointType));
+      new XmlSerializer(typeof (MultiPointType));
 
     private static readonly XmlSerializer GmlLineStringSerializer =
-      new XmlSerializer(typeof (Gml.LineStringType));
+      new XmlSerializer(typeof (LineStringType));
 
     private static readonly XmlSerializer GmlMultiLineStringSerializer =
-      new XmlSerializer(typeof (Gml.MultiCurveType));
+      new XmlSerializer(typeof (MultiCurveType));
 
     private static readonly XmlSerializer GmlPolygonSerializer =
-      new XmlSerializer(typeof (Gml.PolygonType));
+      new XmlSerializer(typeof (PolygonType));
 
     private static readonly XmlSerializer GmlMultiSurfaceSerializer =
-      new XmlSerializer(typeof (Gml.MultiSurfaceType));
+      new XmlSerializer(typeof (MultiSurfaceType));
 
     public static XmlElement ToMultiCurveGml(this GeometryObject geometry)
     {
-
       var xdoc = new XmlDocument();
 
       using (var writer = xdoc.CreateNavigator().AppendChild())
       {
-
         if (geometry is LineString)
         {
           var lineStrings = new List<LineString>();
           lineStrings.Add((LineString) geometry);
           var multiLineString = new MultiLineString(lineStrings);
 
-          GmlMultiSurfaceSerializer.Serialize(writer, GeometryToGml((MultiLineString) multiLineString));
+          GmlMultiSurfaceSerializer.Serialize(writer, GeometryToGml(multiLineString));
         }
         else if (geometry is MultiLineString)
         {
@@ -80,19 +79,17 @@ namespace Terradue.GeoJson.Geometry
 
     public static XmlElement ToMultiSurfaceGml(this GeometryObject geometry)
     {
-
       var xdoc = new XmlDocument();
 
       using (var writer = xdoc.CreateNavigator().AppendChild())
       {
-
         if (geometry is Polygon)
         {
           var polygons = new List<Polygon>();
           polygons.Add((Polygon) geometry);
           var multiPolygon = new MultiPolygon(polygons);
 
-          GmlMultiSurfaceSerializer.Serialize(writer, GeometryToGml((MultiPolygon) multiPolygon));
+          GmlMultiSurfaceSerializer.Serialize(writer, GeometryToGml(multiPolygon));
         }
         else if (geometry is MultiPolygon)
         {
@@ -105,55 +102,48 @@ namespace Terradue.GeoJson.Geometry
       return xdoc.DocumentElement;
     }
 
-    public static Gml.MultiSurfaceType ToMultiSurface(
+    public static MultiSurfaceType ToMultiSurface(
       this GeometryObject geometry)
     {
-
       if (geometry is Polygon)
       {
         var polygons = new List<Polygon>();
         polygons.Add((Polygon) geometry);
         var multiPolygon = new MultiPolygon(polygons);
 
-        return GeometryToGml((MultiPolygon) multiPolygon);
+        return GeometryToGml(multiPolygon);
       }
-      else if (geometry is MultiPolygon)
+      if (geometry is MultiPolygon)
       {
         return GeometryToGml((MultiPolygon) geometry);
       }
-      else
-        return null;
-
+      return null;
     }
 
-    public static Gml.MultiCurveType ToMultiCurve(
+    public static MultiCurveType ToMultiCurve(
       this GeometryObject geometry)
     {
-
       if (geometry is LineString)
       {
         var lineStrings = new List<LineString>();
         lineStrings.Add((LineString) geometry);
         var multiLineString = new MultiLineString(lineStrings);
 
-        return GeometryToGml((MultiLineString) multiLineString);
+        return GeometryToGml(multiLineString);
       }
-      else if (geometry is MultiLineString)
+      if (geometry is MultiLineString)
       {
         return GeometryToGml((MultiLineString) geometry);
       }
-      else
-        return null;
+      return null;
     }
 
     public static XmlElement ToGml(this GeometryObject geometry)
     {
-
       var xdoc = new XmlDocument();
 
       using (var writer = xdoc.CreateNavigator().AppendChild())
       {
-
         if (geometry is Point)
         {
           GmlPointSerializer.Serialize(writer, GeometryToGml((Point) geometry));
@@ -188,53 +178,47 @@ namespace Terradue.GeoJson.Geometry
       return xdoc.DocumentElement;
     }
 
-    public static Gml.PointType PointFeatureToGml(PointFeature pointFeature)
+    public static PointType PointFeatureToGml(PointFeature pointFeature)
     {
-
       return GeometryToGml(pointFeature.Geometry);
     }
 
-    public static Gml.MultiPointType MultiPointFeatureToGml(MultiPointFeature multiPointFeature)
+    public static MultiPointType MultiPointFeatureToGml(MultiPointFeature multiPointFeature)
     {
-
       return GeometryToGml(multiPointFeature.Geometry);
     }
 
-    public static Gml.LineStringType LineStringFeatureToGml(LineStringFeature lineStringFeature)
+    public static LineStringType LineStringFeatureToGml(LineStringFeature lineStringFeature)
     {
-
       return GeometryToGml(lineStringFeature.Geometry);
     }
 
-    public static Gml.PolygonType PolygonFeatureToGml(PolygonFeature polygonFeature)
+    public static PolygonType PolygonFeatureToGml(PolygonFeature polygonFeature)
     {
-
       return GeometryToGml(polygonFeature.Geometry);
     }
 
-    public static Gml.MultiSurfaceType MultiPolygonFeatureToGml(MultiPolygonFeature multiPolygonFeature)
+    public static MultiSurfaceType MultiPolygonFeatureToGml(MultiPolygonFeature multiPolygonFeature)
     {
-
       return GeometryToGml(multiPolygonFeature.Geometry);
     }
 
-    public static Gml.PointType GeometryToGml(Point point)
+    public static PointType GeometryToGml(Point point)
     {
-      var gmlPoint = new Gml.PointType();
+      var gmlPoint = new PointType();
       var gmlPos = GeometryToGml(point.Position);
       gmlPoint.srsDimension = gmlPos.srsDimension;
       gmlPoint.Item = gmlPos;
       return gmlPoint;
     }
 
-    public static Gml.MultiPointType GeometryToGml(MultiPoint multiPoint)
+    public static MultiPointType GeometryToGml(MultiPoint multiPoint)
     {
-
-      var gmlMultiPoint = new Gml.MultiPointType();
-      var gmlPointMembers = new List<Gml.PointPropertyType>();
+      var gmlMultiPoint = new MultiPointType();
+      var gmlPointMembers = new List<PointPropertyType>();
       foreach (var point in multiPoint.Points)
       {
-        var gmlPointMember = new Gml.PointPropertyType();
+        var gmlPointMember = new PointPropertyType();
         gmlPointMember.Point = GeometryToGml(point);
         gmlPointMembers.Add(gmlPointMember);
       }
@@ -242,12 +226,11 @@ namespace Terradue.GeoJson.Geometry
       return gmlMultiPoint;
     }
 
-    public static Gml.DirectPositionType GeometryToGml(IPosition position)
+    public static DirectPositionType GeometryToGml(IPosition position)
     {
-
       if (position is GeographicPosition)
       {
-        var gmlPos = new Gml.DirectPositionType();
+        var gmlPos = new DirectPositionType();
         gmlPos.srsDimension = ((GeographicPosition) position).Altitude == null ? "2" : "3";
         var p = (GeographicPosition) position;
         gmlPos.Text = string.Format("{0} {1}{2}", p.Latitude, p.Longitude, p.Altitude == null ? "" : " " + p.Altitude);
@@ -256,12 +239,11 @@ namespace Terradue.GeoJson.Geometry
       return null;
     }
 
-    public static Gml.DirectPositionListType GeometryToGml(IPosition[] positions)
+    public static DirectPositionListType GeometryToGml(IPosition[] positions)
     {
-
       if (positions.Length > 0 && positions[0] is GeographicPosition)
       {
-        var gmlPosList = new Gml.DirectPositionListType();
+        var gmlPosList = new DirectPositionListType();
         gmlPosList.count = positions.Length.ToString();
         gmlPosList.Text = string.Join(" ",
           positions.Cast<GeographicPosition>()
@@ -273,22 +255,20 @@ namespace Terradue.GeoJson.Geometry
       return null;
     }
 
-    public static Gml.LineStringType GeometryToGml(LineString lineString)
+    public static LineStringType GeometryToGml(LineString lineString)
     {
-
-      var gmlLineString = new Gml.LineStringType();
-      gmlLineString.ItemsElementName = new Gml.ItemsChoiceType[1];
-      gmlLineString.ItemsElementName[0] = Gml.ItemsChoiceType.posList;
+      var gmlLineString = new LineStringType();
+      gmlLineString.ItemsElementName = new ItemsChoiceType[1];
+      gmlLineString.ItemsElementName[0] = ItemsChoiceType.posList;
       gmlLineString.Items = new object[1];
       gmlLineString.Items[0] = GeometryToGml(lineString.Positions.ToArray());
       return gmlLineString;
     }
 
-    public static Gml.MultiCurveType GeometryToGml(MultiLineString multiLineString)
+    public static MultiCurveType GeometryToGml(MultiLineString multiLineString)
     {
-
-      var gmlMultiLineString = new Gml.MultiCurveType {curveMembers = new Gml.CurveArrayPropertyType()};
-      var gmlLineStrings = new List<Gml.LineStringType>();
+      var gmlMultiLineString = new MultiCurveType {curveMembers = new CurveArrayPropertyType()};
+      var gmlLineStrings = new List<LineStringType>();
       foreach (var lineString in multiLineString.LineStrings)
       {
         gmlLineStrings.Add(GeometryToGml(lineString));
@@ -297,29 +277,29 @@ namespace Terradue.GeoJson.Geometry
       return gmlMultiLineString;
     }
 
-    public static Gml.PolygonType GeometryToGml(Polygon polygon)
+    public static PolygonType GeometryToGml(Polygon polygon)
     {
-      var gmlPolygon = new Gml.PolygonType();
+      var gmlPolygon = new PolygonType();
       if (polygon.LineStrings.Count > 0)
       {
-        var exterior = new Gml.AbstractRingPropertyType();
+        var exterior = new AbstractRingPropertyType();
         gmlPolygon.exterior = exterior;
-        var linearRing = new Gml.LinearRingType();
+        var linearRing = new LinearRingType();
         exterior.Item = linearRing;
-        linearRing.ItemsElementName = new Gml.ItemsChoiceType6[1];
-        linearRing.ItemsElementName[0] = Gml.ItemsChoiceType6.posList;
+        linearRing.ItemsElementName = new ItemsChoiceType6[1];
+        linearRing.ItemsElementName[0] = ItemsChoiceType6.posList;
         linearRing.Items = new object[1];
         linearRing.Items[0] = GeometryToGml(polygon.LineStrings[0].Positions.ToArray());
         if (polygon.LineStrings.Count > 1)
         {
-          var interiors = new List<Gml.AbstractRingPropertyType>();
+          var interiors = new List<AbstractRingPropertyType>();
           foreach (var lineString in polygon.LineStrings.Take(1))
           {
-            var interior = new Gml.AbstractRingPropertyType();
-            linearRing = new Gml.LinearRingType();
+            var interior = new AbstractRingPropertyType();
+            linearRing = new LinearRingType();
             exterior.Item = linearRing;
-            linearRing = new Gml.LinearRingType {ItemsElementName = new Gml.ItemsChoiceType6[1]};
-            linearRing.ItemsElementName[0] = Gml.ItemsChoiceType6.posList;
+            linearRing = new LinearRingType {ItemsElementName = new ItemsChoiceType6[1]};
+            linearRing.ItemsElementName[0] = ItemsChoiceType6.posList;
             linearRing.Items = new object[1];
             linearRing.Items[0] = GeometryToGml(lineString.Positions.ToArray());
             interiors.Add(interior);
@@ -331,10 +311,10 @@ namespace Terradue.GeoJson.Geometry
       return gmlPolygon;
     }
 
-    public static Gml.MultiSurfaceType GeometryToGml(MultiPolygon multiPolygon)
+    public static MultiSurfaceType GeometryToGml(MultiPolygon multiPolygon)
     {
-      var gmlMultiSurface = new Gml.MultiSurfaceType {surfaceMembers = new Gml.SurfaceArrayPropertyType()};
-      var gmlPolygons = new List<Gml.PolygonType>();
+      var gmlMultiSurface = new MultiSurfaceType {surfaceMembers = new SurfaceArrayPropertyType()};
+      var gmlPolygons = new List<PolygonType>();
       foreach (var polygon in multiPolygon.Polygons)
       {
         gmlPolygons.Add(GeometryToGml(polygon));
@@ -345,4 +325,3 @@ namespace Terradue.GeoJson.Geometry
     }
   }
 }
-

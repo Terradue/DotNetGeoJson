@@ -1,27 +1,25 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("CubicSpline", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("CubicSpline", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class CubicSplineType : AbstractCurveSegmentType
+  public class CubicSplineType : AbstractCurveSegmentType
   {
-
-    private object[] itemsField;
-
-    private ItemsChoiceType4[] itemsElementNameField;
-
-    private VectorType vectorAtStartField;
-
-    private VectorType vectorAtEndField;
-
-    private CurveInterpolationType interpolationField;
-
-    private bool interpolationFieldSpecified;
-
     private string degreeField;
+    private CurveInterpolationType interpolationField;
+    private bool interpolationFieldSpecified;
+    private ItemsChoiceType4[] itemsElementNameField;
+    private object[] itemsField;
+    private VectorType vectorAtEndField;
+    private VectorType vectorAtStartField;
 
     public CubicSplineType()
     {
@@ -29,55 +27,55 @@ namespace Terradue.GeoJson.Gml
       degreeField = "3";
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("coordinates", typeof (CoordinatesType))]
-    [System.Xml.Serialization.XmlElementAttribute("pointProperty", typeof (PointPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("pointRep", typeof (PointPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("pos", typeof (DirectPositionType))]
-    [System.Xml.Serialization.XmlElementAttribute("posList", typeof (DirectPositionListType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("coordinates", typeof (CoordinatesType))]
+    [XmlElement("pointProperty", typeof (PointPropertyType))]
+    [XmlElement("pointRep", typeof (PointPropertyType))]
+    [XmlElement("pos", typeof (DirectPositionType))]
+    [XmlElement("posList", typeof (DirectPositionListType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public object[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType4[] ItemsElementName
     {
       get { return itemsElementNameField; }
       set { itemsElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public VectorType vectorAtStart
     {
       get { return vectorAtStartField; }
       set { vectorAtStartField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public VectorType vectorAtEnd
     {
       get { return vectorAtEndField; }
       set { vectorAtEndField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public CurveInterpolationType interpolation
     {
       get { return interpolationField; }
       set { interpolationField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool interpolationSpecified
     {
       get { return interpolationFieldSpecified; }
       set { interpolationFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
+    [XmlAttribute(DataType = "integer")]
     public string degree
     {
       get { return degreeField; }

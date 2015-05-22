@@ -1,25 +1,23 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("Face", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class FaceType : AbstractTopoPrimitiveType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("Face", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class FaceType : AbstractTopoPrimitiveType
   {
-
-    private NodePropertyType[] isolatedField;
-
-    private DirectedEdgePropertyType[] directedEdgeField;
-
-    private DirectedTopoSolidPropertyType[] directedTopoSolidField;
-
-    private SurfacePropertyType surfacePropertyField;
-
     private AggregationType aggregationTypeField;
-
     private bool aggregationTypeFieldSpecified;
-
+    private DirectedEdgePropertyType[] directedEdgeField;
+    private DirectedTopoSolidPropertyType[] directedTopoSolidField;
+    private NodePropertyType[] isolatedField;
+    private SurfacePropertyType surfacePropertyField;
     private bool universalField;
 
     public FaceType()
@@ -27,50 +25,50 @@ namespace Terradue.GeoJson.Gml
       universalField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("isolated")]
+    [XmlElement("isolated")]
     public NodePropertyType[] isolated
     {
       get { return isolatedField; }
       set { isolatedField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("directedEdge")]
+    [XmlElement("directedEdge")]
     public DirectedEdgePropertyType[] directedEdge
     {
       get { return directedEdgeField; }
       set { directedEdgeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("directedTopoSolid")]
+    [XmlElement("directedTopoSolid")]
     public DirectedTopoSolidPropertyType[] directedTopoSolid
     {
       get { return directedTopoSolidField; }
       set { directedTopoSolidField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public SurfacePropertyType surfaceProperty
     {
       get { return surfacePropertyField; }
       set { surfacePropertyField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public AggregationType aggregationType
     {
       get { return aggregationTypeField; }
       set { aggregationTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool aggregationTypeSpecified
     {
       get { return aggregationTypeFieldSpecified; }
       set { aggregationTypeFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool universal
     {
       get { return universalField; }

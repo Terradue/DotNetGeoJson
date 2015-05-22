@@ -1,36 +1,39 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("parameter", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("parameter", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class AbstractGeneralOperationParameterPropertyType
+  public class AbstractGeneralOperationParameterPropertyType
   {
-
     private AbstractGeneralOperationParameterType itemField;
-
     private string nilReasonField;
-
     private string remoteSchemaField;
 
-    [System.Xml.Serialization.XmlElementAttribute("OperationParameter", typeof (OperationParameterType))]
-    [System.Xml.Serialization.XmlElementAttribute("OperationParameterGroup", typeof (OperationParameterGroupType))]
+    [XmlElement("OperationParameter", typeof (OperationParameterType))]
+    [XmlElement("OperationParameterGroup", typeof (OperationParameterGroupType))]
     public AbstractGeneralOperationParameterType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {

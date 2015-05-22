@@ -1,19 +1,23 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("featureMembers", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("featureMembers", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class FeatureArrayPropertyType
+  public class FeatureArrayPropertyType
   {
-
     private AbstractFeatureType[] itemsField;
 
-    [System.Xml.Serialization.XmlElementAttribute("DynamicFeature", typeof (DynamicFeatureType))]
-    [System.Xml.Serialization.XmlElementAttribute("FeatureCollection", typeof (FeatureCollectionType))]
-    [System.Xml.Serialization.XmlElementAttribute("Observation", typeof (ObservationType))]
+    [XmlElement("DynamicFeature", typeof (DynamicFeatureType))]
+    [XmlElement("FeatureCollection", typeof (FeatureCollectionType))]
+    [XmlElement("Observation", typeof (ObservationType))]
     public AbstractFeatureType[] Items
     {
       get { return itemsField; }

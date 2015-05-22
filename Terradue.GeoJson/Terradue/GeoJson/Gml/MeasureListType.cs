@@ -1,29 +1,30 @@
 using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("valueList", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("valueList", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class MeasureListType
+  public class MeasureListType
   {
-
+    private double[] textField;
     private string uomField;
 
-    private double[] textField;
-
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string uom
     {
       get { return uomField; }
       set { uomField = value; }
     }
 
-    [System.Xml.Serialization.XmlTextAttribute()]
+    [XmlText]
     public string Text
     {
       get

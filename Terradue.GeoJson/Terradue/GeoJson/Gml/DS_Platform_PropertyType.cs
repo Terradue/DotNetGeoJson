@@ -1,33 +1,36 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public partial class DS_Platform_PropertyType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public class DS_Platform_PropertyType
   {
-
     private DS_Platform_Type dS_PlatformField;
-
+    private string nilReasonField;
     private string uuidrefField;
 
-    private string nilReasonField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public DS_Platform_Type DS_Platform
     {
       get { return dS_PlatformField; }
       set { dS_PlatformField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string uuidref
     {
       get { return uuidrefField; }
       set { uuidrefField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.isotc211.org/2005/gco")]
     public string nilReason
     {

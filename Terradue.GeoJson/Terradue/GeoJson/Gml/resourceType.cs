@@ -1,43 +1,45 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/1999/xlink")]
-  public partial class resourceType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.w3.org/1999/xlink")]
+  public class resourceType
   {
-
-    private System.Xml.XmlNode[] anyField;
-
-    private typeType typeField;
-
-    private string roleField;
-
-    private string titleField;
-
+    private XmlNode[] anyField;
     private string labelField;
+    private string roleField;
+    private string titleField;
+    private typeType typeField;
 
     public resourceType()
     {
       typeField = typeType.resource;
     }
 
-    [System.Xml.Serialization.XmlTextAttribute()]
-    [System.Xml.Serialization.XmlAnyElementAttribute()]
-    public System.Xml.XmlNode[] Any
+    [XmlText]
+    [XmlAnyElement]
+    public XmlNode[] Any
     {
       get { return anyField; }
       set { anyField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public typeType type
     {
       get { return typeField; }
       set { typeField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string role
     {
@@ -45,14 +47,14 @@ namespace Terradue.GeoJson.Gml
       set { roleField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public string title
     {
       get { return titleField; }
       set { titleField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "NCName")]
     public string label
     {

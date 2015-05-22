@@ -1,13 +1,18 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (MD_CoverageDescription_Type))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (MD_ImageDescription_Type))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (MD_FeatureCatalogueDescription_Type))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public abstract partial class AbstractMD_ContentInformation_Type : AbstractObject_Type
+  [XmlInclude(typeof (MD_CoverageDescription_Type))]
+  [XmlInclude(typeof (MD_ImageDescription_Type))]
+  [XmlInclude(typeof (MD_FeatureCatalogueDescription_Type))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public abstract class AbstractMD_ContentInformation_Type : AbstractObject_Type
   {
   }
 }

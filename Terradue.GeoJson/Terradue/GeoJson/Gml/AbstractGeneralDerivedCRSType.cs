@@ -1,31 +1,34 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (DerivedCRSType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (ProjectedCRSType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractGeneralDerivedCRS", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (DerivedCRSType))]
+  [XmlInclude(typeof (ProjectedCRSType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractGeneralDerivedCRS", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractGeneralDerivedCRSType : AbstractCRSType
+  public abstract class AbstractGeneralDerivedCRSType : AbstractCRSType
   {
-
+    private ItemChoiceType16 itemElementNameField;
     private GeneralConversionPropertyType itemField;
 
-    private ItemChoiceType16 itemElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute("conversion", typeof (GeneralConversionPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("definedByConversion", typeof (GeneralConversionPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+    [XmlElement("conversion", typeof (GeneralConversionPropertyType))]
+    [XmlElement("definedByConversion", typeof (GeneralConversionPropertyType))]
+    [XmlChoiceIdentifier("ItemElementName")]
     public GeneralConversionPropertyType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public ItemChoiceType16 ItemElementName
     {
       get { return itemElementNameField; }

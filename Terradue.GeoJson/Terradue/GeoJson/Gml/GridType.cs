@@ -1,47 +1,48 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (RectifiedGridType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("Grid", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class GridType : AbstractGeometryType
+  [XmlInclude(typeof (RectifiedGridType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("Grid", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class GridType : AbstractGeometryType
   {
-
+    private string dimensionField;
+    private ItemsChoiceType7[] itemsElementNameField;
+    private string[] itemsField;
     private GridLimitsType limitsField;
 
-    private string[] itemsField;
-
-    private ItemsChoiceType7[] itemsElementNameField;
-
-    private string dimensionField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public GridLimitsType limits
     {
       get { return limitsField; }
       set { limitsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("axisLabels", typeof (string), DataType = "NCName")]
-    [System.Xml.Serialization.XmlElementAttribute("axisName", typeof (string))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("axisLabels", typeof (string), DataType = "NCName")]
+    [XmlElement("axisName", typeof (string))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public string[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType7[] ItemsElementName
     {
       get { return itemsElementNameField; }
       set { itemsElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "positiveInteger")]
+    [XmlAttribute(DataType = "positiveInteger")]
     public string dimension
     {
       get { return dimensionField; }

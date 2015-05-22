@@ -1,86 +1,83 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("TopoComplex", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("TopoComplex", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TopoComplexType : AbstractTopologyType
+  public class TopoComplexType : AbstractTopologyType
   {
-
-    private TopoComplexPropertyType maximalComplexField;
-
-    private TopoComplexPropertyType[] superComplexField;
-
-    private TopoComplexPropertyType[] subComplexField;
-
-    private TopoPrimitiveMemberType[] topoPrimitiveMemberField;
-
-    private TopoPrimitiveArrayAssociationType topoPrimitiveMembersField;
-
-    private bool isMaximalField;
-
     private AggregationType aggregationTypeField;
-
     private bool aggregationTypeFieldSpecified;
+    private bool isMaximalField;
+    private TopoComplexPropertyType maximalComplexField;
+    private TopoComplexPropertyType[] subComplexField;
+    private TopoComplexPropertyType[] superComplexField;
+    private TopoPrimitiveMemberType[] topoPrimitiveMemberField;
+    private TopoPrimitiveArrayAssociationType topoPrimitiveMembersField;
 
     public TopoComplexType()
     {
       isMaximalField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TopoComplexPropertyType maximalComplex
     {
       get { return maximalComplexField; }
       set { maximalComplexField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("superComplex")]
+    [XmlElement("superComplex")]
     public TopoComplexPropertyType[] superComplex
     {
       get { return superComplexField; }
       set { superComplexField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("subComplex")]
+    [XmlElement("subComplex")]
     public TopoComplexPropertyType[] subComplex
     {
       get { return subComplexField; }
       set { subComplexField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("topoPrimitiveMember")]
+    [XmlElement("topoPrimitiveMember")]
     public TopoPrimitiveMemberType[] topoPrimitiveMember
     {
       get { return topoPrimitiveMemberField; }
       set { topoPrimitiveMemberField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TopoPrimitiveArrayAssociationType topoPrimitiveMembers
     {
       get { return topoPrimitiveMembersField; }
       set { topoPrimitiveMembersField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool isMaximal
     {
       get { return isMaximalField; }
       set { isMaximalField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public AggregationType aggregationType
     {
       get { return aggregationTypeField; }
       set { aggregationTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool aggregationTypeSpecified
     {
       get { return aggregationTypeFieldSpecified; }

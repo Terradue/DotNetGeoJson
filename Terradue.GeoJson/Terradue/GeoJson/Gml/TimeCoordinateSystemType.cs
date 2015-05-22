@@ -1,27 +1,30 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("TimeCoordinateSystem", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("TimeCoordinateSystem", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TimeCoordinateSystemType : TimeReferenceSystemType
+  public class TimeCoordinateSystemType : TimeReferenceSystemType
   {
-
+    private TimeIntervalLengthType intervalField;
     private object itemField;
 
-    private TimeIntervalLengthType intervalField;
-
-    [System.Xml.Serialization.XmlElementAttribute("origin", typeof (TimeInstantPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("originPosition", typeof (TimePositionType))]
+    [XmlElement("origin", typeof (TimeInstantPropertyType))]
+    [XmlElement("originPosition", typeof (TimePositionType))]
     public object Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TimeIntervalLengthType interval
     {
       get { return intervalField; }

@@ -1,24 +1,23 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("TopoSolid", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("TopoSolid", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TopoSolidType : AbstractTopoPrimitiveType
+  public class TopoSolidType : AbstractTopoPrimitiveType
   {
-
-    private NodeOrEdgePropertyType[] isolatedField;
-
-    private DirectedFacePropertyType[] directedFaceField;
-
-    private SolidPropertyType solidPropertyField;
-
     private AggregationType aggregationTypeField;
-
     private bool aggregationTypeFieldSpecified;
-
+    private DirectedFacePropertyType[] directedFaceField;
+    private NodeOrEdgePropertyType[] isolatedField;
+    private SolidPropertyType solidPropertyField;
     private bool universalField;
 
     public TopoSolidType()
@@ -26,43 +25,43 @@ namespace Terradue.GeoJson.Gml
       universalField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("isolated")]
+    [XmlElement("isolated")]
     public NodeOrEdgePropertyType[] isolated
     {
       get { return isolatedField; }
       set { isolatedField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("directedFace")]
+    [XmlElement("directedFace")]
     public DirectedFacePropertyType[] directedFace
     {
       get { return directedFaceField; }
       set { directedFaceField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public SolidPropertyType solidProperty
     {
       get { return solidPropertyField; }
       set { solidPropertyField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public AggregationType aggregationType
     {
       get { return aggregationTypeField; }
       set { aggregationTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool aggregationTypeSpecified
     {
       get { return aggregationTypeFieldSpecified; }
       set { aggregationTypeFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool universal
     {
       get { return universalField; }

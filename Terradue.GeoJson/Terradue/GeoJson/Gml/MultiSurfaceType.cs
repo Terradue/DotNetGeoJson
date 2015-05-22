@@ -1,26 +1,29 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("MultiSurface", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("MultiSurface", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class MultiSurfaceType : AbstractGeometricAggregateType
+  public class MultiSurfaceType : AbstractGeometricAggregateType
   {
-
     private SurfacePropertyType[] surfaceMemberField;
-
     private SurfaceArrayPropertyType surfaceMembersField;
 
-    [System.Xml.Serialization.XmlElementAttribute("surfaceMember")]
+    [XmlElement("surfaceMember")]
     public SurfacePropertyType[] surfaceMember
     {
       get { return surfaceMemberField; }
       set { surfaceMemberField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public SurfaceArrayPropertyType surfaceMembers
     {
       get { return surfaceMembersField; }

@@ -1,62 +1,61 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("TimeOrdinalEra", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("TimeOrdinalEra", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TimeOrdinalEraType : DefinitionType
+  public class TimeOrdinalEraType : DefinitionType
   {
-
+    private TimeNodePropertyType endField;
+    private TimePeriodPropertyType extentField;
+    private ReferenceType groupField;
+    private TimeOrdinalEraPropertyType[] memberField;
     private RelatedTimeType[] relatedTimeField;
-
     private TimeNodePropertyType startField;
 
-    private TimeNodePropertyType endField;
-
-    private TimePeriodPropertyType extentField;
-
-    private TimeOrdinalEraPropertyType[] memberField;
-
-    private ReferenceType groupField;
-
-    [System.Xml.Serialization.XmlElementAttribute("relatedTime")]
+    [XmlElement("relatedTime")]
     public RelatedTimeType[] relatedTime
     {
       get { return relatedTimeField; }
       set { relatedTimeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TimeNodePropertyType start
     {
       get { return startField; }
       set { startField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TimeNodePropertyType end
     {
       get { return endField; }
       set { endField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TimePeriodPropertyType extent
     {
       get { return extentField; }
       set { extentField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("member")]
+    [XmlElement("member")]
     public TimeOrdinalEraPropertyType[] member
     {
       get { return memberField; }
       set { memberField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public ReferenceType group
     {
       get { return groupField; }

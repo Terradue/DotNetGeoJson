@@ -1,46 +1,49 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("coordinateSystem", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("coordinateSystem", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class CoordinateSystemPropertyType
+  public class CoordinateSystemPropertyType
   {
-
     private AbstractCoordinateSystemType itemField;
-
     private string nilReasonField;
-
     private string remoteSchemaField;
 
-    [System.Xml.Serialization.XmlElementAttribute("AffineCS", typeof (AffineCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("CartesianCS", typeof (CartesianCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("CylindricalCS", typeof (CylindricalCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("EllipsoidalCS", typeof (EllipsoidalCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("LinearCS", typeof (LinearCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("ObliqueCartesianCS", typeof (ObliqueCartesianCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("PolarCS", typeof (PolarCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("SphericalCS", typeof (SphericalCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("TemporalCS", typeof (TemporalCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("TimeCS", typeof (TimeCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("UserDefinedCS", typeof (UserDefinedCSType))]
-    [System.Xml.Serialization.XmlElementAttribute("VerticalCS", typeof (VerticalCSType))]
+    [XmlElement("AffineCS", typeof (AffineCSType))]
+    [XmlElement("CartesianCS", typeof (CartesianCSType))]
+    [XmlElement("CylindricalCS", typeof (CylindricalCSType))]
+    [XmlElement("EllipsoidalCS", typeof (EllipsoidalCSType))]
+    [XmlElement("LinearCS", typeof (LinearCSType))]
+    [XmlElement("ObliqueCartesianCS", typeof (ObliqueCartesianCSType))]
+    [XmlElement("PolarCS", typeof (PolarCSType))]
+    [XmlElement("SphericalCS", typeof (SphericalCSType))]
+    [XmlElement("TemporalCS", typeof (TemporalCSType))]
+    [XmlElement("TimeCS", typeof (TimeCSType))]
+    [XmlElement("UserDefinedCS", typeof (UserDefinedCSType))]
+    [XmlElement("VerticalCS", typeof (VerticalCSType))]
     public AbstractCoordinateSystemType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {

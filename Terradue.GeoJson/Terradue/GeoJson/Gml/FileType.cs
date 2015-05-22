@@ -1,64 +1,63 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("File", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class FileType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("File", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class FileType
   {
-
+    private string compressionField;
+    private CodeType fileStructureField;
+    private ItemChoiceType18 itemElementNameField;
+    private string itemField;
+    private string mimeTypeField;
     private AssociationRoleType rangeParametersField;
 
-    private string itemField;
-
-    private ItemChoiceType18 itemElementNameField;
-
-    private CodeType fileStructureField;
-
-    private string mimeTypeField;
-
-    private string compressionField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public AssociationRoleType rangeParameters
     {
       get { return rangeParametersField; }
       set { rangeParametersField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("fileName", typeof (string), DataType = "anyURI")]
-    [System.Xml.Serialization.XmlElementAttribute("fileReference", typeof (string), DataType = "anyURI")]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+    [XmlElement("fileName", typeof (string), DataType = "anyURI")]
+    [XmlElement("fileReference", typeof (string), DataType = "anyURI")]
+    [XmlChoiceIdentifier("ItemElementName")]
     public string Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public ItemChoiceType18 ItemElementName
     {
       get { return itemElementNameField; }
       set { itemElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CodeType fileStructure
     {
       get { return fileStructureField; }
       set { fileStructureField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+    [XmlElement(DataType = "anyURI")]
     public string mimeType
     {
       get { return mimeTypeField; }
       set { mimeTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+    [XmlElement(DataType = "anyURI")]
     public string compression
     {
       get { return compressionField; }

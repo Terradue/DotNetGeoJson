@@ -1,39 +1,42 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
   public enum SurfaceInterpolationType
   {
-
-    /// <remarks/>
+    /// <remarks />
     none,
 
-    /// <remarks/>
+    /// <remarks />
     planar,
 
-    /// <remarks/>
+    /// <remarks />
     spherical,
 
-    /// <remarks/>
+    /// <remarks />
     elliptical,
 
-    /// <remarks/>
+    /// <remarks />
     conic,
 
-    /// <remarks/>
+    /// <remarks />
     tin,
 
-    /// <remarks/>
+    /// <remarks />
     parametricCurve,
 
-    /// <remarks/>
+    /// <remarks />
     polynomialSpline,
 
-    /// <remarks/>
+    /// <remarks />
     rationalSpline,
 
-    /// <remarks/>
-    triangulatedSpline,
+    /// <remarks />
+    triangulatedSpline
   }
 }

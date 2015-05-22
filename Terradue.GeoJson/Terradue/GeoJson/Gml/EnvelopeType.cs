@@ -1,50 +1,51 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (EnvelopeWithTimePeriodType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("Envelope", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (EnvelopeWithTimePeriodType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("Envelope", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class EnvelopeType
+  public class EnvelopeType
   {
-
-    private object[] itemsField;
-
     private ItemsChoiceType19[] itemsElementNameField;
-
+    private object[] itemsField;
+    private string srsDimensionField;
     private string srsNameField;
 
-    private string srsDimensionField;
-
-    [System.Xml.Serialization.XmlElementAttribute("coordinates", typeof (CoordinatesType))]
-    [System.Xml.Serialization.XmlElementAttribute("lowerCorner", typeof (DirectPositionType))]
-    [System.Xml.Serialization.XmlElementAttribute("pos", typeof (DirectPositionType))]
-    [System.Xml.Serialization.XmlElementAttribute("upperCorner", typeof (DirectPositionType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("coordinates", typeof (CoordinatesType))]
+    [XmlElement("lowerCorner", typeof (DirectPositionType))]
+    [XmlElement("pos", typeof (DirectPositionType))]
+    [XmlElement("upperCorner", typeof (DirectPositionType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public object[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType19[] ItemsElementName
     {
       get { return itemsElementNameField; }
       set { itemsElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+    [XmlAttribute(DataType = "anyURI")]
     public string srsName
     {
       get { return srsNameField; }
       set { srsNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "positiveInteger")]
+    [XmlAttribute(DataType = "positiveInteger")]
     public string srsDimension
     {
       get { return srsDimensionField; }

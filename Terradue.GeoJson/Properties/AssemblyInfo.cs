@@ -16,7 +16,7 @@
 */
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
+
 [assembly: AssemblyDescription("The Terradue .NET GeoJson Library")]
 [assembly: AssemblyTitle("Terradue.GeoJson")]
 [assembly: AssemblyCompany("Terradue")]
@@ -25,5 +25,5 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion("1.4.14.*")]
-[assembly: AssemblyInformationalVersion ("1.4.14")]
+[assembly: AssemblyInformationalVersion("1.4.14")]
 [assembly: AssemblyConfiguration("")]

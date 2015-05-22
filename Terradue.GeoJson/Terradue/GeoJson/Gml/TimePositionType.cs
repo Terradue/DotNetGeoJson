@@ -1,22 +1,22 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("timePosition", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("timePosition", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TimePositionType
+  public class TimePositionType
   {
-
-    private string frameField;
-
     private string calendarEraNameField;
-
+    private string frameField;
     private TimeIndeterminateValueType indeterminatePositionField;
-
     private bool indeterminatePositionFieldSpecified;
-
     private string valueField;
 
     public TimePositionType()
@@ -24,36 +24,36 @@ namespace Terradue.GeoJson.Gml
       frameField = "#ISO-8601";
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
-    [System.ComponentModel.DefaultValueAttribute("#ISO-8601")]
+    [XmlAttribute(DataType = "anyURI")]
+    [DefaultValue("#ISO-8601")]
     public string frame
     {
       get { return frameField; }
       set { frameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string calendarEraName
     {
       get { return calendarEraNameField; }
       set { calendarEraNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public TimeIndeterminateValueType indeterminatePosition
     {
       get { return indeterminatePositionField; }
       set { indeterminatePositionField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool indeterminatePositionSpecified
     {
       get { return indeterminatePositionFieldSpecified; }
       set { indeterminatePositionFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlTextAttribute()]
+    [XmlText]
     public string Value
     {
       get { return valueField; }

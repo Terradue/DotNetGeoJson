@@ -1,44 +1,45 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("TimeClock", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("TimeClock", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TimeClockType : TimeReferenceSystemType
+  public class TimeClockType : TimeReferenceSystemType
   {
-
-    private StringOrRefType referenceEventField;
-
-    private System.DateTime referenceTimeField;
-
-    private System.DateTime utcReferenceField;
-
     private TimeCalendarPropertyType[] dateBasisField;
+    private StringOrRefType referenceEventField;
+    private DateTime referenceTimeField;
+    private DateTime utcReferenceField;
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public StringOrRefType referenceEvent
     {
       get { return referenceEventField; }
       set { referenceEventField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "time")]
-    public System.DateTime referenceTime
+    [XmlElement(DataType = "time")]
+    public DateTime referenceTime
     {
       get { return referenceTimeField; }
       set { referenceTimeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "time")]
-    public System.DateTime utcReference
+    [XmlElement(DataType = "time")]
+    public DateTime utcReference
     {
       get { return utcReferenceField; }
       set { utcReferenceField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("dateBasis")]
+    [XmlElement("dateBasis")]
     public TimeCalendarPropertyType[] dateBasis
     {
       get { return dateBasisField; }

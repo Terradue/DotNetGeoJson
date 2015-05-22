@@ -15,13 +15,13 @@ using System.Runtime.Serialization;
 namespace Terradue.GeoJson.Feature
 {
   /// <summary>
-  /// Defines the FeatureCollection type.
+  ///   Defines the FeatureCollection type.
   /// </summary>
   [DataContract]
   public class FeatureCollection : GeoJsonObject
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="FeatureCollection"/> class.
+    ///   Initializes a new instance of the <see cref="FeatureCollection" /> class.
     /// </summary>
     public FeatureCollection()
     {
@@ -30,7 +30,7 @@ namespace Terradue.GeoJson.Feature
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FeatureCollection"/> class.
+    ///   Initializes a new instance of the <see cref="FeatureCollection" /> class.
     /// </summary>
     /// <param name="features">The features.</param>
     public FeatureCollection(List<Feature> features)
@@ -40,14 +40,14 @@ namespace Terradue.GeoJson.Feature
     }
 
     /// <summary>
-    /// Gets the features.
+    ///   Gets the features.
     /// </summary>
     /// <value>The features.</value>
     [DataMember(Name = "features", IsRequired = true)]
     public List<Feature> Features { get; private set; }
 
     /// <summary>
-    /// Gets the properties.
+    ///   Gets the properties.
     /// </summary>
     /// <value>The properties.</value>
     [DataMember(Name = "properties")]

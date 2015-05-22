@@ -1,30 +1,33 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractGriddedSurfaceType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (SphereType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (CylinderType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (ConeType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractParametricCurveSurface",
+  [XmlInclude(typeof (AbstractGriddedSurfaceType))]
+  [XmlInclude(typeof (SphereType))]
+  [XmlInclude(typeof (CylinderType))]
+  [XmlInclude(typeof (ConeType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractParametricCurveSurface",
     Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public abstract partial class AbstractParametricCurveSurfaceType : AbstractSurfacePatchType
+  public abstract class AbstractParametricCurveSurfaceType : AbstractSurfacePatchType
   {
-
     private AggregationType aggregationTypeField;
-
     private bool aggregationTypeFieldSpecified;
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public AggregationType aggregationType
     {
       get { return aggregationTypeField; }
       set { aggregationTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool aggregationTypeSpecified
     {
       get { return aggregationTypeFieldSpecified; }

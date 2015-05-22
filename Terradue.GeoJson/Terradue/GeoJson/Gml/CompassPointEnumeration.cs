@@ -1,57 +1,60 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
   public enum CompassPointEnumeration
   {
-
-    /// <remarks/>
+    /// <remarks />
     N,
 
-    /// <remarks/>
+    /// <remarks />
     NNE,
 
-    /// <remarks/>
+    /// <remarks />
     NE,
 
-    /// <remarks/>
+    /// <remarks />
     ENE,
 
-    /// <remarks/>
+    /// <remarks />
     E,
 
-    /// <remarks/>
+    /// <remarks />
     ESE,
 
-    /// <remarks/>
+    /// <remarks />
     SE,
 
-    /// <remarks/>
+    /// <remarks />
     SSE,
 
-    /// <remarks/>
+    /// <remarks />
     S,
 
-    /// <remarks/>
+    /// <remarks />
     SSW,
 
-    /// <remarks/>
+    /// <remarks />
     SW,
 
-    /// <remarks/>
+    /// <remarks />
     WSW,
 
-    /// <remarks/>
+    /// <remarks />
     W,
 
-    /// <remarks/>
+    /// <remarks />
     WNW,
 
-    /// <remarks/>
+    /// <remarks />
     NW,
 
-    /// <remarks/>
-    NNW,
+    /// <remarks />
+    NNW
   }
 }

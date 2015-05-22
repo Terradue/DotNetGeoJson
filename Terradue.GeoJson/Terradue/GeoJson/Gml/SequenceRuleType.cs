@@ -1,43 +1,44 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = true)]
-  public partial class SequenceRuleType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = true)]
+  public class SequenceRuleType
   {
-
-    private IncrementOrder orderField;
-
-    private bool orderFieldSpecified;
-
     private string[] axisOrderField;
-
+    private IncrementOrder orderField;
+    private bool orderFieldSpecified;
     private SequenceRuleEnumeration valueField;
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public IncrementOrder order
     {
       get { return orderField; }
       set { orderField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool orderSpecified
     {
       get { return orderFieldSpecified; }
       set { orderFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string[] axisOrder
     {
       get { return axisOrderField; }
       set { axisOrderField = value; }
     }
 
-    [System.Xml.Serialization.XmlTextAttribute()]
+    [XmlText]
     public SequenceRuleEnumeration Value
     {
       get { return valueField; }

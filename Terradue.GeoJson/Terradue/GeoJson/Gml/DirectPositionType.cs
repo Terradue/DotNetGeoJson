@@ -1,38 +1,38 @@
 using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (VectorType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("pos", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class DirectPositionType
+  [XmlInclude(typeof (VectorType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("pos", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class DirectPositionType
   {
-
-    private string srsNameField;
-
     private string srsDimensionField;
-
+    private string srsNameField;
     private double[] textField;
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+    [XmlAttribute(DataType = "anyURI")]
     public string srsName
     {
       get { return srsNameField; }
       set { srsNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "positiveInteger")]
+    [XmlAttribute(DataType = "positiveInteger")]
     public string srsDimension
     {
       get { return srsDimensionField; }
       set { srsDimensionField = value; }
     }
 
-    [System.Xml.Serialization.XmlTextAttribute()]
+    [XmlText]
     public string Text
     {
       get

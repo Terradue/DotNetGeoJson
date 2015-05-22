@@ -1,33 +1,36 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gss")]
-  public partial class GM_Point_PropertyType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gss")]
+  public class GM_Point_PropertyType
   {
-
+    private string nilReasonField;
     private PointType pointField;
-
     private string uuidrefField;
 
-    private string nilReasonField;
-
-    [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
+    [XmlElement(Namespace = "http://www.opengis.net/gml/3.2")]
     public PointType Point
     {
       get { return pointField; }
       set { pointField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string uuidref
     {
       get { return uuidrefField; }
       set { uuidrefField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.isotc211.org/2005/gco")]
     public string nilReason
     {

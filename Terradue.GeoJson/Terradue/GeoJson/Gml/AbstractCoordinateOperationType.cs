@@ -1,68 +1,67 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (PassThroughOperationType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (ConcatenatedOperationType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractGeneralTransformationType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (TransformationType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractGeneralConversionType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (ConversionType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractCoordinateOperation", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (PassThroughOperationType))]
+  [XmlInclude(typeof (ConcatenatedOperationType))]
+  [XmlInclude(typeof (AbstractGeneralTransformationType))]
+  [XmlInclude(typeof (TransformationType))]
+  [XmlInclude(typeof (AbstractGeneralConversionType))]
+  [XmlInclude(typeof (ConversionType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractCoordinateOperation", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractCoordinateOperationType : IdentifiedObjectType
+  public abstract class AbstractCoordinateOperationType : IdentifiedObjectType
   {
-
-    private domainOfValidity domainOfValidityField;
-
-    private string[] scopeField;
-
-    private string operationVersionField;
-
     private coordinateOperationAccuracy[] coordinateOperationAccuracyField;
-
+    private domainOfValidity domainOfValidityField;
+    private string operationVersionField;
+    private string[] scopeField;
     private CRSPropertyType sourceCRSField;
-
     private CRSPropertyType targetCRSField;
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public domainOfValidity domainOfValidity
     {
       get { return domainOfValidityField; }
       set { domainOfValidityField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("scope")]
+    [XmlElement("scope")]
     public string[] scope
     {
       get { return scopeField; }
       set { scopeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public string operationVersion
     {
       get { return operationVersionField; }
       set { operationVersionField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("coordinateOperationAccuracy")]
+    [XmlElement("coordinateOperationAccuracy")]
     public coordinateOperationAccuracy[] coordinateOperationAccuracy
     {
       get { return coordinateOperationAccuracyField; }
       set { coordinateOperationAccuracyField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CRSPropertyType sourceCRS
     {
       get { return sourceCRSField; }
       set { sourceCRSField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CRSPropertyType targetCRS
     {
       get { return targetCRSField; }

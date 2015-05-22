@@ -1,16 +1,21 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (CompositeCurveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (OrientableCurveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (CurveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (LineStringType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractCurve", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (CompositeCurveType))]
+  [XmlInclude(typeof (OrientableCurveType))]
+  [XmlInclude(typeof (CurveType))]
+  [XmlInclude(typeof (LineStringType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractCurve", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractCurveType : AbstractGeometricPrimitiveType
+  public abstract class AbstractCurveType : AbstractGeometricPrimitiveType
   {
   }
 }

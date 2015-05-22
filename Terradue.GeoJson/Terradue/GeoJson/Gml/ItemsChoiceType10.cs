@@ -1,27 +1,30 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd", IncludeInSchema = false)]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd", IncludeInSchema = false)]
   public enum ItemsChoiceType10
   {
-
-    /// <remarks/>
+    /// <remarks />
     attributeInstances,
 
-    /// <remarks/>
+    /// <remarks />
     attributes,
 
-    /// <remarks/>
+    /// <remarks />
     dataset,
 
-    /// <remarks/>
+    /// <remarks />
     featureInstances,
 
-    /// <remarks/>
+    /// <remarks />
     features,
 
-    /// <remarks/>
-    other,
+    /// <remarks />
+    other
   }
 }

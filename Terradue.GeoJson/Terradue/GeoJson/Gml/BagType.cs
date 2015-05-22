@@ -1,25 +1,28 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("Bag", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class BagType : AbstractGMLType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("Bag", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class BagType : AbstractGMLType
   {
-
     private AssociationRoleType[] memberField;
-
     private ArrayAssociationType membersField;
 
-    [System.Xml.Serialization.XmlElementAttribute("member")]
+    [XmlElement("member")]
     public AssociationRoleType[] member
     {
       get { return memberField; }
       set { memberField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public ArrayAssociationType members
     {
       get { return membersField; }

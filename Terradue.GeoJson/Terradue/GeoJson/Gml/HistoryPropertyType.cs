@@ -1,16 +1,19 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("history", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("history", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false
     )]
-  public partial class HistoryPropertyType
+  public class HistoryPropertyType
   {
-
     private MovingObjectStatusType[] itemsField;
-
     private bool ownsField;
 
     public HistoryPropertyType()
@@ -18,15 +21,15 @@ namespace Terradue.GeoJson.Gml
       ownsField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("MovingObjectStatus")]
+    [XmlElement("MovingObjectStatus")]
     public MovingObjectStatusType[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool owns
     {
       get { return ownsField; }

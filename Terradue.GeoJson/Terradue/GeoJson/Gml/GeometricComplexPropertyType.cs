@@ -1,19 +1,21 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = true)]
-  public partial class GeometricComplexPropertyType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = true)]
+  public class GeometricComplexPropertyType
   {
-
     private AbstractGeometryType itemField;
-
-    private bool ownsField;
-
     private string nilReasonField;
-
+    private bool ownsField;
     private string remoteSchemaField;
 
     public GeometricComplexPropertyType()
@@ -21,32 +23,32 @@ namespace Terradue.GeoJson.Gml
       ownsField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("CompositeCurve", typeof (CompositeCurveType))]
-    [System.Xml.Serialization.XmlElementAttribute("CompositeSolid", typeof (CompositeSolidType))]
-    [System.Xml.Serialization.XmlElementAttribute("CompositeSurface", typeof (CompositeSurfaceType))]
-    [System.Xml.Serialization.XmlElementAttribute("GeometricComplex", typeof (GeometricComplexType))]
+    [XmlElement("CompositeCurve", typeof (CompositeCurveType))]
+    [XmlElement("CompositeSolid", typeof (CompositeSolidType))]
+    [XmlElement("CompositeSurface", typeof (CompositeSurfaceType))]
+    [XmlElement("GeometricComplex", typeof (GeometricComplexType))]
     public AbstractGeometryType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool owns
     {
       get { return ownsField; }
       set { ownsField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {

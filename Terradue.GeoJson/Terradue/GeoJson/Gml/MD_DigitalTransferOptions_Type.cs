@@ -1,42 +1,43 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public partial class MD_DigitalTransferOptions_Type : AbstractObject_Type
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public class MD_DigitalTransferOptions_Type : AbstractObject_Type
   {
-
+    private MD_Medium_PropertyType offLineField;
+    private CI_OnlineResource_PropertyType[] onLineField;
+    private Real_PropertyType transferSizeField;
     private CharacterString_PropertyType unitsOfDistributionField;
 
-    private Real_PropertyType transferSizeField;
-
-    private CI_OnlineResource_PropertyType[] onLineField;
-
-    private MD_Medium_PropertyType offLineField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CharacterString_PropertyType unitsOfDistribution
     {
       get { return unitsOfDistributionField; }
       set { unitsOfDistributionField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public Real_PropertyType transferSize
     {
       get { return transferSizeField; }
       set { transferSizeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("onLine")]
+    [XmlElement("onLine")]
     public CI_OnlineResource_PropertyType[] onLine
     {
       get { return onLineField; }
       set { onLineField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public MD_Medium_PropertyType offLine
     {
       get { return offLineField; }

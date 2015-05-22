@@ -1,51 +1,52 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("TemporalCRS", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("TemporalCRS", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TemporalCRSType : AbstractCRSType
+  public class TemporalCRSType : AbstractCRSType
   {
-
+    private Item1ChoiceType5 item1ElementNameField;
+    private TemporalDatumPropertyType item1Field;
+    private ItemChoiceType8 itemElementNameField;
     private object itemField;
 
-    private ItemChoiceType8 itemElementNameField;
-
-    private TemporalDatumPropertyType item1Field;
-
-    private Item1ChoiceType5 item1ElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute("timeCS", typeof (TimeCSPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesTemporalCS", typeof (TemporalCSPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesTimeCS", typeof (TimeCSPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+    [XmlElement("timeCS", typeof (TimeCSPropertyType))]
+    [XmlElement("usesTemporalCS", typeof (TemporalCSPropertyType))]
+    [XmlElement("usesTimeCS", typeof (TimeCSPropertyType))]
+    [XmlChoiceIdentifier("ItemElementName")]
     public object Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public ItemChoiceType8 ItemElementName
     {
       get { return itemElementNameField; }
       set { itemElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("temporalDatum", typeof (TemporalDatumPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesTemporalDatum", typeof (TemporalDatumPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("Item1ElementName")]
+    [XmlElement("temporalDatum", typeof (TemporalDatumPropertyType))]
+    [XmlElement("usesTemporalDatum", typeof (TemporalDatumPropertyType))]
+    [XmlChoiceIdentifier("Item1ElementName")]
     public TemporalDatumPropertyType Item1
     {
       get { return item1Field; }
       set { item1Field = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public Item1ChoiceType5 Item1ElementName
     {
       get { return item1ElementNameField; }

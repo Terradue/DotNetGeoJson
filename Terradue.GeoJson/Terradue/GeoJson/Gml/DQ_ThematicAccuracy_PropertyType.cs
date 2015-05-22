@@ -1,23 +1,26 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public partial class DQ_ThematicAccuracy_PropertyType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public class DQ_ThematicAccuracy_PropertyType
   {
-
     private AbstractDQ_ThematicAccuracy_Type itemField;
-
+    private string nilReasonField;
     private string uuidrefField;
 
-    private string nilReasonField;
-
-    [System.Xml.Serialization.XmlElementAttribute("DQ_NonQuantitativeAttributeAccuracy",
+    [XmlElement("DQ_NonQuantitativeAttributeAccuracy",
       typeof (DQ_NonQuantitativeAttributeAccuracy_Type))]
-    [System.Xml.Serialization.XmlElementAttribute("DQ_QuantitativeAttributeAccuracy",
+    [XmlElement("DQ_QuantitativeAttributeAccuracy",
       typeof (DQ_QuantitativeAttributeAccuracy_Type))]
-    [System.Xml.Serialization.XmlElementAttribute("DQ_ThematicClassificationCorrectness",
+    [XmlElement("DQ_ThematicClassificationCorrectness",
       typeof (DQ_ThematicClassificationCorrectness_Type))]
     public AbstractDQ_ThematicAccuracy_Type Item
     {
@@ -25,14 +28,14 @@ namespace Terradue.GeoJson.Gml
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string uuidref
     {
       get { return uuidrefField; }
       set { uuidrefField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.isotc211.org/2005/gco")]
     public string nilReason
     {

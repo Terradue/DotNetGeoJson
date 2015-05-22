@@ -1,33 +1,35 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public partial class DQ_ConformanceResult_Type : AbstractDQ_Result_Type
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public class DQ_ConformanceResult_Type : AbstractDQ_Result_Type
   {
-
+    private CharacterString_PropertyType explanationField;
+    private Boolean_PropertyType passField;
     private CI_Citation_PropertyType specificationField;
 
-    private CharacterString_PropertyType explanationField;
-
-    private Boolean_PropertyType passField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CI_Citation_PropertyType specification
     {
       get { return specificationField; }
       set { specificationField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CharacterString_PropertyType explanation
     {
       get { return explanationField; }
       set { explanationField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public Boolean_PropertyType pass
     {
       get { return passField; }

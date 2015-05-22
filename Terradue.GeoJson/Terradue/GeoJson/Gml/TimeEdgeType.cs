@@ -1,35 +1,37 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("TimeEdge", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("TimeEdge", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TimeEdgeType : AbstractTimeTopologyPrimitiveType
+  public class TimeEdgeType : AbstractTimeTopologyPrimitiveType
   {
-
+    private TimeNodePropertyType endField;
+    private TimePeriodPropertyType extentField;
     private TimeNodePropertyType startField;
 
-    private TimeNodePropertyType endField;
-
-    private TimePeriodPropertyType extentField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TimeNodePropertyType start
     {
       get { return startField; }
       set { startField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TimeNodePropertyType end
     {
       get { return endField; }
       set { endField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TimePeriodPropertyType extent
     {
       get { return extentField; }

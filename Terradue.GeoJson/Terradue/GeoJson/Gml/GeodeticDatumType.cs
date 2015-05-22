@@ -1,50 +1,51 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("GeodeticDatum", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("GeodeticDatum", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class GeodeticDatumType : AbstractDatumType
+  public class GeodeticDatumType : AbstractDatumType
   {
-
-    private PrimeMeridianPropertyType item1Field;
-
     private Item1ChoiceType item1ElementNameField;
-
+    private PrimeMeridianPropertyType item1Field;
+    private Item2ChoiceType item2ElementNameField;
     private EllipsoidPropertyType item2Field;
 
-    private Item2ChoiceType item2ElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute("primeMeridian", typeof (PrimeMeridianPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesPrimeMeridian", typeof (PrimeMeridianPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("Item1ElementName")]
+    [XmlElement("primeMeridian", typeof (PrimeMeridianPropertyType))]
+    [XmlElement("usesPrimeMeridian", typeof (PrimeMeridianPropertyType))]
+    [XmlChoiceIdentifier("Item1ElementName")]
     public PrimeMeridianPropertyType Item1
     {
       get { return item1Field; }
       set { item1Field = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public Item1ChoiceType Item1ElementName
     {
       get { return item1ElementNameField; }
       set { item1ElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ellipsoid", typeof (EllipsoidPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesEllipsoid", typeof (EllipsoidPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("Item2ElementName")]
+    [XmlElement("ellipsoid", typeof (EllipsoidPropertyType))]
+    [XmlElement("usesEllipsoid", typeof (EllipsoidPropertyType))]
+    [XmlChoiceIdentifier("Item2ElementName")]
     public EllipsoidPropertyType Item2
     {
       get { return item2Field; }
       set { item2Field = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public Item2ChoiceType Item2ElementName
     {
       get { return item2ElementNameField; }

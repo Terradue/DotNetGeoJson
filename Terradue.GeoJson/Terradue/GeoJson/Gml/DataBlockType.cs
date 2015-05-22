@@ -1,27 +1,30 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("DataBlock", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("DataBlock", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class DataBlockType
+  public class DataBlockType
   {
-
+    private object itemField;
     private AssociationRoleType rangeParametersField;
 
-    private object itemField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public AssociationRoleType rangeParameters
     {
       get { return rangeParametersField; }
       set { rangeParametersField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("doubleOrNilReasonTupleList", typeof (string))]
-    [System.Xml.Serialization.XmlElementAttribute("tupleList", typeof (CoordinatesType))]
+    [XmlElement("doubleOrNilReasonTupleList", typeof (string))]
+    [XmlElement("tupleList", typeof (CoordinatesType))]
     public object Item
     {
       get { return itemField; }

@@ -9,21 +9,20 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+
 namespace Terradue.GeoJson.Geometry
 {
-  using System;
-  using System.Collections.Generic;
-  using System.Runtime.Serialization;
-
   /// <summary>
   ///   Defines the <see cref="http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
   /// </summary>
   [DataContract]
   public class LineString : GeometryObject
   {
-
     /// <summary>
-    /// Initializes a new instance of the <see cref="LineString"/> class.
+    ///   Initializes a new instance of the <see cref="LineString" /> class.
     /// </summary>
     /// <param name="coordinates">The coordinates.</param>
     public LineString(List<IPosition> positions = null)
@@ -44,7 +43,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.LineString"/> class.
+    ///   Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.LineString" /> class.
     /// </summary>
     internal LineString()
     {
@@ -53,40 +52,17 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets or sets the positions.
+    ///   Gets or sets the positions.
     /// </summary>
     /// <value>The positions.</value>
     public List<IPosition> Positions { get; set; }
 
     /// <summary>
-    /// Determines whether this LineString is a <see cref="http://geojson.org/geojson-spec.html#linestring">LinearRing</see>.
-    /// </summary>
-    /// <returns>
-    ///   <c>true</c> if it is a linear ring; otherwise, <c>false</c>.
-    /// </returns>
-    public bool IsLinearRing()
-    {
-      return Positions.Count >= 4 && IsClosed();
-    }
-
-    /// <summary>
-    /// Determines whether this instance has its first and last coordinate at the same position and thereby is closed.
-    /// </summary>
-    /// <returns>
-    ///   <c>true</c> if this instance is closed; otherwise, <c>false</c>.
-    /// </returns>
-    public bool IsClosed()
-    {
-      return Positions[0].Equals(Positions[Positions.Count - 1]);
-    }
-
-    /// <summary>
-    /// Gets the coordinates
+    ///   Gets the coordinates
     /// </summary>
     [DataMember(Name = "coordinates")]
     public List<List<double>> Coordinates
     {
-
       get
       {
         var coordinates = new List<List<double>>();
@@ -121,6 +97,27 @@ namespace Terradue.GeoJson.Geometry
         }
       }
     }
+
+    /// <summary>
+    ///   Determines whether this LineString is a <see cref="http://geojson.org/geojson-spec.html#linestring">LinearRing</see>.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if it is a linear ring; otherwise, <c>false</c>.
+    /// </returns>
+    public bool IsLinearRing()
+    {
+      return Positions.Count >= 4 && IsClosed();
+    }
+
+    /// <summary>
+    ///   Determines whether this instance has its first and last coordinate at the same position and thereby is closed.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if this instance is closed; otherwise, <c>false</c>.
+    /// </returns>
+    public bool IsClosed()
+    {
+      return Positions[0].Equals(Positions[Positions.Count - 1]);
+    }
   }
 }
- 

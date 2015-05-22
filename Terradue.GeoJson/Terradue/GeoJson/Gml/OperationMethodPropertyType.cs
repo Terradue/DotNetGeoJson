@@ -1,35 +1,38 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("method", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("method", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)
   ]
-  public partial class OperationMethodPropertyType
+  public class OperationMethodPropertyType
   {
-
-    private OperationMethodType operationMethodField;
-
     private string nilReasonField;
-
+    private OperationMethodType operationMethodField;
     private string remoteSchemaField;
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public OperationMethodType OperationMethod
     {
       get { return operationMethodField; }
       set { operationMethodField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {

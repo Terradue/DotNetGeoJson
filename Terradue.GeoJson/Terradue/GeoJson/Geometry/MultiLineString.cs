@@ -9,19 +9,19 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+
 namespace Terradue.GeoJson.Geometry
 {
-  using System.Collections.Generic;
-  using System.Runtime.Serialization;
-
   /// <summary>
-  /// Defines the <see cref="http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
+  ///   Defines the <see cref="http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
   /// </summary>
   [DataContract]
   public class MultiLineString : GeometryObject
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.MultiLineString"/> class.
+    ///   Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.MultiLineString" /> class.
     /// </summary>
     public MultiLineString()
     {
@@ -30,7 +30,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="MultiLineString"/> class.
+    ///   Initializes a new instance of the <see cref="MultiLineString" /> class.
     /// </summary>
     /// <param name="coordinates">The coordinates.</param>
     public MultiLineString(List<LineString> lineStrings)
@@ -40,7 +40,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets or sets the line strings.
+    ///   Gets or sets the line strings.
     /// </summary>
     /// <value>The line strings.</value>
     public List<LineString> LineStrings { get; set; }
@@ -48,7 +48,6 @@ namespace Terradue.GeoJson.Geometry
     [DataMember(Name = "coordinates")]
     public List<List<List<double>>> Coordinates
     {
-
       get
       {
         var coordinates = new List<List<List<double>>>();

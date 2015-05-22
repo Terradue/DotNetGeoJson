@@ -1,29 +1,32 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = true)]
-  public partial class DirectionVectorType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = true)]
+  public class DirectionVectorType
   {
-
+    private ItemsChoiceType20[] itemsElementNameField;
     private object[] itemsField;
 
-    private ItemsChoiceType20[] itemsElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute("horizontalAngle", typeof (AngleType))]
-    [System.Xml.Serialization.XmlElementAttribute("vector", typeof (VectorType))]
-    [System.Xml.Serialization.XmlElementAttribute("verticalAngle", typeof (AngleType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("horizontalAngle", typeof (AngleType))]
+    [XmlElement("vector", typeof (VectorType))]
+    [XmlElement("verticalAngle", typeof (AngleType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public object[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType20[] ItemsElementName
     {
       get { return itemsElementNameField; }

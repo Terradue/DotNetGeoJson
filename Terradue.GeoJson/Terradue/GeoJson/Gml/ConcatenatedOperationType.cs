@@ -1,48 +1,49 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("ConcatenatedOperation", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("ConcatenatedOperation", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class ConcatenatedOperationType : AbstractCoordinateOperationType
+  public class ConcatenatedOperationType : AbstractCoordinateOperationType
   {
-
+    private AggregationType aggregationTypeField;
+    private bool aggregationTypeFieldSpecified;
+    private ItemsChoiceType17[] itemsElementNameField;
     private CoordinateOperationPropertyType[] itemsField;
 
-    private ItemsChoiceType17[] itemsElementNameField;
-
-    private AggregationType aggregationTypeField;
-
-    private bool aggregationTypeFieldSpecified;
-
-    [System.Xml.Serialization.XmlElementAttribute("coordOperation", typeof (CoordinateOperationPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesOperation", typeof (CoordinateOperationPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesSingleOperation", typeof (CoordinateOperationPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("coordOperation", typeof (CoordinateOperationPropertyType))]
+    [XmlElement("usesOperation", typeof (CoordinateOperationPropertyType))]
+    [XmlElement("usesSingleOperation", typeof (CoordinateOperationPropertyType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public CoordinateOperationPropertyType[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType17[] ItemsElementName
     {
       get { return itemsElementNameField; }
       set { itemsElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public AggregationType aggregationType
     {
       get { return aggregationTypeField; }
       set { aggregationTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool aggregationTypeSpecified
     {
       get { return aggregationTypeFieldSpecified; }

@@ -5,21 +5,26 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class SecondDefiningParameter
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class SecondDefiningParameter
   {
-
     private object itemField;
 
-    [System.Xml.Serialization.XmlElementAttribute("inverseFlattening", typeof (MeasureType))]
-    [System.Xml.Serialization.XmlElementAttribute("isSphere", typeof (bool))]
-    [System.Xml.Serialization.XmlElementAttribute("semiMinorAxis", typeof (LengthType))]
+    [XmlElement("inverseFlattening", typeof (MeasureType))]
+    [XmlElement("isSphere", typeof (bool))]
+    [XmlElement("semiMinorAxis", typeof (LengthType))]
     public object Item
     {
       get { return itemField; }
@@ -27,53 +32,43 @@ namespace Terradue.GeoJson.Gml
     }
   }
 
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/1999/xlink")]
-  public partial class arcType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.w3.org/1999/xlink")]
+  public class arcType
   {
-
-    private titleEltType[] titleField;
-
-    private typeType typeField;
-
-    private string arcroleField;
-
-    private string title1Field;
-
-    private showType showField;
-
-    private bool showFieldSpecified;
-
     private actuateType actuateField;
-
     private bool actuateFieldSpecified;
-
+    private string arcroleField;
     private string fromField;
-
+    private showType showField;
+    private bool showFieldSpecified;
+    private string title1Field;
+    private titleEltType[] titleField;
     private string toField;
+    private typeType typeField;
 
     public arcType()
     {
       typeField = typeType.arc;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("title")]
+    [XmlElement("title")]
     public titleEltType[] title
     {
       get { return titleField; }
       set { titleField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public typeType type
     {
       get { return typeField; }
       set { typeField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string arcrole
     {
@@ -81,42 +76,42 @@ namespace Terradue.GeoJson.Gml
       set { arcroleField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute("title", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute("title", Form = XmlSchemaForm.Qualified)]
     public string title1
     {
       get { return title1Field; }
       set { title1Field = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public showType show
     {
       get { return showField; }
       set { showField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool showSpecified
     {
       get { return showFieldSpecified; }
       set { showFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public actuateType actuate
     {
       get { return actuateField; }
       set { actuateField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool actuateSpecified
     {
       get { return actuateFieldSpecified; }
       set { actuateFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "NCName")]
     public string from
     {
@@ -124,7 +119,7 @@ namespace Terradue.GeoJson.Gml
       set { fromField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "NCName")]
     public string to
     {

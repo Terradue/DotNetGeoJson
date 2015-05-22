@@ -1,36 +1,39 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gco")]
-  public partial class GenericName_PropertyType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gco")]
+  public class GenericName_PropertyType
   {
-
-    private CodeType itemField;
-
     private ItemChoiceType9 itemElementNameField;
-
+    private CodeType itemField;
     private string nilReasonField;
 
-    [System.Xml.Serialization.XmlElementAttribute("LocalName", typeof (CodeType))]
-    [System.Xml.Serialization.XmlElementAttribute("ScopedName", typeof (CodeType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+    [XmlElement("LocalName", typeof (CodeType))]
+    [XmlElement("ScopedName", typeof (CodeType))]
+    [XmlChoiceIdentifier("ItemElementName")]
     public CodeType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public ItemChoiceType9 ItemElementName
     {
       get { return itemElementNameField; }
       set { itemElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public string nilReason
     {
       get { return nilReasonField; }

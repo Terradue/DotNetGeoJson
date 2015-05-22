@@ -1,16 +1,19 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("solidMembers", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("solidMembers", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class SolidArrayPropertyType
+  public class SolidArrayPropertyType
   {
-
     private AbstractSolidType[] itemsField;
-
     private bool ownsField;
 
     public SolidArrayPropertyType()
@@ -18,16 +21,16 @@ namespace Terradue.GeoJson.Gml
       ownsField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("CompositeSolid", typeof (CompositeSolidType))]
-    [System.Xml.Serialization.XmlElementAttribute("Solid", typeof (SolidType))]
+    [XmlElement("CompositeSolid", typeof (CompositeSolidType))]
+    [XmlElement("Solid", typeof (SolidType))]
     public AbstractSolidType[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool owns
     {
       get { return ownsField; }

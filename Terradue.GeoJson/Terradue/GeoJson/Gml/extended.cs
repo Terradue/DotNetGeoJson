@@ -1,43 +1,45 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/1999/xlink")]
-  public partial class extended
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.w3.org/1999/xlink")]
+  public class extended
   {
-
     private object[] itemsField;
-
-    private typeType typeField;
-
     private string roleField;
-
     private string titleField;
+    private typeType typeField;
 
     public extended()
     {
       typeField = typeType.extended;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("arc", typeof (arcType))]
-    [System.Xml.Serialization.XmlElementAttribute("locator", typeof (locatorType))]
-    [System.Xml.Serialization.XmlElementAttribute("resource", typeof (resourceType))]
-    [System.Xml.Serialization.XmlElementAttribute("title", typeof (titleEltType))]
+    [XmlElement("arc", typeof (arcType))]
+    [XmlElement("locator", typeof (locatorType))]
+    [XmlElement("resource", typeof (resourceType))]
+    [XmlElement("title", typeof (titleEltType))]
     public object[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public typeType type
     {
       get { return typeField; }
       set { typeField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string role
     {
@@ -45,7 +47,7 @@ namespace Terradue.GeoJson.Gml
       set { roleField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public string title
     {
       get { return titleField; }

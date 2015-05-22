@@ -1,32 +1,35 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("topoCurveProperty", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("topoCurveProperty", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class TopoCurvePropertyType
+  public class TopoCurvePropertyType
   {
-
-    private TopoCurveType topoCurveField;
-
     private bool ownsField;
+    private TopoCurveType topoCurveField;
 
     public TopoCurvePropertyType()
     {
       ownsField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TopoCurveType TopoCurve
     {
       get { return topoCurveField; }
       set { topoCurveField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool owns
     {
       get { return ownsField; }

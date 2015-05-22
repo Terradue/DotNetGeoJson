@@ -1,32 +1,35 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("pointMembers", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("pointMembers", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class PointArrayPropertyType
+  public class PointArrayPropertyType
   {
-
-    private PointType[] pointField;
-
     private bool ownsField;
+    private PointType[] pointField;
 
     public PointArrayPropertyType()
     {
       ownsField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("Point")]
+    [XmlElement("Point")]
     public PointType[] Point
     {
       get { return pointField; }
       set { pointField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool owns
     {
       get { return ownsField; }

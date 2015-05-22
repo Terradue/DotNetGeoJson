@@ -1,31 +1,34 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public partial class MD_ScopeDescription_Type
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public class MD_ScopeDescription_Type
   {
-
+    private ItemsChoiceType10[] itemsElementNameField;
     private object[] itemsField;
 
-    private ItemsChoiceType10[] itemsElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute("attributeInstances", typeof (ObjectReference_PropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("attributes", typeof (ObjectReference_PropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("dataset", typeof (CharacterString_PropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("featureInstances", typeof (ObjectReference_PropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("features", typeof (ObjectReference_PropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("other", typeof (CharacterString_PropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("attributeInstances", typeof (ObjectReference_PropertyType))]
+    [XmlElement("attributes", typeof (ObjectReference_PropertyType))]
+    [XmlElement("dataset", typeof (CharacterString_PropertyType))]
+    [XmlElement("featureInstances", typeof (ObjectReference_PropertyType))]
+    [XmlElement("features", typeof (ObjectReference_PropertyType))]
+    [XmlElement("other", typeof (CharacterString_PropertyType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public object[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType10[] ItemsElementName
     {
       get { return itemsElementNameField; }

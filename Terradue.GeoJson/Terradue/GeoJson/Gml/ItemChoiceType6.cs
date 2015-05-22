@@ -1,45 +1,48 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2", IncludeInSchema = false)]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2", IncludeInSchema = false)]
   public enum ItemChoiceType6
   {
-
-    /// <remarks/>
+    /// <remarks />
     affineCS,
 
-    /// <remarks/>
+    /// <remarks />
     cartesianCS,
 
-    /// <remarks/>
+    /// <remarks />
     coordinateSystem,
 
-    /// <remarks/>
+    /// <remarks />
     cylindricalCS,
 
-    /// <remarks/>
+    /// <remarks />
     linearCS,
 
-    /// <remarks/>
+    /// <remarks />
     polarCS,
 
-    /// <remarks/>
+    /// <remarks />
     sphericalCS,
 
-    /// <remarks/>
+    /// <remarks />
     userDefinedCS,
 
-    /// <remarks/>
+    /// <remarks />
     usesAffineCS,
 
-    /// <remarks/>
+    /// <remarks />
     usesCS,
 
-    /// <remarks/>
+    /// <remarks />
     usesCartesianCS,
 
-    /// <remarks/>
-    usesSphericalCS,
+    /// <remarks />
+    usesSphericalCS
   }
 }

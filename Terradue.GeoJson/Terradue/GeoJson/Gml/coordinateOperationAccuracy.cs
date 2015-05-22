@@ -1,24 +1,27 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class coordinateOperationAccuracy
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class coordinateOperationAccuracy
   {
-
     private AbstractDQ_PositionalAccuracy_Type itemField;
-
     private string nilReasonField;
-
     private string remoteSchemaField;
 
-    [System.Xml.Serialization.XmlElementAttribute("DQ_AbsoluteExternalPositionalAccuracy",
+    [XmlElement("DQ_AbsoluteExternalPositionalAccuracy",
       typeof (DQ_AbsoluteExternalPositionalAccuracy_Type), Namespace = "http://www.isotc211.org/2005/gmd")]
-    [System.Xml.Serialization.XmlElementAttribute("DQ_GriddedDataPositionalAccuracy",
+    [XmlElement("DQ_GriddedDataPositionalAccuracy",
       typeof (DQ_GriddedDataPositionalAccuracy_Type), Namespace = "http://www.isotc211.org/2005/gmd")]
-    [System.Xml.Serialization.XmlElementAttribute("DQ_RelativeInternalPositionalAccuracy",
+    [XmlElement("DQ_RelativeInternalPositionalAccuracy",
       typeof (DQ_RelativeInternalPositionalAccuracy_Type), Namespace = "http://www.isotc211.org/2005/gmd")]
     public AbstractDQ_PositionalAccuracy_Type Item
     {
@@ -26,14 +29,14 @@ namespace Terradue.GeoJson.Gml
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {

@@ -1,18 +1,23 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("GenericMetaData", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("GenericMetaData", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class GenericMetaDataType : AbstractMetaDataType
+  public class GenericMetaDataType : AbstractMetaDataType
   {
+    private XmlElement[] anyField;
 
-    private System.Xml.XmlElement[] anyField;
-
-    [System.Xml.Serialization.XmlAnyElementAttribute()]
-    public System.Xml.XmlElement[] Any
+    [XmlAnyElement]
+    public XmlElement[] Any
     {
       get { return anyField; }
       set { anyField = value; }

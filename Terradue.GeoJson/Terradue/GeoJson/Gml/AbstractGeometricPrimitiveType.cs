@@ -1,27 +1,32 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractSolidType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (CompositeSolidType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (SolidType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractSurfaceType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (CompositeSurfaceType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (OrientableSurfaceType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (SurfaceType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (TinType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (PolygonType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractCurveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (CompositeCurveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (OrientableCurveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (CurveType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (LineStringType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (PointType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractGeometricPrimitive", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (AbstractSolidType))]
+  [XmlInclude(typeof (CompositeSolidType))]
+  [XmlInclude(typeof (SolidType))]
+  [XmlInclude(typeof (AbstractSurfaceType))]
+  [XmlInclude(typeof (CompositeSurfaceType))]
+  [XmlInclude(typeof (OrientableSurfaceType))]
+  [XmlInclude(typeof (SurfaceType))]
+  [XmlInclude(typeof (TinType))]
+  [XmlInclude(typeof (PolygonType))]
+  [XmlInclude(typeof (AbstractCurveType))]
+  [XmlInclude(typeof (CompositeCurveType))]
+  [XmlInclude(typeof (OrientableCurveType))]
+  [XmlInclude(typeof (CurveType))]
+  [XmlInclude(typeof (LineStringType))]
+  [XmlInclude(typeof (PointType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractGeometricPrimitive", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractGeometricPrimitiveType : AbstractGeometryType
+  public abstract class AbstractGeometricPrimitiveType : AbstractGeometryType
   {
   }
 }

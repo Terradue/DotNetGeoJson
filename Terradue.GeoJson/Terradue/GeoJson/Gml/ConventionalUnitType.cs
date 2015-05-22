@@ -1,39 +1,41 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("ConventionalUnit", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("ConventionalUnit", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class ConventionalUnitType : UnitDefinitionType
+  public class ConventionalUnitType : UnitDefinitionType
   {
-
+    private DerivationUnitTermType[] derivationUnitTermField;
+    private ItemChoiceType itemElementNameField;
     private ConversionToPreferredUnitType itemField;
 
-    private ItemChoiceType itemElementNameField;
-
-    private DerivationUnitTermType[] derivationUnitTermField;
-
-    [System.Xml.Serialization.XmlElementAttribute("conversionToPreferredUnit", typeof (ConversionToPreferredUnitType))]
-    [System.Xml.Serialization.XmlElementAttribute("roughConversionToPreferredUnit",
+    [XmlElement("conversionToPreferredUnit", typeof (ConversionToPreferredUnitType))]
+    [XmlElement("roughConversionToPreferredUnit",
       typeof (ConversionToPreferredUnitType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+    [XmlChoiceIdentifier("ItemElementName")]
     public ConversionToPreferredUnitType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public ItemChoiceType ItemElementName
     {
       get { return itemElementNameField; }
       set { itemElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("derivationUnitTerm")]
+    [XmlElement("derivationUnitTerm")]
     public DerivationUnitTermType[] derivationUnitTerm
     {
       get { return derivationUnitTermField; }

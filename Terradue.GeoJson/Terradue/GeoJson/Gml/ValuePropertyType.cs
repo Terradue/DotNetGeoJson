@@ -1,72 +1,71 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("valueProperty", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("valueProperty", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class ValuePropertyType
+  public class ValuePropertyType
   {
-
-    private object itemField;
-
-    private GeometricComplexType item1Field;
-
     private AbstractTimeObjectType abstractTimeObjectField;
-
-    private string nullField;
-
+    private GeometricComplexType item1Field;
+    private object itemField;
     private string nilReasonField;
-
-    private string remoteSchemaField;
-
+    private string nullField;
     private bool ownsField;
+    private string remoteSchemaField;
 
     public ValuePropertyType()
     {
       ownsField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("CategoryExtent", typeof (CategoryExtentType))]
-    [System.Xml.Serialization.XmlElementAttribute("CompositeValue", typeof (CompositeValueType))]
-    [System.Xml.Serialization.XmlElementAttribute("CountExtent", typeof (string))]
-    [System.Xml.Serialization.XmlElementAttribute("QuantityExtent", typeof (QuantityExtentType))]
+    [XmlElement("CategoryExtent", typeof (CategoryExtentType))]
+    [XmlElement("CompositeValue", typeof (CompositeValueType))]
+    [XmlElement("CountExtent", typeof (string))]
+    [XmlElement("QuantityExtent", typeof (QuantityExtentType))]
     public object Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("GeometricComplex")]
+    [XmlElement("GeometricComplex")]
     public GeometricComplexType Item1
     {
       get { return item1Field; }
       set { item1Field = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public AbstractTimeObjectType AbstractTimeObject
     {
       get { return abstractTimeObjectField; }
       set { abstractTimeObjectField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public string Null
     {
       get { return nullField; }
       set { nullField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {
@@ -74,8 +73,8 @@ namespace Terradue.GeoJson.Gml
       set { remoteSchemaField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool owns
     {
       get { return ownsField; }

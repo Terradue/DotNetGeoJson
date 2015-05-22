@@ -1,17 +1,21 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("DirectedObservationAtDistance",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("DirectedObservationAtDistance",
     Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class DirectedObservationAtDistanceType : DirectedObservationType
+  public class DirectedObservationAtDistanceType : DirectedObservationType
   {
-
     private MeasureType distanceField;
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public MeasureType distance
     {
       get { return distanceField; }

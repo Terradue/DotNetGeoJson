@@ -1,27 +1,31 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (GenericMetaDataType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractMetaData", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (GenericMetaDataType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractMetaData", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractMetaDataType
+  public abstract class AbstractMetaDataType
   {
-
+    private string idField;
     private string[] textField;
 
-    private string idField;
-
-    [System.Xml.Serialization.XmlTextAttribute()]
+    [XmlText]
     public string[] Text
     {
       get { return textField; }
       set { textField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, DataType = "ID")]
+    [XmlAttribute(Form = XmlSchemaForm.Qualified, DataType = "ID")]
     public string id
     {
       get { return idField; }

@@ -1,32 +1,27 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gco")]
-  public partial class RecordType_Type
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gco")]
+  public class RecordType_Type
   {
-
-    private typeType typeField;
-
-    private bool typeFieldSpecified;
-
-    private string hrefField;
-
-    private string roleField;
-
-    private string arcroleField;
-
-    private string titleField;
-
-    private showType showField;
-
-    private bool showFieldSpecified;
-
     private actuateType actuateField;
-
     private bool actuateFieldSpecified;
-
+    private string arcroleField;
+    private string hrefField;
+    private string roleField;
+    private showType showField;
+    private bool showFieldSpecified;
+    private string titleField;
+    private typeType typeField;
+    private bool typeFieldSpecified;
     private string valueField;
 
     public RecordType_Type()
@@ -34,7 +29,7 @@ namespace Terradue.GeoJson.Gml
       typeField = typeType.simple;
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.w3.org/1999/xlink")]
     public typeType type
     {
@@ -42,14 +37,14 @@ namespace Terradue.GeoJson.Gml
       set { typeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool typeSpecified
     {
       get { return typeFieldSpecified; }
       set { typeFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.w3.org/1999/xlink", DataType = "anyURI")]
     public string href
     {
@@ -57,7 +52,7 @@ namespace Terradue.GeoJson.Gml
       set { hrefField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.w3.org/1999/xlink", DataType = "anyURI")]
     public string role
     {
@@ -65,7 +60,7 @@ namespace Terradue.GeoJson.Gml
       set { roleField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.w3.org/1999/xlink", DataType = "anyURI")]
     public string arcrole
     {
@@ -73,7 +68,7 @@ namespace Terradue.GeoJson.Gml
       set { arcroleField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.w3.org/1999/xlink")]
     public string title
     {
@@ -81,7 +76,7 @@ namespace Terradue.GeoJson.Gml
       set { titleField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.w3.org/1999/xlink")]
     public showType show
     {
@@ -89,14 +84,14 @@ namespace Terradue.GeoJson.Gml
       set { showField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool showSpecified
     {
       get { return showFieldSpecified; }
       set { showFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       Namespace = "http://www.w3.org/1999/xlink")]
     public actuateType actuate
     {
@@ -104,14 +99,14 @@ namespace Terradue.GeoJson.Gml
       set { actuateField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool actuateSpecified
     {
       get { return actuateFieldSpecified; }
       set { actuateFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlTextAttribute()]
+    [XmlText]
     public string Value
     {
       get { return valueField; }

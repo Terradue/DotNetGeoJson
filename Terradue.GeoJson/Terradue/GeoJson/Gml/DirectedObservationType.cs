@@ -1,18 +1,22 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (DirectedObservationAtDistanceType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("DirectedObservation", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (DirectedObservationAtDistanceType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("DirectedObservation", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class DirectedObservationType : ObservationType
+  public class DirectedObservationType : ObservationType
   {
-
     private DirectionPropertyType directionField;
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public DirectionPropertyType direction
     {
       get { return directionField; }

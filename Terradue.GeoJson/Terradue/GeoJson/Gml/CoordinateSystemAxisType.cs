@@ -1,80 +1,77 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("CoordinateSystemAxis", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("CoordinateSystemAxis", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class CoordinateSystemAxisType : IdentifiedObjectType
+  public class CoordinateSystemAxisType : IdentifiedObjectType
   {
-
     private CodeType axisAbbrevField;
-
     private CodeWithAuthorityType axisDirectionField;
-
-    private double minimumValueField;
-
-    private bool minimumValueFieldSpecified;
-
     private double maximumValueField;
-
     private bool maximumValueFieldSpecified;
-
+    private double minimumValueField;
+    private bool minimumValueFieldSpecified;
     private CodeWithAuthorityType rangeMeaningField;
-
     private string uomField;
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CodeType axisAbbrev
     {
       get { return axisAbbrevField; }
       set { axisAbbrevField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CodeWithAuthorityType axisDirection
     {
       get { return axisDirectionField; }
       set { axisDirectionField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public double minimumValue
     {
       get { return minimumValueField; }
       set { minimumValueField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool minimumValueSpecified
     {
       get { return minimumValueFieldSpecified; }
       set { minimumValueFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public double maximumValue
     {
       get { return maximumValueField; }
       set { maximumValueField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool maximumValueSpecified
     {
       get { return maximumValueFieldSpecified; }
       set { maximumValueFieldSpecified = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CodeWithAuthorityType rangeMeaning
     {
       get { return rangeMeaningField; }
       set { rangeMeaningField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string uom
     {
       get { return uomField; }

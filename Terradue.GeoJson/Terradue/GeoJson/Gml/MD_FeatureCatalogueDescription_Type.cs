@@ -1,51 +1,51 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public partial class MD_FeatureCatalogueDescription_Type : AbstractMD_ContentInformation_Type
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public class MD_FeatureCatalogueDescription_Type : AbstractMD_ContentInformation_Type
   {
-
     private Boolean_PropertyType complianceCodeField;
-
+    private CI_Citation_PropertyType[] featureCatalogueCitationField;
+    private GenericName_PropertyType[] featureTypesField;
+    private Boolean_PropertyType includedWithDatasetField;
     private CharacterString_PropertyType[] languageField;
 
-    private Boolean_PropertyType includedWithDatasetField;
-
-    private GenericName_PropertyType[] featureTypesField;
-
-    private CI_Citation_PropertyType[] featureCatalogueCitationField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public Boolean_PropertyType complianceCode
     {
       get { return complianceCodeField; }
       set { complianceCodeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("language")]
+    [XmlElement("language")]
     public CharacterString_PropertyType[] language
     {
       get { return languageField; }
       set { languageField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public Boolean_PropertyType includedWithDataset
     {
       get { return includedWithDatasetField; }
       set { includedWithDatasetField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("featureTypes")]
+    [XmlElement("featureTypes")]
     public GenericName_PropertyType[] featureTypes
     {
       get { return featureTypesField; }
       set { featureTypesField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("featureCatalogueCitation")]
+    [XmlElement("featureCatalogueCitation")]
     public CI_Citation_PropertyType[] featureCatalogueCitation
     {
       get { return featureCatalogueCitationField; }

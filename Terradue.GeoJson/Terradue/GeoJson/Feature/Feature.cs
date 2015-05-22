@@ -18,7 +18,7 @@ using Terradue.GeoJson.Geometry;
 namespace Terradue.GeoJson.Feature
 {
   /// <summary>
-  /// A GeoJson <see cref="http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
+  ///   A GeoJson <see cref="http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
   /// </summary>
   public abstract class Feature : GeoJsonObject
   {
@@ -29,7 +29,7 @@ namespace Terradue.GeoJson.Feature
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Feature"/> class.
+    ///   Initializes a new instance of the <see cref="Feature" /> class.
     /// </summary>
     /// <param name="geometry">The Geometry Object.</param>
     /// <param name="properties">The properties.</param>
@@ -41,7 +41,7 @@ namespace Terradue.GeoJson.Feature
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Terradue.GeoJson.Feature.Feature"/> class.
+    ///   Initializes a new instance of the <see cref="Terradue.GeoJson.Feature.Feature" /> class.
     /// </summary>
     /// <param name="properties">Properties.</param>
     internal Feature(Dictionary<string, object> properties) : this(null, properties)
@@ -49,13 +49,36 @@ namespace Terradue.GeoJson.Feature
     }
 
     /// <summary>
-    /// Create a feature from a json string.
+    ///   Gets or sets the id.
+    /// </summary>
+    /// <value>The handle.</value>
+    [DataMember(Name = "id")]
+    public string Id { get; set; }
+
+    /// <summary>
+    ///   Gets the properties.
+    /// </summary>
+    /// <value>The properties.</value>
+    [DataMember(Name = "properties")]
+    public Dictionary<string, object> Properties { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the geometry.
+    /// </summary>
+    /// <value>
+    ///   The geometry.
+    /// </value>
+    //[JsonConverter(typeof(GeometryConverter))]
+    [DataMember(Name = "geometry")]
+    public IGeometryObject Geometry { get; set; }
+
+    /// <summary>
+    ///   Create a feature from a json string.
     /// </summary>
     /// <returns>The json.</returns>
     /// <param name="json">Json.</param>
     public static Feature ParseJson(string json)
     {
-
       var jsonFeature = JsonObject.Parse(json);
       var geometry = jsonFeature.Object("geometry");
       if (geometry == null)
@@ -90,31 +113,6 @@ namespace Terradue.GeoJson.Feature
       }
 
       return feature;
-
     }
-
-    /// <summary>
-    /// Gets or sets the id.
-    /// </summary>
-    /// <value>The handle.</value>
-    [DataMember(Name = "id")]
-    public string Id { get; set; }
-
-    /// <summary>
-    /// Gets the properties.
-    /// </summary>
-    /// <value>The properties.</value>
-    [DataMember(Name = "properties")]
-    public Dictionary<string, object> Properties { get; set; }
-
-    /// <summary>
-    /// Gets or sets the geometry.
-    /// </summary>
-    /// <value>
-    /// The geometry.
-    /// </value>
-    //[JsonConverter(typeof(GeometryConverter))]
-    [DataMember(Name = "geometry")]
-    public IGeometryObject Geometry { get; set; }
   }
 }

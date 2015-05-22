@@ -1,43 +1,45 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (GeodesicType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("GeodesicString", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (GeodesicType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("GeodesicString", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class GeodesicStringType : AbstractCurveSegmentType
+  public class GeodesicStringType : AbstractCurveSegmentType
   {
-
-    private object itemField;
-
     private CurveInterpolationType interpolationField;
-
     private bool interpolationFieldSpecified;
+    private object itemField;
 
     public GeodesicStringType()
     {
       interpolationField = CurveInterpolationType.geodesic;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("pointProperty", typeof (PointPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("pos", typeof (DirectPositionType))]
-    [System.Xml.Serialization.XmlElementAttribute("posList", typeof (DirectPositionListType))]
+    [XmlElement("pointProperty", typeof (PointPropertyType))]
+    [XmlElement("pos", typeof (DirectPositionType))]
+    [XmlElement("posList", typeof (DirectPositionListType))]
     public object Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public CurveInterpolationType interpolation
     {
       get { return interpolationField; }
       set { interpolationField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool interpolationSpecified
     {
       get { return interpolationFieldSpecified; }

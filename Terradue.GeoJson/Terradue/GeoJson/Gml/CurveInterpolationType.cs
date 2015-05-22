@@ -1,42 +1,45 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
   public enum CurveInterpolationType
   {
-
-    /// <remarks/>
+    /// <remarks />
     linear,
 
-    /// <remarks/>
+    /// <remarks />
     geodesic,
 
-    /// <remarks/>
+    /// <remarks />
     circularArc3Points,
 
-    /// <remarks/>
+    /// <remarks />
     circularArc2PointWithBulge,
 
-    /// <remarks/>
+    /// <remarks />
     circularArcCenterPointWithRadius,
 
-    /// <remarks/>
+    /// <remarks />
     elliptical,
 
-    /// <remarks/>
+    /// <remarks />
     clothoid,
 
-    /// <remarks/>
+    /// <remarks />
     conic,
 
-    /// <remarks/>
+    /// <remarks />
     polynomialSpline,
 
-    /// <remarks/>
+    /// <remarks />
     cubicSpline,
 
-    /// <remarks/>
-    rationalSpline,
+    /// <remarks />
+    rationalSpline
   }
 }

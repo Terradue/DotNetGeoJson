@@ -1,25 +1,29 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("segments", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("segments", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class CurveSegmentArrayPropertyType
+  public class CurveSegmentArrayPropertyType
   {
-
     private AbstractCurveSegmentType[] itemsField;
 
-    [System.Xml.Serialization.XmlElementAttribute("ArcByCenterPoint", typeof (ArcByCenterPointType))]
-    [System.Xml.Serialization.XmlElementAttribute("ArcString", typeof (ArcStringType))]
-    [System.Xml.Serialization.XmlElementAttribute("ArcStringByBulge", typeof (ArcStringByBulgeType))]
-    [System.Xml.Serialization.XmlElementAttribute("BSpline", typeof (BSplineType))]
-    [System.Xml.Serialization.XmlElementAttribute("Clothoid", typeof (ClothoidType))]
-    [System.Xml.Serialization.XmlElementAttribute("CubicSpline", typeof (CubicSplineType))]
-    [System.Xml.Serialization.XmlElementAttribute("GeodesicString", typeof (GeodesicStringType))]
-    [System.Xml.Serialization.XmlElementAttribute("LineStringSegment", typeof (LineStringSegmentType))]
-    [System.Xml.Serialization.XmlElementAttribute("OffsetCurve", typeof (OffsetCurveType))]
+    [XmlElement("ArcByCenterPoint", typeof (ArcByCenterPointType))]
+    [XmlElement("ArcString", typeof (ArcStringType))]
+    [XmlElement("ArcStringByBulge", typeof (ArcStringByBulgeType))]
+    [XmlElement("BSpline", typeof (BSplineType))]
+    [XmlElement("Clothoid", typeof (ClothoidType))]
+    [XmlElement("CubicSpline", typeof (CubicSplineType))]
+    [XmlElement("GeodesicString", typeof (GeodesicStringType))]
+    [XmlElement("LineStringSegment", typeof (LineStringSegmentType))]
+    [XmlElement("OffsetCurve", typeof (OffsetCurveType))]
     public AbstractCurveSegmentType[] Items
     {
       get { return itemsField; }

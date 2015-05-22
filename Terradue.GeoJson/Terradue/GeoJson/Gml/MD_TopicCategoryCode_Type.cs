@@ -1,66 +1,69 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
   public enum MD_TopicCategoryCode_Type
   {
-
-    /// <remarks/>
+    /// <remarks />
     farming,
 
-    /// <remarks/>
+    /// <remarks />
     biota,
 
-    /// <remarks/>
+    /// <remarks />
     boundaries,
 
-    /// <remarks/>
+    /// <remarks />
     climatologyMeteorologyAtmosphere,
 
-    /// <remarks/>
+    /// <remarks />
     economy,
 
-    /// <remarks/>
+    /// <remarks />
     elevation,
 
-    /// <remarks/>
+    /// <remarks />
     environment,
 
-    /// <remarks/>
+    /// <remarks />
     geoscientificInformation,
 
-    /// <remarks/>
+    /// <remarks />
     health,
 
-    /// <remarks/>
+    /// <remarks />
     imageryBaseMapsEarthCover,
 
-    /// <remarks/>
+    /// <remarks />
     intelligenceMilitary,
 
-    /// <remarks/>
+    /// <remarks />
     inlandWaters,
 
-    /// <remarks/>
+    /// <remarks />
     location,
 
-    /// <remarks/>
+    /// <remarks />
     oceans,
 
-    /// <remarks/>
+    /// <remarks />
     planningCadastre,
 
-    /// <remarks/>
+    /// <remarks />
     society,
 
-    /// <remarks/>
+    /// <remarks />
     structure,
 
-    /// <remarks/>
+    /// <remarks />
     transportation,
 
-    /// <remarks/>
-    utilitiesCommunication,
+    /// <remarks />
+    utilitiesCommunication
   }
 }

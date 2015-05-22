@@ -1,19 +1,23 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = true)]
-  public partial class DirectionDescriptionType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot(Namespace = "http://www.opengis.net/gml/3.2", IsNullable = true)]
+  public class DirectionDescriptionType
   {
-
     private object itemField;
 
-    [System.Xml.Serialization.XmlElementAttribute("compassPoint", typeof (CompassPointEnumeration))]
-    [System.Xml.Serialization.XmlElementAttribute("description", typeof (string))]
-    [System.Xml.Serialization.XmlElementAttribute("keyword", typeof (CodeType))]
-    [System.Xml.Serialization.XmlElementAttribute("reference", typeof (ReferenceType))]
+    [XmlElement("compassPoint", typeof (CompassPointEnumeration))]
+    [XmlElement("description", typeof (string))]
+    [XmlElement("keyword", typeof (CodeType))]
+    [XmlElement("reference", typeof (ReferenceType))]
     public object Item
     {
       get { return itemField; }

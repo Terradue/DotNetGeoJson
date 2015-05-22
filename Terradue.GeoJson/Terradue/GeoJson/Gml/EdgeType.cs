@@ -1,61 +1,60 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("Edge", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class EdgeType : AbstractTopoPrimitiveType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("Edge", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class EdgeType : AbstractTopoPrimitiveType
   {
-
+    private AggregationType aggregationTypeField;
+    private bool aggregationTypeFieldSpecified;
     private TopoSolidPropertyType containerField;
-
+    private CurvePropertyType curvePropertyField;
+    private DirectedFacePropertyType[] directedFaceField;
     private DirectedNodePropertyType[] directedNodeField;
 
-    private DirectedFacePropertyType[] directedFaceField;
-
-    private CurvePropertyType curvePropertyField;
-
-    private AggregationType aggregationTypeField;
-
-    private bool aggregationTypeFieldSpecified;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public TopoSolidPropertyType container
     {
       get { return containerField; }
       set { containerField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("directedNode")]
+    [XmlElement("directedNode")]
     public DirectedNodePropertyType[] directedNode
     {
       get { return directedNodeField; }
       set { directedNodeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("directedFace")]
+    [XmlElement("directedFace")]
     public DirectedFacePropertyType[] directedFace
     {
       get { return directedFaceField; }
       set { directedFaceField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CurvePropertyType curveProperty
     {
       get { return curvePropertyField; }
       set { curvePropertyField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public AggregationType aggregationType
     {
       get { return aggregationTypeField; }
       set { aggregationTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool aggregationTypeSpecified
     {
       get { return aggregationTypeFieldSpecified; }

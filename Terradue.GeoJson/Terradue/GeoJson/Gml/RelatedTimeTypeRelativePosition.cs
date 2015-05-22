@@ -1,48 +1,51 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.opengis.net/gml/3.2")]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [XmlType(AnonymousType = true, Namespace = "http://www.opengis.net/gml/3.2")]
   public enum RelatedTimeTypeRelativePosition
   {
-
-    /// <remarks/>
+    /// <remarks />
     Before,
 
-    /// <remarks/>
+    /// <remarks />
     After,
 
-    /// <remarks/>
+    /// <remarks />
     Begins,
 
-    /// <remarks/>
+    /// <remarks />
     Ends,
 
-    /// <remarks/>
+    /// <remarks />
     During,
 
-    /// <remarks/>
+    /// <remarks />
     Equals,
 
-    /// <remarks/>
+    /// <remarks />
     Contains,
 
-    /// <remarks/>
+    /// <remarks />
     Overlaps,
 
-    /// <remarks/>
+    /// <remarks />
     Meets,
 
-    /// <remarks/>
+    /// <remarks />
     OverlappedBy,
 
-    /// <remarks/>
+    /// <remarks />
     MetBy,
 
-    /// <remarks/>
+    /// <remarks />
     BegunBy,
 
-    /// <remarks/>
-    EndedBy,
+    /// <remarks />
+    EndedBy
   }
 }

@@ -1,39 +1,42 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2", IncludeInSchema = false)]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2", IncludeInSchema = false)]
   public enum ItemChoiceType17
   {
-
-    /// <remarks/>
+    /// <remarks />
     CoordinateSystemAxis,
 
-    /// <remarks/>
+    /// <remarks />
     Definition,
 
-    /// <remarks/>
+    /// <remarks />
     DefinitionCollection,
 
-    /// <remarks/>
+    /// <remarks />
     DefinitionProxy,
 
-    /// <remarks/>
+    /// <remarks />
     Dictionary,
 
-    /// <remarks/>
+    /// <remarks />
     Ellipsoid,
 
-    /// <remarks/>
+    /// <remarks />
     OperationMethod,
 
-    /// <remarks/>
+    /// <remarks />
     PrimeMeridian,
 
-    /// <remarks/>
+    /// <remarks />
     TimeReferenceSystem,
 
-    /// <remarks/>
-    UnitDefinition,
+    /// <remarks />
+    UnitDefinition
   }
 }

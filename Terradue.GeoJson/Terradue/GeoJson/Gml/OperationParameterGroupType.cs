@@ -1,41 +1,43 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("OperationParameterGroup", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("OperationParameterGroup", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class OperationParameterGroupType : AbstractGeneralOperationParameterType
+  public class OperationParameterGroupType : AbstractGeneralOperationParameterType
   {
-
+    private ItemsChoiceType11[] itemsElementNameField;
+    private AbstractGeneralOperationParameterPropertyType[] itemsField;
     private string maximumOccursField;
 
-    private AbstractGeneralOperationParameterPropertyType[] itemsField;
-
-    private ItemsChoiceType11[] itemsElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "positiveInteger")]
+    [XmlElement(DataType = "positiveInteger")]
     public string maximumOccurs
     {
       get { return maximumOccursField; }
       set { maximumOccursField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("generalOperationParameter",
+    [XmlElement("generalOperationParameter",
       typeof (AbstractGeneralOperationParameterPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("includesParameter",
+    [XmlElement("includesParameter",
       typeof (AbstractGeneralOperationParameterPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("parameter", typeof (AbstractGeneralOperationParameterPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("parameter", typeof (AbstractGeneralOperationParameterPropertyType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public AbstractGeneralOperationParameterPropertyType[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType11[] ItemsElementName
     {
       get { return itemsElementNameField; }

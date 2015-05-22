@@ -1,45 +1,47 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (AbstractContinuousCoverageType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (DiscreteCoverageType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractCoverage", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (AbstractContinuousCoverageType))]
+  [XmlInclude(typeof (DiscreteCoverageType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractCoverage", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractCoverageType : AbstractFeatureType
+  public abstract class AbstractCoverageType : AbstractFeatureType
   {
-
-    private DomainSetType item1Field;
-
     private Item1ChoiceType9 item1ElementNameField;
-
+    private DomainSetType item1Field;
     private RangeSetType rangeSetField;
 
-    [System.Xml.Serialization.XmlElementAttribute("domainSet", typeof (DomainSetType))]
-    [System.Xml.Serialization.XmlElementAttribute("gridDomain", typeof (DomainSetType))]
-    [System.Xml.Serialization.XmlElementAttribute("multiCurveDomain", typeof (DomainSetType))]
-    [System.Xml.Serialization.XmlElementAttribute("multiPointDomain", typeof (DomainSetType))]
-    [System.Xml.Serialization.XmlElementAttribute("multiSolidDomain", typeof (DomainSetType))]
-    [System.Xml.Serialization.XmlElementAttribute("multiSurfaceDomain", typeof (DomainSetType))]
-    [System.Xml.Serialization.XmlElementAttribute("rectifiedGridDomain", typeof (DomainSetType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("Item1ElementName")]
+    [XmlElement("domainSet", typeof (DomainSetType))]
+    [XmlElement("gridDomain", typeof (DomainSetType))]
+    [XmlElement("multiCurveDomain", typeof (DomainSetType))]
+    [XmlElement("multiPointDomain", typeof (DomainSetType))]
+    [XmlElement("multiSolidDomain", typeof (DomainSetType))]
+    [XmlElement("multiSurfaceDomain", typeof (DomainSetType))]
+    [XmlElement("rectifiedGridDomain", typeof (DomainSetType))]
+    [XmlChoiceIdentifier("Item1ElementName")]
     public DomainSetType Item1
     {
       get { return item1Field; }
       set { item1Field = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public Item1ChoiceType9 Item1ElementName
     {
       get { return item1ElementNameField; }
       set { item1ElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public RangeSetType rangeSet
     {
       get { return rangeSetField; }

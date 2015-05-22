@@ -1,20 +1,23 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("resultOf", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("resultOf", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class ResultType
+  public class ResultType
   {
-
-    private System.Xml.XmlElement anyField;
-
-    private bool ownsField;
-
+    private XmlElement anyField;
     private string nilReasonField;
-
+    private bool ownsField;
     private string remoteSchemaField;
 
     public ResultType()
@@ -22,29 +25,29 @@ namespace Terradue.GeoJson.Gml
       ownsField = false;
     }
 
-    [System.Xml.Serialization.XmlAnyElementAttribute()]
-    public System.Xml.XmlElement Any
+    [XmlAnyElement]
+    public XmlElement Any
     {
       get { return anyField; }
       set { anyField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool owns
     {
       get { return ownsField; }
       set { ownsField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {

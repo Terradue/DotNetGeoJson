@@ -9,21 +9,21 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+
 namespace Terradue.GeoJson.Geometry
 {
-  using System;
-  using System.Collections.Generic;
-  using System.Runtime.Serialization;
-
   /// <summary>
-  /// In geography, a point refers to a Position on a map, expressed in latitude and longitude.
+  ///   In geography, a point refers to a Position on a map, expressed in latitude and longitude.
   /// </summary>
-  /// <seealso cref="http://geojson.org/geojson-spec.html#point"/>
+  /// <seealso cref="http://geojson.org/geojson-spec.html#point" />
   [DataContract]
   public class Point : GeometryObject
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Point"/> class.
+    ///   Initializes a new instance of the <see cref="Point" /> class.
     /// </summary>
     /// <param name="coordinates">The Position.</param>
     public Point(IPosition coordinates)
@@ -44,13 +44,13 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets or sets the position.
+    ///   Gets or sets the position.
     /// </summary>
     /// <value>The position.</value>
     public IPosition Position { get; set; }
 
     /// <summary>
-    /// Gets the Coordinate(s).
+    ///   Gets the Coordinate(s).
     /// </summary>
     /// <value>The Coordinates.</value>
     //        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]

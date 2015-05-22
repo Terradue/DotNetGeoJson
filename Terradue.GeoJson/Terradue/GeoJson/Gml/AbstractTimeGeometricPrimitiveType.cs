@@ -1,16 +1,20 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (TimePeriodType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (TimeInstantType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractTimeGeometricPrimitive",
+  [XmlInclude(typeof (TimePeriodType))]
+  [XmlInclude(typeof (TimeInstantType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractTimeGeometricPrimitive",
     Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public abstract partial class AbstractTimeGeometricPrimitiveType : AbstractTimePrimitiveType
+  public abstract class AbstractTimeGeometricPrimitiveType : AbstractTimePrimitiveType
   {
-
     private string frameField;
 
     public AbstractTimeGeometricPrimitiveType()
@@ -18,8 +22,8 @@ namespace Terradue.GeoJson.Gml
       frameField = "#ISO-8601";
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
-    [System.ComponentModel.DefaultValueAttribute("#ISO-8601")]
+    [XmlAttribute(DataType = "anyURI")]
+    [DefaultValue("#ISO-8601")]
     public string frame
     {
       get { return frameField; }

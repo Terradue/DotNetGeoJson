@@ -1,39 +1,41 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (SphereType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (CylinderType))]
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (ConeType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractGriddedSurface", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (SphereType))]
+  [XmlInclude(typeof (CylinderType))]
+  [XmlInclude(typeof (ConeType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractGriddedSurface", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractGriddedSurfaceType : AbstractParametricCurveSurfaceType
+  public abstract class AbstractGriddedSurfaceType : AbstractParametricCurveSurfaceType
   {
-
+    private string columnsField;
+    private string rows1Field;
     private AbstractGriddedSurfaceTypeRow[] rowsField;
 
-    private string rows1Field;
-
-    private string columnsField;
-
-    [System.Xml.Serialization.XmlArrayAttribute()]
-    [System.Xml.Serialization.XmlArrayItemAttribute("Row", IsNullable = false)]
+    [XmlArray]
+    [XmlArrayItem("Row", IsNullable = false)]
     public AbstractGriddedSurfaceTypeRow[] rows
     {
       get { return rowsField; }
       set { rowsField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute("rows", DataType = "integer")]
+    [XmlAttribute("rows", DataType = "integer")]
     public string rows1
     {
       get { return rows1Field; }
       set { rows1Field = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
+    [XmlAttribute(DataType = "integer")]
     public string columns
     {
       get { return columnsField; }

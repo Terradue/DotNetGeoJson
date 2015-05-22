@@ -1,60 +1,59 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gmd")]
-  public partial class CI_OnlineResource_Type : AbstractObject_Type
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gmd")]
+  public class CI_OnlineResource_Type : AbstractObject_Type
   {
-
+    private CharacterString_PropertyType applicationProfileField;
+    private CharacterString_PropertyType descriptionField;
+    private CI_OnLineFunctionCode_PropertyType functionField;
     private URL_PropertyType linkageField;
-
+    private CharacterString_PropertyType nameField;
     private CharacterString_PropertyType protocolField;
 
-    private CharacterString_PropertyType applicationProfileField;
-
-    private CharacterString_PropertyType nameField;
-
-    private CharacterString_PropertyType descriptionField;
-
-    private CI_OnLineFunctionCode_PropertyType functionField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public URL_PropertyType linkage
     {
       get { return linkageField; }
       set { linkageField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CharacterString_PropertyType protocol
     {
       get { return protocolField; }
       set { protocolField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CharacterString_PropertyType applicationProfile
     {
       get { return applicationProfileField; }
       set { applicationProfileField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CharacterString_PropertyType name
     {
       get { return nameField; }
       set { nameField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CharacterString_PropertyType description
     {
       get { return descriptionField; }
       set { descriptionField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CI_OnLineFunctionCode_PropertyType function
     {
       get { return functionField; }

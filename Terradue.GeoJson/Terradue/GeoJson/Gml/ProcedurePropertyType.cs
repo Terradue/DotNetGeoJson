@@ -1,19 +1,21 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("using", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
-  public partial class ProcedurePropertyType
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("using", Namespace = "http://www.opengis.net/gml/3.2", IsNullable = false)]
+  public class ProcedurePropertyType
   {
-
     private AbstractFeatureType itemField;
-
-    private bool ownsField;
-
     private string nilReasonField;
-
+    private bool ownsField;
     private string remoteSchemaField;
 
     public ProcedurePropertyType()
@@ -21,31 +23,31 @@ namespace Terradue.GeoJson.Gml
       ownsField = false;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("DynamicFeature", typeof (DynamicFeatureType))]
-    [System.Xml.Serialization.XmlElementAttribute("FeatureCollection", typeof (FeatureCollectionType))]
-    [System.Xml.Serialization.XmlElementAttribute("Observation", typeof (ObservationType))]
+    [XmlElement("DynamicFeature", typeof (DynamicFeatureType))]
+    [XmlElement("FeatureCollection", typeof (FeatureCollectionType))]
+    [XmlElement("Observation", typeof (ObservationType))]
     public AbstractFeatureType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
+    [XmlAttribute]
+    [DefaultValue(false)]
     public bool owns
     {
       get { return ownsField; }
       set { ownsField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {

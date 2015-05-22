@@ -1,47 +1,48 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("DerivedCRS", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("DerivedCRS", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class DerivedCRSType : AbstractGeneralDerivedCRSType
+  public class DerivedCRSType : AbstractGeneralDerivedCRSType
   {
-
     private SingleCRSPropertyType baseCRSField;
-
     private CodeWithAuthorityType derivedCRSTypeField;
-
+    private Item1ChoiceType7 item1ElementNameField;
     private CoordinateSystemPropertyType item1Field;
 
-    private Item1ChoiceType7 item1ElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public SingleCRSPropertyType baseCRS
     {
       get { return baseCRSField; }
       set { baseCRSField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public CodeWithAuthorityType derivedCRSType
     {
       get { return derivedCRSTypeField; }
       set { derivedCRSTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("coordinateSystem", typeof (CoordinateSystemPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesCS", typeof (CoordinateSystemPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("Item1ElementName")]
+    [XmlElement("coordinateSystem", typeof (CoordinateSystemPropertyType))]
+    [XmlElement("usesCS", typeof (CoordinateSystemPropertyType))]
+    [XmlChoiceIdentifier("Item1ElementName")]
     public CoordinateSystemPropertyType Item1
     {
       get { return item1Field; }
       set { item1Field = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public Item1ChoiceType7 Item1ElementName
     {
       get { return item1ElementNameField; }

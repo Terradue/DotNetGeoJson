@@ -1,51 +1,52 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("ParameterValueGroup", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("ParameterValueGroup", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class ParameterValueGroupType : AbstractGeneralParameterValueType
+  public class ParameterValueGroupType : AbstractGeneralParameterValueType
   {
-
+    private ItemChoiceType13 itemElementNameField;
+    private OperationParameterGroupPropertyType itemField;
+    private ItemsChoiceType14[] itemsElementNameField;
     private AbstractGeneralParameterValuePropertyType[] itemsField;
 
-    private ItemsChoiceType14[] itemsElementNameField;
-
-    private OperationParameterGroupPropertyType itemField;
-
-    private ItemChoiceType13 itemElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute("includesValue", typeof (AbstractGeneralParameterValuePropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("parameterValue", typeof (AbstractGeneralParameterValuePropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("usesValue", typeof (AbstractGeneralParameterValuePropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("includesValue", typeof (AbstractGeneralParameterValuePropertyType))]
+    [XmlElement("parameterValue", typeof (AbstractGeneralParameterValuePropertyType))]
+    [XmlElement("usesValue", typeof (AbstractGeneralParameterValuePropertyType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public AbstractGeneralParameterValuePropertyType[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType14[] ItemsElementName
     {
       get { return itemsElementNameField; }
       set { itemsElementNameField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("group", typeof (OperationParameterGroupPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("valuesOfGroup", typeof (OperationParameterGroupPropertyType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+    [XmlElement("group", typeof (OperationParameterGroupPropertyType))]
+    [XmlElement("valuesOfGroup", typeof (OperationParameterGroupPropertyType))]
+    [XmlChoiceIdentifier("ItemElementName")]
     public OperationParameterGroupPropertyType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement]
+    [XmlIgnore]
     public ItemChoiceType13 ItemElementName
     {
       get { return itemElementNameField; }

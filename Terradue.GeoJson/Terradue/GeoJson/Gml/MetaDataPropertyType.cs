@@ -1,37 +1,39 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("metaDataProperty", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("metaDataProperty", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class MetaDataPropertyType
+  public class MetaDataPropertyType
   {
-
+    private string aboutField;
     private GenericMetaDataType itemField;
-
     private string nilReasonField;
-
     private string remoteSchemaField;
 
-    private string aboutField;
-
-    [System.Xml.Serialization.XmlElementAttribute("GenericMetaData")]
+    [XmlElement("GenericMetaData")]
     public GenericMetaDataType Item
     {
       get { return itemField; }
       set { itemField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public string nilReason
     {
       get { return nilReasonField; }
       set { nilReasonField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+    [XmlAttribute(Form = XmlSchemaForm.Qualified,
       DataType = "anyURI")]
     public string remoteSchema
     {
@@ -39,7 +41,7 @@ namespace Terradue.GeoJson.Gml
       set { remoteSchemaField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+    [XmlAttribute(DataType = "anyURI")]
     public string about
     {
       get { return aboutField; }

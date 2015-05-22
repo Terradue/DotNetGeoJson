@@ -1,27 +1,30 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof (FeatureCollectionType))]
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("AbstractFeatureCollection", Namespace = "http://www.opengis.net/gml/3.2",
+  [XmlInclude(typeof (FeatureCollectionType))]
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("AbstractFeatureCollection", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public abstract partial class AbstractFeatureCollectionType : AbstractFeatureType
+  public abstract class AbstractFeatureCollectionType : AbstractFeatureType
   {
-
     private FeaturePropertyType[] featureMemberField;
-
     private FeatureArrayPropertyType featureMembersField;
 
-    [System.Xml.Serialization.XmlElementAttribute("featureMember")]
+    [XmlElement("featureMember")]
     public FeaturePropertyType[] featureMember
     {
       get { return featureMemberField; }
       set { featureMemberField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public FeatureArrayPropertyType featureMembers
     {
       get { return featureMembersField; }

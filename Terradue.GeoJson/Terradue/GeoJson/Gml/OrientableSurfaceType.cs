@@ -1,16 +1,19 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("OrientableSurface", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("OrientableSurface", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class OrientableSurfaceType : AbstractSurfaceType
+  public class OrientableSurfaceType : AbstractSurfaceType
   {
-
     private SurfacePropertyType baseSurfaceField;
-
     private SignType orientationField;
 
     public OrientableSurfaceType()
@@ -18,15 +21,15 @@ namespace Terradue.GeoJson.Gml
       orientationField = SignType.Item1;
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public SurfacePropertyType baseSurface
     {
       get { return baseSurfaceField; }
       set { baseSurfaceField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(SignType.Item1)]
+    [XmlAttribute]
+    [DefaultValue(SignType.Item1)]
     public SignType orientation
     {
       get { return orientationField; }

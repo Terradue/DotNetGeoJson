@@ -1,24 +1,27 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.isotc211.org/2005/gco")]
-  public partial class MultiplicityRange_Type : AbstractObject_Type
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.isotc211.org/2005/gco")]
+  public class MultiplicityRange_Type : AbstractObject_Type
   {
-
     private Integer_PropertyType lowerField;
-
     private UnlimitedInteger_PropertyType upperField;
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public Integer_PropertyType lower
     {
       get { return lowerField; }
       set { lowerField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute()]
+    [XmlElement]
     public UnlimitedInteger_PropertyType upper
     {
       get { return upperField; }

@@ -1,32 +1,35 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("LinearRing", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("LinearRing", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class LinearRingType : AbstractRingType
+  public class LinearRingType : AbstractRingType
   {
-
+    private ItemsChoiceType6[] itemsElementNameField;
     private object[] itemsField;
 
-    private ItemsChoiceType6[] itemsElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute("coordinates", typeof (CoordinatesType))]
-    [System.Xml.Serialization.XmlElementAttribute("pointProperty", typeof (PointPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("pointRep", typeof (PointPropertyType))]
-    [System.Xml.Serialization.XmlElementAttribute("pos", typeof (DirectPositionType))]
-    [System.Xml.Serialization.XmlElementAttribute("posList", typeof (DirectPositionListType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("coordinates", typeof (CoordinatesType))]
+    [XmlElement("pointProperty", typeof (PointPropertyType))]
+    [XmlElement("pointRep", typeof (PointPropertyType))]
+    [XmlElement("pos", typeof (DirectPositionType))]
+    [XmlElement("posList", typeof (DirectPositionListType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public object[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType6[] ItemsElementName
     {
       get { return itemsElementNameField; }

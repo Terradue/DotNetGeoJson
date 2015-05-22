@@ -8,7 +8,6 @@
 
 namespace Terradue.GeoJson.Geometry
 {
-
   public abstract class Position : IPosition
   {
     public abstract bool Equals(IPosition pos);

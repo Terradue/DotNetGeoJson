@@ -1,35 +1,38 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("rangeSet", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("rangeSet", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class RangeSetType
+  public class RangeSetType
   {
-
+    private ItemsChoiceType22[] itemsElementNameField;
     private object[] itemsField;
 
-    private ItemsChoiceType22[] itemsElementNameField;
-
-    [System.Xml.Serialization.XmlElementAttribute("AbstractScalarValueList", typeof (object))]
-    [System.Xml.Serialization.XmlElementAttribute("BooleanList", typeof (string))]
-    [System.Xml.Serialization.XmlElementAttribute("CategoryList", typeof (CodeOrNilReasonListType))]
-    [System.Xml.Serialization.XmlElementAttribute("CountList", typeof (string))]
-    [System.Xml.Serialization.XmlElementAttribute("DataBlock", typeof (DataBlockType))]
-    [System.Xml.Serialization.XmlElementAttribute("File", typeof (FileType))]
-    [System.Xml.Serialization.XmlElementAttribute("QuantityList", typeof (MeasureOrNilReasonListType))]
-    [System.Xml.Serialization.XmlElementAttribute("ValueArray", typeof (ValueArrayType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    [XmlElement("AbstractScalarValueList", typeof (object))]
+    [XmlElement("BooleanList", typeof (string))]
+    [XmlElement("CategoryList", typeof (CodeOrNilReasonListType))]
+    [XmlElement("CountList", typeof (string))]
+    [XmlElement("DataBlock", typeof (DataBlockType))]
+    [XmlElement("File", typeof (FileType))]
+    [XmlElement("QuantityList", typeof (MeasureOrNilReasonListType))]
+    [XmlElement("ValueArray", typeof (ValueArrayType))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public object[] Items
     {
       get { return itemsField; }
       set { itemsField = value; }
     }
 
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType22[] ItemsElementName
     {
       get { return itemsElementNameField; }

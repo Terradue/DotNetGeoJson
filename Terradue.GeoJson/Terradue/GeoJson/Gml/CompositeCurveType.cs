@@ -1,35 +1,37 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace Terradue.GeoJson.Gml
 {
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-  [System.SerializableAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.opengis.net/gml/3.2")]
-  [System.Xml.Serialization.XmlRootAttribute("CompositeCurve", Namespace = "http://www.opengis.net/gml/3.2",
+  [GeneratedCode("System.Xml", "4.0.30319.1")]
+  [Serializable]
+  [DesignerCategory("code")]
+  [XmlType(Namespace = "http://www.opengis.net/gml/3.2")]
+  [XmlRoot("CompositeCurve", Namespace = "http://www.opengis.net/gml/3.2",
     IsNullable = false)]
-  public partial class CompositeCurveType : AbstractCurveType
+  public class CompositeCurveType : AbstractCurveType
   {
-
+    private AggregationType aggregationTypeField;
+    private bool aggregationTypeFieldSpecified;
     private CurvePropertyType[] curveMemberField;
 
-    private AggregationType aggregationTypeField;
-
-    private bool aggregationTypeFieldSpecified;
-
-    [System.Xml.Serialization.XmlElementAttribute("curveMember")]
+    [XmlElement("curveMember")]
     public CurvePropertyType[] curveMember
     {
       get { return curveMemberField; }
       set { curveMemberField = value; }
     }
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [XmlAttribute]
     public AggregationType aggregationType
     {
       get { return aggregationTypeField; }
       set { aggregationTypeField = value; }
     }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    [XmlIgnore]
     public bool aggregationTypeSpecified
     {
       get { return aggregationTypeFieldSpecified; }

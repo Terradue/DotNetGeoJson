@@ -9,18 +9,19 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System;
+using System.Globalization;
+
 namespace Terradue.GeoJson.Geometry
 {
-  using System;
-  using System.Globalization;
-
   /// <summary>
-  /// Defines the Projected Position type a.k.a. <see cref="http://geojson.org/geojson-spec.html#positions">Projected Coordinate Reference System</see>.
+  ///   Defines the Projected Position type a.k.a.
+  ///   <see cref="http://geojson.org/geojson-spec.html#positions">Projected Coordinate Reference System</see>.
   /// </summary>
   public class ProjectedPosition : Position
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="ProjectedPosition"/> class.
+    ///   Initializes a new instance of the <see cref="ProjectedPosition" /> class.
     /// </summary>
     /// <param name="easting">The easting.</param>
     /// <param name="northing">The northing.</param>
@@ -32,7 +33,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ProjectedPosition"/> class.
+    ///   Initializes a new instance of the <see cref="ProjectedPosition" /> class.
     /// </summary>
     /// <param name="easting">The easting, e.g. '38.889722'.</param>
     /// <param name="northing">The northing, e.g. '-77.008889'.</param>
@@ -44,7 +45,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Prevents a default instance of the <see cref="ProjectedPosition"/> class from being created.
+    ///   Prevents a default instance of the <see cref="ProjectedPosition" /> class from being created.
     /// </summary>
     private ProjectedPosition()
     {
@@ -52,7 +53,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets the easting.
+    ///   Gets the easting.
     /// </summary>
     /// <value>The easting.</value>
     public double Easting
@@ -61,7 +62,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets the northing.
+    ///   Gets the northing.
     /// </summary>
     /// <value>The northing.</value>
     public double Northing
@@ -70,7 +71,7 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Gets the altitude.
+    ///   Gets the altitude.
     /// </summary>
     public double? Altitude
     {
@@ -78,10 +79,10 @@ namespace Terradue.GeoJson.Geometry
     }
 
     /// <summary>
-    /// Returns a <see cref="System.String"/> that represents this instance.
+    ///   Returns a <see cref="System.String" /> that represents this instance.
     /// </summary>
     /// <returns>
-    /// A <see cref="System.String"/> that represents this instance.
+    ///   A <see cref="System.String" /> that represents this instance.
     /// </returns>
     public override string ToString()
     {

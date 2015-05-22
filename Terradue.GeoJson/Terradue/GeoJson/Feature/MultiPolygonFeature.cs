@@ -17,13 +17,13 @@ using Terradue.GeoJson.Geometry;
 namespace Terradue.GeoJson.Feature
 {
   /// <summary>
-  /// A GeoJSON <see cref="http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
+  ///   A GeoJSON <see cref="http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
   /// </summary>
   [DataContract]
   public class MultiPolygonFeature : Feature
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Feature"/> class.
+    ///   Initializes a new instance of the <see cref="Feature" /> class.
     /// </summary>
     /// <param name="geometry">The Geometry Object.</param>
     /// <param name="properties">The properties.</param>
@@ -34,7 +34,16 @@ namespace Terradue.GeoJson.Feature
     }
 
     /// <summary>
-    /// Create a feature from a json string.
+    ///   Gets or sets the geometry.
+    /// </summary>
+    /// <value>
+    ///   The geometry.
+    /// </value>
+    [DataMember(Name = "geometry")]
+    public new MultiPolygon Geometry { get; set; }
+
+    /// <summary>
+    ///   Create a feature from a json string.
     /// </summary>
     /// <returns>The json.</returns>
     /// <param name="json">Json.</param>
@@ -47,16 +56,6 @@ namespace Terradue.GeoJson.Feature
         Id = mpObj.JsonTo<string>("id")
       };
       return mp;
-
     }
-
-    /// <summary>
-    /// Gets or sets the geometry.
-    /// </summary>
-    /// <value>
-    /// The geometry.
-    /// </value>
-    [DataMember(Name = "geometry")]
-    public new MultiPolygon Geometry { get; set; }
   }
 }
