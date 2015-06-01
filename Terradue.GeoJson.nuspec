@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Terradue.GeoJson</id>
-    <version>1.4.14</version>
+    <version>1.4.15</version>
     <title>Terradue.GeoJson</title>
     <authors>Terradue</authors>
     <projectUrl>https://github.com/Terradue/DotNetGeoJson</projectUrl>
