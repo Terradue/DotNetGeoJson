@@ -1064,35 +1064,45 @@ namespace Terradue.GeoJson.Geometry {
             for (int i = 1; i < lineString.Positions.Count; i++) {
 
                 GeographicPosition current_position = (GeographicPosition)lineString.Positions[i];
-                if ((current_position.Longitude - previous_position.Longitude < -90) || (current_position.Longitude - previous_position.Longitude > 90)) {
 
-                    double new_longitude;
-                    double new_latitude;
-                    double? new_altitude;
-                    double new_longitude2;
-                    double new_latitude2;
-                    double? new_altitude2;
+                if ((current_position.Longitude != 180 && previous_position.Longitude != 180) || (current_position.Longitude != -180 && previous_position.Longitude != -180)) {
 
-                    if (previous_position.Longitude > 0) {
-                        new_longitude = 180;
-                        new_longitude2 = -180;
-                    } else {
-                        new_longitude = -180;
-                        new_longitude2 = 180;
+                    if ((current_position.Longitude - previous_position.Longitude < -90) || (current_position.Longitude - previous_position.Longitude > 90)) {
+
+                        double new_longitude;
+                        double new_latitude;
+                        double? new_altitude;
+                        double new_longitude2;
+                        double new_latitude2;
+                        double? new_altitude2;
+
+                        if (previous_position.Longitude > 0) {
+                            new_longitude = 180;
+                            new_longitude2 = -180;
+                        } else {
+                            new_longitude = -180;
+                            new_longitude2 = 180;
+                        }
+                        // Calaculate the latitude to be linear with the next point
+                        if ((current_position.Longitude - previous_position.Longitude + 2 * new_longitude) == 0) {
+                            new_latitude = (current_position.Latitude - previous_position.Latitude) * (-1 * new_longitude - previous_position.Longitude + 2 * new_longitude) + previous_position.Latitude;
+                        } else {
+                            
+                            new_latitude = (current_position.Latitude - previous_position.Latitude) * (-1 * new_longitude - previous_position.Longitude + 2 * new_longitude) / (current_position.Longitude - previous_position.Longitude + 2 * new_longitude) + previous_position.Latitude;
+                        }
+                        new_latitude2 = new_latitude;
+
+                        new_altitude = new_altitude2 = current_position.Altitude;
+
+                        GeographicPosition new_position1 = new GeographicPosition(new_latitude, new_longitude, new_altitude);
+                        GeographicPosition new_position2 = new GeographicPosition(new_latitude2, new_longitude2, new_altitude2);
+                        newLineString.Positions.Add(new_position1);
+                        newLineString.Positions.Add(new_position2);
                     }
-                    // Calaculate the latitude to be linear with the next point
-                    new_latitude = (current_position.Latitude - previous_position.Latitude) * (-1 * new_longitude - previous_position.Longitude + 2 * new_longitude) / (current_position.Longitude - previous_position.Longitude + 2 * new_longitude) + previous_position.Latitude;
-                    new_latitude2 = new_latitude;
-
-                    new_altitude = new_altitude2 = current_position.Altitude;
-
-                    GeographicPosition new_position1 = new GeographicPosition(new_latitude, new_longitude, new_altitude);
-                    GeographicPosition new_position2 = new GeographicPosition(new_latitude2, new_longitude2, new_altitude2);
-                    newLineString.Positions.Add(new_position1);
-                    newLineString.Positions.Add(new_position2);
                 }
                 newLineString.Positions.Add(current_position);
                 previous_position = current_position;
+
             }
 
             return newLineString;

@@ -15,6 +15,23 @@
 * If not, see http://www.gnu.org/licenses/.
 */
 
+/*!
+
+\namespace Terradue.GeoJson
+@{
+    DotNetGeoJson Software Package
+
+    \xrefitem sw_version "Versions" "Software Package Version" 1.4.14
+
+    \xrefitem sw_link "Links" "Software Package List" [DotNetGeoJson](https://github.com/Terradue/DotNetGeoJson)
+
+    \xrefitem sw_license "License" "Software License" [GPLv3](https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE.txt)
+
+    \ingroup Data
+@}
+
+*/
+
 using System.Reflection;
 using System.Runtime.CompilerServices;
 [assembly: AssemblyDescription("The Terradue .NET GeoJson Library")]
