@@ -802,7 +802,9 @@
     <Compile Include="Terradue\GeoJson\Geometry\GmlFeatureExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Terradue.GeoJson.csproj" />
   </ItemGroup>
   <ProjectExtensions>
