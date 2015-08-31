@@ -3,6 +3,8 @@ using System;
 using System.Xml;
 using Terradue.GeoJson.Geometry;
 using Terradue.GeoJson.Feature;
+using System.IO;
+using System.Xml.Linq;
 
 namespace Terradue.GeoJson.Tests { 
 
@@ -20,6 +22,27 @@ namespace Terradue.GeoJson.Tests {
             var geom = GeometryFactory.GeoRSSToGeometry(e);
 
             Assert.IsTrue(geom is Polygon);
+
+        }
+
+        [Test]
+        public void Test1(){
+
+            var doc = new XmlDocument();
+            var el = XElement.Parse("<georss:box xmlns:georss=\"http://www.georss.org/georss/10\">112.76548 53.4104 116.46048 55.58847</georss:box>");
+            doc.Load(el.CreateReader());
+            var geometry = GeometryFactory.GeoRSSToGeometry(doc.DocumentElement);
+            Assert.That(geometry is Polygon);
+
+            el = XElement.Parse("<georss:polygon xmlns:georss=\"http://www.georss.org/georss/10\">53.89156 112.76548 55.58847 113.56369 55.0966 116.46048 53.4104 115.5499 53.89156 112.76548</georss:polygon>");
+            doc.Load(el.CreateReader());
+            geometry = GeometryFactory.GeoRSSToGeometry(doc.DocumentElement);
+            Assert.That(geometry is Polygon);
+
+            el = XElement.Parse("<georss:polygon xmlns:georss=\"http://www.georss.org/georss/10\">53.89156 112.76548 55.58847 113.56369 55.0966 116.46048 53.4104 115.5499 53.89156 112.76548</georss:polygon>");
+            doc.Load(el.CreateReader());
+            var feature = GeometryFactory.GeoRSSToFeature(doc.DocumentElement);
+            Assert.That(feature.Geometry is Polygon);
 
         }
     }
