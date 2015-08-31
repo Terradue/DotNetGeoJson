@@ -25,7 +25,7 @@ namespace Terradue.GeoJson.Geometry {
         public static Terradue.GeoJson.Feature.Feature GeoRSSToFeature(XmlElement element) {
 
             Dictionary<string,object> properties = new Dictionary<string,object>();
-            IGeometryObject geometry = null;
+            GeometryObject geometry = null;
 
             if (element == null)
                 return new Terradue.GeoJson.Feature.Feature(properties);
@@ -41,21 +41,19 @@ namespace Terradue.GeoJson.Geometry {
             }
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
-                geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
-                return new Terradue.GeoJson.Feature.Feature((MultiPolygon)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature(geometry, properties);
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
-                geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
-                return new Terradue.GeoJson.Feature.Feature((Polygon)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature(geometry, properties);
             }
 
             if (geometry.GetType() == typeof(MultiPoint)) {
-                return new Terradue.GeoJson.Feature.Feature((MultiPoint)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature(geometry, properties);
             }
 
             if (geometry.GetType() == typeof(MultiLineString)) {
-                return new Terradue.GeoJson.Feature.Feature((MultiLineString)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature(geometry, properties);
             }
 
             properties.Add("Exception", String.Format("The GeoRSS object {0} is not implemented. Please report", element.LocalName));
