@@ -14,6 +14,7 @@ using System.Xml;
 using System.Globalization;
 using Terradue.GeoJson.Feature;
 using Terradue.GeoJson.Geometry;
+using System.Linq;
 
 namespace Terradue.GeoJson.Geometry {
     /// <summary>
@@ -205,7 +206,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The Polygon</returns>
         /// <param name="wkt">WKT.</param>
         public static Polygon PolygonFromWKT(string wkt) {
-            MatchCollection matches = Regex.Matches(wkt, @"\(([^\)]+)\)");
+            MatchCollection matches = Regex.Matches(wkt, @"\((\(.*\))\)");
             List<LineString> linestrings = new List<LineString>(matches.Count);
             for (int i = 0; i < matches.Count; i++) {
                 LineString linestring = LineStringFromWKT(matches[i].Groups[1].Value);
@@ -221,11 +222,11 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The LineString</returns>
         /// <param name="wkt">WKT.</param>
         public static LineString LineStringFromWKT(string wkt) {
-            string[] terms = wkt.Split(',');
+            string[] terms = wkt.TrimStart('(').TrimEnd(')').Split(',');
             string[] values;
             List<IPosition> positions = new List<IPosition>(terms.Length);
             for (int i = 0; i < terms.Length; i++) {
-                values = terms[i].Split(' ');
+                values = terms[i].Trim(' ').Split(' ');
                 string z = (values.Length > 2 ? values[2] : null);
                 GeographicPosition geopos = new GeographicPosition(values[1], values[0], z);
                 positions.Add(geopos);
@@ -1036,30 +1037,62 @@ namespace Terradue.GeoJson.Geometry {
             MultiPolygon newmpoly = new MultiPolygon();
 
             foreach (Polygon poly in mpoly.Polygons) {
-                newmpoly.Polygons.Add(SplitWorldExtent(poly));
+                var mpolygon = SplitWorldExtent(poly);
+                if (mpolygon != null)
+                    return mpoly;
             }
-
-            return newmpoly;
+        
+            return mpoly;
         }
 
-        public static Polygon SplitWorldExtent(Polygon poly) {
+        public static MultiPolygon SplitWorldExtent(Polygon poly) {
 
-            Polygon newpoly = new Polygon();
+            MultiPolygon newpoly = new MultiPolygon();
+
+            List<List<LineString>> lineStringss = new List<List<LineString>>();
 
             foreach (LineString lineString in poly.LineStrings) {
-                newpoly.LineStrings.Add(SplitWorldExtent(lineString));
+                lineStringss.Add(SplitWorldExtent(lineString));
             }
+
+            List<Polygon> polygons = new List<Polygon>();
+            List<List<LineString>> lineStringss2 = new List<List<LineString>>();
+
+            if (lineStringss.Count > 0) {
+                foreach (LineString ls in lineStringss[0]) {
+                    var pls = new List<LineString>();
+                    lineStringss2.Add(pls);
+                    pls.Add(ls);
+                }
+                int i = 1;
+                while (i < lineStringss.Count) {
+                    foreach (LineString ls in lineStringss[i]) {
+                        lineStringss2[i].Add(ls);
+                    }
+                    i++;
+                }
+            }
+
+            foreach (var lss in lineStringss2) {
+                newpoly.Polygons.Add(new Polygon(lss));
+            }
+
 
             return newpoly;
 
         }
 
-        public static LineString SplitWorldExtent(LineString lineString) {
+        public static List<LineString> SplitWorldExtent(LineString lineString) {
 
-            LineString newLineString = new LineString();
+            List<LineString> newLineStrings = new List<LineString>();
+
+            LineString currentLineString = new LineString();
+            newLineStrings.Add(currentLineString);
 
             GeographicPosition previous_position = (GeographicPosition)lineString.Positions[0];
-            newLineString.Positions.Add(previous_position);
+            currentLineString.Positions.Add(previous_position);
+
+            int currentPosition = 0;
 
             for (int i = 1; i < lineString.Positions.Count; i++) {
 
@@ -1068,6 +1101,29 @@ namespace Terradue.GeoJson.Geometry {
                 if ((current_position.Longitude != 180 && previous_position.Longitude != 180) || (current_position.Longitude != -180 && previous_position.Longitude != -180)) {
 
                     if ((current_position.Longitude - previous_position.Longitude < -90) || (current_position.Longitude - previous_position.Longitude > 90)) {
+
+                        LineString newLineString = currentLineString;
+
+                        if (current_position.Longitude - previous_position.Longitude > 90) {
+
+                            if (currentPosition == 0) {
+                                newLineString = new LineString();
+                                newLineStrings.Insert(0, newLineString);
+                            } else {
+                                newLineString = newLineStrings[--currentPosition];
+                            }
+                        }
+
+                        if (current_position.Longitude - previous_position.Longitude < -90) {
+                            if (newLineStrings.Count <= currentPosition + 1) {
+                                newLineString = new LineString();
+                                newLineStrings.Add(newLineString);
+                            } else {
+                                newLineString = newLineStrings[currentPosition + 1];
+                            }
+                            currentPosition++;
+                        }
+
 
                         double new_longitude;
                         double new_latitude;
@@ -1096,16 +1152,19 @@ namespace Terradue.GeoJson.Geometry {
 
                         GeographicPosition new_position1 = new GeographicPosition(new_latitude, new_longitude, new_altitude);
                         GeographicPosition new_position2 = new GeographicPosition(new_latitude2, new_longitude2, new_altitude2);
-                        newLineString.Positions.Add(new_position1);
                         newLineString.Positions.Add(new_position2);
+                        currentLineString.Positions.Add(new_position1);
+
+                        currentLineString = newLineString;
+
                     }
                 }
-                newLineString.Positions.Add(current_position);
+                currentLineString.Positions.Add(current_position);
                 previous_position = current_position;
 
             }
 
-            return newLineString;
+            return newLineStrings;
 
         }
     }

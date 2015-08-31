@@ -57,7 +57,7 @@ namespace Terradue.GeoJson.Feature {
 			var jsonFeature = JsonObject.Parse(json);
 			var geometry = jsonFeature.Object("geometry");
 			if (geometry == null)
-				return JsonSerializer.DeserializeFromString<NoGeometryFeature>(json);
+                return json.FromJson<NoGeometryFeature>();
 			Feature feature = null;
 			var geometryType = geometry.Get<string>("type");
             switch (geometryType) {

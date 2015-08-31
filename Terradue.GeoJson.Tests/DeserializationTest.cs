@@ -5,6 +5,7 @@ using ServiceStack.Text;
 using Terradue.GeoJson.Feature;
 using Terradue.GeoJson.Geometry;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Terradue.GeoJson.Tests {
     [TestFixture()]
@@ -48,6 +49,17 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.AreEqual("POLYGON((13.96804 42.817595,12.692281 43.02102,12.369263 41.890703,13.58968 41.69639,13.96804 42.817595))", f2.ToWkt());
 
+        }
+
+        [Test()]
+        public void PropertiesDeserialization() {
+
+            FileStream fs = new FileStream("../Samples/ASA_IM__0.json", FileMode.Open);
+
+            Terradue.GeoJson.Feature.FeatureCollection fc = JsonSerializer.DeserializeFromStream<Terradue.GeoJson.Feature.FeatureCollection>(fs);
+            fs.Close();
+
+            Assert.False(fc.Features.First().Properties["links"] is String);
         }
     }
 

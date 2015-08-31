@@ -36,10 +36,9 @@ namespace Terradue.GeoJson.Feature {
         /// <param name="json">Json.</param>
         public new static NoGeometryFeature ParseJson(string json) {
 
-            var mpObj = JsonObject.Parse(json);
-
-            NoGeometryFeature mp = new NoGeometryFeature(mpObj.JsonTo<Dictionary<string, object>>("properties"));
-            mp.Id = mpObj.JsonTo<string>("id");
+            var mpObj = JsonSerializer.DeserializeFromString<Dictionary<string, object>>(json);
+            NoGeometryFeature mp = new NoGeometryFeature((Dictionary<string, object>)mpObj["properties"]);
+            mp.Id = (string)mpObj["id"];
             return mp;
 
         }
