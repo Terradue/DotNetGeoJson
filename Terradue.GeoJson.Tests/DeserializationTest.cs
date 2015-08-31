@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Terradue.GeoJson.Converter;
+using Newtonsoft.Json.Linq;
 
 namespace Terradue.GeoJson.Tests {
     [TestFixture()]
@@ -18,17 +19,48 @@ namespace Terradue.GeoJson.Tests {
             FileStream fs = new FileStream("../MultiPolygon.geojson", FileMode.Open);
 
             Terradue.GeoJson.Feature.Feature f;
-            var serializer = new JsonSerializer();
+            var serializer = new JsonSerializer(){NullValueHandling = NullValueHandling.Ignore};
 
             using (var sr = new StreamReader(fs))
             using (var jsonTextReader = new JsonTextReader(sr))
             {
                 f = serializer.Deserialize<Terradue.GeoJson.Feature.Feature>(jsonTextReader);
             }
+            fs.Close();
 
             Assert.True(f.Geometry is MultiPolygon);
 
+            string jsonouts;
+
+            using (StringWriter sw = new StringWriter())
+            using (JsonTextWriter jw = new JsonTextWriter(sw)) {
+                serializer.Serialize(jw, f);
+                jsonouts = sw.ToString();
+            }
+
+            JToken jsonout;
+
+            using (StringReader str = new StringReader(jsonouts))
+            using (JsonTextReader jtr = new JsonTextReader(str)) {
+                jsonout = serializer.Deserialize<JToken>(jtr);
+            }
+
+            JToken jsonin;
+            fs = new FileStream("../MultiPolygon.geojson", FileMode.Open);
+            using (var sr2 = new StreamReader(fs))
+            using (var jsonTextReader = new JsonTextReader(sr2))
+            {
+                jsonin = serializer.Deserialize<JToken>(jsonTextReader);
+            }
+            fs.Close();
+
+            Assert.IsTrue(JToken.DeepEquals(jsonin, jsonout));
+
         }
+
+
+
+
 
         [Test()]
         public void WktDeserialization() {

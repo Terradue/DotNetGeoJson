@@ -53,6 +53,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <summary>
         /// Gets the list of points outlining this Polygon.
         /// </summary>
+        [JsonIgnore]
         public List<LineString> LineStrings { get; set; }
 
         /// <summary>

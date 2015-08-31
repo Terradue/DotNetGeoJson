@@ -42,6 +42,7 @@ namespace Terradue.GeoJson.Geometry {
         /// Gets or sets the position.
         /// </summary>
         /// <value>The position.</value>
+        [JsonIgnore]
         public IPosition Position { get; set; }
 
         /// <summary>

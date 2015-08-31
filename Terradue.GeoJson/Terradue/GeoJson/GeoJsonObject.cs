@@ -11,6 +11,8 @@
 
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Collections.Generic;
 
 namespace Terradue.GeoJson
 {
@@ -30,6 +32,8 @@ namespace Terradue.GeoJson
         /// <value>
         /// The type of the object.
         /// </value>
+        [JsonProperty(PropertyName="type", Required = Required.Always)]
+        [JsonConverter(typeof(StringEnumConverter))]
 		public GeoJsonObjectType Type { get; internal set; }
 
         /// <summary>
@@ -38,6 +42,7 @@ namespace Terradue.GeoJson
         /// <value>
         /// The Coordinate Reference System Objects.
         /// </value>
+        [JsonProperty(PropertyName="crs")]
 		public CoordinateReferenceSystem.ICRSObject CRS { get; set; }
 
         /// <summary>
@@ -51,6 +56,6 @@ namespace Terradue.GeoJson
         /// system of the GeoJson object of which it is a member.
         /// </value>
         [JsonProperty(PropertyName="bbox")]
-		public double[] BoundingBoxes { get; set; }
+		public List<double> BoundingBoxes { get; set; }
     }
 }

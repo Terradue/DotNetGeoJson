@@ -50,6 +50,7 @@ namespace Terradue.GeoJson.Geometry {
         /// Gets or sets the positions.
         /// </summary>
         /// <value>The positions.</value>
+        [JsonIgnore]
         public List<IPosition> Positions { get; set; }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>
         ///   <c>true</c> if it is a linear ring; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsLinearRing() {
+        public bool IslInearRing(){
             return this.Positions.Count >= 4 && this.IsClosed();
         }
 

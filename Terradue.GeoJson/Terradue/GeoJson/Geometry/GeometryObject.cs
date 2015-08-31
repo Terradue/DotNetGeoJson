@@ -9,6 +9,7 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Terradue.GeoJson.Geometry {
     using System.Runtime.Serialization;
@@ -28,6 +29,7 @@ namespace Terradue.GeoJson.Geometry {
         /// The type of the object.
         /// </value>
         [JsonProperty(PropertyName = "type")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public GeoJsonObjectType Type { get; set; }
     }
 }

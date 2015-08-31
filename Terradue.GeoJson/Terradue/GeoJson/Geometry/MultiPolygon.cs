@@ -39,6 +39,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <summary>
         /// Gets the list of Polygons enclosed in this MultiPolygon.
         /// </summary>
+        [JsonIgnore]
         public List<Polygon> Polygons { get; set; }
 
         /// <summary>
