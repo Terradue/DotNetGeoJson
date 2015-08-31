@@ -31,47 +31,7 @@ namespace Terradue.GeoJson.Geometry {
         static readonly IFormatProvider ci = CultureInfo.InvariantCulture;
 
         public static string ToWkt(this Terradue.GeoJson.Feature.Feature feature) {
-            if (feature is PointFeature) {
-                return PointFeatureToWkt((PointFeature)feature);
-            }
-
-            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is Point)) {
-                return PointFeatureToWkt(new PointFeature((Point)feature.Geometry));
-            }
-
-            if (feature is MultiPointFeature) {
-                return MultiPointFeatureToWkt((MultiPointFeature)feature);
-            }
-
-            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is MultiPoint)) {
-                return MultiPointFeatureToWkt(new MultiPointFeature((MultiPoint)feature.Geometry));
-            }
-
-            if (feature is LineStringFeature) {
-                return LineStringFeatureToWkt((LineStringFeature)feature);
-            }
-
-            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is LineString)) {
-                return LineStringFeatureToWkt(new LineStringFeature((LineString)feature.Geometry));
-            }
-
-            if (feature is PolygonFeature) {
-                return PolygonFeatureToWkt((PolygonFeature)feature);
-            }
-
-            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is Polygon)) {
-                return PolygonFeatureToWkt(new PolygonFeature((Polygon)feature.Geometry));
-            }
-
-            if (feature is MultiPolygonFeature) {
-                return MultiPolygonFeatureToWkt((MultiPolygonFeature)feature);
-            }
-
-            if ((feature is Terradue.GeoJson.Feature.Feature && feature.Geometry is MultiPolygon)) {
-                return MultiPolygonFeatureToWkt(new MultiPolygonFeature((MultiPolygon)feature.Geometry));
-            }
-
-            return null;
+             return ToWkt(feature.Geometry);
         }
 
         public static string ToWkt(this Terradue.GeoJson.Geometry.GeometryObject geometry) {
@@ -84,64 +44,28 @@ namespace Terradue.GeoJson.Geometry {
             if (geometry is MultiPoint) {
                 string point = GeometryToWktString((MultiPoint)geometry);
 
-                return string.Format("MULTIPOINT({0})", point);
+                return string.Format("MULTIPOINT{0}", point);
             }
 
             if (geometry is LineString) {
                 string linestring = GeometryToWktString((LineString)geometry);
 
-                return string.Format("LINESTRING({0})", linestring);
+                return string.Format("LINESTRING{0}", linestring);
             }
 
             if (geometry is Polygon) {
                 string polygon = GeometryToWktString((Polygon)geometry);
 
-                return string.Format("POLYGON({0})", polygon);
+                return string.Format("POLYGON{0}", polygon);
             }
 
             if (geometry is MultiPolygon) {
                 string multiPolygon = GeometryToWktString((MultiPolygon)geometry);
 
-                return string.Format("MULTIPOLYGON({0})", multiPolygon);
+                return string.Format("MULTIPOLYGON{0}", multiPolygon);
             }
 
             return null;
-        }
-
-        static string PointFeatureToWkt(PointFeature pointFeature) {
-
-            string point = GeometryToWktString(pointFeature.Geometry);
-
-            return string.Format("POINT({0})", point);
-
-        }
-
-        static string MultiPointFeatureToWkt(MultiPointFeature multiPointFeature) {
-
-            string point = GeometryToWktString(multiPointFeature.Geometry);
-
-            return string.Format("MULTIPOINT({0})", point);
-        }
-
-        static string LineStringFeatureToWkt(LineStringFeature lineStringFeature) {
-
-            string linestring = GeometryToWktString(lineStringFeature.Geometry);
-
-            return string.Format("LINESTRING({0})", linestring);
-        }
-
-        static string PolygonFeatureToWkt(PolygonFeature polygonFeature) {
-
-            string polygon = GeometryToWktString(polygonFeature.Geometry);
-
-            return string.Format("POLYGON({0})", polygon);
-        }
-
-        static string MultiPolygonFeatureToWkt(MultiPolygonFeature multiPolygonFeature) {
-
-            string multiPolygon = GeometryToWktString(multiPolygonFeature.Geometry);
-
-            return string.Format("MULTIPOLYGON({0})", multiPolygon);
         }
 
         static string GeometryToWktString(Point point) {
@@ -149,7 +73,7 @@ namespace Terradue.GeoJson.Geometry {
         }
 
         static string GeometryToWktString(MultiPoint multiPoint) {            
-            return string.Join(",", multiPoint.Points.Select(GeometryToWktString));
+            return string.Format("({0})", string.Join(",", multiPoint.Points.Select(GeometryToWktString)));
         }
 
         static string GeometryToWktString(IPosition position) {
@@ -161,7 +85,7 @@ namespace Terradue.GeoJson.Geometry {
         }
 
         static string GeometryToWktString(LineString lineString) {          
-            return string.Join(",", lineString.Positions.Select(GeometryToWktString));
+            return string.Format("({0})", string.Join(",", lineString.Positions.Select(GeometryToWktString)));
         }
 
         static string GeometryToWktString(Polygon polygon) {            

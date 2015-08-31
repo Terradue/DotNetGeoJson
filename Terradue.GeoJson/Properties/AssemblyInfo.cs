@@ -21,7 +21,7 @@
 @{
     DotNetGeoJson Software Package
 
-    \xrefitem sw_version "Versions" "Software Package Version" 1.4.14
+    \xrefitem sw_version "Versions" "Software Package Version" 1.5
 
     \xrefitem sw_link "Links" "Software Package List" [DotNetGeoJson](https://github.com/Terradue/DotNetGeoJson)
 
@@ -41,6 +41,6 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyright("Terradue")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.4.15.*")]
-[assembly: AssemblyInformationalVersion ("1.4.15")]
+[assembly: AssemblyVersion("1.5.0.*")]
+[assembly: AssemblyInformationalVersion ("1.5.0")]
 [assembly: AssemblyConfiguration("")]

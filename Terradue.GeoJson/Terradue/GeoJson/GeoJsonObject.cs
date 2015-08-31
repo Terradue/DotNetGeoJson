@@ -10,18 +10,20 @@
 //      Copyright (c) Jörg Battermann 2011
 
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Collections.Generic;
 
 namespace Terradue.GeoJson
 {
 
 	using System.Runtime.Serialization;
-	using ServiceStack.Text;
 
     /// <summary>
     /// Base class for all IGeometryObject implementing types
     /// </summary>
     [DataContract]
-	public abstract class GeoJsonObject : IGeoJsonObject, ISerializable
+	public abstract class GeoJsonObject : IGeoJsonObject
     {
 
         /// <summary>
@@ -30,7 +32,8 @@ namespace Terradue.GeoJson
         /// <value>
         /// The type of the object.
         /// </value>
-        [DataMember(Name="type")]
+        [JsonProperty(PropertyName="type", Required = Required.Always)]
+        [JsonConverter(typeof(StringEnumConverter))]
 		public GeoJsonObjectType Type { get; internal set; }
 
         /// <summary>
@@ -39,7 +42,7 @@ namespace Terradue.GeoJson
         /// <value>
         /// The Coordinate Reference System Objects.
         /// </value>
-		[DataMember(Name="crs")]
+        [JsonProperty(PropertyName="crs")]
 		public CoordinateReferenceSystem.ICRSObject CRS { get; set; }
 
         /// <summary>
@@ -52,13 +55,7 @@ namespace Terradue.GeoJson
         /// In addition, the coordinate reference system for the bbox is assumed to match the coordinate reference
         /// system of the GeoJson object of which it is a member.
         /// </value>
-		[DataMember(Name="bbox")]
-		public double[] BoundingBoxes { get; set; }
-
-		#region ISerializable implementation
-		public void GetObjectData(SerializationInfo info, StreamingContext context) {
-			info.AddValue("mime-type", "application/json");
-		}
-		#endregion
+        [JsonProperty(PropertyName="bbox")]
+		public List<double> BoundingBoxes { get; set; }
     }
 }

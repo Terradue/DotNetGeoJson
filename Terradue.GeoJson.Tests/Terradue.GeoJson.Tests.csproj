@@ -31,11 +31,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +43,7 @@
     <Compile Include="DeserializationTest.cs" />
     <Compile Include="WktTransformation.cs" />
     <Compile Include="GeoRSSTest.cs" />
+    <Compile Include="SplitTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -58,6 +59,7 @@
     <None Include="posList.gml" />
     <None Include="polygon.georss" />
     <None Include="Samples\s1.json" />
+    <None Include="Samples\ASA_IM__0.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />

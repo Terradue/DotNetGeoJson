@@ -8,6 +8,7 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
     using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace Terradue.GeoJson.Geometry {
         /// Gets or sets the points.
         /// </summary>
         /// <value>The points.</value>
+        [JsonIgnore]
         public List<Point> Points { get; set; }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace Terradue.GeoJson.Geometry {
         /// </summary>
         /// <value>The Coordinates.</value>
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-        [DataMember(Name = "coordinates")]
+        [JsonProperty(PropertyName = "coordinates")]
         public List<List<double>> Coordinates { 
 
             get {

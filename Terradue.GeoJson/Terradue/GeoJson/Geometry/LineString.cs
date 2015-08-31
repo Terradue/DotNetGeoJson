@@ -8,6 +8,7 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
     using System;
@@ -49,6 +50,7 @@ namespace Terradue.GeoJson.Geometry {
         /// Gets or sets the positions.
         /// </summary>
         /// <value>The positions.</value>
+        [JsonIgnore]
         public List<IPosition> Positions { get; set; }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>
         ///   <c>true</c> if it is a linear ring; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsLinearRing() {
+        public bool IslInearRing(){
             return this.Positions.Count >= 4 && this.IsClosed();
         }
 
@@ -74,9 +76,8 @@ namespace Terradue.GeoJson.Geometry {
         /// <summary>
         /// Gets the coordinates
         /// </summary>
-        [DataMember(Name = "coordinates")]
+        [JsonProperty(PropertyName = "coordinates")]
         public List<List<double>> Coordinates { 
-			
             get {
                 List<List<double>> coordinates = new List<List<double>>();
                 foreach (GeographicPosition position in Positions) {

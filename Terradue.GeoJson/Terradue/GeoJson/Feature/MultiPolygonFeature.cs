@@ -8,8 +8,7 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
-
-using ServiceStack.Text;
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Feature {
     using System.Collections.Generic;
@@ -22,6 +21,9 @@ namespace Terradue.GeoJson.Feature {
     /// </summary>
     [DataContract]
     public class MultiPolygonFeature : Feature {
+
+        public MultiPolygonFeature() {}
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Feature"/> class.
         /// </summary>
@@ -36,9 +38,10 @@ namespace Terradue.GeoJson.Feature {
         /// </summary>
         /// <returns>The json.</returns>
         /// <param name="json">Json.</param>
-        public new static MultiPolygonFeature ParseJson(string json) {
+        /*public new static MultiPolygonFeature ParseJson(string json) {
 
             MultiPolygon geometry = new MultiPolygon();
+            Newtonsoft.Json.JsonConvert.DeserializeObject(
             var mpObj = JsonObject.Parse(json);
 
             geometry = mpObj.JsonTo<MultiPolygon>("geometry");
@@ -47,7 +50,7 @@ namespace Terradue.GeoJson.Feature {
             mp.Id = mpObj.JsonTo<string>("id");
             return mp;
 
-        }
+        }*/
 
         /// <summary>
         /// Gets or sets the geometry.
@@ -55,7 +58,8 @@ namespace Terradue.GeoJson.Feature {
         /// <value>
         /// The geometry.
         /// </value>
-        [DataMember(Name = "geometry")]
+        [JsonProperty(PropertyName = "geometry", Required = Required.Always)]
+        //[JsonConverter(typeof(MultiPolygonConverter))]
         public new MultiPolygon Geometry { get; set; }
     }
 }

@@ -15,7 +15,6 @@ namespace Terradue.GeoJson.Feature {
     using Terradue.GeoJson.Geometry;
     using System.Runtime.Serialization;
     using System;
-    using ServiceStack.Text;
 
     /// <summary>
     /// A GeoJSON <see cref="http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
@@ -34,15 +33,14 @@ namespace Terradue.GeoJson.Feature {
         /// </summary>
         /// <returns>The json.</returns>
         /// <param name="json">Json.</param>
-        public new static NoGeometryFeature ParseJson(string json) {
+        /*public new static NoGeometryFeature ParseJson(string json) {
 
-            var mpObj = JsonObject.Parse(json);
-
-            NoGeometryFeature mp = new NoGeometryFeature(mpObj.JsonTo<Dictionary<string, object>>("properties"));
-            mp.Id = mpObj.JsonTo<string>("id");
+            var mpObj = JsonSerializer.DeserializeFromString<Dictionary<string, object>>(json);
+            NoGeometryFeature mp = new NoGeometryFeature((Dictionary<string, object>)mpObj["properties"]);
+            mp.Id = (string)mpObj["id"];
             return mp;
 
-        }
+        }*/
 
         /// <summary>
         /// Gets or sets the geometry.

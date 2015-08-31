@@ -24,11 +24,11 @@ namespace Terradue.GeoJson.Tests {
 
             var feature = GeometryFactory.GmlToFeature(e);
 
-            Assert.IsTrue(feature is MultiLineStringFeature);
+            Assert.IsTrue(feature.Geometry is MultiLineString);
 
-            MultiLineStringFeature feature2 = new MultiLineStringFeature((MultiLineString)feature.Geometry, feature.Properties);
+            Terradue.GeoJson.Feature.Feature feature2 = new Terradue.GeoJson.Feature.Feature ((MultiLineString)feature.Geometry, feature.Properties);
 
-            Assert.IsTrue(feature2 is MultiLineStringFeature);
+            Assert.IsTrue(feature2.Geometry is MultiLineString);
 
         }
 
