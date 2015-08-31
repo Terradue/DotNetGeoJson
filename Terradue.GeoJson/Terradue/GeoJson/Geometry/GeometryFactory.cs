@@ -28,40 +28,40 @@ namespace Terradue.GeoJson.Geometry {
             IGeometryObject geometry = null;
 
             if (element == null)
-                return new NoGeometryFeature(properties);
+                return new Terradue.GeoJson.Feature.Feature(properties);
 
             try {
                 geometry = GeometryFactory.GeoRSSToGeometry(element);
             } catch (InvalidFormatException e) {
                 properties.Add("Exception", String.Format("The GeoRSS object {0} has an invalid format: {1}", element.LocalName, e.Message));
-                return new NoGeometryFeature(properties);
+                return new Terradue.GeoJson.Feature.Feature(properties);
             } catch (Exception e) {
                 properties.Add("Exception", String.Format("The GeoRSS object {0} conversion returned an error: {1}", element.LocalName, e.Message));
-                return new NoGeometryFeature(properties);
+                return new Terradue.GeoJson.Feature.Feature(properties);
             }
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
                 geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
-                return new MultiPolygonFeature((MultiPolygon)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature((MultiPolygon)geometry, properties);
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
                 geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
-                return new PolygonFeature((Polygon)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature((Polygon)geometry, properties);
             }
 
             if (geometry.GetType() == typeof(MultiPoint)) {
-                return new MultiPointFeature((MultiPoint)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature((MultiPoint)geometry, properties);
             }
 
             if (geometry.GetType() == typeof(MultiLineString)) {
-                return new MultiLineStringFeature((MultiLineString)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature((MultiLineString)geometry, properties);
             }
 
             properties.Add("Exception", String.Format("The GeoRSS object {0} is not implemented. Please report", element.LocalName));
 
 
-            return new NoGeometryFeature(properties);
+            return new Terradue.GeoJson.Feature.Feature(properties);
         }
 
         /// <summary>
@@ -75,40 +75,40 @@ namespace Terradue.GeoJson.Geometry {
             IGeometryObject geometry = null;
 
             if (element == null)
-                return new NoGeometryFeature(properties);
+                return new Terradue.GeoJson.Feature.Feature(properties);
 
             try {
                 geometry = GeometryFactory.GmlToGeometry(element);
             } catch (InvalidFormatException e) {
                 properties.Add("Exception", String.Format("The GML object {0} has an invalid format: {1}", element.LocalName, e.Message));
-                return new NoGeometryFeature(properties);
+                return new Terradue.GeoJson.Feature.Feature(properties);
             } catch (Exception e) {
                 properties.Add("Exception", String.Format("The GML object {0} conversion returned an error: {1}", element.LocalName, e.Message));
-                return new NoGeometryFeature(properties);
+                return new Terradue.GeoJson.Feature.Feature(properties);
             }
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
                 geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
-                return new MultiPolygonFeature((MultiPolygon)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature((MultiPolygon)geometry, properties);
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
                 geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
-                return new PolygonFeature((Polygon)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature((Polygon)geometry, properties);
             }
 
             if (geometry.GetType() == typeof(MultiPoint)) {
-                return new MultiPointFeature((MultiPoint)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature((MultiPoint)geometry, properties);
             }
 
             if (geometry.GetType() == typeof(MultiLineString)) {
-                return new MultiLineStringFeature((MultiLineString)geometry, properties);
+                return new Terradue.GeoJson.Feature.Feature((MultiLineString)geometry, properties);
             }
 
             properties.Add("Exception", String.Format("The GML object {0} is not implemented. Please report", element.LocalName));
 
 
-            return new NoGeometryFeature(properties);
+            return new Terradue.GeoJson.Feature.Feature(properties);
         }
 
         /// <summary>
@@ -121,39 +121,37 @@ namespace Terradue.GeoJson.Geometry {
             Dictionary<string,Object> properties = new Dictionary<string, object>();
 
             if (string.IsNullOrEmpty(wkt))
-                return new NoGeometryFeature(properties);
+                return new Terradue.GeoJson.Feature.Feature(properties);
 
             IGeometryObject geometry = GeometryFactory.WktToGeometry(wkt);
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
                 geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
-                return new MultiPolygonFeature((MultiPolygon)geometry, new Dictionary<string,object>());
+                return new Terradue.GeoJson.Feature.Feature((MultiPolygon)geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
                 geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
-                return new PolygonFeature((Polygon)geometry, new Dictionary<string,object>());
+                return new Terradue.GeoJson.Feature.Feature((Polygon)geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(MultiPoint)) {
-                return new MultiPointFeature((MultiPoint)geometry, new Dictionary<string,object>());
+                return new Terradue.GeoJson.Feature.Feature((MultiPoint)geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(Point)) {
-                return new PointFeature((Point)geometry, new Dictionary<string,object>());
-                return null;
+                return new Terradue.GeoJson.Feature.Feature((Point)geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(MultiLineString)) {
-                return new MultiLineStringFeature((MultiLineString)geometry, new Dictionary<string,object>());
+                return new Terradue.GeoJson.Feature.Feature((MultiLineString)geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(LineString)) {
-                //return new LineStringFeature ((LineString)geometry, new Dictionary<string,object> ());
-                return null;
+                return new Terradue.GeoJson.Feature.Feature((LineString)geometry, new Dictionary<string,object>());
             }
 
-            return new NoGeometryFeature(properties);
+            return new Terradue.GeoJson.Feature.Feature(properties);
 
         }
 

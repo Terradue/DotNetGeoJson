@@ -17,7 +17,7 @@ namespace Terradue.GeoJson.Tests {
         [Test()]
         public void PointFeatureToWkt() {
 
-            Terradue.GeoJson.Feature.PointFeature pointf = new Terradue.GeoJson.Feature.PointFeature(new Terradue.GeoJson.Geometry.Point(Position1));
+            Terradue.GeoJson.Feature.Feature pointf = new Terradue.GeoJson.Feature.Feature(new Terradue.GeoJson.Geometry.Point(Position1), null);
             string wkt = pointf.ToWkt();
             Assert.AreEqual("POINT(124 10)", wkt);
 
@@ -26,9 +26,9 @@ namespace Terradue.GeoJson.Tests {
         [Test()]
         public void LineStringFeatureToWkt() {
 
-            Terradue.GeoJson.Feature.LineStringFeature linestringf = 
-                new Terradue.GeoJson.Feature.LineStringFeature(new Terradue.GeoJson.Geometry.LineString(
-                    new List<IPosition>(){ Position1, Position2, Position3 }));
+            Terradue.GeoJson.Feature.Feature linestringf = 
+                new Terradue.GeoJson.Feature.Feature(new Terradue.GeoJson.Geometry.LineString(
+                    new List<IPosition>(){ Position1, Position2, Position3 }), null);
             string wkt = linestringf.ToWkt();
             Assert.AreEqual("LINESTRING(124 10,124 11,125 10)", wkt);
 
@@ -41,8 +41,8 @@ namespace Terradue.GeoJson.Tests {
             list.Add(new Terradue.GeoJson.Geometry.LineString(
                                         new List<IPosition>(){ Position1, Position2, Position3, Position4 }));
 
-            Terradue.GeoJson.Feature.PolygonFeature polygonf = 
-                new Terradue.GeoJson.Feature.PolygonFeature(new Polygon(list));
+            Terradue.GeoJson.Feature.Feature polygonf = 
+                new Terradue.GeoJson.Feature.Feature(new Polygon(list), null);
             string wkt = polygonf.ToWkt();
             Assert.AreEqual("POLYGON((124 10,124 11,125 10,124 10))", wkt);
 

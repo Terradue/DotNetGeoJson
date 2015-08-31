@@ -48,8 +48,8 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Core" />
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -60,6 +60,7 @@
     <Folder Include="Terradue\GeoJson\Feature\" />
     <Folder Include="Terradue\GeoJson\Geometry\" />
     <Folder Include="Terradue\GeoJson\Gml\" />
+    <Folder Include="Terradue\GeoJson\Converter\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,13 +74,6 @@
     <Compile Include="Terradue\GeoJson\CoordinateReferenceSystem\NamedCRS.cs" />
     <Compile Include="Terradue\GeoJson\Feature\Feature.cs" />
     <Compile Include="Terradue\GeoJson\Feature\FeatureCollection.cs" />
-    <Compile Include="Terradue\GeoJson\Feature\LineStringFeature.cs" />
-    <Compile Include="Terradue\GeoJson\Feature\MultiLineStringFeature.cs" />
-    <Compile Include="Terradue\GeoJson\Feature\MultiPointFeature.cs" />
-    <Compile Include="Terradue\GeoJson\Feature\NoGeometryFeature.cs" />
-    <Compile Include="Terradue\GeoJson\Feature\PointFeature.cs" />
-    <Compile Include="Terradue\GeoJson\Feature\MultiPolygonFeature.cs" />
-    <Compile Include="Terradue\GeoJson\Feature\PolygonFeature.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\GeographicPosition.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\GeometryCollection.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\GeometryFactory.cs" />
@@ -97,10 +91,17 @@
     <Compile Include="Terradue\GeoJson\Gml\Gml.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\WktFeatureExtensions.cs" />
     <Compile Include="Terradue\GeoJson\Geometry\GmlFeatureExtensions.cs" />
+    <Compile Include="Terradue\GeoJson\Converter\GeometryConverter.cs" />
+    <Compile Include="Terradue\GeoJson\Converter\MultiPolygonJsonConverter.cs" />
+    <Compile Include="Terradue\GeoJson\Converter\PolygonJsonConverter.cs" />
+    <Compile Include="Terradue\GeoJson\Converter\LineStringJsonConverter.cs" />
+    <Compile Include="Terradue\GeoJson\Converter\PointJsonConverter.cs" />
+    <Compile Include="Terradue\GeoJson\Converter\MultiLineStringJsonConverter.cs" />
+    <Compile Include="Terradue\GeoJson\Converter\MultiPointJsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Terradue.GeoJson.csproj" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

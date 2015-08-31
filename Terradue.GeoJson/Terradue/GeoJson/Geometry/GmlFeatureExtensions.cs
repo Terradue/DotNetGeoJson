@@ -144,30 +144,35 @@ namespace Terradue.GeoJson.Geometry {
             return xdoc.DocumentElement;
         }
 
-        public static Terradue.GeoJson.Gml.PointType PointFeatureToGml(PointFeature pointFeature) {
+        public static Terradue.GeoJson.Gml.AbstractGeometryType FeatureToGml(Terradue.GeoJson.Feature.Feature feature) {
 
-            return GeometryToGml(pointFeature.Geometry);
+            if (feature.Geometry is Point) {
+                return GeometryToGml((Point)feature.Geometry);
+            }
+
+            if (feature.Geometry is MultiPoint) {
+                return GeometryToGml((MultiPoint)feature.Geometry);
+            }
+
+            if (feature.Geometry is LineString) {
+                return GeometryToGml((LineString)feature.Geometry);
+            }
+
+            if (feature.Geometry is MultiLineString) {
+                return GeometryToGml((MultiLineString)feature.Geometry);
+            }
+
+            if (feature.Geometry is Polygon) {
+                return GeometryToGml((Polygon)feature.Geometry);
+            }
+
+            if (feature.Geometry is MultiPolygon) {
+                return GeometryToGml((MultiPolygon)feature.Geometry);
+            }
+
+            return null;
         }
 
-        public static Terradue.GeoJson.Gml.MultiPointType MultiPointFeatureToGml(MultiPointFeature multiPointFeature) {
-
-            return GeometryToGml(multiPointFeature.Geometry);
-        }
-
-        public static Terradue.GeoJson.Gml.LineStringType LineStringFeatureToGml(LineStringFeature lineStringFeature) {
-
-            return GeometryToGml(lineStringFeature.Geometry);
-        }
-
-        public static Terradue.GeoJson.Gml.PolygonType PolygonFeatureToGml(PolygonFeature polygonFeature) {
-
-            return GeometryToGml(polygonFeature.Geometry);
-        }
-
-        public static Terradue.GeoJson.Gml.MultiSurfaceType MultiPolygonFeatureToGml(MultiPolygonFeature multiPolygonFeature) {
-
-            return GeometryToGml(multiPolygonFeature.Geometry);
-        }
 
         public static Terradue.GeoJson.Gml.PointType GeometryToGml(Point point) {
             Terradue.GeoJson.Gml.PointType gmlPoint = new Terradue.GeoJson.Gml.PointType();

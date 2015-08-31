@@ -8,6 +8,7 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
     using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <summary>
         /// Gets the coordinates
         /// </summary>
-        [DataMember(Name = "coordinates")]
+        [JsonProperty(PropertyName = "coordinates")]
         public List<List<List<double>>> Coordinates { 
 			
             get {

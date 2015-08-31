@@ -8,6 +8,7 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
     using System.Runtime.Serialization;
@@ -17,7 +18,6 @@ namespace Terradue.GeoJson.Geometry {
     /// <summary>
     /// Base abstract class for GeometryObject types.
     /// </summary>
-    [DataContract]
     public abstract class GeometryObject : IGeometryObject {
         /// <summary>
         /// Gets the (mandatory) type of the <see cref="http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Object</see>.
@@ -27,7 +27,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <value>
         /// The type of the object.
         /// </value>
-        [DataMember(Name = "type")]
+        [JsonProperty(PropertyName = "type")]
         public GeoJsonObjectType Type { get; set; }
     }
 }

@@ -8,6 +8,7 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
     using System.Collections.Generic;
@@ -17,7 +18,6 @@ namespace Terradue.GeoJson.Geometry {
     /// <summary>
     /// Defines the <see cref="http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
     /// </summary>
-    [DataContract]
     public class MultiPolygon : GeometryObject {
         /// <summary>
         /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.MultiPolygon"/> class.
@@ -44,7 +44,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <summary>
         /// Gets the coordinates
         /// </summary>
-        [DataMember(Name = "coordinates")]
+        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         public List<List<List<List<double>>>> Coordinates { 
 
             get {
