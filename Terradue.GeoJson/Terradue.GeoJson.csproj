@@ -11,8 +11,6 @@
     <UseMSBuildEngine>False</UseMSBuildEngine>
     <ReleaseVersion>1.3.2</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
