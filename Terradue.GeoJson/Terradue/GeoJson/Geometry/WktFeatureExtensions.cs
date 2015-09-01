@@ -65,6 +65,12 @@ namespace Terradue.GeoJson.Geometry {
                 return string.Format("MULTIPOLYGON{0}", multiPolygon);
             }
 
+            if (geometry is MultiLineString) {
+                string multiLineString = GeometryToWktString((MultiLineString)geometry);
+
+                return string.Format("MULTILINESTRING{0}", multiLineString);
+            }
+
             return null;
         }
 
@@ -94,6 +100,10 @@ namespace Terradue.GeoJson.Geometry {
 
         static string GeometryToWktString(MultiPolygon multiPolygon) {            
             return string.Format("({0})", string.Join(",", multiPolygon.Polygons.Select(GeometryToWktString)));
+        }
+
+        static string GeometryToWktString(MultiLineString multiLineString) {            
+            return string.Format("({0})", string.Join(",", multiLineString.LineStrings.Select(GeometryToWktString)));
         }
     }
 }
