@@ -121,16 +121,16 @@ namespace Terradue.GeoJson.Geometry {
             if (string.IsNullOrEmpty(wkt))
                 return new Terradue.GeoJson.Feature.Feature(properties);
 
-            IGeometryObject geometry = GeometryFactory.WktToGeometry(wkt);
+            GeometryObject geometry = GeometryFactory.WktToGeometry(wkt);
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
                 geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
-                return new Terradue.GeoJson.Feature.Feature((MultiPolygon)geometry, new Dictionary<string,object>());
+                return new Terradue.GeoJson.Feature.Feature(geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
                 geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
-                return new Terradue.GeoJson.Feature.Feature((Polygon)geometry, new Dictionary<string,object>());
+                return new Terradue.GeoJson.Feature.Feature(geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(MultiPoint)) {
@@ -1028,7 +1028,7 @@ namespace Terradue.GeoJson.Geometry {
             return positions[0].Equals(positions[positions.Count - 1]); 
         }
 
-        public static MultiPolygon SplitWorldExtent(MultiPolygon mpoly) {
+        public static GeometryObject SplitWorldExtent(MultiPolygon mpoly) {
 
             MultiPolygon newmpoly = new MultiPolygon();
 
@@ -1041,7 +1041,7 @@ namespace Terradue.GeoJson.Geometry {
             return mpoly;
         }
 
-        public static MultiPolygon SplitWorldExtent(Polygon poly) {
+        public static GeometryObject SplitWorldExtent(Polygon poly) {
 
             MultiPolygon newpoly = new MultiPolygon();
 
@@ -1049,6 +1049,10 @@ namespace Terradue.GeoJson.Geometry {
 
             foreach (LineString lineString in poly.LineStrings) {
                 lineStringss.Add(SplitWorldExtent(lineString));
+            }
+
+            if (poly.LineStrings.Count == lineStringss.First().Count) {
+                return poly;
             }
 
             List<Polygon> polygons = new List<Polygon>();
@@ -1069,12 +1073,15 @@ namespace Terradue.GeoJson.Geometry {
                 }
             }
 
+
+
             foreach (var lss in lineStringss2) {
                 newpoly.Polygons.Add(new Polygon(lss));
             }
 
-
             return newpoly;
+
+
 
         }
 

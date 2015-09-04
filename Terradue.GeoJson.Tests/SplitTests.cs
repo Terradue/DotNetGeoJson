@@ -27,7 +27,7 @@ namespace Terradue.GeoJson.Tests {
 
             newmpoly = mpoly.ToWkt();
 
-            Assert.AreEqual("MULTIPOLYGON(((160 45,170 45,175 45,178 40,174 40,160 45)))", newmpoly);
+            Assert.AreEqual("POLYGON((160 45,170 45,175 45,178 40,174 40,160 45))", newmpoly);
         }
 
     }
