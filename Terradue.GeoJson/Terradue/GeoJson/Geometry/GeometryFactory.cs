@@ -1030,12 +1030,10 @@ namespace Terradue.GeoJson.Geometry {
 
         public static GeometryObject SplitWorldExtent(MultiPolygon mpoly) {
 
-            MultiPolygon newmpoly = new MultiPolygon();
-
             foreach (Polygon poly in mpoly.Polygons) {
                 var mpolygon = SplitWorldExtent(poly);
                 if (mpolygon != null)
-                    return mpoly;
+                    return mpolygon;
             }
         
             return mpoly;
@@ -1055,7 +1053,6 @@ namespace Terradue.GeoJson.Geometry {
                 return poly;
             }
 
-            List<Polygon> polygons = new List<Polygon>();
             List<List<LineString>> lineStringss2 = new List<List<LineString>>();
 
             if (lineStringss.Count > 0) {
