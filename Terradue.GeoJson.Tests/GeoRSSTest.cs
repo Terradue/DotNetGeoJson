@@ -44,6 +44,10 @@ namespace Terradue.GeoJson.Tests {
             var feature = GeometryFactory.GeoRSSToFeature(doc.DocumentElement);
             Assert.That(feature.Geometry is Polygon);
 
+            el = XElement.Parse("<MultiSurface xmlns=\"http://www.opengis.net/gml/3.2\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n\t\t\t\t<surfaceMembers>\n\t\t\t\t\t<Polygon>\n\t\t\t\t\t\t<exterior>\n\t\t\t\t\t\t\t<LinearRing>\n\t\t\t\t\t\t\t\t<posList count=\"5\" srsDimension=\"2\">47.6532 -8.6293 46.7177 -8.8848 46.615 -7.8641 47.5494 -7.5905 47.6532 -8.6293</posList>\n\t\t\t\t\t\t\t</LinearRing>\n\t\t\t\t\t\t</exterior>\n\t\t\t\t\t</Polygon>\n\t\t\t\t</surfaceMembers>\n\t\t\t</MultiSurface>");
+            doc.Load(el.CreateReader());
+            feature = Terradue.GeoJson.Geometry.GeometryFactory.GmlToFeature(doc.DocumentElement);
+            Assert.That(feature.Geometry is Polygon);
         }
     }
 }
