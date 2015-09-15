@@ -61,6 +61,7 @@
     <None Include="polygon.georss" />
     <None Include="Samples\s1.json" />
     <None Include="Samples\ASA_IM__0.json" />
+    <None Include="Samples\multisurface.gml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />

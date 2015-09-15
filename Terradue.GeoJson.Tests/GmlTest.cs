@@ -49,6 +49,20 @@ namespace Terradue.GeoJson.Tests {
             Assert.AreEqual(50.31, ((MultiPolygon)geom).Coordinates.First().First().First().First());
 
         }
+
+        [Test()]
+        public void FromGMLMultiSurface() {
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load("../Samples/multisurface.gml");
+
+            XmlElement e = doc.DocumentElement;
+
+            var feature = GeometryFactory.GmlToFeature(e);
+
+            Assert.IsTrue(feature.Geometry is Polygon);
+
+        }
     }
 }
 
