@@ -644,15 +644,17 @@ namespace Terradue.GeoJson.Geometry {
         private static Polygon FromGMLSurface(XmlElement gml) {
 			
             /* Looking for gml:patches */
-            XmlElement element = (XmlElement)gml.SelectSingleNode("patches");
+            var ns = GmlXmlNamespaceManager();
+            XmlElement element = (XmlElement)gml.SelectSingleNode("gml32:patches", ns);
             if (element == null)
                 throw new InvalidFormatException("invalid GML representation: surface must have patches");
 
-            if (element.SelectNodes("PolygonPatch").Count > 1) {
+            var patches = element.SelectNodes("gml32:PolygonPatch", ns);
+            if (patches.Count > 1) {
                 throw new NotImplementedException("Multi patch is not supported yet.");
             }
 
-            return FromGMLPatch(element);
+            return FromGMLPatch((XmlElement)patches[0]);
 
         }
 
@@ -663,7 +665,7 @@ namespace Terradue.GeoJson.Geometry {
 
             /* GML SF is resticted to planar interpolation  */
             string interpolation = gml.GetAttribute("interpolation");
-            if (interpolation != null) {
+            if (!string.IsNullOrEmpty(interpolation)) {
                 if (interpolation != "planar")
                     throw new InvalidFormatException("invalid GML representation: interpolation must be planar");
             }
@@ -884,7 +886,7 @@ namespace Terradue.GeoJson.Geometry {
              * x1 y1 z1
              */
             string[] pos = gmlpos.Split(' ');
-            position = new GeographicPosition(pos[0], pos[1], pos[2]);
+            position = new GeographicPosition(pos[1], pos[0], pos.Length > 2? pos[2]:null);
             return position;
         }
 
@@ -918,9 +920,9 @@ namespace Terradue.GeoJson.Geometry {
 
             for (int i = 0; i < pos.Length; i += dim) {
                 if (dim == 2)
-                    position.Add(new GeographicPosition(pos[i + 0], pos[i + 1], null));
+                    position.Add(new GeographicPosition(pos[i + 1], pos[i + 0], null));
                 if (dim == 3)
-                    position.Add(new GeographicPosition(pos[i + 0], pos[i + 1], pos[i + 2]));
+                    position.Add(new GeographicPosition(pos[i + 1], pos[i + 0], pos[i + 2]));
             }
             return position;
         }
