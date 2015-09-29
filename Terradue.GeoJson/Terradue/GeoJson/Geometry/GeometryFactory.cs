@@ -1093,6 +1093,7 @@ namespace Terradue.GeoJson.Geometry {
             currentLineString.Positions.Add(previous_position);
 
             int currentPosition = 0;
+            int dayline = 0;
 
             for (int i = 1; i < lineString.Positions.Count; i++) {
 
@@ -1105,19 +1106,22 @@ namespace Terradue.GeoJson.Geometry {
                         LineString newLineString = currentLineString;
 
                         if (current_position.Longitude - previous_position.Longitude > 90) {
-
+                            dayline--;
                             if (currentPosition == 0) {
                                 newLineString = new LineString();
                                 newLineStrings.Insert(0, newLineString);
+
                             } else {
                                 newLineString = newLineStrings[--currentPosition];
                             }
                         }
 
                         if (current_position.Longitude - previous_position.Longitude < -90) {
+                            dayline++;
                             if (newLineStrings.Count <= currentPosition + 1) {
                                 newLineString = new LineString();
                                 newLineStrings.Add(newLineString);
+
                             } else {
                                 newLineString = newLineStrings[currentPosition + 1];
                             }
@@ -1153,7 +1157,10 @@ namespace Terradue.GeoJson.Geometry {
                         GeographicPosition new_position1 = new GeographicPosition(new_latitude, new_longitude, new_altitude);
                         GeographicPosition new_position2 = new GeographicPosition(new_latitude2, new_longitude2, new_altitude2);
                         newLineString.Positions.Add(new_position2);
+
                         currentLineString.Positions.Add(new_position1);
+                        if (dayline == 0)
+                            currentLineString.Positions.Add(currentLineString.Positions[0]);
 
                         currentLineString = newLineString;
 
