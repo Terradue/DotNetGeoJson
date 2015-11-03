@@ -213,7 +213,7 @@ namespace Terradue.GeoJson.Geometry {
         }
 
         /// <summary>
-        /// LineString from WK.
+        /// LineString from WKT.
         /// </summary>
         /// <returns>The LineString</returns>
         /// <param name="wkt">WKT.</param>
@@ -221,11 +221,18 @@ namespace Terradue.GeoJson.Geometry {
             string[] terms = wkt.TrimStart('(').TrimEnd(')').Split(',');
             string[] values;
             List<IPosition> positions = new List<IPosition>(terms.Length);
+            GeographicPosition prevgeopos = null;
             for (int i = 0; i < terms.Length; i++) {
                 values = terms[i].Trim(' ').Split(' ');
                 string z = (values.Length > 2 ? values[2] : null);
                 GeographicPosition geopos = new GeographicPosition(values[1], values[0], z);
+                try {
+                if (prevgeopos != null && Enumerable.SequenceEqual(geopos.Coordinates, prevgeopos.Coordinates))
+                    continue;
+                }catch {
+                }
                 positions.Add(geopos);
+                prevgeopos = geopos;
             }
 
             LineString test = new LineString(positions);
