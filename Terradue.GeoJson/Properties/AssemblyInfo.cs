@@ -19,7 +19,7 @@
 
 \namespace Terradue.GeoJson
 @{
-    DotNetGeoJson Software Package
+    Terradue .NET GeoJson Library. Initially developed to provide an easy way to manage Geometry objects with serialization and deserialization functions and transformation functions from/to GeoJson, it also supports GML, georss and Well Known Text (WKT)
 
     \xrefitem sw_version "Versions" "Software Package Version" 1.5.6
 
