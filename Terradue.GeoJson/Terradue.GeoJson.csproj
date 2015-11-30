@@ -47,8 +47,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack.Text, Version=4.0.44.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Text.4.0.44\lib\net40\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=4.0.50.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.0.50\lib\net40\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
