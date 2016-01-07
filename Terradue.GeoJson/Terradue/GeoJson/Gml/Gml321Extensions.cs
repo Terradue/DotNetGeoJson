@@ -332,9 +332,9 @@ namespace Terradue.GeoJson.Gml321 {
         public static LineString ToGeometry(this LinearRingType linearRing) {
             List<IPosition> positions;
 
-            Type posType = linearRing.Items1ElementName.First().GetType();
+            Type posType = linearRing.ItemsElementName.First().GetType();
 
-            positions = FromGMLData(linearRing.Items1, Array.ConvertAll<Items1ChoiceType2, string>(linearRing.Items1ElementName, i => i.ToString()));
+            positions = FromGMLData(linearRing.Items, Array.ConvertAll<ItemsChoiceType6, string>(linearRing.ItemsElementName, i => i.ToString()));
 
             LineString linestring = new LineString(positions);
 
@@ -345,10 +345,10 @@ namespace Terradue.GeoJson.Gml321 {
         }
 
         public static LineString ToGeometry(this LineStringType lineString) {
-            if (lineString.Items1 == null)
+            if (lineString.Items == null)
                 return null;
 
-            List<IPosition> points = FromGMLData(lineString.Items1, Array.ConvertAll<Items1ChoiceType1, string>(lineString.Items1ElementName, i => i.ToString()));
+            List<IPosition> points = FromGMLData(lineString.Items, Array.ConvertAll<ItemsChoiceType, string>(lineString.ItemsElementName, i => i.ToString()));
 
             if (points.Count < 2)
                 throw new InvalidFormatException("invalid GML representation: LineString type must have at least 2 positions");
@@ -456,8 +456,6 @@ namespace Terradue.GeoJson.Gml321 {
                 return new Point(((DirectPositionType)point.Item).ToGeometry());
             if (point.Item is CoordinatesType)
                 return new Point(((CoordinatesType)point.Item).ToGeometry().First());
-            if (point.Item is CoordType)
-                return new Point(((CoordType)point.Item).ToGeometry());
 
             throw new InvalidFormatException("invalid GML representation: gml:point is empty");
         }

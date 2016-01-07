@@ -56,7 +56,7 @@ namespace Terradue.GeoJson.Tests {
         [Test()]
         public void Gml32MultiSurfaceTestCase() {
 
-            var fs = new FileStream("../Samples/MultiSurface32.gml", FileMode.Open);
+            var fs = new FileStream("../Samples/Multisurface32.gml", FileMode.Open);
 
             XmlReader reader = XmlReader.Create(fs);
 
@@ -68,7 +68,7 @@ namespace Terradue.GeoJson.Tests {
 
             gml = geom.ToGml();
 
-            Assert.That(gml is MultiPolygonType);
+            Assert.That(gml is MultiSurfaceType);
 
             StringWriter sw = new StringWriter();
 

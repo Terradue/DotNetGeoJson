@@ -69,6 +69,7 @@
     <None Include="Samples\Multisurface32.gml" />
     <None Include="Samples\Multisurface32.gml" />
     <None Include="Samples\MultiSurface.gml" />
+    <None Include="Samples\MultiCurveWithLinearString.gml" />
     <None Include="Samples\MultiCurveWithLinearString32.gml" />
   </ItemGroup>
   <ItemGroup>
