@@ -4,59 +4,22 @@ using System.Xml;
 using Terradue.GeoJson.Geometry;
 using Terradue.GeoJson.Feature;
 using System.Linq;
-using Terradue.ServiceModel.Ogc.Gml311;
-using Terradue.GeoJson.Gml311;
+using Terradue.ServiceModel.Ogc.Gml321;
+using Terradue.GeoJson.Gml321;
 using System.IO;
 using System.Xml.Linq;
 
 namespace Terradue.GeoJson.Tests { 
 
     [TestFixture()]
-    public class GmlTest {
+    public class Gml32Test {
+
+
 
         [Test()]
-        public void GmlMultiPolygonTestCase() {
+        public void Gml32MultiCurveWithLinearStringTestCase() {
 
-            var fs = new FileStream("../Samples/MultiPolygon.xml", FileMode.Open);
-
-            XmlReader reader = XmlReader.Create(fs);
-
-            AbstractGeometryType gml = GmlHelper.Deserialize(reader);
-
-            fs.Close();
-
-            MultiPolygon geom = (MultiPolygon)gml.ToGeometry();
-
-            gml = geom.ToGmlMultiSurface();
-
-            StringWriter sw = new StringWriter();
-
-            XmlWriter xw = XmlWriter.Create(sw);
-
-            GmlHelper.Serialize(xw, gml);
-
-            xw.Close();
-
-            string xml1 = sw.ToString();
-
-            gml = geom.ToGmlMultiPolygon();
-
-            sw = new StringWriter();
-
-            xw = XmlWriter.Create(sw);
-
-            GmlHelper.Serialize(xw, gml);
-
-            xml1 = sw.ToString();
-
-            //Assert.IsTrue(XNode.DeepEquals(XDocument.Load("../Samples/MultiPolygon.xml").Root, XDocument.Parse(xml1).Root));
-
-        }
-
-        [Test()]
-        public void GmlMultiCurveWithLinearStringTestCase() {
-
-            var fs = new FileStream("../Samples/MultiCurveWithLinearString.gml", FileMode.Open);
+            var fs = new FileStream("../Samples/MultiCurveWithLinearString32.gml", FileMode.Open);
 
             XmlReader reader = XmlReader.Create(fs);
 
@@ -66,7 +29,7 @@ namespace Terradue.GeoJson.Tests {
 
             MultiLineString geom = (MultiLineString)gml.ToGeometry();
 
-            gml = geom.ToGmlMultiLineString();
+            gml = geom.ToGmlMultiCurve();
 
             StringWriter sw = new StringWriter();
 
@@ -91,9 +54,9 @@ namespace Terradue.GeoJson.Tests {
         }
 
         [Test()]
-        public void GmlMultiSurfaceTestCase() {
+        public void Gml32MultiSurfaceTestCase() {
 
-            var fs = new FileStream("../Samples/MultiSurface.gml", FileMode.Open);
+            var fs = new FileStream("../Samples/MultiSurface32.gml", FileMode.Open);
 
             XmlReader reader = XmlReader.Create(fs);
 

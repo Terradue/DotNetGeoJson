@@ -1,0 +1,29 @@
+﻿<gml:MultiPolygon xmlns:gml="http://www.opengis.net/gml" srsName="EPSG:4326">
+	<gml:polygonMember>
+		<gml:Polygon>
+			<gml:outerBoundaryIs>
+				<gml:LinearRing>
+					<gml:coordinates>1.313216,46.690770 1.000968,46.861087 0.887424,47.059790 1.142899,47.244300 1.355795,47.244300 1.554498,47.017211 1.710622,47.059790 1.767394,46.747542 1.313216,46.690770 1.313216,46.690770 </gml:coordinates>
+				</gml:LinearRing>
+			</gml:outerBoundaryIs>
+		</gml:Polygon>
+	</gml:polygonMember>
+	<gml:polygonMember>
+		<gml:Polygon>
+			<gml:outerBoundaryIs>
+				<gml:LinearRing>
+					<gml:coordinates>0.731300,46.605612 -0.191250,46.704963 -0.191250,46.846894 0.177770,46.988824 0.447438,46.960438 0.589369,46.804315 0.688721,46.832701 0.731300,46.605612 0.731300,46.605612 </gml:coordinates>
+				</gml:LinearRing>
+			</gml:outerBoundaryIs>
+		</gml:Polygon>
+	</gml:polygonMember>
+	<gml:polygonMember>
+		<gml:Polygon>
+			<gml:outerBoundaryIs>
+				<gml:LinearRing>
+					<gml:coordinates>-1.610557,46.733349 -1.184765,46.704963 -1.198958,46.704963 -0.943483,46.619805 -0.915096,46.818508 -0.659621,46.775928 -0.688007,47.017211 -0.943483,47.003018 -1.127992,47.088176 -1.397661,47.102369 -1.624750,47.073983 -1.738295,46.917859 -1.610557,46.733349 </gml:coordinates>
+				</gml:LinearRing>
+			</gml:outerBoundaryIs>
+		</gml:Polygon>
+	</gml:polygonMember>
+</gml:MultiPolygon>

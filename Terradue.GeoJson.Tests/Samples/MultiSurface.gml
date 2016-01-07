@@ -1,4 +1,4 @@
-﻿<MultiSurface xmlns="http://www.opengis.net/gml/3.2">
+﻿<MultiSurface xmlns="http://www.opengis.net/gml">
 <surfaceMembers>
 <Polygon>
 <exterior>
