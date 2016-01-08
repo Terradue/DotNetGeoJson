@@ -25,10 +25,47 @@ using Terradue.GeoJson.Geometry;
 using Terradue.ServiceModel.Ogc.Gml311;
 using System.Collections.Generic;
 using Terradue.GeoJson.Gml311;
+using System.Xml;
+using System.IO;
 
 namespace Terradue.GeoJson.GeoRss {
     
     public static class GeoRssExtensions {
+
+        public static XmlReader CreateReader(this Terradue.GeoJson.GeoRss.IGeoRSS georss){
+            MemoryStream stream = new MemoryStream();
+            XmlWriter writer = XmlWriter.Create(stream);
+            GeoRssHelper.Serialize(writer, georss);
+            stream.Seek(0, SeekOrigin.Begin);
+            return XmlReader.Create(stream);
+        }
+
+        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.IGeoRSS georss) {
+
+            if (georss is GeoRssPoint) {
+                return ((GeoRssPoint)georss).ToGeometry();
+            }
+
+            if (georss is GeoRssLine) {
+                return ((GeoRssLine)georss).ToGeometry();
+            }
+
+            if (georss is GeoRssPolygon) {
+                return ((GeoRssPolygon)georss).ToGeometry();
+            }
+
+            if (georss is GeoRssBox) {
+                return ((GeoRssBox)georss).ToGeometry();
+            }
+
+            if (georss is GeoRssWhere) {
+                return ((GeoRssWhere)georss).ToGeometry();
+            }
+
+            return null;
+
+        }
+
         public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.GeoRssWhere where) {
            
             if (where.Item is EnvelopeType) {

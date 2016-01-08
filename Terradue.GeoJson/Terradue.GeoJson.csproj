@@ -114,6 +114,7 @@
     <Compile Include="Terradue\GeoJson\Gml\Gml321Extensions.cs" />
     <Compile Include="Terradue\GeoJson\Wkt\WktExtensions.cs" />
     <Compile Include="Terradue\GeoJson\Gml\Gml311Extensions.cs" />
+    <Compile Include="Terradue\GeoJson\GeoRss\GeoRssHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Terradue.GeoJson.csproj" />
