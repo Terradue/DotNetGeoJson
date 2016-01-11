@@ -11,8 +11,6 @@
     <UseMSBuildEngine>False</UseMSBuildEngine>
     <ReleaseVersion>1.3.2</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -115,6 +113,7 @@
     <Compile Include="Terradue\GeoJson\Wkt\WktExtensions.cs" />
     <Compile Include="Terradue\GeoJson\Gml\Gml311Extensions.cs" />
     <Compile Include="Terradue\GeoJson\GeoRss\GeoRssHelper.cs" />
+    <Compile Include="Terradue\GeoJson\GeoRss\GeoRss10Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Terradue.GeoJson.csproj" />

@@ -17,35 +17,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     using System.Collections.Generic;
 
 
-    public static class GeoRss10Helper {
-
-        public static XmlSerializer Serializer {
-
-            get {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(Terradue.GeoJson.GeoRss10.abstractFeaturePropertyType),
-                                                                   new Type[] {typeof(CircleByCenterPointType),
-                    typeof(EnvelopeType),
-                    typeof(LineStringType),
-                    typeof(PointType),
-                    typeof(PolygonType),
-                    typeof(GeoRss10Point),
-                    typeof(GeoRss10Line),
-                    typeof(GeoRss10Polygon),
-                    typeof(GeoRss10Point),
-                    typeof(GeoRss10Box),
-                    typeof(GeoRss10FeatureType),
-                    typeof(GeoRss10FeatureName),
-                    typeof(GeoRss10RelationshipTag),
-                    typeof(GeoRss10Elevation),
-                    typeof(GeoRss10Radius),
-                });
-                return geoRssSerializer;
-            }
-
-        }
-
+    public interface IGeoRSS {
     }
-
 
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GeoRss10Where))]
@@ -64,7 +37,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("where", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10Where : abstractFeaturePropertyType {
+    public partial class GeoRss10Where : abstractFeaturePropertyType, IGeoRSS {
 
         private object itemField;
 
@@ -88,7 +61,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("point", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10Point {
+    public partial class GeoRss10Point : IGeoRSS {
 
         private string itemField;
 
@@ -108,7 +81,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("line", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10Line {
+    public partial class GeoRss10Line : IGeoRSS {
 
         private string itemField;
 
@@ -128,7 +101,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("polygon", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10Polygon {
+    public partial class GeoRss10Polygon : IGeoRSS {
 
         private string itemField;
 
@@ -148,7 +121,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("box", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10Box {
+    public partial class GeoRss10Box : IGeoRSS {
 
         private string itemField;
 
@@ -168,7 +141,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("featuretypetag", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10FeatureType {
+    public partial class GeoRss10FeatureType : IGeoRSS {
 
         private string itemField;
 
@@ -188,7 +161,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("featurename", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10FeatureName {
+    public partial class GeoRss10FeatureName : IGeoRSS {
 
         private string itemField;
 
@@ -208,7 +181,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("relationshiptag", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10RelationshipTag {
+    public partial class GeoRss10RelationshipTag : IGeoRSS {
 
         private string itemField;
 
@@ -228,7 +201,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("elev", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10Elevation {
+    public partial class GeoRss10Elevation : IGeoRSS {
 
         private string itemField;
 
@@ -248,7 +221,7 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
     [System.Xml.Serialization.XmlRootAttribute("radius", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
-    public partial class GeoRss10Radius {
+    public partial class GeoRss10Radius : IGeoRSS {
 
         private string itemField;
 
