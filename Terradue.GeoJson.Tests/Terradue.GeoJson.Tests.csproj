@@ -67,7 +67,6 @@
     <None Include="Samples\polygon.georss10" />
     <None Include="Samples\MultiPolygon.xml" />
     <None Include="Samples\Multisurface32.gml" />
-    <None Include="Samples\Multisurface32.gml" />
     <None Include="Samples\MultiSurface.gml" />
     <None Include="Samples\MultiCurveWithLinearString.gml" />
     <None Include="Samples\MultiCurveWithLinearString32.gml" />
