@@ -45,8 +45,6 @@ namespace Terradue.GeoJson.Tests {
 
             GmlHelper.Serialize(xw, gml);
 
-            xml1 = sw.ToString();
-
             //Assert.IsTrue(XNode.DeepEquals(XDocument.Load("../Samples/MultiPolygon.xml").Root, XDocument.Parse(xml1).Root));
 
         }
