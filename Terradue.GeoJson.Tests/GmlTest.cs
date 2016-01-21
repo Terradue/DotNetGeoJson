@@ -37,8 +37,6 @@ namespace Terradue.GeoJson.Tests {
 
             xw.Close();
 
-            string xml1 = sw.ToString();
-
             gml = geom.ToGmlMultiPolygon();
 
             sw = new StringWriter();
