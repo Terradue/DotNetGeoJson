@@ -67,4 +67,10 @@
   <ItemGroup>
     <Folder Include="Samples\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Terradue.GeoJson\Terradue.GeoJson.csproj">
+      <Project>{26AD29FF-862F-46D9-9F25-473E2977A7C3}</Project>
+      <Name>Terradue.GeoJson</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
