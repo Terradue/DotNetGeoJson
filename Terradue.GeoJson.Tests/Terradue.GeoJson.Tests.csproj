@@ -31,13 +31,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Terradue.ServiceModel.Ogc">
+      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.0.0\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GmlTest.cs" />
@@ -52,10 +55,6 @@
     <ProjectReference Include="..\Terradue.GeoJson\Terradue.GeoJson.csproj">
       <Project>{26AD29FF-862F-46D9-9F25-473E2977A7C3}</Project>
       <Name>Terradue.GeoJson</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Terradue.ServiceModel.Ogc\Terradue.ServiceModel.Ogc\Terradue.ServiceModel.Ogc.csproj">
-      <Project>{4A78C588-01FE-439F-8961-AE083A5EE6CA}</Project>
-      <Name>Terradue.ServiceModel.Ogc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

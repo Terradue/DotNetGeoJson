@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Terradue.GeoJson</id>
-    <version>1.5.6</version>
+    <version>1.7.0</version>
     <title>Terradue.GeoJson</title>
     <authors>Terradue</authors>
     <projectUrl>https://github.com/Terradue/DotNetGeoJson</projectUrl>
@@ -12,6 +12,7 @@
     <summary>GeoJson library for .Net</summary>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="[7.0.0,)" />
+      <dependency id="Terradue.ServiceModel.Ogc" version="[1.0.0,)" />
     </dependencies>
 	<tags>GeoJSON, gml, json, georss, geometry, WKT</tags>
   </metadata>
