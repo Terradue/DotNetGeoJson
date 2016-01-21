@@ -39,7 +39,7 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,12 +51,6 @@
     <Compile Include="Gml32Test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\Terradue.GeoJson\Terradue.GeoJson.csproj">
-      <Project>{26AD29FF-862F-46D9-9F25-473E2977A7C3}</Project>
-      <Name>Terradue.GeoJson</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <None Include="MultiPolygon.geojson" />
     <None Include="packages.config" />
