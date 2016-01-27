@@ -41,6 +41,6 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyright("Terradue")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.5.6.*")]
-[assembly: AssemblyInformationalVersion ("1.5.6")]
+[assembly: AssemblyVersion("1.5.7.*")]
+[assembly: AssemblyInformationalVersion ("1.5.7")]
 [assembly: AssemblyConfiguration("")]
