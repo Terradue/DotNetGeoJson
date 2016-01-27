@@ -1030,13 +1030,22 @@ namespace Terradue.GeoJson.Geometry {
 
         public static GeometryObject SplitWorldExtent(MultiPolygon mpoly) {
 
+            MultiPolygon newmpoly = new MultiPolygon();
+
             foreach (Polygon poly in mpoly.Polygons) {
-                var mpolygon = SplitWorldExtent(poly);
-                if (mpolygon != null)
-                    return mpolygon;
+                var geom = SplitWorldExtent(poly);
+                if (geom != null) {
+                    if (geom is Polygon)
+                        newmpoly.Polygons.Add((Polygon)geom);
+                    if (geom is MultiPolygon)
+                        newmpoly.Polygons.AddRange(((MultiPolygon)geom).Polygons);
+                }
             }
+
+            if (newmpoly.Polygons.Count == 1)
+                return newmpoly.Polygons[0];
         
-            return mpoly;
+            return newmpoly;
         }
 
         public static GeometryObject SplitWorldExtent(Polygon poly) {
