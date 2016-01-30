@@ -124,12 +124,12 @@ namespace Terradue.GeoJson.Geometry {
             GeometryObject geometry = GeometryFactory.WktToGeometry(wkt);
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
-                geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
+                //geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
                 return new Terradue.GeoJson.Feature.Feature(geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
-                geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
+                //geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
                 return new Terradue.GeoJson.Feature.Feature(geometry, new Dictionary<string,object>());
             }
 
@@ -1057,39 +1057,42 @@ namespace Terradue.GeoJson.Geometry {
 
         public static GeometryObject SplitWorldExtent(Polygon poly) {
 
+
             MultiPolygon newpoly = new MultiPolygon();
 
-            List<List<LineString>> lineStringss = new List<List<LineString>>();
+            List<LineString> OuterlineStrings = new List<LineString>();
 
-            foreach (LineString lineString in poly.LineStrings) {
-                lineStringss.Add(SplitWorldExtent(lineString));
+            List<LineString> InnerlineStrings = new List<LineString>();
+
+            OuterlineStrings.AddRange(SplitWorldExtent(poly.LineStrings.First()));
+
+            foreach (LineString lineString in poly.LineStrings.Skip(1)) {
+                InnerlineStrings.AddRange(SplitWorldExtent(lineString));
             }
 
-            if (poly.LineStrings.Count == lineStringss.First().Count) {
+            if (OuterlineStrings.Count == 1) {
                 return poly;
             }
 
-            List<List<LineString>> lineStringss2 = new List<List<LineString>>();
+            List<Polygon> newpolygons = new List<Polygon>();
 
-            if (lineStringss.Count > 0) {
-                foreach (LineString ls in lineStringss[0]) {
-                    var pls = new List<LineString>();
-                    lineStringss2.Add(pls);
-                    pls.Add(ls);
-                }
-                int i = 1;
-                while (i < lineStringss.Count) {
-                    foreach (LineString ls in lineStringss[i]) {
-                        lineStringss2[i].Add(ls);
+            if (OuterlineStrings.Count > 0) {
+                foreach (LineString ls in OuterlineStrings) {
+                    
+                    Polygon curpoly = new Polygon();
+                    newpoly.Polygons.Add(curpoly);
+                    curpoly.LineStrings.Add(ls);
+                    foreach (var innerls in InnerlineStrings) {
+                        NetTopologySuite.IO.WKTReader wktreader = new NetTopologySuite.IO.WKTReader();
+                        var innerlr = wktreader.Read(innerls.ToWkt());
+                        NetTopologySuite.Geometries.Polygon polygon = (NetTopologySuite.Geometries.Polygon)wktreader.Read(curpoly.ToWkt());
+
+                        if (polygon.Contains(innerlr))
+                            curpoly.LineStrings.Add(innerls);
                     }
-                    i++;
+                    newpolygons.Add(curpoly);
                 }
-            }
 
-
-
-            foreach (var lss in lineStringss2) {
-                newpoly.Polygons.Add(new Polygon(lss));
             }
 
             return newpoly;
