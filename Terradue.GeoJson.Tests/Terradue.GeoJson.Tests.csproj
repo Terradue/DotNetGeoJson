@@ -45,6 +45,7 @@
     <Compile Include="WktTransformation.cs" />
     <Compile Include="GeoRSSTest.cs" />
     <Compile Include="SplitTests.cs" />
+    <Compile Include="Samples\Issues.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -62,6 +63,7 @@
     <None Include="Samples\s1.json" />
     <None Include="Samples\ASA_IM__0.json" />
     <None Include="Samples\multisurface.gml" />
+    <None Include="Samples\Polygon.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />
