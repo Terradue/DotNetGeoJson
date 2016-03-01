@@ -12,7 +12,8 @@
     <summary>GeoJson library for .Net</summary>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="[7.0.0,)" />
-      <dependency id="Terradue.ServiceModel.Ogc" version="[1.0.0,)" />
+      <dependency id="NetTopologySuite" version="[1.13,1.14)" />
+      <dependency id="NetTopologySuite.IO" version="[1.13,1.14)" />
     </dependencies>
 	<tags>GeoJSON, gml, json, georss, geometry, WKT</tags>
   </metadata>

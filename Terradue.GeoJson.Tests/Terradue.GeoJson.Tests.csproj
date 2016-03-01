@@ -41,6 +41,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GmlTest.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="GeoRSSTest.cs" />
     <Compile Include="SplitTests.cs" />
     <Compile Include="Gml32Test.cs" />
+    <Compile Include="Samples\Issues.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -56,13 +58,9 @@
     <None Include="packages.config" />
     <None Include="Samples\s1.json" />
     <None Include="Samples\ASA_IM__0.json" />
-    <None Include="Samples\polygon.georss" />
-    <None Include="Samples\polygon.georss10" />
-    <None Include="Samples\MultiPolygon.xml" />
-    <None Include="Samples\Multisurface32.gml" />
-    <None Include="Samples\MultiSurface.gml" />
-    <None Include="Samples\MultiCurveWithLinearString.gml" />
-    <None Include="Samples\MultiCurveWithLinearString32.gml" />
+    <None Include="Samples\multisurface.gml" />
+    <None Include="Samples\Polygon.txt" />
+    <None Include="Samples\multipoint.gml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />
