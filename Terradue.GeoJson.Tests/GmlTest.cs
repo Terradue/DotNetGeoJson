@@ -63,6 +63,20 @@ namespace Terradue.GeoJson.Tests {
             Assert.IsTrue(feature.Geometry is Polygon);
 
         }
+
+        [Test()]
+        public void FromGMLMultiPoint() {
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load("../Samples/multipoint.gml");
+
+            XmlElement e = doc.DocumentElement;
+
+            var feature = GeometryFactory.GmlToFeature(e);
+
+            Assert.IsTrue(feature.Geometry is MultiPoint);
+
+        }
     }
 }
 

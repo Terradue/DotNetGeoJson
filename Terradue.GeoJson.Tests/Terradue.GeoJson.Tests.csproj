@@ -64,6 +64,7 @@
     <None Include="Samples\ASA_IM__0.json" />
     <None Include="Samples\multisurface.gml" />
     <None Include="Samples\Polygon.txt" />
+    <None Include="Samples\multipoint.gml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />
