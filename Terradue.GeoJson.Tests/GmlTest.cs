@@ -89,7 +89,7 @@ namespace Terradue.GeoJson.Tests {
         [Test()]
         public void GmlMultiSurfaceTestCase() {
 
-            var fs = new FileStream("../Samples/MultiSurface.gml", FileMode.Open);
+            var fs = new FileStream("../Samples/MultiSurface311.gml", FileMode.Open);
 
             XmlReader reader = XmlReader.Create(fs);
 
@@ -113,19 +113,7 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
-        public void FromGMLMultiPoint() {
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load("../Samples/multipoint.gml");
-
-            XmlElement e = doc.DocumentElement;
-
-            var feature = GeometryFactory.GmlToFeature(e);
-
-            Assert.IsTrue(feature.Geometry is MultiPoint);
-
-        }
     }
 }
 

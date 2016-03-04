@@ -15,7 +15,6 @@ namespace Terradue.GeoJson.Tests {
     public class Gml32Test {
 
 
-
         [Test()]
         public void Gml32MultiCurveWithLinearStringTestCase() {
 
@@ -69,6 +68,33 @@ namespace Terradue.GeoJson.Tests {
             gml = geom.ToGml();
 
             Assert.That(gml is MultiSurfaceType);
+
+            StringWriter sw = new StringWriter();
+
+            XmlWriter xw = XmlWriter.Create(sw);
+
+            GmlHelper.Serialize(xw, gml);
+
+            string xml1 = sw.ToString();
+
+        }
+
+        [Test()]
+        public void FromGMLMultiPoint() {
+
+            var fs = new FileStream("../Samples/multipoint32.gml", FileMode.Open);
+
+            XmlReader reader = XmlReader.Create(fs);
+
+            AbstractGeometryType gml = GmlHelper.Deserialize(reader);
+
+            fs.Close();
+
+            MultiPoint geom = (MultiPoint)gml.ToGeometry();
+
+            gml = geom.ToGml();
+
+            Assert.That(gml is MultiPointType);
 
             StringWriter sw = new StringWriter();
 

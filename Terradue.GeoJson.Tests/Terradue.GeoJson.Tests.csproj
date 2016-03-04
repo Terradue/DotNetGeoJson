@@ -32,16 +32,19 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Terradue.ServiceModel.Ogc">
-      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.0.0\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="NuGet4Mono.Extensions">
+      <HintPath>..\packages\NuGet4Mono.Extensions.0.2.1\lib\net40\NuGet4Mono.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Terradue.ServiceModel.Ogc">
+      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.0-build20160304T093006\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GmlTest.cs" />
@@ -58,9 +61,9 @@
     <None Include="packages.config" />
     <None Include="Samples\s1.json" />
     <None Include="Samples\ASA_IM__0.json" />
-    <None Include="Samples\multisurface.gml" />
     <None Include="Samples\Polygon.txt" />
-    <None Include="Samples\multipoint.gml" />
+    <None Include="Samples\MultiSurface311.gml" />
+    <None Include="Samples\multipoint32.gml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />

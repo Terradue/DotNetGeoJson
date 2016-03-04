@@ -223,7 +223,11 @@ namespace Terradue.GeoJson.Gml321 {
                 return ((MultiSurfaceType)gmlObject).ToGeometry();
             }
 
-            throw new NotImplementedException();
+            if (gmlObject is MultiPointType) {
+                return ((MultiPointType)gmlObject).ToGeometry();
+            }
+
+            throw new NotImplementedException(gmlObject.GetType().ToString());
 
         }
 
@@ -287,6 +291,29 @@ namespace Terradue.GeoJson.Gml321 {
             }
 
             return new MultiLineString(linestrings);
+        }
+
+        public static MultiPoint ToGeometry(this MultiPointType gmlMultipoint) {
+            List<IPosition> points = new List<IPosition>();
+
+            if (gmlMultipoint.pointMember != null) {
+
+                foreach (var member in gmlMultipoint.pointMember) {
+
+                    points.Add(member.Point.ToGeometry().Position);
+
+                }
+            }
+
+            if (gmlMultipoint.pointMembers != null) {
+
+                foreach (var member in gmlMultipoint.pointMembers.Point) {
+
+                    points.Add(member.ToGeometry().Position);
+                }
+            }
+
+            return new MultiPoint(points);
         }
 
         public static Polygon ToGeometry(this PolygonType gmlPolygon) {
@@ -433,16 +460,19 @@ namespace Terradue.GeoJson.Gml321 {
             string[] coordinates1 = gmlcoord.Split(ts);
 
             foreach (string coord in coordinates1) {
-
                 string[] pos = coord.Split(cs);
+                try {
 
-                double x = double.Parse(pos[1]);
-                double y = double.Parse(pos[0]);
-                double? z = null;
-                if (pos.Length > 2)
-                    z = double.Parse(pos[2]);
+                    double x = double.Parse(pos[1]);
+                    double y = double.Parse(pos[0]);
+                    double? z = null;
+                    if (pos.Length > 2)
+                        z = double.Parse(pos[2]);
 
-                positions.Add(new GeographicPosition(y, x, z));
+                    positions.Add(new GeographicPosition(y, x, z));
+                } catch (FormatException e) {
+                    throw new InvalidFormatException(string.Format("invalid GML coordinate representation: \"{0}\" X={1}, Y={2}", coord, pos[1], pos[0]));
+                }
 
             }
             return positions;
