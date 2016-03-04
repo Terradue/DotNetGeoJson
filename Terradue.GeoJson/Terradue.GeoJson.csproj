@@ -78,7 +78,6 @@
     </Reference>
     <Reference Include="Terradue.ServiceModel.Ogc">
       <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.0-build20160304T093006\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
