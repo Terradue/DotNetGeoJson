@@ -124,12 +124,12 @@ namespace Terradue.GeoJson.Geometry {
             GeometryObject geometry = GeometryFactory.WktToGeometry(wkt);
 
             if (geometry.GetType() == typeof(MultiPolygon)) {
-                geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
+                //geometry = GeometryFactory.SplitWorldExtent((MultiPolygon)geometry);
                 return new Terradue.GeoJson.Feature.Feature(geometry, new Dictionary<string,object>());
             }
 
             if (geometry.GetType() == typeof(Polygon)) {
-                geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
+                //geometry = GeometryFactory.SplitWorldExtent((Polygon)geometry);
                 return new Terradue.GeoJson.Feature.Feature(geometry, new Dictionary<string,object>());
             }
 
@@ -186,7 +186,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The MultiPolygon</returns>
         /// <param name="wkt">WKT.</param>
         public static MultiPolygon MultiPolygonFromWKT(string wkt) {
-            MatchCollection matches = Regex.Matches(wkt, @"\((\([^\)]+\))\)");
+            MatchCollection matches = Regex.Matches(wkt, @"([(][(](?:[0-9-.]+[ ]+[0-9-.]+(?:[)][, ]+[(]|[, ]*)+)*[)][)])");
             List<Polygon> polygons = new List<Polygon>(matches.Count);
             for (int i = 0; i < matches.Count; i++) {
                 Polygon polygon = PolygonFromWKT(matches[i].Groups[1].Value);
@@ -202,7 +202,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The Polygon</returns>
         /// <param name="wkt">WKT.</param>
         public static Polygon PolygonFromWKT(string wkt) {
-            MatchCollection matches = Regex.Matches(wkt, @"(\([^\)]+\))");
+            MatchCollection matches = Regex.Matches(wkt, @"([(](?:[0-9-.]+[ ]+[0-9-.]+[, ]*)*[)])");
             List<LineString> linestrings = new List<LineString>(matches.Count);
             for (int i = 0; i < matches.Count; i++) {
                 LineString linestring = LineStringFromWKT(matches[i].Groups[1].Value);
@@ -213,7 +213,7 @@ namespace Terradue.GeoJson.Geometry {
         }
 
         /// <summary>
-        /// LineString from WK.
+        /// LineString from WKT.
         /// </summary>
         /// <returns>The LineString</returns>
         /// <param name="wkt">WKT.</param>
@@ -221,11 +221,18 @@ namespace Terradue.GeoJson.Geometry {
             string[] terms = wkt.TrimStart('(').TrimEnd(')').Split(',');
             string[] values;
             List<IPosition> positions = new List<IPosition>(terms.Length);
+            GeographicPosition prevgeopos = null;
             for (int i = 0; i < terms.Length; i++) {
                 values = terms[i].Trim(' ').Split(' ');
                 string z = (values.Length > 2 ? values[2] : null);
                 GeographicPosition geopos = new GeographicPosition(values[1], values[0], z);
+                try {
+                if (prevgeopos != null && Enumerable.SequenceEqual(geopos.Coordinates, prevgeopos.Coordinates))
+                    continue;
+                }catch {
+                }
                 positions.Add(geopos);
+                prevgeopos = geopos;
             }
 
             LineString test = new LineString(positions);
@@ -238,7 +245,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The MultiLineString</returns>
         /// <param name="wkt">WKT.</param>
         public static MultiLineString MultiLineStringFromWKT(string wkt) {
-            MatchCollection matches = Regex.Matches(wkt, @"(\([^\)\(]+\))");
+            MatchCollection matches = Regex.Matches(wkt, @"([(](?:[0-9-.]+[ ]+[0-9-.]+[, ]*)*[)])");
             List<LineString> linestrings = new List<LineString>(matches.Count);
             for (int i = 0; i < matches.Count; i++) {
                 LineString linestring = LineStringFromWKT(matches[i].Groups[1].Value);
@@ -1050,39 +1057,42 @@ namespace Terradue.GeoJson.Geometry {
 
         public static GeometryObject SplitWorldExtent(Polygon poly) {
 
+
             MultiPolygon newpoly = new MultiPolygon();
 
-            List<List<LineString>> lineStringss = new List<List<LineString>>();
+            List<LineString> OuterlineStrings = new List<LineString>();
 
-            foreach (LineString lineString in poly.LineStrings) {
-                lineStringss.Add(SplitWorldExtent(lineString));
+            List<LineString> InnerlineStrings = new List<LineString>();
+
+            OuterlineStrings.AddRange(SplitWorldExtent(poly.LineStrings.First()));
+
+            foreach (LineString lineString in poly.LineStrings.Skip(1)) {
+                InnerlineStrings.AddRange(SplitWorldExtent(lineString));
             }
 
-            if (poly.LineStrings.Count == lineStringss.First().Count) {
+            if (OuterlineStrings.Count == 1) {
                 return poly;
             }
 
-            List<List<LineString>> lineStringss2 = new List<List<LineString>>();
+            List<Polygon> newpolygons = new List<Polygon>();
 
-            if (lineStringss.Count > 0) {
-                foreach (LineString ls in lineStringss[0]) {
-                    var pls = new List<LineString>();
-                    lineStringss2.Add(pls);
-                    pls.Add(ls);
-                }
-                int i = 1;
-                while (i < lineStringss.Count) {
-                    foreach (LineString ls in lineStringss[i]) {
-                        lineStringss2[i].Add(ls);
+            if (OuterlineStrings.Count > 0) {
+                foreach (LineString ls in OuterlineStrings) {
+                    
+                    Polygon curpoly = new Polygon();
+                    newpoly.Polygons.Add(curpoly);
+                    curpoly.LineStrings.Add(ls);
+                    foreach (var innerls in InnerlineStrings) {
+                        NetTopologySuite.IO.WKTReader wktreader = new NetTopologySuite.IO.WKTReader();
+                        var innerlr = wktreader.Read(innerls.ToWkt());
+                        NetTopologySuite.Geometries.Polygon polygon = (NetTopologySuite.Geometries.Polygon)wktreader.Read(curpoly.ToWkt());
+
+                        if (polygon.Contains(innerlr))
+                            curpoly.LineStrings.Add(innerls);
                     }
-                    i++;
+                    newpolygons.Add(curpoly);
                 }
-            }
 
-
-
-            foreach (var lss in lineStringss2) {
-                newpoly.Polygons.Add(new Polygon(lss));
             }
 
             return newpoly;
