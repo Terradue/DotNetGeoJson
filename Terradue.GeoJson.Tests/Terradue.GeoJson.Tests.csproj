@@ -65,6 +65,7 @@
     <None Include="Samples\multisurface.gml" />
     <None Include="Samples\Polygon.txt" />
     <None Include="Samples\multipoint.gml" />
+    <None Include="Samples\largemultipolygon.wkt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />
