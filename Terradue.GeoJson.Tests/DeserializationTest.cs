@@ -67,9 +67,9 @@ namespace Terradue.GeoJson.Tests {
 
             string fs = "POINT(-115.278 32.297)";
 
-            Terradue.GeoJson.Feature.Feature point = Geometry.GeometryFactory.WktToFeature(fs);
+            var geom = WktExtensions.WktToGeometry(fs);
 
-            Assert.True(point.Geometry is Point);
+            Assert.True(geom is Point);
 
         }
 
@@ -117,12 +117,12 @@ namespace Terradue.GeoJson.Tests {
         [Test()]
         public void WktTest() {
 
-            var geometry = GeometryFactory.WktToGeometry("MULTIPOLYGON(((-129.968719 48.14193,-129.968719 48.14193,-131.056732 48.272541,-131.056732 48.272541,-130.657394 49.769352,-130.657394 49.769352,-129.536499 49.638176,-129.536499 49.638176,-129.968719 48.14193)))");
+            var geometry = WktExtensions.WktToGeometry("MULTIPOLYGON(((-129.968719 48.14193,-129.968719 48.14193,-131.056732 48.272541,-131.056732 48.272541,-130.657394 49.769352,-130.657394 49.769352,-129.536499 49.638176,-129.536499 49.638176,-129.968719 48.14193)))");
 
             Assert.AreEqual("MULTIPOLYGON(((-129.968719 48.14193,-131.056732 48.272541,-130.657394 49.769352,-129.536499 49.638176,-129.968719 48.14193)))", geometry.ToWkt());
 
 
-            geometry = GeometryFactory.WktToGeometry("MULTILINESTRING((1 1, 3 5), (-5 3, -8 -2))");
+            geometry = WktExtensions.WktToGeometry("MULTILINESTRING((1 1, 3 5), (-5 3, -8 -2))");
 
             Assert.AreEqual("MULTILINESTRING((1 1,3 5),(-5 3,-8 -2))", geometry.ToWkt());
 
