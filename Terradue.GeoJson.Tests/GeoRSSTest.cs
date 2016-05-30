@@ -10,6 +10,7 @@ using Terradue.ServiceModel.Ogc.Gml311;
 using Terradue.GeoJson.Gml311;
 using Terradue.GeoJson.GeoRss;
 using System.Linq;
+using Terradue.GeoJson.GeoRss10;
 
 namespace Terradue.GeoJson.Tests {
 
@@ -253,6 +254,49 @@ namespace Terradue.GeoJson.Tests {
             var xml1 = sw.ToString();
 
             Assert.IsTrue(XNode.DeepEquals(XDocument.Parse(xml).Root, XDocument.Parse(xml1).Root));
+
+        }
+
+        [Test()]
+        public void GeoRssFromAtomFeed() {
+
+            Terradue.ServiceModel.Syndication.Atom10FeedFormatter atomf = new Terradue.ServiceModel.Syndication.Atom10FeedFormatter();
+
+            atomf.ReadFrom(XmlReader.Create(new FileStream("../Samples/landsat8.xml", FileMode.Open, FileAccess.Read)));
+
+            GeometryObject geom;
+
+            foreach (var ext in atomf.Feed.Items.First().ElementExtensions) {
+
+                XmlReader xr = ext.GetReader();
+
+                switch (xr.NamespaceURI) {
+                    // 1) search for georss
+                    case "http://www.georss.org/georss":
+                        geom = Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(xr).ToGeometry();
+                        break;
+                        // 2) search for georss10
+                    case "http://www.georss.org/georss/10":
+                        geom = GeoRss10Extensions.ToGeometry(GeoRss10Helper.Deserialize(xr));
+                        break;
+                        // 3) search for dct:spatial
+                    case "http://purl.org/dc/terms/":
+                        if (xr.LocalName == "spatial")
+                            geom = WktExtensions.WktToGeometry(xr.ReadContentAsString());
+                        break;
+                    default:
+                        continue;
+                }
+
+            }
+        }
+
+        [Test()]
+        public void GeoRssFromFile1() {
+
+            var xr = XmlReader.Create(new FileStream("../Samples/georsswhere.xml", FileMode.Open, FileAccess.Read));
+
+            var geom = GeoRss10Helper.Deserialize(xr).ToGeometry();
 
         }
 
