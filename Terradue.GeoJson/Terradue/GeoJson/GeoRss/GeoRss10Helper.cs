@@ -43,7 +43,7 @@ namespace Terradue.GeoJson.GeoRss10 {
             var node = XElement.Load(reader);
             reader = node.CreateReader();
 
-            if (node.Name.NamespaceName != "http://www.georss.org/georss")
+            if (node.Name.NamespaceName != "http://www.georss.org/georss/10")
                 throw new InvalidFormatException("The xml is not GeoRSS");
 
             if (node.Name.LocalName == "where") {

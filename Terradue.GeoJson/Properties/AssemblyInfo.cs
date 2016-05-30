@@ -45,5 +45,5 @@ using NuGet4Mono.Extensions;
 [assembly: AssemblyLicenseUrl("https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE")]
 [assembly: AssemblyCopyright("Terradue")]
 [assembly: AssemblyVersion("1.7.1.*")]
-[assembly: AssemblyInformationalVersion("1.7.1")
+[assembly: AssemblyInformationalVersion("1.7.1")]
                                                               
