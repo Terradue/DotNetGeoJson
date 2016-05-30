@@ -31,13 +31,19 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="NuGet4Mono.Extensions">
+      <HintPath>..\packages\NuGet4Mono.Extensions.0.3.0\lib\net40\NuGet4Mono.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Terradue.ServiceModel.Ogc">
+      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.0\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GmlTest.cs" />
@@ -45,29 +51,26 @@
     <Compile Include="WktTransformation.cs" />
     <Compile Include="GeoRSSTest.cs" />
     <Compile Include="SplitTests.cs" />
+    <Compile Include="Gml32Test.cs" />
     <Compile Include="Samples\Issues.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="MultiPolygon.geojson" />
+    <None Include="packages.config" />
+    <None Include="Samples\s1.json" />
+    <None Include="Samples\ASA_IM__0.json" />
+    <None Include="Samples\Polygon.txt" />
+    <None Include="Samples\MultiSurface311.gml" />
+    <None Include="Samples\multipoint32.gml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Samples\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Terradue.GeoJson\Terradue.GeoJson.csproj">
       <Project>{26AD29FF-862F-46D9-9F25-473E2977A7C3}</Project>
       <Name>Terradue.GeoJson</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MultiCurveWithLinearString.gml" />
-    <None Include="MultiPolygon.geojson" />
-    <None Include="packages.config" />
-    <None Include="posList.gml" />
-    <None Include="polygon.georss" />
-    <None Include="Samples\s1.json" />
-    <None Include="Samples\ASA_IM__0.json" />
-    <None Include="Samples\multisurface.gml" />
-    <None Include="Samples\Polygon.txt" />
-    <None Include="Samples\multipoint.gml" />
-    <None Include="Samples\largemultipolygon.wkt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Samples\" />
   </ItemGroup>
 </Project>

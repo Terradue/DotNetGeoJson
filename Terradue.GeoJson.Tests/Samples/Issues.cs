@@ -12,7 +12,9 @@ namespace Terradue.GeoJson.Tests {
         public void Issue9() {
 
             string wkt = File.ReadAllText("../Samples/Polygon.txt");
-            var feature = GeometryFactory.WktToFeature(wkt);
+            var geom = WktExtensions.WktToGeometry(wkt);
+
+            Assert.That(geom is Polygon);
 
         }
     }
