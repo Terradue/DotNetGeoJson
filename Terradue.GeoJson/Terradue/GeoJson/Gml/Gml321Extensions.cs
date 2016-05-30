@@ -388,7 +388,7 @@ namespace Terradue.GeoJson.Gml321 {
 
             int dim;
 
-            string[] coord = pos.Text.Split(' ');
+            string[] coord = pos.Text.Trim().Split(' ');
             if (string.IsNullOrEmpty(pos.srsDimension))
                 dim = 2; /* We assume that we are in 2D */
             else {
@@ -408,7 +408,7 @@ namespace Terradue.GeoJson.Gml321 {
             List<IPosition> positions = new List<IPosition>();
             int dim;
 
-            string[] coord = pos.Text.Split(' ');
+            string[] coord = pos.Text.Trim().Split(' ');
 
             if (string.IsNullOrEmpty(pos.srsDimension))
                 dim = 2; /* We assume that we are in 2D */
