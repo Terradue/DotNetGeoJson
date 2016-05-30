@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Terradue.GeoJson.Geometry;
 using System.Collections.Generic;
@@ -59,6 +59,8 @@ namespace Terradue.GeoJson.Tests {
             GeometryFactory.SplitWorldExtent((Polygon)geometry);
 
             string geomstring = geometry.ToWkt();
+
+            var feature = WktExtensions.WktToGeometry("POLYGON((-5.361328125 36.03133177633189,-4.921875 36.80928470205937,-2.021484375 36.949891786813296,3.076171875 42.553080288955826,4.21875 43.51668853502909,8.4375 44.5278427984555,13.095703125 45.89000815866182,19.248046875 42.09822241118974,26.71875 39.707186656826565,35.947265625 36.5978891330702,34.1015625 31.203404950917395,18.984375 30.29701788337205,-5.361328125 36.03133177633189))");
 
         }
     }
