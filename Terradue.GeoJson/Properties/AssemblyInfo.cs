@@ -25,7 +25,13 @@
 
     \xrefitem sw_link "Links" "Software Package List" [DotNetGeoJson](https://github.com/Terradue/DotNetGeoJson)
 
-      \xrefitem sw_license "License" "Software License" [GPLv3](https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE.txt)
+    \xrefitem sw_license "License" "Software License" [AGPL](https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE)
+
+	\xrefitem sw_req "Requires" "Software Dependencies" \ref NetTopologySuite
+
+	\xrefitem sw_req "Requires" "Software Dependencies" \ref Newtonsoft.Json
+
+    \xrefitem sw_req "Requires" "Software Dependencies" \ref GeoAPI
 
 \ingroup Data
 @}
