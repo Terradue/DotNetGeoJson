@@ -44,14 +44,14 @@ namespace Terradue.GeoJson.GeoRss {
     [System.Xml.Serialization.XmlRootAttribute("where", Namespace = "http://www.georss.org/georss", IsNullable = false)]
     public partial class GeoRssWhere : abstractFeaturePropertyType, IGeoRSS {
 
-        private object itemField;
+        private object[] itemField;
 
         [System.Xml.Serialization.XmlElementAttribute("CircleByCenterPoint", typeof(CircleByCenterPointType), Namespace = "http://www.opengis.net/gml")]
         [System.Xml.Serialization.XmlElementAttribute("Envelope", typeof(EnvelopeType), Namespace = "http://www.opengis.net/gml")]
         [System.Xml.Serialization.XmlElementAttribute("LineString", typeof(LineStringType), Namespace = "http://www.opengis.net/gml")]
         [System.Xml.Serialization.XmlElementAttribute("Point", typeof(PointType), Namespace = "http://www.opengis.net/gml")]
         [System.Xml.Serialization.XmlElementAttribute("Polygon", typeof(PolygonType), Namespace = "http://www.opengis.net/gml")]
-        public object Item {
+        public object[] Item {
             get {
                 return this.itemField;
             }
@@ -59,6 +59,12 @@ namespace Terradue.GeoJson.GeoRss {
                 this.itemField = value;
             }
         }
+
+		[System.Xml.Serialization.XmlAttributeAttribute("type")]
+		public string Type {
+			get;
+			set;
+		}
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]

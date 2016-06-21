@@ -55,7 +55,7 @@ namespace Terradue.GeoJson.Tests {
         [Test()]
         public void Gml32MultiSurfaceTestCase() {
 
-            var fs = new FileStream("../Samples/Multisurface32.gml", FileMode.Open);
+			var fs = new FileStream("../Samples/Multisurface32.gml", FileMode.Open, FileAccess.Read);
 
             XmlReader reader = XmlReader.Create(fs);
 

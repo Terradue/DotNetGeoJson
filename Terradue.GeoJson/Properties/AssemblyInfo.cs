@@ -21,11 +21,11 @@
 @{
     Terradue .NET GeoJson Library. Initially developed to provide an easy way to manage Geometry objects with serialization and deserialization functions and transformation functions from/to GeoJson, it also supports GML, georss and Well Known Text (WKT)
 
-    \xrefitem sw_version "Versions" "Software Package Version" 1.7.2
+    \xrefitem sw_version "Versions" "Software Package Version" 1.7.3
 
     \xrefitem sw_link "Links" "Software Package List" [DotNetGeoJson](https://github.com/Terradue/DotNetGeoJson)
 
-      \xrefitem sw_license "License" "Software License" [GPLv3](https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE.txt)
+      \xrefitem sw_license "License" "Software License" [AGPL](https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE)
 
 \ingroup Data
 @}
@@ -44,6 +44,6 @@ using NuGet4Mono.Extensions;
 [assembly: AssemblyProjectUrl("https://github.com/Terradue/DotNetGeoJson")]
 [assembly: AssemblyLicenseUrl("https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE")]
 [assembly: AssemblyCopyright("Terradue")]
-[assembly: AssemblyVersion("1.7.2.*")]
-[assembly: AssemblyInformationalVersion("1.7.2")]
+[assembly: AssemblyVersion("1.7.3.*")]
+[assembly: AssemblyInformationalVersion("1.7.3")]
                                                               
