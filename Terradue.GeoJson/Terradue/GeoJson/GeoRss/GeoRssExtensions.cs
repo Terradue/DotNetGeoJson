@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using Terradue.GeoJson.Gml311;
 using System.Xml;
 using System.IO;
+using System.Linq;
 
 namespace Terradue.GeoJson.GeoRss {
     
@@ -68,24 +69,24 @@ namespace Terradue.GeoJson.GeoRss {
 
         public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.GeoRssWhere where) {
            
-            if (where.Item is EnvelopeType) {
+			if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is EnvelopeType) {
                 throw new NotImplementedException();
             }
 
-            if (where.Item is CircleByCenterPointType) {
+			if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is CircleByCenterPointType) {
                 throw new NotImplementedException();
             }
 
-            if (where.Item is LineStringType) {
-                return ((LineStringType)where.Item).ToGeometry();
+			if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is LineStringType) {
+                return ((LineStringType)where.Item[0]).ToGeometry();
             }
 
-            if (where.Item is PointType) {
-                return ((PointType)where.Item).ToGeometry();
+			if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is PointType) {
+                return ((PointType)where.Item[0]).ToGeometry();
             }
 
-            if (where.Item is PolygonType) {
-                return ((PolygonType)where.Item).ToGeometry();
+			if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is PolygonType) {
+                return ((PolygonType)where.Item[0]).ToGeometry();
             }
 
             return null;
@@ -219,27 +220,27 @@ namespace Terradue.GeoJson.GeoRss {
 
         public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this Polygon polygon) {
 
-            return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = polygon.ToGmlPolygon() };
+			return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = new PolygonType[] { polygon.ToGmlPolygon() } };
         }
 
         public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this LineString line) {
 
-            return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = line.ToGmlLineString() };
+			return new Terradue.GeoJson.GeoRss.GeoRssWhere() { Item = new LineStringType[] { line.ToGmlLineString() } };
         }
 
         public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this Point point) {
 
-            return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = point.ToGmlPoint() };
+			return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = new PointType[] { point.ToGmlPoint() } };
         }
 
         public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this MultiPolygon mpolygon) {
 
-            return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = mpolygon.ToGmlMultiSurface() };
+			return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = mpolygon.Polygons.Select(p => p.ToGmlPolygon()).ToArray(), Type = mpolygon.Polygons.Count() > 1 ? "multipolygon" : null };
         }
 
         public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this MultiPoint mpoint) {
 
-            return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = mpoint.ToGmlMultiPoint() };
+			return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = mpoint.Points.Select(p => p.ToGmlPoint()).ToArray(), Type = mpoint.Points.Count() > 1 ? "multipoint" : null };
         }
     }
 }
