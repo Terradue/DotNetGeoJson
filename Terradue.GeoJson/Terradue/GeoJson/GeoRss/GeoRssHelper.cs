@@ -38,7 +38,20 @@ namespace Terradue.GeoJson.GeoRss {
 
     public static class GeoRssHelper {
 
-        public static IGeoRSS Deserialize(XmlReader reader) {
+		static XmlSerializer geoRssWhereSerializer = new XmlSerializer(typeof(GeoRssWhere));
+		static XmlSerializer geoRssPointSerializer = new XmlSerializer(typeof(GeoRssPoint));
+		static XmlSerializer geoRssLineSerializer = new XmlSerializer(typeof(GeoRssLine));
+		static XmlSerializer geoRssPolygonSerializer = new XmlSerializer(typeof(GeoRssPolygon));
+		static XmlSerializer geoRssBoxSerializer = new XmlSerializer(typeof(GeoRssBox));
+		static XmlSerializer geoRssFeatureTypeSerializer = new XmlSerializer(typeof(GeoRssFeatureType));
+		static XmlSerializer geoRssFeatureNameSerializer = new XmlSerializer(typeof(GeoRssFeatureName));
+		static XmlSerializer geoRssElevationSerializer = new XmlSerializer(typeof(GeoRssElevation));
+		static XmlSerializer geoRssRelationshipTagSerializer = new XmlSerializer(typeof(GeoRssRelationshipTag));
+		static XmlSerializer geoRssRadiusSerializer = new XmlSerializer(typeof(GeoRssRadius));
+
+
+		public static IGeoRSS Deserialize(XmlReader reader) {
+
 
             var node = XElement.Load(reader);
             reader = node.CreateReader();
@@ -47,53 +60,53 @@ namespace Terradue.GeoJson.GeoRss {
                 throw new InvalidFormatException("The xml is not GeoRSS");
 
             if (node.Name.LocalName == "where") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssWhere));
-                return (GeoRssWhere)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssWhere));
+                return (GeoRssWhere)geoRssWhereSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "point") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssPoint));
-                return (GeoRssPoint)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssPoint));
+                return (GeoRssPoint)geoRssPointSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "line") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssLine));
-                return (GeoRssLine)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssLine));
+                return (GeoRssLine)geoRssLineSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "polygon") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssPolygon));
-                return (GeoRssPolygon)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssPolygon));
+                return (GeoRssPolygon)geoRssPolygonSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "box") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssBox));
-                return (GeoRssBox)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssBox));
+                return (GeoRssBox)geoRssBoxSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "featuretypetag") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssFeatureType));
-                return (GeoRssFeatureType)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssFeatureType));
+                return (GeoRssFeatureType)geoRssFeatureTypeSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "featurename") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssFeatureName));
-                return (GeoRssFeatureName)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssFeatureName));
+                return (GeoRssFeatureName)geoRssFeatureNameSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "relationshiptag") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssRelationshipTag));
-                return (GeoRssRelationshipTag)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssRelationshipTag));
+                return (GeoRssRelationshipTag)geoRssRelationshipTagSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "elev") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssElevation));
-                return (GeoRssElevation)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssElevation));
+                return (GeoRssElevation)geoRssElevationSerializer.Deserialize(reader);
             }
 
             if (node.Name.LocalName == "radius") {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssRadius));
-                return (GeoRssRadius)geoRssSerializer.Deserialize(reader);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssRadius));
+                return (GeoRssRadius)geoRssRadiusSerializer.Deserialize(reader);
             }
 
             throw new NotImplementedException();
@@ -108,53 +121,53 @@ namespace Terradue.GeoJson.GeoRss {
 
             if (georss is GeoRssWhere) {
                 namespaces.Add("gml", "http://www.opengis.net/gml");
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssWhere));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssWhere));
+                geoRssWhereSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssPoint) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssPoint));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssPoint));
+                geoRssPointSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssLine) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssLine));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssLine));
+                geoRssLineSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssPolygon) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssPolygon));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssPolygon));
+                geoRssPolygonSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssBox) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssBox));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssBox));
+                geoRssBoxSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssFeatureType) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssFeatureType));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssFeatureType));
+                geoRssFeatureTypeSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssFeatureName) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssFeatureName));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssFeatureName));
+                geoRssFeatureNameSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssRelationshipTag) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssRelationshipTag));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssRelationshipTag));
+                geoRssRelationshipTagSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssElevation) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssElevation));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssElevation));
+				geoRssElevationSerializer.Serialize(writer,georss,namespaces);
             }
 
             if (georss is GeoRssRadius) {
-                XmlSerializer geoRssSerializer = new XmlSerializer(typeof(GeoRssRadius));
-                geoRssSerializer.Serialize(writer,georss,namespaces);
+                //XmlSerializer geoRssSerialize3r = new XmlSerializer(typeof(GeoRssRadius));
+				geoRssRadiusSerializer.Serialize(writer,georss,namespaces);
             }
                 
         }
