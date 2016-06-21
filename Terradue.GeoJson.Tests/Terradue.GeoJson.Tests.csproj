@@ -68,9 +68,11 @@
     <None Include="Samples\multipoint32.gml" />
     <None Include="Samples\landsat8.xml" />
     <None Include="Samples\georsswhere.xml" />
+    <None Include="Samples\multisurface32-2.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />
+    <Folder Include="out\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Terradue.GeoJson\Terradue.GeoJson.csproj">

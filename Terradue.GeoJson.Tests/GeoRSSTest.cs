@@ -223,6 +223,8 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.IsTrue(XNode.DeepEquals(XDocument.Parse(xml).Root, XDocument.Parse(xml1).Root));
 
+			where.CreateReader();
+
         }
 
         [Test()]
@@ -299,6 +301,26 @@ namespace Terradue.GeoJson.Tests {
             var geom = GeoRss10Helper.Deserialize(xr).ToGeometry();
 
         }
+
+		[Test()]
+		public void Gml32MultiSurfaceToGeorss()
+		{
+
+			var fs = new FileStream("../Samples/multisurface32-2.xml", FileMode.Open, FileAccess.Read);
+
+			XmlReader reader = XmlReader.Create(fs);
+
+			var gml = Terradue.ServiceModel.Ogc.Gml321.GmlHelper.Deserialize(reader);
+
+			fs.Close();
+
+			MultiPolygon geom = (MultiPolygon)Terradue.GeoJson.Gml321.Gml321Extensions.ToGeometry(gml);
+
+			XmlDocument doc = new XmlDocument();
+			doc.Load(geom.ToGeoRss().CreateReader());
+			doc.Save("../out/georssfromgml32.xml");
+
+		}
 
     }
 }

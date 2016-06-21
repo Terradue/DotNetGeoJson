@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<georss:where xmlns:gml="http://www.opengis.net/gml" xmlns:georss="http://www.georss.org/georss">
+  <gml:Polygon>
+    <gml:exterior>
+      <gml:LinearRing>
+        <gml:posList count="5">68.28772 171.204941 66.438118 170.470917 65.602242 179.436798 67.412254 -179.155029 68.28772 171.204941</gml:posList>
+      </gml:LinearRing>
+    </gml:exterior>
+  </gml:Polygon>
+</georss:where>
