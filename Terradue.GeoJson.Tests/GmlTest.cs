@@ -9,111 +9,126 @@ using Terradue.GeoJson.Gml311;
 using System.IO;
 using System.Xml.Linq;
 
-namespace Terradue.GeoJson.Tests { 
+namespace Terradue.GeoJson.Tests
+{
 
-    [TestFixture()]
-    public class GmlTest {
+	[TestFixture()]
+	public class GmlTest
+	{
 
-        [Test()]
-        public void GmlMultiPolygonTestCase() {
+		[Test()]
+		public void GmlMultiPolygonTestCase()
+		{
 
-            var fs = new FileStream("../Samples/MultiPolygon.xml", FileMode.Open);
+			var fs = new FileStream("../Samples/MultiPolygon.xml", FileMode.Open);
 
-            XmlReader reader = XmlReader.Create(fs);
+			XmlReader reader = XmlReader.Create(fs);
 
-            AbstractGeometryType gml = GmlHelper.Deserialize(reader);
+			AbstractGeometryType gml = GmlHelper.Deserialize(reader);
 
-            fs.Close();
+			fs.Close();
 
-            MultiPolygon geom = (MultiPolygon)gml.ToGeometry();
+			MultiPolygon geom = (MultiPolygon)gml.ToGeometry();
 
-            gml = geom.ToGmlMultiSurface();
+			gml = geom.ToGmlMultiSurface();
 
-            StringWriter sw = new StringWriter();
+			StringWriter sw = new StringWriter();
 
-            XmlWriter xw = XmlWriter.Create(sw);
+			XmlWriter xw = XmlWriter.Create(sw);
 
-            GmlHelper.Serialize(xw, gml);
+			GmlHelper.Serialize(xw, gml);
 
-            xw.Close();
+			xw.Close();
 
-            gml = geom.ToGmlMultiPolygon();
+			gml = geom.ToGmlMultiPolygon();
 
-            sw = new StringWriter();
+			sw = new StringWriter();
 
-            xw = XmlWriter.Create(sw);
+			xw = XmlWriter.Create(sw);
 
-            GmlHelper.Serialize(xw, gml);
+			GmlHelper.Serialize(xw, gml);
 
-            //Assert.IsTrue(XNode.DeepEquals(XDocument.Load("../Samples/MultiPolygon.xml").Root, XDocument.Parse(xml1).Root));
+			//Assert.IsTrue(XNode.DeepEquals(XDocument.Load("../Samples/MultiPolygon.xml").Root, XDocument.Parse(xml1).Root));
 
-        }
+		}
 
-        [Test()]
-        public void GmlMultiCurveWithLinearStringTestCase() {
+		[Test()]
+		public void GmlMultiCurveWithLinearStringTestCase()
+		{
 
-            var fs = new FileStream("../Samples/MultiCurveWithLinearString.gml", FileMode.Open);
+			var fs = new FileStream("../Samples/MultiCurveWithLinearString.gml", FileMode.Open);
 
-            XmlReader reader = XmlReader.Create(fs);
+			XmlReader reader = XmlReader.Create(fs);
 
-            AbstractGeometryType gml = GmlHelper.Deserialize(reader);
+			AbstractGeometryType gml = GmlHelper.Deserialize(reader);
 
-            fs.Close();
+			fs.Close();
 
-            MultiLineString geom = (MultiLineString)gml.ToGeometry();
+			MultiLineString geom = (MultiLineString)gml.ToGeometry();
 
-            gml = geom.ToGmlMultiLineString();
+			gml = geom.ToGmlMultiLineString();
 
-            StringWriter sw = new StringWriter();
+			StringWriter sw = new StringWriter();
 
-            XmlWriter xw = XmlWriter.Create(sw);
+			XmlWriter xw = XmlWriter.Create(sw);
 
-            GmlHelper.Serialize(xw, gml);
+			GmlHelper.Serialize(xw, gml);
 
-            string xml1 = sw.ToString();
+			string xml1 = sw.ToString();
 
-            gml = geom.ToGmlMultiCurve();
+			gml = geom.ToGmlMultiCurve();
 
-            sw = new StringWriter();
+			sw = new StringWriter();
 
-            xw = XmlWriter.Create(sw);
+			xw = XmlWriter.Create(sw);
 
-            GmlHelper.Serialize(xw, gml);
+			GmlHelper.Serialize(xw, gml);
 
-            xw.Close();
+			xw.Close();
 
-            xml1 = sw.ToString();
+			xml1 = sw.ToString();
 
-        }
+		}
 
-        [Test()]
-        public void GmlMultiSurfaceTestCase() {
+		[Test()]
+		public void GmlMultiSurfaceTestCase()
+		{
 
-            var fs = new FileStream("../Samples/MultiSurface311.gml", FileMode.Open);
+			var fs = new FileStream("../Samples/MultiSurface311.gml", FileMode.Open);
 
-            XmlReader reader = XmlReader.Create(fs);
+			XmlReader reader = XmlReader.Create(fs);
 
-            AbstractGeometryType gml = GmlHelper.Deserialize(reader);
+			AbstractGeometryType gml = GmlHelper.Deserialize(reader);
 
-            fs.Close();
+			fs.Close();
 
-            MultiPolygon geom = (MultiPolygon)gml.ToGeometry();
+			MultiPolygon geom = (MultiPolygon)gml.ToGeometry();
 
-            gml = geom.ToGml();
+			gml = geom.ToGml();
 
-            Assert.That(gml is MultiPolygonType);
+			Assert.That(gml is MultiPolygonType);
 
-            StringWriter sw = new StringWriter();
+			StringWriter sw = new StringWriter();
 
-            XmlWriter xw = XmlWriter.Create(sw);
+			XmlWriter xw = XmlWriter.Create(sw);
 
-            GmlHelper.Serialize(xw, gml);
+			GmlHelper.Serialize(xw, gml);
 
-            string xml1 = sw.ToString();
+			string xml1 = sw.ToString();
 
-        }
+		}
 
+		[Test()]
+		public void CreatePolygonFromNonClosedLineString()
+		{
 
-    }
+			LineString ls = new LineString(new GeographicPosition[] { new GeographicPosition(-10, 10), new GeographicPosition(-10, 5) }.Cast<IPosition>().ToList());
+
+			Polygon poly = new Polygon(new LineString[] { ls }.ToList());
+
+			poly.ToGml();
+
+		}
+	}
 }
 

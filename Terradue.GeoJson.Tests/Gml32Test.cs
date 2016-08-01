@@ -79,6 +79,34 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
+		[Test()]
+		public void Gml32MultiSurfaceWithDBSTestCase()
+		{
+
+			var fs = new FileStream("../Samples/multisurface321withDBS.xml", FileMode.Open, FileAccess.Read);
+
+			XmlReader reader = XmlReader.Create(fs);
+
+			AbstractGeometryType gml = GmlHelper.Deserialize(reader);
+
+			fs.Close();
+
+			MultiPolygon geom = (MultiPolygon)gml.ToGeometry();
+
+			gml = geom.ToGml();
+
+			Assert.That(gml is MultiSurfaceType);
+
+			StringWriter sw = new StringWriter();
+
+			XmlWriter xw = XmlWriter.Create(sw);
+
+			GmlHelper.Serialize(xw, gml);
+
+			string xml1 = sw.ToString();
+
+		}
+
         [Test()]
         public void FromGMLMultiPoint() {
 
