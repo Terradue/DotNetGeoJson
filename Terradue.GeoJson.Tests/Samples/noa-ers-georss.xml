@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<where xmlns="http://www.georss.org/georss">
+	<MultiSurface xmlns="http://www.opengis.net/gml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<surfaceMembers>
+			<Polygon>
+				<exterior>
+					<LinearRing>
+						<posList count="5" srsDimension="2">25.331 37.162 26.572 36.954 26.299 35.928 25.074 36.136 25.331 37.162 </posList>
+					</LinearRing>
+				</exterior>
+			</Polygon>
+		</surfaceMembers>
+	</MultiSurface>
+</where>

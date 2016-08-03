@@ -302,6 +302,18 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
+        [Test()]
+        public void GeoRssFromFile2()
+        {
+
+            var xr = XmlReader.Create(new FileStream("../Samples/noa-ers-georss.xml", FileMode.Open, FileAccess.Read));
+
+            var geom = GeoRssHelper.Deserialize(xr).ToGeometry();
+
+            Assert.IsNotNull(geom);
+
+        }
+
 		[Test()]
 		public void Gml32MultiSurfaceToGeorss()
 		{
