@@ -40,11 +40,11 @@
     <Reference Include="NuGet4Mono.Extensions">
       <HintPath>..\packages\NuGet4Mono.Extensions.0.3.0\lib\net40\NuGet4Mono.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Terradue.ServiceModel.Ogc">
-      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.0\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
-    </Reference>
     <Reference Include="Terradue.ServiceModel.Syndication">
       <HintPath>..\packages\Terradue.ServiceModel.Syndication.1.0.0.0\lib\net40\Terradue.ServiceModel.Syndication.dll</HintPath>
+    </Reference>
+    <Reference Include="Terradue.ServiceModel.Ogc">
+      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.4\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
