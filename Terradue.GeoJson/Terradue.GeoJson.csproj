@@ -77,7 +77,7 @@
       <HintPath>..\packages\NuGet4Mono.Extensions.0.3.0\lib\net40\NuGet4Mono.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Terradue.ServiceModel.Ogc">
-      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.0\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
+      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.4\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
