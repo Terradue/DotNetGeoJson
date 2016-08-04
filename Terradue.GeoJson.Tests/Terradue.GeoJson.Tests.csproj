@@ -44,7 +44,7 @@
       <HintPath>..\packages\Terradue.ServiceModel.Syndication.1.0.0.0\lib\net40\Terradue.ServiceModel.Syndication.dll</HintPath>
     </Reference>
     <Reference Include="Terradue.ServiceModel.Ogc">
-      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.4\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
+      <HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.5\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

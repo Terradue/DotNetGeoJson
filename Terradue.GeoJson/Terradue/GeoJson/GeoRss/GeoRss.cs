@@ -51,7 +51,9 @@ namespace Terradue.GeoJson.GeoRss {
         [System.Xml.Serialization.XmlElementAttribute("LineString", typeof(LineStringType), Namespace = "http://www.opengis.net/gml")]
         [System.Xml.Serialization.XmlElementAttribute("Point", typeof(PointType), Namespace = "http://www.opengis.net/gml")]
         [System.Xml.Serialization.XmlElementAttribute("Polygon", typeof(PolygonType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlAnyElement()]
+        [System.Xml.Serialization.XmlElementAttribute("MultiSurface", typeof(MultiSurfaceType), Namespace = "http://www.opengis.net/gml")]
+        [System.Xml.Serialization.XmlElementAttribute("MultiCurve", typeof(MultiCurveType), Namespace = "http://www.opengis.net/gml")]
+        [System.Xml.Serialization.XmlElementAttribute("MultiPolygon", typeof(MultiPolygonType), Namespace = "http://www.opengis.net/gml")]
         public object[] Item {
             get {
                 return this.itemField;
