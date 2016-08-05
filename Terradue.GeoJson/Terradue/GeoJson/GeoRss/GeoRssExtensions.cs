@@ -89,12 +89,18 @@ namespace Terradue.GeoJson.GeoRss {
                 return ((PolygonType)where.Item[0]).ToGeometry();
             }
 
-            if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is XmlElement) {
-                System.IO.StringReader reader = new System.IO.StringReader(((XmlElement)where.Item[0]).OuterXml);
+            if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is MultiCurveType) {
+                return ((MultiCurveType)where.Item[0]).ToGeometry();
+            }
 
-                XmlReader xReader = XmlReader.Create(reader);
-                AbstractGeometryType agt = (AbstractGeometryType)ServiceModel.Ogc.Gml311.GmlHelper.Deserialize(xReader);
-                return agt.ToGeometry();
+            if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is MultiPolygonType)
+            {
+                return ((MultiCurveType)where.Item[0]).ToGeometry();
+            }
+
+            if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is MultiSurfaceType)
+            {
+                return ((MultiSurfaceType)where.Item[0]).ToGeometry();
             }
 
             return null;

@@ -308,9 +308,17 @@ namespace Terradue.GeoJson.Tests {
 
             var xr = XmlReader.Create(new FileStream("../Samples/noa-ers-georss.xml", FileMode.Open, FileAccess.Read));
 
-            var geom = GeoRssHelper.Deserialize(xr).ToGeometry();
+            MultiPolygon geom = GeoRssHelper.Deserialize(xr).ToGeometry() as MultiPolygon;
 
             Assert.IsNotNull(geom);
+
+            xr = XmlReader.Create(new FileStream("../Samples/noa-ers-georss.xml", FileMode.Open, FileAccess.Read));
+
+            MultiPolygon geom2 = GeoRssHelper.Deserialize(xr).ToGeometry() as MultiPolygon;
+
+            geom.Polygons.Add(geom2.Polygons[0]);
+
+            geom.ToGeoRss();
 
         }
 

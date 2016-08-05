@@ -265,6 +265,26 @@ namespace Terradue.GeoJson.Gml311 {
                 return ((MultiSurfaceType)gmlObject).ToGeometry();
             }
 
+            if (gmlObject is PolygonType)
+            {
+                return ((PolygonType)gmlObject).ToGeometry();
+            }
+
+            if (gmlObject is PointType)
+            {
+                return ((PointType)gmlObject).ToGeometry();
+            }
+
+            if (gmlObject is LineStringType)
+            {
+                return ((LineStringType)gmlObject).ToGeometry();
+            }
+
+            if (gmlObject is LinearRingType)
+            {
+                return ((LinearRingType)gmlObject).ToGeometry();
+            }
+
             throw new NotImplementedException();
 
         }
