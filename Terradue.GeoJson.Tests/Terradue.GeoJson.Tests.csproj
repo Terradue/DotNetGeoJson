@@ -70,6 +70,7 @@
     <None Include="Samples\multisurface32-2.xml" />
     <None Include="Samples\multisurface321withDBS.xml" />
     <None Include="Samples\noa-ers-georss.xml" />
+    <None Include="Samples\multisurface32-3.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Samples\" />
