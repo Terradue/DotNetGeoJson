@@ -79,6 +79,21 @@ namespace Terradue.GeoJson.Tests {
             Assert.AreEqual("Latitude: 24.8289604843644, Longitude: 92.9993725045111", geometry.LineStrings.First().Positions.First().ToString());
 
         }
+
+        [Test()]
+        public void WktMPToPolygon()
+        {
+
+            string wkt = "MULTIPOINT (( 10 10 ))";
+
+            MultiPoint geometry = (MultiPoint)WktExtensions.WktToGeometry(wkt);
+
+            Assert.IsTrue(geometry is MultiPoint);
+
+
+            Assert.AreEqual("Latitude: 10, Longitude: 10", geometry.Points.First().Position.ToString());
+
+        }
     }
 }
 
