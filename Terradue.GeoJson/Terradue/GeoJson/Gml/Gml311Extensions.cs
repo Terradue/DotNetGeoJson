@@ -285,6 +285,11 @@ namespace Terradue.GeoJson.Gml311 {
                 return ((LinearRingType)gmlObject).ToGeometry();
             }
 
+            if (gmlObject is MultiPointType)
+            {
+                return ((MultiPointType)gmlObject).ToGeometry();
+            }
+
             throw new NotImplementedException();
 
         }
@@ -362,8 +367,35 @@ namespace Terradue.GeoJson.Gml311 {
                 }
             }
 
-            MultiPolygon mp;
             return new MultiPolygon(polygons);
+        }
+
+        public static MultiPoint ToGeometry(this MultiPointType gmlMultipoint)
+        {
+            List<IPosition> points = new List<IPosition>();
+
+            if (gmlMultipoint.pointMember != null)
+            {
+
+                foreach (var member in gmlMultipoint.pointMember)
+                {
+
+                    points.Add(member.Point.ToGeometry().Position);
+
+                }
+            }
+
+            if (gmlMultipoint.pointMembers != null)
+            {
+
+                foreach (var member in gmlMultipoint.pointMembers)
+                {
+
+                    points.Add(member.ToGeometry().Position);
+                }
+            }
+
+            return new MultiPoint(points);
         }
 
         public static Polygon ToGeometry(this PolygonType gmlPolygon) {
