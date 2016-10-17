@@ -459,7 +459,7 @@ namespace Terradue.GeoJson.Gml321 {
                 throw new InvalidFormatException("invalid GML representation: gml:coordinates ambiguity in separators");
 
             /* We retrieve gml:coord string */
-            gmlcoord = coordinates.Value.Trim().Replace("  ", " ");
+            gmlcoord = coordinates.Value.Trim().Replace("  ", " ").Replace(" ,",",").Replace(", ",",");
             if (string.IsNullOrEmpty(gmlcoord))
                 throw new InvalidFormatException("invalid GML representation: gml:coordinates is empty");
 
