@@ -8,6 +8,7 @@ using Terradue.ServiceModel.Ogc.Gml321;
 using Terradue.GeoJson.Gml321;
 using System.IO;
 using System.Xml.Linq;
+using Terradue.GeoJson.GeoRss;
 
 namespace Terradue.GeoJson.Tests { 
 
@@ -148,6 +149,38 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.Throws<IndexOutOfRangeException>(() => Terradue.GeoJson.Gml321.Gml321Extensions.ToGeometry(gml));
 
+
+        }
+
+        [Test()]
+        public void Gml32MultiSurfaceToGeorss4()
+        {
+
+            var fs = new FileStream("../Samples/multisurface32-4.xml", FileMode.Open, FileAccess.Read);
+
+            XmlReader reader = XmlReader.Create(fs);
+
+            var gml = Terradue.ServiceModel.Ogc.Gml321.GmlHelper.Deserialize(reader);
+
+            fs.Close();
+
+            var geom = Terradue.GeoJson.Gml321.Gml321Extensions.ToGeometry(gml);
+
+            Assert.IsTrue(geom is MultiPolygon);
+
+            GeoRssWhere georss = (GeoRssWhere)geom.ToGeoRss();
+
+            Assert.AreEqual("multipolygon", georss.Type);
+
+            GeoRssWhere georss2 = (GeoRssWhere)GeoRssHelper.Deserialize(georss.CreateReader());
+
+            Assert.AreEqual("multipolygon", georss2.Type);
+
+            var geom2 = georss.ToGeometry();
+
+            Assert.IsTrue(geom2 is MultiPolygon);
+
+            var json = new Terradue.GeoJson.Feature.Feature(geom, null);
 
         }
 

@@ -216,7 +216,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The MultiPoint</returns>
         /// <param name="wkt">WKT.</param>
         public static MultiPoint MultiPointFromWKT(string wkt) {
-            string[] terms = wkt.TrimStart('(').TrimEnd(')').Split(',');
+            string[] terms = wkt.TrimStart('(').TrimEnd(')').Trim(' ').Split(',');
             string[] values;
             List<IPosition> points = new List<IPosition>(terms.Length);
             for (int i = 0; i < terms.Length; i++) {
