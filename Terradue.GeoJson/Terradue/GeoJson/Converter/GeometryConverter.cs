@@ -48,13 +48,13 @@ namespace Terradue.GeoJson.Converter {
                 case GeoJsonObjectType.Polygon:
                     return new PolygonJsonConverter().ReadJson(coordReader, typeof(MultiPolygon), geom, serializer);
                 case GeoJsonObjectType.MultiLineString:
-                    return new MultiLineStringJsonConverter().ReadJson(coordReader, typeof(MultiPolygon), geom, serializer);
+                    return new MultiLineStringJsonConverter().ReadJson(coordReader, typeof(MultiLineString), geom, serializer);
                 case GeoJsonObjectType.LineString:
-                    return new LineStringJsonConverter().ReadJson(coordReader, typeof(MultiPolygon), geom, serializer);
+                    return new LineStringJsonConverter().ReadJson(coordReader, typeof(LineString), geom, serializer);
                 case GeoJsonObjectType.MultiPoint:
-                    return new MultiPointJsonConverter().ReadJson(coordReader, typeof(MultiPolygon), geom, serializer);
+                    return new MultiPointJsonConverter().ReadJson(coordReader, typeof(MultiPoint), geom, serializer);
                 case GeoJsonObjectType.Point:
-                    return new PointJsonConverter().ReadJson(coordReader, typeof(MultiPolygon), geom, serializer);
+                    return new PointJsonConverter().ReadJson(coordReader, typeof(Point), geom, serializer);
                 default:
                     throw new InvalidFormatException(string.Format("Not a valid GeoSon geometry type: {0}", type.ToString()));
             }
