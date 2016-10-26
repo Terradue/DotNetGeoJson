@@ -60,7 +60,9 @@ namespace Terradue.GeoJson.Geometry {
                 return coordinates;
             }
 
-            set{ }
+            set{
+                Position = new GeographicPosition(value[1], value[0]);
+            }
         }
     }
 }
