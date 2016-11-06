@@ -11,6 +11,7 @@
 
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry
 {
@@ -44,9 +45,9 @@ namespace Terradue.GeoJson.Geometry
     {
       // TODO control linear ring
       /*if (linearRings.Any(linearRing => !linearRing.IsLinearRing()))
-            {
-                throw new ArgumentOutOfRangeException("linearRings", "All elements must be closed LineStrings with 4 or more positions (see GeoJSON spec at 'http://geojson.org/geojson-spec.html#linestring').");
-            }*/
+      {
+          throw new ArgumentOutOfRangeException("linearRings", "All elements must be closed LineStrings with 4 or more positions (see GeoJSON spec at 'http://geojson.org/geojson-spec.html#linestring').");
+      }*/
 
       LineStrings = linearRings ?? new List<LineString>();
       Type = GeoJsonObjectType.Polygon;
@@ -55,21 +56,19 @@ namespace Terradue.GeoJson.Geometry
     /// <summary>
     ///   Gets the list of points outlining this Polygon.
     /// </summary>
+    [JsonIgnore]
     public List<LineString> LineStrings { get; set; }
 
     /// <summary>
     ///   Gets the coordinates
     /// </summary>
-    [DataMember(Name = "coordinates")]
+    [JsonProperty(PropertyName = "coordinates")]
     public List<List<List<double>>> Coordinates
     {
       get
       {
         var coordinates = new List<List<List<double>>>();
-        foreach (var linestring in LineStrings)
-        {
-          coordinates.Add(linestring.Coordinates);
-        }
+        foreach (var linestring in LineStrings) coordinates.Add(linestring.Coordinates);
         return coordinates;
       }
 
@@ -77,7 +76,8 @@ namespace Terradue.GeoJson.Geometry
       {
         foreach (var list in value)
         {
-          var linestring = new LineString {Coordinates = list};
+          var linestring = new LineString();
+          linestring.Coordinates = list;
           LineStrings.Add(linestring);
         }
       }

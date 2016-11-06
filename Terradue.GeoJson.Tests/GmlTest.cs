@@ -1,8 +1,10 @@
-﻿using System.Linq;
+using System.IO;
+using System.Linq;
 using System.Xml;
 using NUnit.Framework;
-using Terradue.GeoJson.Feature;
 using Terradue.GeoJson.Geometry;
+using Terradue.GeoJson.Gml311;
+using Terradue.ServiceModel.Ogc.Gml311;
 
 namespace Terradue.GeoJson.Tests
 {
@@ -10,42 +12,111 @@ namespace Terradue.GeoJson.Tests
   public class GmlTest
   {
     [Test]
-    public void MultiCurveWithLinearStringTestCase()
+    public void CreatePolygonFromNonClosedLineString()
     {
-      var doc = new XmlDocument();
-      doc.Load("../MultiCurveWithLinearString.gml");
+      var ls =
+        new LineString(
+          new[] {new GeographicPosition(-10, 10), new GeographicPosition(-10, 5)}.Cast<IPosition>().ToList());
 
-      var e = doc.DocumentElement;
+      var poly = new Polygon(new[] {ls}.ToList());
 
-      var geom = GeometryFactory.GmlToGeometry(e);
-
-      Assert.IsTrue(geom is MultiLineString);
-
-      var feature = GeometryFactory.GmlToFeature(e);
-
-      Assert.IsTrue(feature is MultiLineStringFeature);
-
-      var feature2 = new MultiLineStringFeature((MultiLineString) feature.Geometry, feature.Properties);
-
-      Assert.IsTrue(feature2 is MultiLineStringFeature);
+      poly.ToGml();
     }
 
     [Test]
-    public void FromGMLPosList()
+    public void GmlMultiCurveWithLinearStringTestCase()
     {
-      var doc = new XmlDocument();
-      doc.Load("../posList.gml");
+      var fs = new FileStream("Samples/MultiCurveWithLinearString.gml".TestDirectory(), FileMode.Open);
 
-      var e = doc.DocumentElement;
+      var reader = XmlReader.Create(fs);
 
-      var geom = GeometryFactory.GmlToGeometry(e);
+      var gml = GmlHelper.Deserialize(reader);
 
-      Assert.IsTrue(geom is MultiPolygon);
+      fs.Close();
 
-      Assert.AreEqual(36.07,
-        ((GeographicPosition) ((MultiPolygon) geom).Polygons[0].LineStrings[0].Positions[0]).Latitude);
+      var geom = (MultiLineString) gml.ToGeometry();
 
-      Assert.AreEqual(50.31, ((MultiPolygon) geom).Coordinates.First().First().First().First());
+      gml = geom.ToGmlMultiLineString();
+
+      var sw = new StringWriter();
+
+      var xw = XmlWriter.Create(sw);
+
+      GmlHelper.Serialize(xw, gml);
+
+      var xml1 = sw.ToString();
+
+      gml = geom.ToGmlMultiCurve();
+
+      sw = new StringWriter();
+
+      xw = XmlWriter.Create(sw);
+
+      GmlHelper.Serialize(xw, gml);
+
+      xw.Close();
+
+      xml1 = sw.ToString();
+    }
+
+    [Test]
+    public void GmlMultiPolygonTestCase()
+    {
+      var fs = new FileStream("Samples/MultiPolygon.xml".TestDirectory(), FileMode.Open);
+
+      var reader = XmlReader.Create(fs);
+
+      var gml = GmlHelper.Deserialize(reader);
+
+      fs.Close();
+
+      var geom = (MultiPolygon) gml.ToGeometry();
+
+      gml = geom.ToGmlMultiSurface();
+
+      var sw = new StringWriter();
+
+      var xw = XmlWriter.Create(sw);
+
+      GmlHelper.Serialize(xw, gml);
+
+      xw.Close();
+
+      gml = geom.ToGmlMultiPolygon();
+
+      sw = new StringWriter();
+
+      xw = XmlWriter.Create(sw);
+
+      GmlHelper.Serialize(xw, gml);
+
+      //Assert.IsTrue(XNode.DeepEquals(XDocument.Load("Samples/MultiPolygon.xml".TestDirectory()).Root, XDocument.Parse(xml1).Root));
+    }
+
+    [Test]
+    public void GmlMultiSurfaceTestCase()
+    {
+      var fs = new FileStream("Samples/MultiSurface311.gml".TestDirectory(), FileMode.Open);
+
+      var reader = XmlReader.Create(fs);
+
+      var gml = GmlHelper.Deserialize(reader);
+
+      fs.Close();
+
+      var geom = (MultiPolygon) gml.ToGeometry();
+
+      gml = geom.ToGml();
+
+      Assert.That(gml is MultiPolygonType);
+
+      var sw = new StringWriter();
+
+      var xw = XmlWriter.Create(sw);
+
+      GmlHelper.Serialize(xw, gml);
+
+      var xml1 = sw.ToString();
     }
   }
 }

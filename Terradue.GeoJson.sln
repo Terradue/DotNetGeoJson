@@ -1,8 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terradue.GeoJson", "Terradue.GeoJson\Terradue.GeoJson.csproj", "{26AD29FF-862F-46D9-9F25-473E2977A7C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terradue.GeoJson.Tests", "Terradue.GeoJson.Tests\Terradue.GeoJson.Tests.csproj", "{CC1274C0-30B4-42B1-B5AF-52330AA82209}"
@@ -21,9 +19,6 @@ Global
 		{CC1274C0-30B4-42B1-B5AF-52330AA82209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC1274C0-30B4-42B1-B5AF-52330AA82209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC1274C0-30B4-42B1-B5AF-52330AA82209}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Terradue.GeoJson.Tests\Terradue.GeoJson.Tests.csproj

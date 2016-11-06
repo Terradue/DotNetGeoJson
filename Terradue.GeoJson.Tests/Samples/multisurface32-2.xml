@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<gml:MultiSurface gml:id="ID-4022" srsName="EPSG:4326" xmlns:gml="http://www.opengis.net/gml/3.2">
+  <gml:surfaceMembers>
+    <gml:Polygon gml:id="ID-4023">
+      <gml:exterior>
+        <gml:LinearRing>
+          <gml:posList>68.287720 171.204941 66.438118 170.470917 65.602242 179.436798 67.412254 -179.155029 68.287720 171.204941</gml:posList>
+        </gml:LinearRing>
+      </gml:exterior>
+    </gml:Polygon>
+  </gml:surfaceMembers>
+</gml:MultiSurface>

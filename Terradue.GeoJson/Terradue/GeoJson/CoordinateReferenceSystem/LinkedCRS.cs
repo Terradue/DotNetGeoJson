@@ -33,21 +33,15 @@ namespace Terradue.GeoJson.CoordinateReferenceSystem
     public LinkedCRS(string href, string type = "")
     {
       if (href == null)
-      {
         throw new ArgumentNullException("href");
-      }
 
       if (string.IsNullOrWhiteSpace(href))
-      {
         throw new ArgumentOutOfRangeException("href", "May not be empty");
-      }
 
       Properties = new Dictionary<string, object> {{"href", href}};
 
       if (!string.IsNullOrWhiteSpace(type))
-      {
         Properties.Add("type", type);
-      }
 
       Type = CRSType.Link;
     }

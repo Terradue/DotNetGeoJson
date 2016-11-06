@@ -11,6 +11,7 @@
 
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry
 {
@@ -43,6 +44,7 @@ namespace Terradue.GeoJson.Geometry
     ///   Gets or sets the points.
     /// </summary>
     /// <value>The points.</value>
+    [JsonIgnore]
     public List<Point> Points { get; set; }
 
     /// <summary>
@@ -50,16 +52,13 @@ namespace Terradue.GeoJson.Geometry
     /// </summary>
     /// <value>The Coordinates.</value>
     //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-    [DataMember(Name = "coordinates")]
+    [JsonProperty(PropertyName = "coordinates")]
     public List<List<double>> Coordinates
     {
       get
       {
         var coordinates = new List<List<double>>();
-        foreach (var ipos in Points)
-        {
-          coordinates.Add(ipos.Coordinates);
-        }
+        foreach (var ipos in Points) coordinates.Add(ipos.Coordinates);
         return coordinates;
       }
 

@@ -10,14 +10,14 @@
 //      Copyright (c) Jörg Battermann 2011
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using System.Linq;
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry
 {
   /// <summary>
   ///   Defines the <see cref="http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
   /// </summary>
-  [DataContract]
   public class MultiPolygon : GeometryObject
   {
     /// <summary>
@@ -42,29 +42,26 @@ namespace Terradue.GeoJson.Geometry
     /// <summary>
     ///   Gets the list of Polygons enclosed in this MultiPolygon.
     /// </summary>
+    [JsonIgnore]
     public List<Polygon> Polygons { get; set; }
 
     /// <summary>
     ///   Gets the coordinates
     /// </summary>
-    [DataMember(Name = "coordinates")]
+    [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
     public List<List<List<List<double>>>> Coordinates
     {
       get
       {
-        var coordinates = new List<List<List<List<double>>>>();
-        foreach (var polygon in Polygons)
-        {
-          coordinates.Add(polygon.Coordinates);
-        }
-        return coordinates;
+        return Polygons.Select(polygon => polygon.Coordinates).ToList();
       }
 
       set
       {
         foreach (var list in value)
         {
-          var polygon = new Polygon {Coordinates = list};
+          var polygon = new Polygon();
+          polygon.Coordinates = list;
           Polygons.Add(polygon);
         }
       }

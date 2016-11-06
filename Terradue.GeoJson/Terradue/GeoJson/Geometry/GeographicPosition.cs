@@ -44,39 +44,27 @@ namespace Terradue.GeoJson.Geometry
       : this()
     {
       if (latitude == null)
-      {
         throw new ArgumentNullException("latitude");
-      }
 
       if (longitude == null)
-      {
         throw new ArgumentNullException("longitude");
-      }
 
       if (string.IsNullOrWhiteSpace(latitude))
-      {
         throw new ArgumentOutOfRangeException("latitude", "May not be empty.");
-      }
 
       if (string.IsNullOrWhiteSpace(longitude))
-      {
         throw new ArgumentOutOfRangeException("longitude", "May not be empty.");
-      }
 
       double lat;
       double lng;
 
       if (!double.TryParse(latitude, NumberStyles.Float, CultureInfo.InvariantCulture, out lat))
-      {
         throw new ArgumentOutOfRangeException("latitude",
           "Latitude must be a proper lat (+/- double) value, e.g. '38.889722'.");
-      }
 
       if (!double.TryParse(longitude, NumberStyles.Float, CultureInfo.InvariantCulture, out lng))
-      {
         throw new ArgumentOutOfRangeException("longitude",
           "Longitude must be a proper lon (+/- double) value, e.g. '-77.008889'.");
-      }
 
       Latitude = lat;
       Longitude = lng;
@@ -89,10 +77,8 @@ namespace Terradue.GeoJson.Geometry
       {
         double alt;
         if (!double.TryParse(altitude, NumberStyles.Float, CultureInfo.InvariantCulture, out alt))
-        {
           throw new ArgumentOutOfRangeException("altitude",
             "Altitude must be a proper altitude (m(eter) as double) value, e.g. '6500'.");
-        }
 
         Altitude = alt;
       }
@@ -174,14 +160,11 @@ namespace Terradue.GeoJson.Geometry
     /// </returns>
     public override bool Equals(IPosition pos)
     {
-      if (pos.GetType() != typeof (GeographicPosition)) return false;
+      if (pos.GetType() != typeof(GeographicPosition)) return false;
       var position = (GeographicPosition) pos;
-      if (position.Latitude != Latitude || position.Longitude != Longitude)
+      if ((position.Latitude != Latitude) || (position.Longitude != Longitude))
         return false;
-      if (position.Altitude != null && Altitude != null)
-      {
-        return position.Altitude.Equals(Altitude);
-      }
+      if ((position.Altitude != null) && (Altitude != null)) return position.Altitude.Equals(Altitude);
 
       return true;
     }

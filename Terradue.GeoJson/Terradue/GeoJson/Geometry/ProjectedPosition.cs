@@ -88,20 +88,17 @@ namespace Terradue.GeoJson.Geometry
     {
       return Altitude == null
         ? string.Format(CultureInfo.InvariantCulture, "Easting: {0}, Northing: {1}", Easting, Northing)
-        : string.Format(CultureInfo.InvariantCulture, "Easting: {0}, Northing: {1}, Altitude: {2}", Easting,
-          Northing, Altitude);
+        : string.Format(CultureInfo.InvariantCulture, "Easting: {0}, Northing: {1}, Altitude: {2}", Easting, Northing,
+          Altitude);
     }
 
     public override bool Equals(IPosition pos)
     {
-      if (pos.GetType() != typeof (GeographicPosition)) return false;
+      if (pos.GetType() != typeof(GeographicPosition)) return false;
       var position = (ProjectedPosition) pos;
-      if (position.Northing != Easting || position.Northing != Northing)
+      if ((position.Northing != Easting) || (position.Northing != Northing))
         return false;
-      if (position.Altitude != null && Altitude != null)
-      {
-        return position.Altitude.Equals(Altitude);
-      }
+      if ((position.Altitude != null) && (Altitude != null)) return position.Altitude.Equals(Altitude);
 
       return true;
     }

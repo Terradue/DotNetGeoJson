@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<MultiSurface xmlns="http://www.opengis.net/gml/3.2">
+  <surfaceMembers>
+    <Polygon id="Polygon.S1A_EW_GRDM_1SDV_20180718T024458_20180718T024550_006859_009400_2D59.SAFE">
+      <exterior>
+        <LinearRing>
+          <posList>
+            -22.590622 39.202515 -25.680344 38.328693 -26.632673 42.423180 -23.519297 43.203957 -22.590622 39.202515
+          </posList>
+        </LinearRing>
+      </exterior>
+    </Polygon>
+    <Polygon id="Polygon.S1A_EW_GRDM_1SDV_20180718T024458_20180718T024550_006859_009400_2D59_2.SAFE">
+      <exterior>
+        <LinearRing>
+          <posList>0 0 0 10 10 10 10 0 0 0</posList>
+        </LinearRing>
+      </exterior>
+    </Polygon>
+  </surfaceMembers>
+</MultiSurface>

@@ -30,14 +30,10 @@ namespace Terradue.GeoJson.CoordinateReferenceSystem
     public NamedCRS(string name)
     {
       if (name == null)
-      {
         throw new ArgumentNullException("name");
-      }
 
       if (string.IsNullOrWhiteSpace(name))
-      {
         throw new ArgumentOutOfRangeException("name", "May not be empty");
-      }
 
       Properties = new Dictionary<string, object> {{"name", name}};
 

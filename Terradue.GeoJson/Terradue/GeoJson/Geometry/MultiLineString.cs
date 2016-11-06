@@ -10,7 +10,9 @@
 //      Copyright (c) Jörg Battermann 2011
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry
 {
@@ -32,7 +34,7 @@ namespace Terradue.GeoJson.Geometry
     /// <summary>
     ///   Initializes a new instance of the <see cref="MultiLineString" /> class.
     /// </summary>
-    /// <param name="coordinates">The coordinates.</param>
+    /// <param name="lineStrings">The linestring list.</param>
     public MultiLineString(List<LineString> lineStrings)
     {
       LineStrings = lineStrings ?? new List<LineString>();
@@ -43,19 +45,15 @@ namespace Terradue.GeoJson.Geometry
     ///   Gets or sets the line strings.
     /// </summary>
     /// <value>The line strings.</value>
+    [JsonIgnore]
     public List<LineString> LineStrings { get; set; }
 
-    [DataMember(Name = "coordinates")]
+    [JsonProperty(PropertyName = "coordinates")]
     public List<List<List<double>>> Coordinates
     {
       get
       {
-        var coordinates = new List<List<List<double>>>();
-        foreach (var linestring in LineStrings)
-        {
-          coordinates.Add(linestring.Coordinates);
-        }
-        return coordinates;
+        return LineStrings.Select(linestring => linestring.Coordinates).ToList();
       }
 
       set

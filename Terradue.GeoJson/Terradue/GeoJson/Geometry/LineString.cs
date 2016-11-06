@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry
 {
@@ -27,16 +28,11 @@ namespace Terradue.GeoJson.Geometry
     /// <param name="coordinates">The coordinates.</param>
     public LineString(List<IPosition> positions = null)
     {
-      if (positions == null)
-      {
-        throw new ArgumentNullException("coordinates");
-      }
+      if (positions == null) throw new ArgumentNullException("coordinates");
 
       if (positions.Count < 2)
-      {
         throw new ArgumentOutOfRangeException("coordinates",
           "According to the GeoJSON v1.0 spec a LineString must have at least two or more positions.");
-      }
 
       Positions = new List<IPosition>(positions);
       Type = GeoJsonObjectType.LineString;
@@ -55,12 +51,13 @@ namespace Terradue.GeoJson.Geometry
     ///   Gets or sets the positions.
     /// </summary>
     /// <value>The positions.</value>
+    [JsonIgnore]
     public List<IPosition> Positions { get; set; }
 
     /// <summary>
     ///   Gets the coordinates
     /// </summary>
-    [DataMember(Name = "coordinates")]
+    [JsonProperty(PropertyName = "coordinates")]
     public List<List<double>> Coordinates
     {
       get
@@ -81,18 +78,10 @@ namespace Terradue.GeoJson.Geometry
         {
           var positions = list.ToArray();
           GeographicPosition geographicPosition;
-          if (positions.Length == 2)
-          {
-            geographicPosition = new GeographicPosition(positions[1], positions[0]);
-          }
+          if (positions.Length == 2) geographicPosition = new GeographicPosition(positions[1], positions[0]);
           else if (positions.Length == 3)
-          {
             geographicPosition = new GeographicPosition(positions[1], positions[0], positions[2]);
-          }
-          else
-          {
-            throw new InvalidFormatException("a geographic position must have at least 2 coordinates");
-          }
+          else throw new InvalidFormatException("a geographic position must have at least 2 coordinates");
           Positions.Add(geographicPosition);
         }
       }
@@ -104,9 +93,9 @@ namespace Terradue.GeoJson.Geometry
     /// <returns>
     ///   <c>true</c> if it is a linear ring; otherwise, <c>false</c>.
     /// </returns>
-    public bool IsLinearRing()
+    public bool IslInearRing()
     {
-      return Positions.Count >= 4 && IsClosed();
+      return (Positions.Count >= 4) && IsClosed();
     }
 
     /// <summary>

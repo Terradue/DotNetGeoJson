@@ -15,15 +15,42 @@
 * If not, see http://www.gnu.org/licenses/.
 */
 
-using System.Reflection;
+/*!
 
-[assembly: AssemblyDescription("The Terradue .NET GeoJson Library")]
+\namespace Terradue.GeoJson
+@{
+    Terradue .NET GeoJson Library. Initially developed to provide an easy way to manage Geometry objects with serialization and deserialization functions and transformation functions from/to GeoJson, it also supports GML, georss and Well Known Text (WKT)
+
+    \xrefitem sw_version "Versions" "Software Package Version" 1.7.12
+
+    \xrefitem sw_link "Links" "Software Package List" [DotNetGeoJson](https://github.com/Terradue/DotNetGeoJson)
+
+    \xrefitem sw_license "License" "Software License" [AGPL](https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE)
+
+    \xrefitem sw_req "Requires" "Software Dependencies" \ref NetTopologySuite
+
+	\xrefitem sw_req "Requires" "Software Dependencies" \ref Newtonsoft.Json
+
+    \xrefitem sw_req "Requires" "Software Dependencies" \ref GeoAPI
+
+\ingroup Data
+@}
+
+*/
+
+using System.Reflection;
+using NuGet4Mono.Extensions;
+
+[assembly:
+  AssemblyDescription(
+    "Terradue.GeoJson is a library targeting .NET 4.0 and above that provides an easy way to manage Geometry objects with serialization and deserialization functions and transformation functions from/to GeoJson, GML, georss and Well Known Text (WKT)"
+  )]
 [assembly: AssemblyTitle("Terradue.GeoJson")]
 [assembly: AssemblyCompany("Terradue")]
 [assembly: AssemblyProduct("Terradue.GeoJson")]
+[assembly: AssemblyAuthors("Emmanuel Mathot")]
+[assembly: AssemblyProjectUrl("https://github.com/Terradue/DotNetGeoJson")]
+[assembly: AssemblyLicenseUrl("https://github.com/Terradue/DotNetGeoJson/blob/master/LICENSE")]
 [assembly: AssemblyCopyright("Terradue")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.4.14.*")]
-[assembly: AssemblyInformationalVersion("1.4.14")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyVersion("1.7.12.*")]
+[assembly: AssemblyInformationalVersion("1.7.12")]

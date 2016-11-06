@@ -11,6 +11,7 @@
 
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Feature
 {
@@ -43,14 +44,14 @@ namespace Terradue.GeoJson.Feature
     ///   Gets the features.
     /// </summary>
     /// <value>The features.</value>
-    [DataMember(Name = "features", IsRequired = true)]
+    [JsonProperty(PropertyName = "features", Required = Required.Always)]
     public List<Feature> Features { get; private set; }
 
     /// <summary>
     ///   Gets the properties.
     /// </summary>
     /// <value>The properties.</value>
-    [DataMember(Name = "properties")]
+    [JsonProperty(PropertyName = "properties")]
     public Dictionary<string, object> Properties { get; set; }
   }
 }

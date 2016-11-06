@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<where xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+       xmlns="http://www.georss.org/georss/10">
+  <Polygon xmlns="http://www.opengis.net/gml">
+    <exterior>
+      <LinearRing>
+        <posList srsDimension="2">0 0 0 5380 5170 0 5170 5380 0 0 </posList>
+      </LinearRing>
+    </exterior>
+  </Polygon>
+</where>

@@ -9,6 +9,7 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System.Collections.Generic;
 using Terradue.GeoJson.CoordinateReferenceSystem;
 
 namespace Terradue.GeoJson
@@ -51,6 +52,6 @@ namespace Terradue.GeoJson
     ///   In addition, the coordinate reference system for the bbox is assumed to match the coordinate reference
     ///   system of the GeoJson object of which it is a member.
     /// </value>
-    double[] BoundingBoxes { get; set; }
+    List<double> BoundingBoxes { get; set; }
   }
 }
