@@ -12,3 +12,6 @@
 
 /Terradue.GeoJson.Tests/obj/
 *.suo
+.vs/config/applicationhost.config
+*.user
+.vs/config/applicationhost.config
