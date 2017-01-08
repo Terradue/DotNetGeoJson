@@ -25,7 +25,6 @@ using Newtonsoft.Json;
 using Terradue.GeoJson.Geometry;
 using Newtonsoft.Json.Linq;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace Terradue.GeoJson {
     public class MultiPointJsonConverter : JsonConverter {

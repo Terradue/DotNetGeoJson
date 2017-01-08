@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.IO;
 using NUnit.Framework;
 using Terradue.GeoJson.Geometry;
-using System.IO;
 
 namespace Terradue.GeoJson.Tests {
 
@@ -11,7 +10,7 @@ namespace Terradue.GeoJson.Tests {
         [Test]
         public void Issue9() {
 
-            string wkt = File.ReadAllText("../Samples/Polygon.txt");
+            var wkt = File.ReadAllText(TestContext.CurrentContext.TestPath("../Samples/Polygon.txt"));
             var geom = WktExtensions.WktToGeometry(wkt);
 
             Assert.That(geom is Polygon);

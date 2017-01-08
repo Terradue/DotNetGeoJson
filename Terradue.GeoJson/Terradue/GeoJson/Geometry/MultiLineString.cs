@@ -13,9 +13,8 @@ using Newtonsoft.Json;
 namespace Terradue.GeoJson.Geometry {
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-    using System;
 
-    /// <summary>
+  /// <summary>
     /// Defines the <see cref="http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
     /// </summary>
     [DataContract]
@@ -24,8 +23,8 @@ namespace Terradue.GeoJson.Geometry {
         /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.MultiLineString"/> class.
         /// </summary>
         public MultiLineString() {
-            this.LineStrings = new List<LineString>();
-            this.Type = GeoJsonObjectType.MultiLineString;
+            LineStrings = new List<LineString>();
+            Type = GeoJsonObjectType.MultiLineString;
         }
 
         /// <summary>
@@ -33,8 +32,8 @@ namespace Terradue.GeoJson.Geometry {
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
         public MultiLineString(List<LineString> lineStrings) {
-            this.LineStrings = lineStrings ?? new List<LineString>();
-            this.Type = GeoJsonObjectType.MultiLineString;
+            LineStrings = lineStrings ?? new List<LineString>();
+            Type = GeoJsonObjectType.MultiLineString;
         }
 
         /// <summary>
@@ -48,8 +47,8 @@ namespace Terradue.GeoJson.Geometry {
         public List<List<List<double>>> Coordinates { 
 
             get {
-                List<List<List<double>>> coordinates = new List<List<List<double>>>();
-                foreach (LineString linestring in LineStrings) {
+                var coordinates = new List<List<List<double>>>();
+                foreach (var linestring in LineStrings) {
                     coordinates.Add(linestring.Coordinates);
                 }
                 return coordinates;
@@ -57,9 +56,9 @@ namespace Terradue.GeoJson.Geometry {
 
             set{ 
                 foreach (var list in value) {
-                    LineString linestring = new LineString();
+                    var linestring = new LineString();
                     linestring.Coordinates = list;
-                    this.LineStrings.Add(linestring);
+                    LineStrings.Add(linestring);
                 }
             }
         }

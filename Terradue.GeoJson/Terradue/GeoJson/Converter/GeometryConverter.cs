@@ -24,8 +24,6 @@ using System;
 using Newtonsoft.Json;
 using Terradue.GeoJson.Geometry;
 using Newtonsoft.Json.Linq;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Terradue.GeoJson.Converter {
     public class GeometryConverter : JsonConverter {
@@ -40,7 +38,7 @@ namespace Terradue.GeoJson.Converter {
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) {
             var geom = serializer.Deserialize<JToken>(reader);
-            GeoJsonObjectType type = serializer.Deserialize<GeoJsonObjectType>(geom.SelectToken("type").CreateReader());
+            var type = serializer.Deserialize<GeoJsonObjectType>(geom.SelectToken("type").CreateReader());
             var coordReader = geom.SelectToken("coordinates").CreateReader();
             switch (type) {
                 case GeoJsonObjectType.MultiPolygon:

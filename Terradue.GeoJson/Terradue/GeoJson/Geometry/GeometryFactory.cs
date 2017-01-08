@@ -9,11 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Xml;
-using System.Globalization;
-using Terradue.GeoJson.Feature;
-using Terradue.GeoJson.Geometry;
 using System.Linq;
 
 namespace Terradue.GeoJson.Geometry {
@@ -640,9 +635,9 @@ namespace Terradue.GeoJson.Geometry {
 
         public static GeometryObject SplitWorldExtent(MultiPolygon mpoly) {
 
-            MultiPolygon newmpoly = new MultiPolygon();
+            var newmpoly = new MultiPolygon();
 
-            foreach (Polygon poly in mpoly.Polygons) {
+            foreach (var poly in mpoly.Polygons) {
                 var geom = SplitWorldExtent(poly);
                 if (geom != null) {
                     if (geom is Polygon)
@@ -661,15 +656,15 @@ namespace Terradue.GeoJson.Geometry {
         public static GeometryObject SplitWorldExtent(Polygon poly) {
 
 
-            MultiPolygon newpoly = new MultiPolygon();
+            var newpoly = new MultiPolygon();
 
-            List<LineString> OuterlineStrings = new List<LineString>();
+            var OuterlineStrings = new List<LineString>();
 
-            List<LineString> InnerlineStrings = new List<LineString>();
+            var InnerlineStrings = new List<LineString>();
 
             OuterlineStrings.AddRange(SplitWorldExtent(poly.LineStrings.First()));
 
-            foreach (LineString lineString in poly.LineStrings.Skip(1)) {
+            foreach (var lineString in poly.LineStrings.Skip(1)) {
                 InnerlineStrings.AddRange(SplitWorldExtent(lineString));
             }
 
@@ -677,18 +672,18 @@ namespace Terradue.GeoJson.Geometry {
                 return poly;
             }
 
-            List<Polygon> newpolygons = new List<Polygon>();
+            var newpolygons = new List<Polygon>();
 
             if (OuterlineStrings.Count > 0) {
-                foreach (LineString ls in OuterlineStrings) {
+                foreach (var ls in OuterlineStrings) {
                     
-                    Polygon curpoly = new Polygon();
+                    var curpoly = new Polygon();
                     newpoly.Polygons.Add(curpoly);
                     curpoly.LineStrings.Add(ls);
                     foreach (var innerls in InnerlineStrings) {
-                        NetTopologySuite.IO.WKTReader wktreader = new NetTopologySuite.IO.WKTReader();
+                        var wktreader = new NetTopologySuite.IO.WKTReader();
                         var innerlr = wktreader.Read(innerls.ToWkt());
-                        NetTopologySuite.Geometries.Polygon polygon = (NetTopologySuite.Geometries.Polygon)wktreader.Read(curpoly.ToWkt());
+                        var polygon = (NetTopologySuite.Geometries.Polygon)wktreader.Read(curpoly.ToWkt());
 
                         if (polygon.Contains(innerlr))
                             curpoly.LineStrings.Add(innerls);
@@ -706,26 +701,26 @@ namespace Terradue.GeoJson.Geometry {
 
         public static List<LineString> SplitWorldExtent(LineString lineString) {
 
-            List<LineString> newLineStrings = new List<LineString>();
+            var newLineStrings = new List<LineString>();
 
-            LineString currentLineString = new LineString();
+            var currentLineString = new LineString();
             newLineStrings.Add(currentLineString);
 
-            GeographicPosition previous_position = (GeographicPosition)lineString.Positions[0];
+            var previous_position = (GeographicPosition)lineString.Positions[0];
             currentLineString.Positions.Add(previous_position);
 
-            int currentPosition = 0;
-            int dayline = 0;
+            var currentPosition = 0;
+            var dayline = 0;
 
-            for (int i = 1; i < lineString.Positions.Count; i++) {
+            for (var i = 1; i < lineString.Positions.Count; i++) {
 
-                GeographicPosition current_position = (GeographicPosition)lineString.Positions[i];
+                var current_position = (GeographicPosition)lineString.Positions[i];
 
                 if ((current_position.Longitude != 180 && previous_position.Longitude != 180) || (current_position.Longitude != -180 && previous_position.Longitude != -180)) {
 
                     if ((current_position.Longitude - previous_position.Longitude < -90) || (current_position.Longitude - previous_position.Longitude > 90)) {
 
-                        LineString newLineString = currentLineString;
+                        var newLineString = currentLineString;
 
                         if (current_position.Longitude - previous_position.Longitude > 90) {
                             dayline--;
@@ -776,8 +771,8 @@ namespace Terradue.GeoJson.Geometry {
 
                         new_altitude = new_altitude2 = current_position.Altitude;
 
-                        GeographicPosition new_position1 = new GeographicPosition(new_latitude, new_longitude, new_altitude);
-                        GeographicPosition new_position2 = new GeographicPosition(new_latitude2, new_longitude2, new_altitude2);
+                        var new_position1 = new GeographicPosition(new_latitude, new_longitude, new_altitude);
+                        var new_position2 = new GeographicPosition(new_latitude2, new_longitude2, new_altitude2);
                         newLineString.Positions.Add(new_position2);
 
                         currentLineString.Positions.Add(new_position1);

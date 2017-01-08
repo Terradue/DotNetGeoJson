@@ -24,8 +24,6 @@ using System;
 using Newtonsoft.Json;
 using Terradue.GeoJson.Geometry;
 using Newtonsoft.Json.Linq;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Terradue.GeoJson {
     public class PointJsonConverter : JsonConverter {
@@ -44,8 +42,8 @@ namespace Terradue.GeoJson {
             if (o.Count < 2 || o.Count > 3)
                 throw new InvalidFormatException("invalid GeoJson representation: point members are not 2 or 3 :" + 0.ToString());
 
-            string z = (o.Count > 2 ? o[2].ToString() : null);
-            Point point = new Point(new GeographicPosition(o[1].ToString(), o[0].ToString(), z));
+            var z = (o.Count > 2 ? o[2].ToString() : null);
+            var point = new Point(new GeographicPosition(o[1].ToString(), o[0].ToString(), z));
 
             return point;
         }
