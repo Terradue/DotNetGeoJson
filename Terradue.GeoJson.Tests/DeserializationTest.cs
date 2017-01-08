@@ -1,30 +1,29 @@
-﻿using NUnit.Framework;
-using System;
-using System.IO;
-using Terradue.GeoJson.Feature;
-using Terradue.GeoJson.Geometry;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
-using Terradue.GeoJson.Converter;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework;
+using Terradue.GeoJson.Feature;
+using Terradue.GeoJson.Geometry;
 
 namespace Terradue.GeoJson.Tests {
-    [TestFixture()]
+    [TestFixture]
     public class DeserializationTest {
 
-        [Test()]
+        [Test]
         public void MultiPolygonDeserialization() {
 
-            FileStream fs = new FileStream("../MultiPolygon.geojson", FileMode.Open);
+            var fs = new FileStream(TestContext.CurrentContext.TestPath("../MultiPolygon.geojson"), FileMode.Open);
 
-            Terradue.GeoJson.Feature.Feature f;
-            var serializer = new JsonSerializer(){NullValueHandling = NullValueHandling.Ignore};
+            Feature.Feature f;
+            var serializer = new JsonSerializer {NullValueHandling = NullValueHandling.Ignore};
 
             using (var sr = new StreamReader(fs))
             using (var jsonTextReader = new JsonTextReader(sr))
             {
-                f = serializer.Deserialize<Terradue.GeoJson.Feature.Feature>(jsonTextReader);
+                f = serializer.Deserialize<Feature.Feature>(jsonTextReader);
             }
             fs.Close();
 
@@ -32,21 +31,21 @@ namespace Terradue.GeoJson.Tests {
 
             string jsonouts;
 
-            using (StringWriter sw = new StringWriter())
-            using (JsonTextWriter jw = new JsonTextWriter(sw)) {
+            using (var sw = new StringWriter())
+            using (var jw = new JsonTextWriter(sw)) {
                 serializer.Serialize(jw, f);
                 jsonouts = sw.ToString();
             }
 
             JToken jsonout;
 
-            using (StringReader str = new StringReader(jsonouts))
-            using (JsonTextReader jtr = new JsonTextReader(str)) {
+            using (var str = new StringReader(jsonouts))
+            using (var jtr = new JsonTextReader(str)) {
                 jsonout = serializer.Deserialize<JToken>(jtr);
             }
 
             JToken jsonin;
-            fs = new FileStream("../MultiPolygon.geojson", FileMode.Open);
+            fs = new FileStream(TestContext.CurrentContext.TestPath("../MultiPolygon.geojson"), FileMode.Open);
             using (var sr2 = new StreamReader(fs))
             using (var jsonTextReader = new JsonTextReader(sr2))
             {
@@ -62,10 +61,10 @@ namespace Terradue.GeoJson.Tests {
 
 
 
-        [Test()]
+        [Test]
         public void WktDeserialization() {
 
-            string fs = "POINT(-115.278 32.297)";
+            var fs = "POINT(-115.278 32.297)";
 
             var geom = WktExtensions.WktToGeometry(fs);
 
@@ -73,48 +72,48 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
+        [Test]
         public void PolygonDeserialization() {
 
-            FileStream fs = new FileStream("../Samples/s1.json", FileMode.Open);
+            var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/s1.json"), FileMode.Open);
 
-            Terradue.GeoJson.Feature.Feature f;
+            Feature.Feature f;
             var serializer = new JsonSerializer();
 
             using (var sr = new StreamReader(fs))
             using (var jsonTextReader = new JsonTextReader(sr))
             {
-                f = serializer.Deserialize<Terradue.GeoJson.Feature.Feature>(jsonTextReader);
+                f = serializer.Deserialize<Feature.Feature>(jsonTextReader);
             }
 
 
             Assert.True(f.Geometry is Polygon);
             Assert.AreEqual("POLYGON((13.96804 42.817595,12.692281 43.02102,12.369263 41.890703,13.58968 41.69639,13.96804 42.817595))", f.ToWkt());
 
-            ExtendedFeature f2 = new ExtendedFeature(f.Geometry, f.Properties);
+            var f2 = new ExtendedFeature(f.Geometry, f.Properties);
 
             Assert.AreEqual("POLYGON((13.96804 42.817595,12.692281 43.02102,12.369263 41.890703,13.58968 41.69639,13.96804 42.817595))", f2.ToWkt());
 
         }
 
-        [Test()]
+        [Test]
         public void PropertiesDeserialization() {
 
-            FileStream fs = new FileStream("../Samples/ASA_IM__0.json", FileMode.Open);
+            var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/ASA_IM__0.json"), FileMode.Open);
 
-            Terradue.GeoJson.Feature.FeatureCollection fc;
+            FeatureCollection fc;
             var serializer = new JsonSerializer();
 
             using (var sr = new StreamReader(fs))
             using (var jsonTextReader = new JsonTextReader(sr))
             {
-                fc = serializer.Deserialize<Terradue.GeoJson.Feature.FeatureCollection>(jsonTextReader);
+                fc = serializer.Deserialize<FeatureCollection>(jsonTextReader);
             }
 
             Assert.False(fc.Features.First().Properties["links"] is String);
         }
 
-        [Test()]
+        [Test]
         public void WktTest() {
 
             var geometry = WktExtensions.WktToGeometry("MULTIPOLYGON(((-129.968719 48.14193,-129.968719 48.14193,-131.056732 48.272541,-131.056732 48.272541,-130.657394 49.769352,-130.657394 49.769352,-129.536499 49.638176,-129.536499 49.638176,-129.968719 48.14193)))");
@@ -130,9 +129,9 @@ namespace Terradue.GeoJson.Tests {
 
     }
 
-    public class ExtendedFeature : Terradue.GeoJson.Feature.Feature {
+    public class ExtendedFeature : Feature.Feature {
 
-        public ExtendedFeature(Terradue.GeoJson.Geometry.GeometryObject geom, Dictionary<string, object> prop ) : base(geom, prop){
+        public ExtendedFeature(GeometryObject geom, Dictionary<string, object> prop ) : base(geom, prop){
         }
 
     }

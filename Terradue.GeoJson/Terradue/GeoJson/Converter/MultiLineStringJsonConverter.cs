@@ -20,19 +20,16 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
+
 using System;
-using Newtonsoft.Json;
-using Terradue.GeoJson.Geometry;
-using Newtonsoft.Json.Linq;
 using System.Linq;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Terradue.GeoJson.Geometry;
 
 namespace Terradue.GeoJson {
     public class MultiLineStringJsonConverter : JsonConverter {
-        public MultiLineStringJsonConverter() {
-        }
-
-        #region implemented abstract members of JsonConverter
+      #region implemented abstract members of JsonConverter
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
             serializer.Serialize(writer, value);

@@ -39,7 +39,6 @@
 */
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using NuGet4Mono.Extensions;
 
 [assembly: AssemblyDescription("Terradue.GeoJson is a library targeting .NET 4.0 and above that provides an easy way to manage Geometry objects with serialization and deserialization functions and transformation functions from/to GeoJson, GML, georss and Well Known Text (WKT)")]

@@ -20,19 +20,15 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
+
 using System;
 using Newtonsoft.Json;
-using Terradue.GeoJson.Geometry;
 using Newtonsoft.Json.Linq;
-using System.Linq;
-using System.Collections.Generic;
+using Terradue.GeoJson.Geometry;
 
 namespace Terradue.GeoJson.Converter {
     public class GeometryConverter : JsonConverter {
-        public GeometryConverter() {
-        }
-
-        #region implemented abstract members of JsonConverter
+      #region implemented abstract members of JsonConverter
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
             serializer.Serialize(writer, value);
@@ -40,7 +36,7 @@ namespace Terradue.GeoJson.Converter {
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) {
             var geom = serializer.Deserialize<JToken>(reader);
-            GeoJsonObjectType type = serializer.Deserialize<GeoJsonObjectType>(geom.SelectToken("type").CreateReader());
+            var type = serializer.Deserialize<GeoJsonObjectType>(geom.SelectToken("type").CreateReader());
             var coordReader = geom.SelectToken("coordinates").CreateReader();
             switch (type) {
                 case GeoJsonObjectType.MultiPolygon:
@@ -56,7 +52,7 @@ namespace Terradue.GeoJson.Converter {
                 case GeoJsonObjectType.Point:
                     return new PointJsonConverter().ReadJson(coordReader, typeof(Point), geom, serializer);
                 default:
-                    throw new InvalidFormatException(string.Format("Not a valid GeoSon geometry type: {0}", type.ToString()));
+                    throw new InvalidFormatException(string.Format("Not a valid GeoSon geometry type: {0}", type));
             }
         }
 

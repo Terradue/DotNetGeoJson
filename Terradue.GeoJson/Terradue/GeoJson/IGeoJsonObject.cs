@@ -8,12 +8,12 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
 using System.Collections.Generic;
+using Terradue.GeoJson.CoordinateReferenceSystem;
 
 namespace Terradue.GeoJson {
-    using System.Runtime.Serialization;
-
-    /// <summary>
+  /// <summary>
     /// Base Interface for GeoJson types.
     /// </summary>
     public interface IGeoJsonObject {
@@ -31,7 +31,7 @@ namespace Terradue.GeoJson {
         /// <value>
         /// The Coordinate Reference System Objects.
         /// </value>
-        CoordinateReferenceSystem.ICRSObject CRS { get; }
+        ICRSObject CRS { get; }
 
         /// <summary>
         /// Gets or sets the (optional) <see cref="http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">Bounding Boxes</see>.

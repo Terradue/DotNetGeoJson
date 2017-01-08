@@ -9,12 +9,12 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System;
+using System.Collections.Generic;
+
 namespace Terradue.GeoJson.CoordinateReferenceSystem
 {
-    using System;
-    using System.Collections.Generic;
-
-    /// <summary>
+  /// <summary>
     /// Defines the <see cref="http://geojson.org/geojson-spec.html#linked-crs">Linked CRS type</see>.
     /// </summary>
     public class LinkedCRS : CRSBase
@@ -36,14 +36,14 @@ namespace Terradue.GeoJson.CoordinateReferenceSystem
                 throw new ArgumentOutOfRangeException("href", "May not be empty");
             }
 
-            this.Properties = new Dictionary<string, object> { { "href", href } };
+            Properties = new Dictionary<string, object> { { "href", href } };
 
             if (!string.IsNullOrWhiteSpace(type))
             {
-                this.Properties.Add("type", type);
+                Properties.Add("type", type);
             }
 
-            this.Type = CRSType.Link;
+            Type = CRSType.Link;
         }
 
         /// <summary>

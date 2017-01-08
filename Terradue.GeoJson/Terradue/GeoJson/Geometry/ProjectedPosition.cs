@@ -9,12 +9,12 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System;
+using System.Globalization;
+
 namespace Terradue.GeoJson.Geometry
 {
-    using System;
-    using System.Globalization;
-
-    /// <summary>
+  /// <summary>
     /// Defines the Projected Position type a.k.a. <see cref="http://geojson.org/geojson-spec.html#positions">Projected Coordinate Reference System</see>.
     /// </summary>
     public class ProjectedPosition : Position
@@ -94,17 +94,17 @@ namespace Terradue.GeoJson.Geometry
         /// </returns>
         public override string ToString()
         {
-            return this.Altitude == null ? string.Format(CultureInfo.InvariantCulture, "Easting: {0}, Northing: {1}", this.Easting, this.Northing) : string.Format(CultureInfo.InvariantCulture, "Easting: {0}, Northing: {1}, Altitude: {2}", this.Easting, this.Northing, this.Altitude);
+            return Altitude == null ? string.Format(CultureInfo.InvariantCulture, "Easting: {0}, Northing: {1}", Easting, Northing) : string.Format(CultureInfo.InvariantCulture, "Easting: {0}, Northing: {1}, Altitude: {2}", Easting, Northing, Altitude);
         }
 
 		public override bool Equals (IPosition pos)
 		{
 			if ( pos.GetType() != typeof(GeographicPosition) ) return false;
-			ProjectedPosition position = (ProjectedPosition)pos;
-			if (position.Northing != this.Easting || position.Northing != this.Northing)
+			var position = (ProjectedPosition)pos;
+			if (position.Northing != Easting || position.Northing != Northing)
 				return false;
-			if (position.Altitude != null && this.Altitude != null ){
-				return position.Altitude.Equals(this.Altitude);
+			if (position.Altitude != null && Altitude != null ){
+				return position.Altitude.Equals(Altitude);
 			}
 			
 			return true;

@@ -8,14 +8,13 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
+using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    /// <summary>
+  /// <summary>
     /// In geography, a point refers to a Position on a map, expressed in latitude and longitude.
     /// </summary>
     /// <seealso cref="http://geojson.org/geojson-spec.html#point"/>
@@ -29,13 +28,13 @@ namespace Terradue.GeoJson.Geometry {
                 throw new ArgumentNullException("coordinates");
             }
 
-            this.Position = coordinates;
-            this.Type = GeoJsonObjectType.Point;
+            Position = coordinates;
+            Type = GeoJsonObjectType.Point;
         }
 
         internal Point(){
-            this.Position = null;
-            this.Type = GeoJsonObjectType.Point;
+            Position = null;
+            Type = GeoJsonObjectType.Point;
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace Terradue.GeoJson.Geometry {
         [JsonProperty(PropertyName = "coordinates")]
         public List<double> Coordinates {
             get {
-                List<double> coordinates = new List<double>();
+                var coordinates = new List<double>();
                 coordinates.Add((double)((GeographicPosition)Position).Coordinates[1]);
                 coordinates.Add((double)((GeographicPosition)Position).Coordinates[0]);
                 return coordinates;

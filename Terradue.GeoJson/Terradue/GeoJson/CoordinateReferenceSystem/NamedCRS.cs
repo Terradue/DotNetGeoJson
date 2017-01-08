@@ -9,12 +9,12 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
+using System;
+using System.Collections.Generic;
+
 namespace Terradue.GeoJson.CoordinateReferenceSystem
 {
-    using System;
-    using System.Collections.Generic;
-
-    /// <summary>
+  /// <summary>
     /// Defines the <see cref="http://geojson.org/geojson-spec.html#named-crs">Named CRS type</see>.
     /// </summary>
     public class NamedCRS : CRSBase
@@ -39,9 +39,9 @@ namespace Terradue.GeoJson.CoordinateReferenceSystem
                 throw new ArgumentOutOfRangeException("name", "May not be empty");
             }
 
-            this.Properties = new Dictionary<string, object> { { "name", name } };
+            Properties = new Dictionary<string, object> { { "name", name } };
 
-            this.Type = CRSType.Name;
+            Type = CRSType.Name;
         }
     }
 }

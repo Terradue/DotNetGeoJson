@@ -1,13 +1,9 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Xml;
 using Terradue.GeoJson.Geometry;
-using Terradue.GeoJson.Feature;
-using System.Linq;
 
 namespace Terradue.GeoJson.Tests { 
 
-    [TestFixture()]
+    [TestFixture]
     public class SplitTests {
 
         [Test]
@@ -56,4 +52,3 @@ namespace Terradue.GeoJson.Tests {
 
     }
 }
-

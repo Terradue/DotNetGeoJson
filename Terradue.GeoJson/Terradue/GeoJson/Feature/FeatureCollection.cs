@@ -8,15 +8,13 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Terradue.GeoJson.Converter;
 
 namespace Terradue.GeoJson.Feature {
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-    using System;
-
-    /// <summary>
+  /// <summary>
     /// Defines the FeatureCollection type.
     /// </summary>
     [DataContract]
@@ -25,8 +23,8 @@ namespace Terradue.GeoJson.Feature {
         /// Initializes a new instance of the <see cref="FeatureCollection"/> class.
         /// </summary>
         public FeatureCollection() {
-            this.Features = new List<Feature>();
-            this.Type = GeoJsonObjectType.FeatureCollection;
+            Features = new List<Feature>();
+            Type = GeoJsonObjectType.FeatureCollection;
         }
 
         /// <summary>
@@ -34,8 +32,8 @@ namespace Terradue.GeoJson.Feature {
         /// </summary>
         /// <param name="features">The features.</param>
         public FeatureCollection(List<Feature> features) {
-            this.Features = features;
-            this.Type = GeoJsonObjectType.FeatureCollection;
+            Features = features;
+            Type = GeoJsonObjectType.FeatureCollection;
         }
 
         /// <summary>

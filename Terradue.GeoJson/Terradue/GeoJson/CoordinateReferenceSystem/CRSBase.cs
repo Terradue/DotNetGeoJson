@@ -9,11 +9,11 @@
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
 
-namespace Terradue.GeoJson.CoordinateReferenceSystem {
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
-    /// <summary>
+namespace Terradue.GeoJson.CoordinateReferenceSystem {
+  /// <summary>
     /// Base class for all IGeometryObject implementing types
     /// </summary>
     [DataContract]

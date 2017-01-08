@@ -21,22 +21,14 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 
-using Terradue.ServiceModel.Ogc.Gml311;
+using System;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using Terradue.GeoJson.Geometry;
 
 namespace Terradue.GeoJson.GeoRss {
-    
-    using System;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-    using System.Collections;
-    using System.Xml.Schema;
-    using System.ComponentModel;
-    using System.Collections.Generic;
-
-    public static class GeoRssHelper {
+  public static class GeoRssHelper {
 
 		static XmlSerializer geoRssWhereSerializer = new XmlSerializer(typeof(GeoRssWhere));
 		static XmlSerializer geoRssPointSerializer = new XmlSerializer(typeof(GeoRssPoint));
@@ -115,7 +107,7 @@ namespace Terradue.GeoJson.GeoRss {
 
         public static void Serialize(XmlWriter writer, IGeoRSS georss) {
 
-            XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+            var namespaces = new XmlSerializerNamespaces();
             namespaces.Add(string.Empty, string.Empty);
             namespaces.Add("georss", "http://www.georss.org/georss");
 

@@ -20,27 +20,28 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
+
 using System;
-using Terradue.GeoJson.Geometry;
-using Terradue.ServiceModel.Ogc.Gml311;
 using System.Collections.Generic;
-using Terradue.GeoJson.Gml311;
-using System.Xml;
 using System.IO;
+using System.Xml;
+using Terradue.GeoJson.Geometry;
+using Terradue.GeoJson.Gml311;
+using Terradue.ServiceModel.Ogc.Gml311;
 
 namespace Terradue.GeoJson.GeoRss10 {
 
     public static class GeoRss10Extensions {
 
-        public static XmlReader CreateReader(this Terradue.GeoJson.GeoRss10.IGeoRSS georss){
-            MemoryStream stream = new MemoryStream();
-            XmlWriter writer = XmlWriter.Create(stream);
+        public static XmlReader CreateReader(this IGeoRSS georss){
+            var stream = new MemoryStream();
+            var writer = XmlWriter.Create(stream);
             GeoRss10Helper.Serialize(writer, georss);
             stream.Seek(0, SeekOrigin.Begin);
             return XmlReader.Create(stream);
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss10.IGeoRSS georss) {
+        public static GeometryObject ToGeometry(this IGeoRSS georss) {
 
             if (georss is GeoRss10Point) {
                 return ((GeoRss10Point)georss).ToGeometry();
@@ -66,7 +67,7 @@ namespace Terradue.GeoJson.GeoRss10 {
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss10.GeoRss10Where where) {
+        public static GeometryObject ToGeometry(this GeoRss10Where where) {
 
             if (where.Item is EnvelopeType) {
                 throw new NotImplementedException();
@@ -92,34 +93,34 @@ namespace Terradue.GeoJson.GeoRss10 {
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss10.GeoRss10Point georssPoint) {
+        public static GeometryObject ToGeometry(this GeoRss10Point georssPoint) {
 
             if (georssPoint.Item == null)
                 return null;
 
-            return new Point(new DirectPositionType(){ Text = georssPoint.Item }.ToGeometry());
+            return new Point(new DirectPositionType { Text = georssPoint.Item }.ToGeometry());
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss10.GeoRss10Line georssLine) {
+        public static GeometryObject ToGeometry(this GeoRss10Line georssLine) {
 
             if (georssLine.Item == null)
                 return null;
 
-            return new LineString(new DirectPositionListType(){ Text = georssLine.Item }.ToGeometry());
+            return new LineString(new DirectPositionListType { Text = georssLine.Item }.ToGeometry());
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss10.GeoRss10Polygon georssPolygon) {
+        public static GeometryObject ToGeometry(this GeoRss10Polygon georssPolygon) {
 
             if (georssPolygon.Item == null)
                 return null;
 
-            Polygon polygon = new Polygon();
+            var polygon = new Polygon();
 
-            polygon.LineStrings = new System.Collections.Generic.List<LineString>();
+            polygon.LineStrings = new List<LineString>();
 
-            LineString ls = new LineString(new DirectPositionListType(){ Text = georssPolygon.Item }.ToGeometry());
+            var ls = new LineString(new DirectPositionListType { Text = georssPolygon.Item }.ToGeometry());
 
             if (ls.Positions.Count < 4 || !ls.IsClosed())
                 throw new InvalidFormatException("invalid GML representation: linearring is not a closed ring of minimum 4 positions");
@@ -130,18 +131,18 @@ namespace Terradue.GeoJson.GeoRss10 {
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss10.GeoRss10Box georssBox) {
+        public static GeometryObject ToGeometry(this GeoRss10Box georssBox) {
 
             if (georssBox.Item == null)
                 return null;
 
-            List<IPosition> position = new List<IPosition>();
-            List<LineString> polygon = new List<LineString>();
+            var position = new List<IPosition>();
+            var polygon = new List<LineString>();
             string georssbox;
 
             georssbox = georssBox.Item.Trim();
 
-            string[] pos = georssbox.Split(' ');
+            var pos = georssbox.Split(' ');
 
             if (pos.Length != 4)
                 throw new InvalidFormatException("invalid GeoRSS representation: georss:box members are not 4 :" + georssbox);
@@ -157,7 +158,7 @@ namespace Terradue.GeoJson.GeoRss10 {
 
         }
 
-        public static Terradue.GeoJson.GeoRss10.IGeoRSS ToGeoRss10(this GeometryObject geom) {
+        public static IGeoRSS ToGeoRss10(this GeometryObject geom) {
 
             if (geom is Point)
                 return ((Point)geom).ToGeoRss10Point();
@@ -181,7 +182,7 @@ namespace Terradue.GeoJson.GeoRss10 {
             throw new NotImplementedException();
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Where ToGeoRss10Where(this GeometryObject geom) {
+        public static GeoRss10Where ToGeoRss10Where(this GeometryObject geom) {
 
             if (geom is Point)
                 return ((Point)geom).ToGeoRss10Where();
@@ -202,44 +203,44 @@ namespace Terradue.GeoJson.GeoRss10 {
             throw new NotImplementedException();
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Point ToGeoRss10Point(this Point point) {
+        public static GeoRss10Point ToGeoRss10Point(this Point point) {
 
-            return new Terradue.GeoJson.GeoRss10.GeoRss10Point(){ Item = point.Position.ToGmlPos().Text };
+            return new GeoRss10Point { Item = point.Position.ToGmlPos().Text };
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Line ToGeoRss10Line(this LineString lineString) {
+        public static GeoRss10Line ToGeoRss10Line(this LineString lineString) {
 
-            return new Terradue.GeoJson.GeoRss10.GeoRss10Line(){ Item = lineString.Positions.ToArray().ToGmlPosList().Text };
+            return new GeoRss10Line { Item = lineString.Positions.ToArray().ToGmlPosList().Text };
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Polygon ToGeoRss10Polygon(this Polygon polygon) {
+        public static GeoRss10Polygon ToGeoRss10Polygon(this Polygon polygon) {
 
-            return new Terradue.GeoJson.GeoRss10.GeoRss10Polygon(){ Item = polygon.LineStrings[0].Positions.ToArray().ToGmlPosList().Text };
+            return new GeoRss10Polygon { Item = polygon.LineStrings[0].Positions.ToArray().ToGmlPosList().Text };
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Where ToGeoRss10Where(this Polygon polygon) {
+        public static GeoRss10Where ToGeoRss10Where(this Polygon polygon) {
 
-            return new Terradue.GeoJson.GeoRss10.GeoRss10Where(){ Item = polygon.ToGmlPolygon() };
+            return new GeoRss10Where { Item = polygon.ToGmlPolygon() };
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Where ToGeoRss10Where(this LineString line) {
+        public static GeoRss10Where ToGeoRss10Where(this LineString line) {
 
-            return new Terradue.GeoJson.GeoRss10.GeoRss10Where(){ Item = line.ToGmlLineString() };
+            return new GeoRss10Where { Item = line.ToGmlLineString() };
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Where ToGeoRss10Where(this Point point) {
+        public static GeoRss10Where ToGeoRss10Where(this Point point) {
 
-            return new Terradue.GeoJson.GeoRss10.GeoRss10Where(){ Item = point.ToGmlPoint() };
+            return new GeoRss10Where { Item = point.ToGmlPoint() };
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Where ToGeoRss10Where(this MultiPolygon mpolygon) {
+        public static GeoRss10Where ToGeoRss10Where(this MultiPolygon mpolygon) {
 
-            return new Terradue.GeoJson.GeoRss10.GeoRss10Where(){ Item = mpolygon.ToGmlMultiSurface() };
+            return new GeoRss10Where { Item = mpolygon.ToGmlMultiSurface() };
         }
 
-        public static Terradue.GeoJson.GeoRss10.GeoRss10Where ToGeoRss10Where(this MultiPoint mpoint) {
+        public static GeoRss10Where ToGeoRss10Where(this MultiPoint mpoint) {
 
-            return new Terradue.GeoJson.GeoRss10.GeoRss10Where(){ Item = mpoint.ToGmlMultiPoint() };
+            return new GeoRss10Where { Item = mpoint.ToGmlMultiPoint() };
         }
     }
 }

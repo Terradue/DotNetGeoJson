@@ -8,23 +8,20 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Terradue.GeoJson.Converter;
-
+using Terradue.GeoJson.Geometry;
 
 namespace Terradue.GeoJson.Feature {
-	using System.Collections.Generic;
-	using Terradue.GeoJson.Geometry;
-	using System.Runtime.Serialization;
-	using System;
-
-	/// <summary>
+  /// <summary>
     /// A GeoJson <see cref="http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
 	/// </summary>
 	public class Feature : GeoJsonObject {
 		public Feature() {
-			this.Properties = new Dictionary<string, object>();
-			this.Type = GeoJsonObjectType.Feature;
+			Properties = new Dictionary<string, object>();
+			Type = GeoJsonObjectType.Feature;
 		}
 
 		/// <summary>
@@ -34,11 +31,11 @@ namespace Terradue.GeoJson.Feature {
 		/// <param name="properties">The properties.</param>
         public Feature(GeometryObject geometry, Dictionary<string, object> properties) {
 			if (properties != null)
-				this.Properties = properties;
+				Properties = properties;
 			else
-				this.Properties = new Dictionary<string, object>();
-            this.Geometry = geometry;
-			this.Type = GeoJsonObjectType.Feature;
+				Properties = new Dictionary<string, object>();
+            Geometry = geometry;
+			Type = GeoJsonObjectType.Feature;
 		}
 
         /// <summary>

@@ -8,14 +8,13 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-    using System;
-
-    /// <summary>
+  /// <summary>
     /// Contains an array of <see cref="Point"/>s.
     /// </summary>
     /// <seealso cref="http://geojson.org/geojson-spec.html#multipoint"/>
@@ -26,15 +25,15 @@ namespace Terradue.GeoJson.Geometry {
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
         public MultiPoint(List<IPosition> points = null) {
-            this.Points = new List<Point>();
-            foreach (IPosition ipos in points) this.Points.Add(new Point(ipos));
-            this.Type = GeoJsonObjectType.MultiPoint;
+            Points = new List<Point>();
+            foreach (var ipos in points) Points.Add(new Point(ipos));
+            Type = GeoJsonObjectType.MultiPoint;
         }
 
         internal MultiPoint() {
-            this.Points = new List<Point>();
+            Points = new List<Point>();
 
-            this.Type = GeoJsonObjectType.MultiPoint;
+            Type = GeoJsonObjectType.MultiPoint;
         }
 
         /// <summary>
@@ -53,8 +52,8 @@ namespace Terradue.GeoJson.Geometry {
         public List<List<double>> Coordinates { 
 
             get {
-                List<List<double>> coordinates = new List<List<double>>();
-                foreach (Point ipos in Points) {
+                var coordinates = new List<List<double>>();
+                foreach (var ipos in Points) {
                     coordinates.Add(ipos.Coordinates);
                 }
                 return coordinates;
@@ -62,9 +61,9 @@ namespace Terradue.GeoJson.Geometry {
 
             set{ 
                 foreach (var list in value) {
-                    Point point = new Point();
+                    var point = new Point();
                     point.Coordinates = list;
-                    this.Points.Add(point);
+                    Points.Add(point);
                 }
             }
         }
