@@ -8,14 +8,12 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-    using System;
-
-    /// <summary>
+  /// <summary>
     /// Defines the <see cref="http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
     /// </summary>
     public class MultiPolygon : GeometryObject {
@@ -23,8 +21,8 @@ namespace Terradue.GeoJson.Geometry {
         /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.MultiPolygon"/> class.
         /// </summary>
         public MultiPolygon() {
-            this.Polygons = new List<Polygon>();
-            this.Type = GeoJsonObjectType.MultiPolygon;
+            Polygons = new List<Polygon>();
+            Type = GeoJsonObjectType.MultiPolygon;
         }
 
         /// <summary>
@@ -32,8 +30,8 @@ namespace Terradue.GeoJson.Geometry {
         /// </summary>
         /// <param name="polygons">The polygons contained in this MultiPolygon.</param>
         public MultiPolygon(List<Polygon> polygons = null) {
-            this.Polygons = polygons ?? new List<Polygon>();
-            this.Type = GeoJsonObjectType.MultiPolygon;
+            Polygons = polygons ?? new List<Polygon>();
+            Type = GeoJsonObjectType.MultiPolygon;
         }
 
         /// <summary>
@@ -49,8 +47,8 @@ namespace Terradue.GeoJson.Geometry {
         public List<List<List<List<double>>>> Coordinates { 
 
             get {
-                List<List<List<List<double>>>> coordinates = new List<List<List<List<double>>>>();
-                foreach (Polygon polygon in Polygons) {
+                var coordinates = new List<List<List<List<double>>>>();
+                foreach (var polygon in Polygons) {
                     coordinates.Add(polygon.Coordinates);
                 }
                 return coordinates;
@@ -58,9 +56,9 @@ namespace Terradue.GeoJson.Geometry {
 
             set {
                 foreach (var list in value) {
-                    Polygon polygon = new Polygon();
+                    var polygon = new Polygon();
                     polygon.Coordinates = list;
-                    this.Polygons.Add(polygon);
+                    Polygons.Add(polygon);
                 }
             }
         }

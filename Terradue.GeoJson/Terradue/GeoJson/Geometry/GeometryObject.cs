@@ -8,15 +8,12 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Terradue.GeoJson.Geometry {
-    using System.Runtime.Serialization;
-    using System.Collections.Generic;
-    using System;
-
-    /// <summary>
+  /// <summary>
     /// Base abstract class for GeometryObject types.
     /// </summary>
     public abstract class GeometryObject : IGeometryObject {

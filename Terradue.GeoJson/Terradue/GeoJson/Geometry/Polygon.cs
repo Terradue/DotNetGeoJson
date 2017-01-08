@@ -8,14 +8,13 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
-    using System.Collections.Generic;
-    using System;
-    using System.Runtime.Serialization;
-
-    /// <summary>
+  /// <summary>
     /// Defines the <see cref="http://geojson.org/geojson-spec.html#polygon">Polygon</see> type.
     /// Coordinates of a Polygon are a list of <see cref="http://geojson.org/geojson-spec.html#linestring">linear rings</see>
     /// coordinate arrays. The first element in the array represents the exterior ring. Any subsequent elements
@@ -28,8 +27,8 @@ namespace Terradue.GeoJson.Geometry {
         /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.Polygon"/> class.
         /// </summary>
         public Polygon() {
-            this.LineStrings = new List<LineString>();
-            this.Type = GeoJsonObjectType.Polygon;
+            LineStrings = new List<LineString>();
+            Type = GeoJsonObjectType.Polygon;
         }
 
         /// <summary>
@@ -46,8 +45,8 @@ namespace Terradue.GeoJson.Geometry {
                 throw new ArgumentOutOfRangeException("linearRings", "All elements must be closed LineStrings with 4 or more positions (see GeoJSON spec at 'http://geojson.org/geojson-spec.html#linestring').");
             }*/
 
-            this.LineStrings = linearRings ?? new List<LineString>();
-            this.Type = GeoJsonObjectType.Polygon;
+            LineStrings = linearRings ?? new List<LineString>();
+            Type = GeoJsonObjectType.Polygon;
         }
 
         /// <summary>
@@ -63,8 +62,8 @@ namespace Terradue.GeoJson.Geometry {
         public List<List<List<double>>> Coordinates { 
 			
             get {
-                List<List<List<double>>> coordinates = new List<List<List<double>>>();
-                foreach (LineString linestring in LineStrings) {
+                var coordinates = new List<List<List<double>>>();
+                foreach (var linestring in LineStrings) {
                     coordinates.Add(linestring.Coordinates);
                 }
                 return coordinates;
@@ -72,9 +71,9 @@ namespace Terradue.GeoJson.Geometry {
 			
             set {
                 foreach (var list in value) {
-                    LineString linestring = new LineString();
+                    var linestring = new LineString();
                     linestring.Coordinates = list;
-                    this.LineStrings.Add(linestring);
+                    LineStrings.Add(linestring);
                 }
             }
         }

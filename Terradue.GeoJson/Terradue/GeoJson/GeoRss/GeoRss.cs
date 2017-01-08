@@ -4,250 +4,240 @@
 //    <NameSpace>safe</NameSpace><Collection>List</Collection><codeType>CSharp</codeType><EnableDataBinding>False</EnableDataBinding><EnableLazyLoading>False</EnableLazyLoading><TrackingChangesEnable>False</TrackingChangesEnable><GenTrackingClasses>False</GenTrackingClasses><HidePrivateFieldInIDE>False</HidePrivateFieldInIDE><EnableSummaryComment>True</EnableSummaryComment><VirtualProp>False</VirtualProp><IncludeSerializeMethod>False</IncludeSerializeMethod><UseBaseClass>False</UseBaseClass><GenBaseClass>False</GenBaseClass><GenerateCloneMethod>False</GenerateCloneMethod><GenerateDataContracts>False</GenerateDataContracts><CodeBaseTag>Net40</CodeBaseTag><SerializeMethodName>Serialize</SerializeMethodName><DeserializeMethodName>Deserialize</DeserializeMethodName><SaveToFileMethodName>SaveToFile</SaveToFileMethodName><LoadFromFileMethodName>LoadFromFile</LoadFromFileMethodName><GenerateXMLAttributes>True</GenerateXMLAttributes><EnableEncoding>False</EnableEncoding><AutomaticProperties>False</AutomaticProperties><GenerateShouldSerialize>False</GenerateShouldSerialize><DisableDebug>False</DisableDebug><PropNameSpecified>Default</PropNameSpecified><Encoder>UTF8</Encoder><CustomUsings></CustomUsings><ExcludeIncludedTypes>False</ExcludeIncludedTypes><EnableInitializeFields>True</EnableInitializeFields>
 //  </auto-generated>
 // ------------------------------------------------------------------------------
-using Terradue.ServiceModel.Ogc.Gml311;
-using System.Xml;
-using System.Xml.Linq;
-using Terradue.GeoJson.Geometry;
 
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Xml.Serialization;
+using Terradue.ServiceModel.Ogc.Gml311;
 
 namespace Terradue.GeoJson.GeoRss {
-    
-    using System;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-    using System.Collections;
-    using System.Xml.Schema;
-    using System.ComponentModel;
-    using System.Collections.Generic;
-
-
-
-    public interface IGeoRSS {
+  public interface IGeoRSS {
     }
 
 
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(GeoRssWhere))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("_featureProperty", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public abstract partial class abstractFeaturePropertyType {
+    [XmlInclude(typeof(GeoRssWhere))]
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("_featureProperty", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public abstract class abstractFeaturePropertyType {
     }
 
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("where", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssWhere : abstractFeaturePropertyType, IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("where", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssWhere : abstractFeaturePropertyType, IGeoRSS {
 
         private object[] itemField;
 
-        [System.Xml.Serialization.XmlElementAttribute("CircleByCenterPoint", typeof(CircleByCenterPointType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("Envelope", typeof(EnvelopeType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("LineString", typeof(LineStringType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("Point", typeof(PointType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("Polygon", typeof(PolygonType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("MultiSurface", typeof(MultiSurfaceType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("MultiCurve", typeof(MultiCurveType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("MultiPolygon", typeof(MultiPolygonType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("MultiPoint", typeof(MultiPointType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("MultiLineString", typeof(MultiLineStringType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("CircleByCenterPoint", typeof(CircleByCenterPointType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("Envelope", typeof(EnvelopeType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("LineString", typeof(LineStringType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("Point", typeof(PointType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("Polygon", typeof(PolygonType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("MultiSurface", typeof(MultiSurfaceType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("MultiCurve", typeof(MultiCurveType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("MultiPolygon", typeof(MultiPolygonType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("MultiPoint", typeof(MultiPointType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElement("MultiLineString", typeof(MultiLineStringType), Namespace = "http://www.opengis.net/gml")]
         public object[] Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
 
-		[System.Xml.Serialization.XmlAttributeAttribute("type")]
+		[XmlAttribute("type")]
 		public string Type {
 			get;
 			set;
 		}
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("point", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssPoint : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("point", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssPoint : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("line", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssLine : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("line", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssLine : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("polygon", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssPolygon : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("polygon", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssPolygon : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("box", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssBox : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("box", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssBox : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("featuretypetag", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssFeatureType : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("featuretypetag", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssFeatureType : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("featurename", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssFeatureName : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("featurename", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssFeatureName : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("relationshiptag", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssRelationshipTag : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("relationshiptag", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssRelationshipTag : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("elev", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssElevation : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("elev", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssElevation : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss")]
-    [System.Xml.Serialization.XmlRootAttribute("radius", Namespace = "http://www.georss.org/georss", IsNullable = false)]
-    public partial class GeoRssRadius : IGeoRSS {
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [XmlType(Namespace = "http://www.georss.org/georss")]
+    [XmlRoot("radius", Namespace = "http://www.georss.org/georss", IsNullable = false)]
+    public class GeoRssRadius : IGeoRSS {
 
         private string itemField;
 
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }

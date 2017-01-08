@@ -8,14 +8,14 @@
 //
 //  Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 //      Copyright (c) Jörg Battermann 2011
+
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    /// <summary>
+  /// <summary>
     ///   Defines the <see cref="http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
     /// </summary>
     [DataContract]
@@ -34,16 +34,16 @@ namespace Terradue.GeoJson.Geometry {
                 throw new ArgumentOutOfRangeException("coordinates", "According to the GeoJSON v1.0 spec a LineString must have at least two or more positions.");
             }
 
-            this.Positions = new List<IPosition>(positions);
-            this.Type = GeoJsonObjectType.LineString;
+            Positions = new List<IPosition>(positions);
+            Type = GeoJsonObjectType.LineString;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.LineString"/> class.
         /// </summary>
         internal LineString() {
-            this.Positions = new List<IPosition>();
-            this.Type = GeoJsonObjectType.LineString;
+            Positions = new List<IPosition>();
+            Type = GeoJsonObjectType.LineString;
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Terradue.GeoJson.Geometry {
         ///   <c>true</c> if it is a linear ring; otherwise, <c>false</c>.
         /// </returns>
         public bool IslInearRing(){
-            return this.Positions.Count >= 4 && this.IsClosed();
+            return Positions.Count >= 4 && IsClosed();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Terradue.GeoJson.Geometry {
         ///   <c>true</c> if this instance is closed; otherwise, <c>false</c>.
         /// </returns>
         public bool IsClosed() {
-            return this.Positions[0].Equals(this.Positions[this.Positions.Count - 1]);
+            return Positions[0].Equals(Positions[Positions.Count - 1]);
         }
 
         /// <summary>
@@ -79,9 +79,9 @@ namespace Terradue.GeoJson.Geometry {
         [JsonProperty(PropertyName = "coordinates")]
         public List<List<double>> Coordinates { 
             get {
-                List<List<double>> coordinates = new List<List<double>>();
+                var coordinates = new List<List<double>>();
                 foreach (GeographicPosition position in Positions) {
-                    List<double> xyz = new List<double>();
+                    var xyz = new List<double>();
                     xyz.Add(position.Longitude);
                     xyz.Add(position.Latitude);
                     if (position.Coordinates[2] != null) xyz.Add(position.Altitude.GetValueOrDefault());
@@ -92,7 +92,7 @@ namespace Terradue.GeoJson.Geometry {
 			
             set {
                 foreach (var list in value) {
-                    double[] positions = list.ToArray();
+                    var positions = list.ToArray();
                     GeographicPosition geographicPosition;
                     if (positions.Length == 2) {
                         geographicPosition = new GeographicPosition(positions[1], positions[0]);
@@ -101,7 +101,7 @@ namespace Terradue.GeoJson.Geometry {
                     } else {
                         throw new InvalidFormatException("a geographic position must have at least 2 coordinates");
                     }
-                    this.Positions.Add(geographicPosition);
+                    Positions.Add(geographicPosition);
                 }
             } 
         }
