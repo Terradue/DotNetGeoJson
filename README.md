@@ -1,4 +1,4 @@
-[![Build Status](https://build.terradue.com/buildStatus/icon?job=DotNetGeoJson)](https://build.terradue.com/job/DotNetGeoJson/)
+[![Build status](https://ci.appveyor.com/api/projects/status/5k0f21k0sglkee93?svg=true)](https://ci.appveyor.com/project/Siliconrob/dotnetgeojson)
 
 # DotNetGeoJson - GeoJson library for .Net
 
