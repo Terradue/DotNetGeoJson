@@ -252,8 +252,7 @@ namespace Terradue.GeoJson.GeoRss {
         }
 
         public static Terradue.GeoJson.GeoRss.GeoRssLine ToGeoRssLine(this LineString lineString) {
-
-            return new Terradue.GeoJson.GeoRss.GeoRssLine(){ Item = lineString.Positions.ToArray().ToGmlPosList().Text };
+            return new Terradue.GeoJson.GeoRss.GeoRssLine(){ Item = lineString.Positions.ToArray().ToGmlPosList(2).Text };
         }
 
         public static Terradue.GeoJson.GeoRss.GeoRssPolygon ToGeoRssPolygon(this Polygon polygon) {

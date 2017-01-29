@@ -84,6 +84,42 @@ namespace Terradue.GeoJson.Tests {
         }
 
         [Test()]
+        public void GeoRssLine2TestCase()
+        {
+
+            string xml = "<georss:line xmlns:georss=\"http://www.georss.org/georss\">5.9987529801 6.7366503944 0 5.9971189801 6.7332143944 0 5.9915439801 6.7252133944 0 5.9915209801 6.7219963944 0 5.9958819801 6.7210443944 0 6.0014099801 6.7223823944 0 6.0099599801 6.7285243944 0 6.0166479801 6.7314623944 0 6.0164349801 6.7337613944 0 6.0111669801 6.7365583944 0 6.0049639801 6.7372933944 0 6.0005839801 6.7357173944 0 5.9987529801 6.7366503944 0\n</georss:line>";
+
+            var reader = XmlReader.Create(new StringReader(xml));
+
+            Terradue.GeoJson.GeoRss.GeoRssLine line = (Terradue.GeoJson.GeoRss.GeoRssLine)Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(reader);
+
+            var geom = line.ToGeometry();
+
+            Assert.That(geom is LineString);
+
+            Assert.That(((LineString)geom).Positions[0] is GeographicPosition);
+
+            Assert.AreEqual(5.9987529801, ((GeographicPosition)((LineString)geom).Positions[0]).Latitude);
+
+            Assert.AreEqual(6.7366503944, ((GeographicPosition)((LineString)geom).Positions[0]).Longitude);
+
+            Assert.False(((LineString)geom).IsClosed());
+
+            line = (Terradue.GeoJson.GeoRss.GeoRssLine)geom.ToGeoRss();
+            var sw = new StringWriter();
+
+            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), line);
+
+            sw.Close();
+
+            var xml1 = sw.ToString();
+
+            Assert.IsTrue(XNode.DeepEquals(XDocument.Parse(xml).Root, XDocument.Parse(xml1).Root));
+
+        }
+
+
+        [Test()]
         public void GeoRssPloygonTestCase() {
 
             string xml = "<georss:polygon xmlns:georss=\"http://www.georss.org/georss\">45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</georss:polygon>";

@@ -115,6 +115,24 @@ namespace Terradue.GeoJson.Tests {
         }
 
         [Test()]
+        public void JsonLongDeserialization()
+        {
+
+            FileStream fs = new FileStream("../Samples/NigerInnerDeltaRiver.json", FileMode.Open);
+
+            Terradue.GeoJson.Feature.FeatureCollection fc;
+            var serializer = new JsonSerializer();
+
+            using (var sr = new StreamReader(fs))
+            using (var jsonTextReader = new JsonTextReader(sr))
+            {
+                fc = serializer.Deserialize<Terradue.GeoJson.Feature.FeatureCollection>(jsonTextReader);
+            }
+
+
+        }
+
+        [Test()]
         public void WktTest() {
 
             var geometry = WktExtensions.WktToGeometry("MULTIPOLYGON(((-129.968719 48.14193,-129.968719 48.14193,-131.056732 48.272541,-131.056732 48.272541,-130.657394 49.769352,-130.657394 49.769352,-129.536499 49.638176,-129.536499 49.638176,-129.968719 48.14193)))");

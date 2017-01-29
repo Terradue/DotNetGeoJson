@@ -127,13 +127,13 @@ namespace Terradue.GeoJson.Gml311 {
             return null;
         }
 
-        public static DirectPositionListType ToGmlPosList(this IPosition[] positions) {
+        public static DirectPositionListType ToGmlPosList(this IPosition[] positions, int dim=3) {
 
             if (positions.Length > 0 && positions[0] is GeographicPosition) {
                 DirectPositionListType gmlPosList = new DirectPositionListType();
                 gmlPosList.count = positions.Length.ToString();
                 gmlPosList.Text = string.Join(" ", positions.Cast<GeographicPosition>()
-                    .SelectMany<GeographicPosition, string>(p => p.Altitude == null ? new string[2] {
+                                              .SelectMany<GeographicPosition, string>(p => (p.Altitude == null || dim == 2) ? new string[2] {
                     p.Latitude.ToString(),
                     p.Longitude.ToString()
                 } : new string[3] {
