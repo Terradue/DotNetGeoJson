@@ -1,6 +1,6 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/5k0f21k0sglkee93?svg=true)](https://ci.appveyor.com/project/Siliconrob/dotnetgeojson)
+[![Build Status](https://build.terradue.com/buildStatus/icon?job=DotNetGeoJson/master)](https://build.terradue.com/job/DotNetGeoJson/job/master/)
 
-# DotNetGeoJson - GeoJson library for .Net
+# DotNetGeoJson - Geometry library for .Net
 
 Terradue.GeoJson is a library targeting .NET 4.0 and above providing an easy
 way to manage [GeoJson](http://en.wikipedia.org/wiki/GeoJSON) objects with serialization and deserialization functions based on [Json.NET](https://github.com/JamesNK/Newtonsoft.Json)
