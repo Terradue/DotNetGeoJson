@@ -21,7 +21,6 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 
-using Terradue.ServiceModel.Ogc.Gml311;
 using System.Xml;
 using System.Xml.Linq;
 using Terradue.GeoJson.Geometry;
@@ -29,14 +28,9 @@ using Terradue.GeoJson.Geometry;
 namespace Terradue.GeoJson.GeoRss10 {
     
     using System;
-    using System.Diagnostics;
     using System.Xml.Serialization;
-    using System.Collections;
-    using System.Xml.Schema;
-    using System.ComponentModel;
-    using System.Collections.Generic;
 
-    public static class GeoRss10Helper {
+  public static class GeoRss10Helper {
 
         public static IGeoRSS Deserialize(XmlReader reader) {
 

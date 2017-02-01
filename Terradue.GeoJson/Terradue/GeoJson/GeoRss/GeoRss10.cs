@@ -8,25 +8,19 @@ using Terradue.ServiceModel.Ogc.Gml311;
 
 
 namespace Terradue.GeoJson.GeoRss10 {
-    using System;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-    using System.Collections;
-    using System.Xml.Schema;
-    using System.ComponentModel;
-    using System.Collections.Generic;
+  using System.Xml.Serialization;
 
 
-    public interface IGeoRSS {
+  public interface IGeoRSS {
     }
 
 
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(GeoRss10Where))]
+    [XmlIncludeAttribute(typeof(GeoRss10Where))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("_featureProperty", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("_featureProperty", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public abstract partial class abstractFeaturePropertyType {
     }
 
@@ -35,23 +29,23 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("where", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("where", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10Where : abstractFeaturePropertyType, IGeoRSS {
 
         private object itemField;
 
-        [System.Xml.Serialization.XmlElementAttribute("CircleByCenterPoint", typeof(CircleByCenterPointType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("Envelope", typeof(EnvelopeType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("LineString", typeof(LineStringType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("Point", typeof(PointType), Namespace = "http://www.opengis.net/gml")]
-        [System.Xml.Serialization.XmlElementAttribute("Polygon", typeof(PolygonType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElementAttribute("CircleByCenterPoint", typeof(CircleByCenterPointType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElementAttribute("Envelope", typeof(EnvelopeType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElementAttribute("LineString", typeof(LineStringType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElementAttribute("Point", typeof(PointType), Namespace = "http://www.opengis.net/gml")]
+        [XmlElementAttribute("Polygon", typeof(PolygonType), Namespace = "http://www.opengis.net/gml")]
         public object Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -59,8 +53,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("point", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("point", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10Point : IGeoRSS {
 
         private string itemField;
@@ -68,10 +62,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -79,8 +73,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("line", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("line", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10Line : IGeoRSS {
 
         private string itemField;
@@ -88,10 +82,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -99,8 +93,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("polygon", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("polygon", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10Polygon : IGeoRSS {
 
         private string itemField;
@@ -108,10 +102,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -119,8 +113,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("box", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("box", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10Box : IGeoRSS {
 
         private string itemField;
@@ -128,10 +122,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -139,8 +133,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("featuretypetag", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("featuretypetag", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10FeatureType : IGeoRSS {
 
         private string itemField;
@@ -148,10 +142,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -159,8 +153,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("featurename", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("featurename", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10FeatureName : IGeoRSS {
 
         private string itemField;
@@ -168,10 +162,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -179,8 +173,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("relationshiptag", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("relationshiptag", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10RelationshipTag : IGeoRSS {
 
         private string itemField;
@@ -188,10 +182,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -199,8 +193,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("elev", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("elev", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10Elevation : IGeoRSS {
 
         private string itemField;
@@ -208,10 +202,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }
@@ -219,8 +213,8 @@ namespace Terradue.GeoJson.GeoRss10 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
-    [System.Xml.Serialization.XmlRootAttribute("radius", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.georss.org/georss/10")]
+    [XmlRootAttribute("radius", Namespace = "http://www.georss.org/georss/10", IsNullable = false)]
     public partial class GeoRss10Radius : IGeoRSS {
 
         private string itemField;
@@ -228,10 +222,10 @@ namespace Terradue.GeoJson.GeoRss10 {
         [XmlText]
         public string Item {
             get {
-                return this.itemField;
+                return itemField;
             }
             set {
-                this.itemField = value;
+                itemField = value;
             }
         }
     }

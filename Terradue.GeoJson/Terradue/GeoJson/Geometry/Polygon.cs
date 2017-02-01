@@ -12,7 +12,6 @@ using Newtonsoft.Json;
 
 namespace Terradue.GeoJson.Geometry {
     using System.Collections.Generic;
-    using System;
     using System.Runtime.Serialization;
 
     /// <summary>
@@ -28,8 +27,8 @@ namespace Terradue.GeoJson.Geometry {
         /// Initializes a new instance of the <see cref="Terradue.GeoJson.Geometry.Polygon"/> class.
         /// </summary>
         public Polygon() {
-            this.LineStrings = new List<LineString>();
-            this.Type = GeoJsonObjectType.Polygon;
+            LineStrings = new List<LineString>();
+            Type = GeoJsonObjectType.Polygon;
         }
 
         /// <summary>
@@ -46,8 +45,8 @@ namespace Terradue.GeoJson.Geometry {
                 throw new ArgumentOutOfRangeException("linearRings", "All elements must be closed LineStrings with 4 or more positions (see GeoJSON spec at 'http://geojson.org/geojson-spec.html#linestring').");
             }*/
 
-            this.LineStrings = linearRings ?? new List<LineString>();
-            this.Type = GeoJsonObjectType.Polygon;
+            LineStrings = linearRings ?? new List<LineString>();
+            Type = GeoJsonObjectType.Polygon;
         }
 
         /// <summary>

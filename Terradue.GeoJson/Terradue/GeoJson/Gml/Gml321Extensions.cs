@@ -21,19 +21,15 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 using System;
-using Terradue.GeoJson.Feature;
 using System.Linq;
-using System.Globalization;
-using System.Xml;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using Terradue.ServiceModel.Ogc.Gml321;
 using Terradue.GeoJson.Geometry;
 
 namespace Terradue.GeoJson.Gml321 {
     public static class Gml321Extensions {
 
-        public static MultiSurfaceType ToGmlMultiSurface(this Terradue.GeoJson.Geometry.GeometryObject geometry) {
+        public static MultiSurfaceType ToGmlMultiSurface(this GeometryObject geometry) {
 
             if (geometry is Polygon) {
                 List<Polygon> polygons = new List<Polygon>();
@@ -48,7 +44,7 @@ namespace Terradue.GeoJson.Gml321 {
 
         }
 
-        public static MultiCurveType ToGmlMultiCurve(this Terradue.GeoJson.Geometry.GeometryObject geometry) {
+        public static MultiCurveType ToGmlMultiCurve(this GeometryObject geometry) {
 
             if (geometry is LineString) {
                 List<LineString> lineStrings = new List<LineString>();
@@ -62,7 +58,7 @@ namespace Terradue.GeoJson.Gml321 {
                 return null;
         }
 
-        public static AbstractGeometryType ToGml(this Terradue.GeoJson.Geometry.GeometryObject geometry) {
+        public static AbstractGeometryType ToGml(this GeometryObject geometry) {
 
             if (geometry is Point) {
                 return ToGmlPoint((Point)geometry);

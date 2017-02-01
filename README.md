@@ -1,9 +1,9 @@
-[![Build Status](https://build.terradue.com/buildStatus/icon?job=DotNetGeoJson)](https://build.terradue.com/job/DotNetGeoJson/)
+[![Build status](https://ci.appveyor.com/api/projects/status/5k0f21k0sglkee93?svg=true)](https://ci.appveyor.com/project/Siliconrob/dotnetgeojson)
 
 # DotNetGeoJson - GeoJson library for .Net
 
 Terradue.GeoJson is a library targeting .NET 4.0 and above providing an easy
-way to manage [GeoJson](http://en.wikipedia.org/wiki/GeoJSON) objects with serialization and deserialization functions based on [ServiceStack](https://github.com/ServiceStack/ServiceStack)
+way to manage [GeoJson](http://en.wikipedia.org/wiki/GeoJSON) objects with serialization and deserialization functions based on [Json.NET](https://github.com/JamesNK/Newtonsoft.Json)
 and transformation functions from [GML](http://en.wikipedia.org/wiki/Geography_Markup_Language) and [Well Known Text (WKT)](http://en.wikipedia.org/wiki/Well-known_text)
 
 ## Usage examples
@@ -47,7 +47,7 @@ git clone git@github.com:Terradue/Terradue.GeoJson.git Terradue.GeoJson
 
 ## Copyright and License
 
-Copyright (c) 2014 Terradue
+Copyright (c) 2014 - 2017 Terradue
 
 Licensed under the [GPL v2 License](https://github.com/Terradue.GeoJson/Terradue.GeoJson/blob/master/LICENSE.txt)
 
