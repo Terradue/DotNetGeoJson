@@ -15,7 +15,7 @@ namespace Terradue.GeoJson.Tests {
         [Test]
         public void MultiPolygonDeserialization() {
 
-            FileStream fs = new FileStream("../MultiPolygon.geojson", FileMode.Open);
+            FileStream fs = new FileStream(TestContext.CurrentContext.TestPath("../MultiPolygon.geojson"), FileMode.Open);
 
             Feature.Feature f;
             var serializer = new JsonSerializer {NullValueHandling = NullValueHandling.Ignore};
@@ -75,7 +75,7 @@ namespace Terradue.GeoJson.Tests {
         [Test]
         public void PolygonDeserialization() {
 
-            FileStream fs = new FileStream("../Samples/s1.json", FileMode.Open);
+            FileStream fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/s1.json"), FileMode.Open);
 
             Feature.Feature f;
             var serializer = new JsonSerializer();
@@ -99,7 +99,7 @@ namespace Terradue.GeoJson.Tests {
         [Test]
         public void PropertiesDeserialization() {
 
-            FileStream fs = new FileStream("../Samples/ASA_IM__0.json", FileMode.Open);
+            FileStream fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/ASA_IM__0.json"), FileMode.Open);
 
             FeatureCollection fc;
             var serializer = new JsonSerializer();
@@ -117,7 +117,7 @@ namespace Terradue.GeoJson.Tests {
         public void JsonLongDeserialization()
         {
 
-            FileStream fs = new FileStream("../Samples/NigerInnerDeltaRiver.json", FileMode.Open);
+            FileStream fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/NigerInnerDeltaRiver.json"), FileMode.Open);
 
             Terradue.GeoJson.Feature.FeatureCollection fc;
             var serializer = new JsonSerializer();

@@ -304,7 +304,7 @@ namespace Terradue.GeoJson.Tests {
         public void GeoRssFromFile2()
         {
 
-            var xr = XmlReader.Create(new FileStream("../Samples/noa-ers-georss.xml", FileMode.Open, FileAccess.Read));
+            var xr = XmlReader.Create(new FileStream(TestContext.CurrentContext.TestPath("../Samples/noa-ers-georss.xml"), FileMode.Open, FileAccess.Read));
 
             MultiPolygon geom = GeoRssHelper.Deserialize(xr).ToGeometry() as MultiPolygon;
 
