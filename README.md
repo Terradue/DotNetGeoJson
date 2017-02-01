@@ -1,4 +1,4 @@
-[![Build Status](https://build.terradue.com/buildStatus/icon?job=DotNetGeoJson/master)](https://build.terradue.com/job/DotNetGeoJson/job/master/)
+[![Build Status](https://build.terradue.com/buildStatus/icon?job=DotNetGeoJson/develop)](https://build.terradue.com/job/DotNetGeoJson/job/develop/)
 
 # DotNetGeoJson - Geometry library for .Net
 
