@@ -1,4 +1,4 @@
-﻿//
+//
 //  GeoRss10Extensions.cs
 //
 //  Author:
@@ -41,7 +41,7 @@ namespace Terradue.GeoJson.GeoRss {
             return XmlReader.Create(stream);
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.IGeoRSS georss) {
+        public static GeometryObject ToGeometry(this IGeoRSS georss) {
 
             if (georss is GeoRssPoint) {
                 return ((GeoRssPoint)georss).ToGeometry();
@@ -67,7 +67,7 @@ namespace Terradue.GeoJson.GeoRss {
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.GeoRssWhere where) {
+        public static GeometryObject ToGeometry(this GeoRssWhere where) {
            
 			if (where.Item != null && where.Item.Count() > 0 && where.Item[0] is EnvelopeType) {
                 throw new NotImplementedException();
@@ -122,7 +122,7 @@ namespace Terradue.GeoJson.GeoRss {
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.GeoRssPoint georssPoint) {
+        public static GeometryObject ToGeometry(this GeoRssPoint georssPoint) {
 
             if (georssPoint.Item == null)
                 return null;
@@ -131,7 +131,7 @@ namespace Terradue.GeoJson.GeoRss {
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.GeoRssLine georssLine) {
+        public static GeometryObject ToGeometry(this GeoRssLine georssLine) {
 
             if (georssLine.Item == null)
                 return null;
@@ -140,14 +140,14 @@ namespace Terradue.GeoJson.GeoRss {
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.GeoRssPolygon georssPolygon) {
+        public static GeometryObject ToGeometry(this GeoRssPolygon georssPolygon) {
 
             if (georssPolygon.Item == null)
                 return null;
 
             Polygon polygon = new Polygon();
 
-            polygon.LineStrings = new System.Collections.Generic.List<LineString>();
+            polygon.LineStrings = new List<LineString>();
 
             LineString ls = new LineString(new DirectPositionListType(){ Text = georssPolygon.Item }.ToGeometry());
 
@@ -160,7 +160,7 @@ namespace Terradue.GeoJson.GeoRss {
 
         }
 
-        public static GeometryObject ToGeometry(this Terradue.GeoJson.GeoRss.GeoRssBox georssBox) {
+        public static GeometryObject ToGeometry(this GeoRssBox georssBox) {
 
             if (georssBox.Item == null)
                 return null;
@@ -187,7 +187,7 @@ namespace Terradue.GeoJson.GeoRss {
 
         }
 
-        public static Terradue.GeoJson.GeoRss.IGeoRSS ToGeoRss(this GeometryObject geom) {
+        public static IGeoRSS ToGeoRss(this GeometryObject geom) {
 
             if (geom is Point)
                 return ((Point)geom).ToGeoRssPoint();
@@ -222,7 +222,7 @@ namespace Terradue.GeoJson.GeoRss {
             throw new NotImplementedException();
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this GeometryObject geom) {
+        public static GeoRssWhere ToGeoRssWhere(this GeometryObject geom) {
 
             if (geom is Point)
                 return ((Point)geom).ToGeoRssWhere();
@@ -246,70 +246,69 @@ namespace Terradue.GeoJson.GeoRss {
             throw new NotImplementedException();
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssPoint ToGeoRssPoint(this Point point) {
+        public static GeoRssPoint ToGeoRssPoint(this Point point) {
 
-            return new Terradue.GeoJson.GeoRss.GeoRssPoint(){ Item = point.Position.ToGmlPos().Text };
+            return new GeoRssPoint(){ Item = point.Position.ToGmlPos().Text };
         }
 
         public static Terradue.GeoJson.GeoRss.GeoRssLine ToGeoRssLine(this LineString lineString) {
-
-            return new Terradue.GeoJson.GeoRss.GeoRssLine(){ Item = lineString.Positions.ToArray().ToGmlPosList().Text };
+            return new Terradue.GeoJson.GeoRss.GeoRssLine(){ Item = lineString.Positions.ToArray().ToGmlPosList(2).Text };
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssPolygon ToGeoRssPolygon(this Polygon polygon) {
+        public static GeoRssPolygon ToGeoRssPolygon(this Polygon polygon) {
 
-            return new Terradue.GeoJson.GeoRss.GeoRssPolygon(){ Item = polygon.LineStrings[0].Positions.ToArray().ToGmlPosList().Text };
+            return new GeoRssPolygon(){ Item = polygon.LineStrings[0].Positions.ToArray().ToGmlPosList().Text };
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this Polygon polygon) {
+        public static GeoRssWhere ToGeoRssWhere(this Polygon polygon) {
 
-			return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = new PolygonType[] { polygon.ToGmlPolygon() } };
+			return new GeoRssWhere(){ Item = new PolygonType[] { polygon.ToGmlPolygon() } };
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this LineString line) {
+        public static GeoRssWhere ToGeoRssWhere(this LineString line) {
 
-			return new Terradue.GeoJson.GeoRss.GeoRssWhere() { Item = new LineStringType[] { line.ToGmlLineString() } };
+			return new GeoRssWhere() { Item = new LineStringType[] { line.ToGmlLineString() } };
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this Point point) {
+        public static GeoRssWhere ToGeoRssWhere(this Point point) {
 
-			return new Terradue.GeoJson.GeoRss.GeoRssWhere(){ Item = new PointType[] { point.ToGmlPoint() } };
+			return new GeoRssWhere(){ Item = new PointType[] { point.ToGmlPoint() } };
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this MultiPolygon mpolygon) {
+        public static GeoRssWhere ToGeoRssWhere(this MultiPolygon mpolygon) {
 
             if (mpolygon.Polygons.Count() > 1)
             {
-                return new Terradue.GeoJson.GeoRss.GeoRssWhere() { Item = new MultiPolygonType[] { mpolygon.ToGmlMultiPolygon() }, Type = "multipolygon" };
+                return new GeoRssWhere() { Item = new MultiPolygonType[] { mpolygon.ToGmlMultiPolygon() }, Type = "multipolygon" };
             }
             else {
-                return new Terradue.GeoJson.GeoRss.GeoRssWhere() { Item = new PolygonType[] { mpolygon.Polygons.First().ToGmlPolygon() } };
+                return new GeoRssWhere() { Item = new PolygonType[] { mpolygon.Polygons.First().ToGmlPolygon() } };
             }
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this MultiPoint mpoint) {
+        public static GeoRssWhere ToGeoRssWhere(this MultiPoint mpoint) {
 
             if (mpoint.Points.Count() > 1)
             {
 
-                return new Terradue.GeoJson.GeoRss.GeoRssWhere() { Item = new MultiPointType[] { mpoint.ToGmlMultiPoint() }, Type = "multipoint" };
+                return new GeoRssWhere() { Item = new MultiPointType[] { mpoint.ToGmlMultiPoint() }, Type = "multipoint" };
             }
             else {
-                return new Terradue.GeoJson.GeoRss.GeoRssWhere() { Item = new PointType[] { mpoint.Points.First().ToGmlPoint() } };
+                return new GeoRssWhere() { Item = new PointType[] { mpoint.Points.First().ToGmlPoint() } };
             }
 
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssWhere ToGeoRssWhere(this MultiLineString mlinestring)
+        public static GeoRssWhere ToGeoRssWhere(this MultiLineString mlinestring)
         {
 
             if (mlinestring.LineStrings.Count() > 1)
             {
 
-                return new Terradue.GeoJson.GeoRss.GeoRssWhere() { Item = new MultiLineStringType[] { mlinestring.ToGmlMultiLineString() }, Type = "multilinestring" };
+                return new GeoRssWhere() { Item = new MultiLineStringType[] { mlinestring.ToGmlMultiLineString() }, Type = "multilinestring" };
             }
             else {
-                return new Terradue.GeoJson.GeoRss.GeoRssWhere() { Item = new LineStringType[] { mlinestring.LineStrings.First().ToGmlLineString() } };
+                return new GeoRssWhere() { Item = new LineStringType[] { mlinestring.LineStrings.First().ToGmlLineString() } };
             }
 
         }

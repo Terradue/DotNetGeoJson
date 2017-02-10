@@ -11,9 +11,7 @@
 using System.Collections.Generic;
 
 namespace Terradue.GeoJson {
-    using System.Runtime.Serialization;
-
-    /// <summary>
+  /// <summary>
     /// Base Interface for GeoJson types.
     /// </summary>
     public interface IGeoJsonObject {

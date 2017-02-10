@@ -9,11 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Xml;
-using System.Globalization;
-using Terradue.GeoJson.Feature;
-using Terradue.GeoJson.Geometry;
 using System.Linq;
 
 namespace Terradue.GeoJson.Geometry {

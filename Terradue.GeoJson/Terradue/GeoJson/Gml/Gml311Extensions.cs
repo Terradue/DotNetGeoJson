@@ -21,19 +21,15 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 using System;
-using Terradue.GeoJson.Feature;
 using System.Linq;
-using System.Globalization;
-using System.Xml;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using Terradue.ServiceModel.Ogc.Gml311;
 using Terradue.GeoJson.Geometry;
 
 namespace Terradue.GeoJson.Gml311 {
     public static class Gml311Extensions {
 
-        public static MultiSurfaceType ToGmlMultiSurface(this Terradue.GeoJson.Geometry.GeometryObject geometry) {
+        public static MultiSurfaceType ToGmlMultiSurface(this GeometryObject geometry) {
 
             if (geometry is Polygon) {
                 List<Polygon> polygons = new List<Polygon>();
@@ -48,7 +44,7 @@ namespace Terradue.GeoJson.Gml311 {
 
         }
 
-        public static MultiCurveType ToGmlMultiCurve(this Terradue.GeoJson.Geometry.GeometryObject geometry) {
+        public static MultiCurveType ToGmlMultiCurve(this GeometryObject geometry) {
 
             if (geometry is LineString) {
                 List<LineString> lineStrings = new List<LineString>();
@@ -62,7 +58,7 @@ namespace Terradue.GeoJson.Gml311 {
                 return null;
         }
 
-        public static AbstractGeometryType ToGml(this Terradue.GeoJson.Geometry.GeometryObject geometry) {
+        public static AbstractGeometryType ToGml(this GeometryObject geometry) {
 
             if (geometry is Point) {
                 return ToGmlPoint((Point)geometry);
@@ -127,13 +123,13 @@ namespace Terradue.GeoJson.Gml311 {
             return null;
         }
 
-        public static DirectPositionListType ToGmlPosList(this IPosition[] positions) {
+        public static DirectPositionListType ToGmlPosList(this IPosition[] positions, int dim=3) {
 
             if (positions.Length > 0 && positions[0] is GeographicPosition) {
                 DirectPositionListType gmlPosList = new DirectPositionListType();
                 gmlPosList.count = positions.Length.ToString();
                 gmlPosList.Text = string.Join(" ", positions.Cast<GeographicPosition>()
-                    .SelectMany<GeographicPosition, string>(p => p.Altitude == null ? new string[2] {
+                                              .SelectMany<GeographicPosition, string>(p => (p.Altitude == null || dim == 2) ? new string[2] {
                     p.Latitude.ToString(),
                     p.Longitude.ToString()
                 } : new string[3] {

@@ -36,14 +36,14 @@ namespace Terradue.GeoJson.CoordinateReferenceSystem
                 throw new ArgumentOutOfRangeException("href", "May not be empty");
             }
 
-            this.Properties = new Dictionary<string, object> { { "href", href } };
+            Properties = new Dictionary<string, object> { { "href", href } };
 
             if (!string.IsNullOrWhiteSpace(type))
             {
-                this.Properties.Add("type", type);
+                Properties.Add("type", type);
             }
 
-            this.Type = CRSType.Link;
+            Type = CRSType.Link;
         }
 
         /// <summary>

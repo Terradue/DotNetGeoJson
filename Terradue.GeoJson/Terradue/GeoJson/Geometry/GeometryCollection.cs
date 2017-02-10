@@ -23,8 +23,8 @@ namespace Terradue.GeoJson.Geometry {
         /// </summary>
         /// <param name="geometries">The geometries contained in this GeometryCollection.</param>
         public GeometryCollection(List<GeometryObject> geometries = null) {
-            this.Geometries = geometries ?? new List<GeometryObject>();
-            this.Type = GeoJsonObjectType.GeometryCollection;
+            Geometries = geometries ?? new List<GeometryObject>();
+            Type = GeoJsonObjectType.GeometryCollection;
         }
 
         /// <summary>

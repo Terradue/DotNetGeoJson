@@ -1,26 +1,24 @@
-﻿using NUnit.Framework;
-using System;
-using System.Xml;
-using Terradue.GeoJson.Geometry;
-using Terradue.GeoJson.Feature;
 using System.IO;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using Terradue.ServiceModel.Ogc.Gml311;
-using Terradue.GeoJson.Gml311;
-using Terradue.GeoJson.GeoRss;
 using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
+using NUnit.Framework;
+using Terradue.GeoJson.Geometry;
+using Terradue.GeoJson.GeoRss;
 using Terradue.GeoJson.GeoRss10;
+using Terradue.GeoJson.Gml321;
+using Terradue.ServiceModel.Ogc.Gml321;
+using Terradue.ServiceModel.Syndication;
 
 namespace Terradue.GeoJson.Tests {
 
-    [TestFixture()]
+    [TestFixture]
     public class GeoRSSTest {
 
-        [Test()]
+        [Test]
         public void GeoRssPointTestCase() {
 
-            string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?><georss:point xmlns:georss=\"http://www.georss.org/georss\">45.256 -71.92</georss:point>";
+            const string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?><georss:point xmlns:georss=\"http://www.georss.org/georss\">45.256 -71.92</georss:point>";
 
             var reader = XmlReader.Create(new StringReader(xml));
 
@@ -36,10 +34,10 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.AreEqual(-71.92, ((GeographicPosition)((Point)geom).Position).Longitude);
 
-            point = (Terradue.GeoJson.GeoRss.GeoRssPoint)geom.ToGeoRss();
+            point = (GeoRssPoint)geom.ToGeoRss();
             var sw = new StringWriter();
 
-            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), point);
+            GeoRssHelper.Serialize(XmlWriter.Create(sw), point);
 
             sw.Close();
 
@@ -49,7 +47,7 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
+        [Test]
         public void GeoRssLineTestCase() {
 
             string xml = "<georss:line xmlns:georss=\"http://www.georss.org/georss\">45.256 -110.45 46.46 -109.48 43.84 -109.86</georss:line>";
@@ -70,10 +68,10 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.False(((LineString)geom).IsClosed());
 
-            line = (Terradue.GeoJson.GeoRss.GeoRssLine)geom.ToGeoRss();
+            line = (GeoRssLine)geom.ToGeoRss();
             var sw = new StringWriter();
 
-            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), line);
+            GeoRssHelper.Serialize(XmlWriter.Create(sw), line);
 
             sw.Close();
 
@@ -83,7 +81,7 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
+        [Test]
         public void GeoRssPloygonTestCase() {
 
             string xml = "<georss:polygon xmlns:georss=\"http://www.georss.org/georss\">45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</georss:polygon>";
@@ -104,10 +102,10 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.True(((Polygon)geom).LineStrings[0].IsClosed());
 
-            line = (Terradue.GeoJson.GeoRss.GeoRssPolygon)geom.ToGeoRss();
+            line = (GeoRssPolygon)geom.ToGeoRss();
             var sw = new StringWriter();
 
-            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), line);
+            GeoRssHelper.Serialize(XmlWriter.Create(sw), line);
 
             sw.Close();
 
@@ -117,7 +115,7 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
+        [Test]
         public void GeoRssBoxTestCase() {
 
             string xml = "<georss:box xmlns:georss=\"http://www.georss.org/georss\">42.943 -71.032 43.039 -69.856</georss:box>";
@@ -142,16 +140,16 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.True(((Polygon)geom).LineStrings[0].IsClosed());
 
-            var poly = (Terradue.GeoJson.GeoRss.GeoRssPolygon)geom.ToGeoRss();
+            var poly = (GeoRssPolygon)geom.ToGeoRss();
             var sw = new StringWriter();
 
-            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), poly);
+            GeoRssHelper.Serialize(XmlWriter.Create(sw), poly);
 
             var xml1 = sw.ToString();
 
             sw = new StringWriter();
 
-            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), box);
+            GeoRssHelper.Serialize(XmlWriter.Create(sw), box);
 
             sw.Close();
 
@@ -161,7 +159,7 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
+        [Test]
         public void GeoRssWherePointTestCase() {
 
             string xml = "<georss:where xmlns:gml=\"http://www.opengis.net/gml\" xmlns:georss=\"http://www.georss.org/georss\">\n         <gml:Point>\n            <gml:pos>45.256 -71.92</gml:pos>\n         </gml:Point>\n      </georss:where>";
@@ -180,10 +178,10 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.AreEqual(-71.92, ((GeographicPosition)((Point)geom).Position).Longitude);
 
-            where = (Terradue.GeoJson.GeoRss.GeoRssWhere)geom.ToGeoRssWhere();
+            where = geom.ToGeoRssWhere();
             var sw = new StringWriter();
 
-            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), where);
+            GeoRssHelper.Serialize(XmlWriter.Create(sw), where);
 
             sw.Close();
 
@@ -193,7 +191,7 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
+        [Test]
         public void GeoRssWhereLineTestCase() {
 
             string xml = "<georss:where xmlns:gml=\"http://www.opengis.net/gml\" xmlns:georss=\"http://www.georss.org/georss\">\n         <gml:LineString>\n         <gml:posList count=\"3\">45.256 -110.45 46.46 -109.48 43.84 -109.86</gml:posList>\n      </gml:LineString></georss:where>";
@@ -212,10 +210,10 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.AreEqual(-110.45, ((GeographicPosition)((LineString)geom).Positions[0]).Longitude);
 
-            where = (Terradue.GeoJson.GeoRss.GeoRssWhere)geom.ToGeoRssWhere();
+            where = geom.ToGeoRssWhere();
             var sw = new StringWriter();
 
-            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), where);
+            GeoRssHelper.Serialize(XmlWriter.Create(sw), where);
 
             sw.Close();
 
@@ -227,7 +225,7 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
+        [Test]
         public void GeoRssWherePolygonTestCase() {
 
             string xml = "<georss:where xmlns:gml=\"http://www.opengis.net/gml\" xmlns:georss=\"http://www.georss.org/georss\">\n         <gml:Polygon>\n         <gml:exterior>\n            <gml:LinearRing>\n               <gml:posList count=\"4\">45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</gml:posList>\n            </gml:LinearRing>\n         </gml:exterior>\n      </gml:Polygon></georss:where>";
@@ -246,10 +244,10 @@ namespace Terradue.GeoJson.Tests {
 
             Assert.AreEqual(-110.45, ((GeographicPosition)((Polygon)geom).LineStrings[0].Positions[0]).Longitude);
 
-            where = (Terradue.GeoJson.GeoRss.GeoRssWhere)geom.ToGeoRssWhere();
+            where = geom.ToGeoRssWhere();
             var sw = new StringWriter();
 
-            Terradue.GeoJson.GeoRss.GeoRssHelper.Serialize(XmlWriter.Create(sw), where);
+            GeoRssHelper.Serialize(XmlWriter.Create(sw), where);
 
             sw.Close();
 
@@ -259,12 +257,12 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-        [Test()]
+        [Test]
         public void GeoRssFromAtomFeed() {
 
             Terradue.ServiceModel.Syndication.Atom10FeedFormatter atomf = new Terradue.ServiceModel.Syndication.Atom10FeedFormatter();
 
-            atomf.ReadFrom(XmlReader.Create(new FileStream("../Samples/landsat8.xml", FileMode.Open, FileAccess.Read)));
+            atomf.ReadFrom(XmlReader.Create(new FileStream(TestContext.CurrentContext.TestPath("../Samples/landsat8.xml"), FileMode.Open, FileAccess.Read)));
 
             GeometryObject geom;
 
@@ -275,11 +273,11 @@ namespace Terradue.GeoJson.Tests {
                 switch (xr.NamespaceURI) {
                     // 1) search for georss
                     case "http://www.georss.org/georss":
-                        geom = Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(xr).ToGeometry();
+                        geom = GeoRssHelper.Deserialize(xr).ToGeometry();
                         break;
                         // 2) search for georss10
                     case "http://www.georss.org/georss/10":
-                        geom = GeoRss10Extensions.ToGeometry(GeoRss10Helper.Deserialize(xr));
+                        geom = GeoRss10Helper.Deserialize(xr).ToGeometry();
                         break;
                         // 3) search for dct:spatial
                     case "http://purl.org/dc/terms/":
@@ -293,26 +291,26 @@ namespace Terradue.GeoJson.Tests {
             }
         }
 
-        [Test()]
+        [Test]
         public void GeoRssFromFile1() {
 
-            var xr = XmlReader.Create(new FileStream("../Samples/georsswhere.xml", FileMode.Open, FileAccess.Read));
+            var xr = XmlReader.Create(new FileStream(TestContext.CurrentContext.TestPath("../Samples/georsswhere.xml"), FileMode.Open, FileAccess.Read));
 
             var geom = GeoRss10Helper.Deserialize(xr).ToGeometry();
 
         }
 
-        [Test()]
+        [Test]
         public void GeoRssFromFile2()
         {
 
-            var xr = XmlReader.Create(new FileStream("../Samples/noa-ers-georss.xml", FileMode.Open, FileAccess.Read));
+            var xr = XmlReader.Create(new FileStream(TestContext.CurrentContext.TestPath("../Samples/noa-ers-georss.xml"), FileMode.Open, FileAccess.Read));
 
             MultiPolygon geom = GeoRssHelper.Deserialize(xr).ToGeometry() as MultiPolygon;
 
             Assert.IsNotNull(geom);
 
-            xr = XmlReader.Create(new FileStream("../Samples/noa-ers-georss.xml", FileMode.Open, FileAccess.Read));
+            xr = XmlReader.Create(new FileStream(TestContext.CurrentContext.TestPath("../Samples/noa-ers-georss.xml"), FileMode.Open, FileAccess.Read));
 
             MultiPolygon geom2 = GeoRssHelper.Deserialize(xr).ToGeometry() as MultiPolygon;
 
@@ -322,15 +320,15 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
-		[Test()]
+		[Test]
 		public void Gml32MultiSurfaceToGeorss()
 		{
 
-			var fs = new FileStream("../Samples/multisurface32-2.xml", FileMode.Open, FileAccess.Read);
+			var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/multisurface32-2.xml"), FileMode.Open, FileAccess.Read);
 
 			XmlReader reader = XmlReader.Create(fs);
 
-			var gml = Terradue.ServiceModel.Ogc.Gml321.GmlHelper.Deserialize(reader);
+			var gml = GmlHelper.Deserialize(reader);
 
 			fs.Close();
 
@@ -338,7 +336,7 @@ namespace Terradue.GeoJson.Tests {
 
 			XmlDocument doc = new XmlDocument();
 			doc.Load(geom.ToGeoRss().CreateReader());
-			doc.Save("../out/georssfromgml32.xml");
+			doc.Save(TestContext.CurrentContext.TestPath("../out/georssfromgml32.xml"));
 
 		}
 

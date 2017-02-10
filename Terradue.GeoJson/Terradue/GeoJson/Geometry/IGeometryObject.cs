@@ -10,10 +10,7 @@
 //      Copyright (c) Jörg Battermann 2011
 
 namespace Terradue.GeoJson.Geometry {
-    using System.Runtime.Serialization;
-    using System;
-
-    /// <summary>
+  /// <summary>
     /// Base Interface for GeometryObject types.
     /// </summary>
     public interface IGeometryObject {

@@ -39,9 +39,9 @@ namespace Terradue.GeoJson.CoordinateReferenceSystem
                 throw new ArgumentOutOfRangeException("name", "May not be empty");
             }
 
-            this.Properties = new Dictionary<string, object> { { "name", name } };
+            Properties = new Dictionary<string, object> { { "name", name } };
 
-            this.Type = CRSType.Name;
+            Type = CRSType.Name;
         }
     }
 }
