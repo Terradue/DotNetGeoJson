@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Terradue.GeoJson.Tests</RootNamespace>
     <AssemblyName>Terradue.GeoJson.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
