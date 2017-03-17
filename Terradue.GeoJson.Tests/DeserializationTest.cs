@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -98,6 +100,26 @@ namespace Terradue.GeoJson.Tests {
 
         [Test]
         public void PropertiesDeserialization() {
+
+            FileStream fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/ASA_IM__0.json"), FileMode.Open);
+
+            FeatureCollection fc;
+            var serializer = new JsonSerializer();
+
+            using (var sr = new StreamReader(fs))
+            using (var jsonTextReader = new JsonTextReader(sr))
+            {
+                fc = serializer.Deserialize<FeatureCollection>(jsonTextReader);
+            }
+
+            Assert.False(fc.Features.First().Properties["links"] is String);
+        }
+
+        [Test]
+        public void PropertiesDeserializationRuCulture()
+        {
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-ru");
 
             FileStream fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/ASA_IM__0.json"), FileMode.Open);
 

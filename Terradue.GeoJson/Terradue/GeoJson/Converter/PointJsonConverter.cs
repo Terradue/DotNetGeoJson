@@ -42,8 +42,8 @@ namespace Terradue.GeoJson {
             if (o.Count < 2 || o.Count > 3)
                 throw new InvalidFormatException("invalid GeoJson representation: point members are not 2 or 3 :" + 0.ToString());
 
-            string z = (o.Count > 2 ? o[2].ToString() : null);
-            Point point = new Point(new GeographicPosition(o[1].ToString(), o[0].ToString(), z));
+            string z = (o.Count > 2 ? o[2].Value<string>() : null);
+            Point point = new Point(new GeographicPosition(o[1].Value<string>(), o[0].Value<string>(), z));
 
             return point;
         }
