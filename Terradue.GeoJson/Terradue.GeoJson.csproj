@@ -69,10 +69,6 @@
 			<HintPath>..\packages\NetTopologySuite.IO.1.14.0.1\lib\net45\NetTopologySuite.IO.ShapeFile.Extended.dll</HintPath>
 			<Private>True</Private>
 		</Reference>
-		<Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-			<HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-			<Private>True</Private>
-		</Reference>
 		<Reference Include="NuGet4Mono.Extensions, Version=0.3.0.19600, Culture=neutral, processorArchitecture=MSIL">
 			<HintPath>..\packages\NuGet4Mono.Extensions.0.3.0\lib\net40\NuGet4Mono.Extensions.dll</HintPath>
 			<Private>True</Private>
@@ -86,9 +82,11 @@
 		<Reference Include="System.Runtime.Serialization" />
 		<Reference Include="System.Core" />
 		<Reference Include="System.Xml.Linq" />
-		<Reference Include="Terradue.ServiceModel.Ogc, Version=1.1.6.33979, Culture=neutral, processorArchitecture=MSIL">
-			<HintPath>..\packages\Terradue.ServiceModel.Ogc.1.1.6\lib\net40\Terradue.ServiceModel.Ogc.dll</HintPath>
-			<Private>True</Private>
+		<Reference Include="Newtonsoft.Json">
+		  <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+		</Reference>
+		<Reference Include="Terradue.ServiceModel.Ogc">
+		  <HintPath>..\packages\Terradue.ServiceModel.Ogc.2.1.1\lib\net45\Terradue.ServiceModel.Ogc.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -144,7 +142,7 @@
 	  <MonoDevelop>
 	    <Properties>
 	      <Policies>
-	        <StandardHeader Text="&#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software; you can redistribute it and/or modify&#xA; it under the terms of the GNU General Public License as published by&#xA; the Free Software Foundation; either version 2 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the&#xA; GNU General Public License for more details.&#xA; &#xA; You should have received a copy of the GNU General Public License&#xA; along with this program; if not, write to the Free Software&#xA; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA&#xA;" IncludeInNewFiles="True" />
+	        <StandardHeader IncludeInNewFiles="True" Text="&#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software; you can redistribute it and/or modify&#xA; it under the terms of the GNU General Public License as published by&#xA; the Free Software Foundation; either version 2 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the&#xA; GNU General Public License for more details.&#xA; &#xA; You should have received a copy of the GNU General Public License&#xA; along with this program; if not, write to the Free Software&#xA; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA&#xA;" />
 	      </Policies>
 	    </Properties>
 	  </MonoDevelop>

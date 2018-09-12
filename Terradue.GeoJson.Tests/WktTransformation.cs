@@ -13,6 +13,15 @@ namespace Terradue.GeoJson.Tests {
         GeographicPosition Position3 = new GeographicPosition(10, 125);
         GeographicPosition Position4 = new GeographicPosition(10, 124);
 
+		[Test]
+        public void S2PolygonWktToGeometry()
+        {
+            
+			var poly = (Polygon)WktExtensions.WktToGeometry("POLYGON ((-9.765625E-4 17.16232548835695,-0.0018310547 17.158759331908193,-0.03765869 17.010422521024736,-0.07342529 16.86205871137774,-0.10913086 16.713582899321906,-0.14480591 16.565139934316484,-0.18057251 16.41677634546187,-0.19186401 16.36979867625588,-0.18023682 17.165288400054102,-9.765625E-4 17.16232548835695))");
+			Assert.AreEqual(10, poly.Coordinates.First().Count);
+
+        }
+
 
         [Test]
         public void MultiPolygonWktToGeometry() {

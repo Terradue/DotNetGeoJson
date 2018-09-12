@@ -140,7 +140,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The MultiPolygon</returns>
         /// <param name="wkt">WKT.</param>
         public static MultiPolygon MultiPolygonFromWKT(string wkt) {
-            var matches = Regex.Matches(wkt, @"([(](?:\ *[(]\ *(?:\ *(?:[0-9-.]+[ ]+[0-9-.]+)[, ]*\ *)*\ *[)][, ]*)*[)])");
+            var matches = Regex.Matches(wkt, @"([(](?:\ *[(]\ *(?:\ *(?:[0-9-.Ee]+[ ]+[0-9-.Ee]+)[, ]*\ *)*\ *[)][, ]*)*[)])");
             var polygons = new List<Polygon>(matches.Count);
             for (var i = 0; i < matches.Count; i++) {
                 var polygon = PolygonFromWKT(matches[i].Groups[1].Value);
@@ -156,7 +156,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The Polygon</returns>
         /// <param name="wkt">WKT.</param>
         public static Polygon PolygonFromWKT(string wkt) {
-            var matches = Regex.Matches(wkt, @"(\ *[(]\ *(?:\ *(?:[0-9-.]+[ ]+[0-9-.]+)[, ]*\ *)*\ *[)])[, ]*");
+            var matches = Regex.Matches(wkt, @"(\ *[(]\ *(?:\ *(?:[0-9-.Ee]+[ ]+[0-9-.Ee]+)[, ]*\ *)*\ *[)])[, ]*");
             var linestrings = new List<LineString>(matches.Count);
             for (var i = 0; i < matches.Count; i++) {
                 var linestring = LineStringFromWKT(matches[i].Groups[1].Value);
@@ -199,7 +199,7 @@ namespace Terradue.GeoJson.Geometry {
         /// <returns>The MultiLineString</returns>
         /// <param name="wkt">WKT.</param>
         public static MultiLineString MultiLineStringFromWKT(string wkt) {
-            var matches = Regex.Matches(wkt, @"(\ *[(]\ *(?:\ *(?:[0-9-.]+[ ]+[0-9-.]+)[, ]*\ *)*\ *[)])[, ]*");
+            var matches = Regex.Matches(wkt, @"(\ *[(]\ *(?:\ *(?:[0-9-.Ee]+[ ]+[0-9-.Ee]+)[, ]*\ *)*\ *[)])[, ]*");
             var linestrings = new List<LineString>(matches.Count);
             for (var i = 0; i < matches.Count; i++) {
                 var linestring = LineStringFromWKT(matches[i].Groups[1].Value);
