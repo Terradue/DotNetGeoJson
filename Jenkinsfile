@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Package') {
       steps {
-          sh "nuget4mono -g origin/${env.BRANCH_NAME} -p Terradue.GeoJson/packages.config Terradue.GeoJson/bin/Terradue.GeoJson.dll"
+          sh "nuget4mono -g origin/${env.BRANCH_NAME} -p ${workspace}/Terradue.GeoJson/packages.config ${workspace}/Terradue.GeoJson/bin/Terradue.GeoJson.dll"
           sh 'cat *.nuspec'
           sh 'nuget pack -OutputDirectory build'
           sh "echo ${params.NUGET_PUBLISH}"
