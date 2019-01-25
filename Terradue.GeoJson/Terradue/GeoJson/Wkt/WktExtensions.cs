@@ -219,7 +219,7 @@ namespace Terradue.GeoJson.Geometry {
             string[] values;
             var points = new List<IPosition>(terms.Length);
             for (var i = 0; i < terms.Length; i++) {
-                values = terms[i].Split(' ');
+                values = terms[i].TrimStart('(').TrimEnd(')').Split(' ');
                 var z = (values.Length > 2 ? values[2] : null);
                 var geopos = new GeographicPosition(values[1], values[0], z);
                 points.Add(geopos);

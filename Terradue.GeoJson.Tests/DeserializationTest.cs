@@ -167,6 +167,17 @@ namespace Terradue.GeoJson.Tests {
 
         }
 
+        [Test()]
+        public void WktTest2()
+        {
+
+            var geometry = WktExtensions.WktToGeometry("MULTIPOINT ((-180 -90), (0 0), (180 90)))");
+
+            Assert.IsNotNull(geometry);
+
+
+        }
+
     }
 
     public class ExtendedFeature : Feature.Feature {
