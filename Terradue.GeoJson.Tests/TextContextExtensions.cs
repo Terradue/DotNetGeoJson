@@ -5,7 +5,7 @@ namespace Terradue.GeoJson.Tests
 {
   public static class TextContextExtensions{
     public static string TestPath(this TestContext current, string relativePath){
-      return Path.Combine(current.TestDirectory, relativePath ?? "");
+      return Path.Combine(current.TestDirectory, "../../", relativePath ?? "");
     }
   }
 }
