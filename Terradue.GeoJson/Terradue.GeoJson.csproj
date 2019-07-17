@@ -9,7 +9,7 @@
     <Title>DotNetOpenSearch</Title>
     <Description>Initially developed to provide an easy way to manage Geometry objects with serialization and deserialization functions and transformation functions from/to GeoJson, it also supports GML, georss and Well Known Text (WKT)</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>1.9.3</Version>
+    <Version>1.10.0</Version>
     <Authors>Emmanuel Mathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetGeoJson</RepositoryUrl>
