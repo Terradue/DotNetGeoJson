@@ -23,6 +23,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Terradue.ServiceModel.Ogc.Gml311;
 using Terradue.GeoJson.Geometry;
 
@@ -480,7 +481,8 @@ namespace Terradue.GeoJson.Gml311 {
 
             int dim;
 
-            string[] coord = pos.Text.Trim().Split(' ');
+            var whitespaceSplitter = new Regex(@"\s+");
+            string[] coord = whitespaceSplitter.Split(pos.Text.Trim());
             if (string.IsNullOrEmpty(pos.srsDimension))
                 dim = 2; /* We assume that we are in 2D */
             else {
