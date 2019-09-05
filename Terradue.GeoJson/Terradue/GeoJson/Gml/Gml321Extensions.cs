@@ -413,7 +413,8 @@ namespace Terradue.GeoJson.Gml321 {
             List<IPosition> positions = new List<IPosition>();
             int dim;
 
-			string[] coord = pos.Text.Trim().Replace("  ", " ").Split(' ');
+            var whitespaceSplitter = new Regex(@"\s+");
+            string[] coord = whitespaceSplitter.Split(pos.Text.Trim());
 
             if (string.IsNullOrEmpty(pos.srsDimension))
                 dim = 2; /* We assume that we are in 2D */

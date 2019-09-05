@@ -126,6 +126,21 @@ namespace Terradue.GeoJson.Tests
 			poly.ToGml();
 
 		}
+
+        [Test]
+        public void PoslistWithNewlines()
+        {
+            var testFile = TestContext.CurrentContext.TestPath("../Samples/PoslistWithNewlines.gml");
+            using (var fs = new FileStream(testFile, FileMode.Open))
+            {
+                using (var reader = XmlReader.Create(fs))
+                {
+                    var gmlObject = GmlHelper.Deserialize(reader);
+                    var geom = (Polygon)gmlObject.ToGeometry();
+                    Assert.That(geom.Coordinates.Single().Count, Is.EqualTo(10));
+                }
+            }
+        }
 	}
 }
 
