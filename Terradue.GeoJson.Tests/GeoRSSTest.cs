@@ -340,6 +340,33 @@ namespace Terradue.GeoJson.Tests {
 
 		}
 
+        [Test]
+        public void ComplexWKTToGml(){
+            var fs = new FileInfo(TestContext.CurrentContext.TestPath("../Samples/longwkt.txt"));
+
+			StreamReader sr = new StreamReader(fs.OpenRead());
+
+            var wkt = sr.ReadToEnd();
+
+            var geom = WktExtensions.WktToGeometry(wkt);
+
+            var georss = geom.ToGeoRss();
+
+            Assert.That(georss is GeoRssWhere);
+
+            Assert.That(((GeoRssWhere)georss).Item[0] is Terradue.ServiceModel.Ogc.Gml311.PolygonType);
+
+            Terradue.ServiceModel.Ogc.Gml311.PolygonType polygon = ((GeoRssWhere)georss).Item[0] as Terradue.ServiceModel.Ogc.Gml311.PolygonType;
+
+            Assert.AreEqual(Terradue.ServiceModel.Ogc.Gml311.ItemChoiceType5.exterior, polygon.ItemElementName);
+
+            Assert.IsNotNull(polygon.Item);
+
+            Assert.True(polygon.Items1ElementName.All(i => i == Terradue.ServiceModel.Ogc.Gml311.Items1ChoiceType3.interior));
+
+            Assert.AreEqual(16, polygon.Items1.Count());
+
+        }
     }
 }
 

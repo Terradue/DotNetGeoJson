@@ -217,12 +217,12 @@ namespace Terradue.GeoJson.Gml311 {
                 exterior.Item = ToGmlLinearRing(polygon.LineStrings[0]);
                 if (polygon.LineStrings.Count > 1) {
                     var interiors = new List<AbstractRingPropertyType>();
-                    foreach (var lineString in polygon.LineStrings.Take(1)) {
+                    foreach (var lineString in polygon.LineStrings.Skip(1)) {
                         var interior = new AbstractRingPropertyType();
 						if (!lineString.IsClosed()) {
 							lineString.Positions.Add(lineString.Positions[0]);
 						}
-                        exterior.Item = ToGmlLinearRing(lineString);
+                        interior.Item = ToGmlLinearRing(lineString);
                         interiors.Add(interior);
                     }
                     gmlPolygon.Items1 = interiors.ToArray();
