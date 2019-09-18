@@ -23,6 +23,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Terradue.ServiceModel.Ogc.Gml311;
 using Terradue.GeoJson.Geometry;
 
@@ -216,12 +217,12 @@ namespace Terradue.GeoJson.Gml311 {
                 exterior.Item = ToGmlLinearRing(polygon.LineStrings[0]);
                 if (polygon.LineStrings.Count > 1) {
                     var interiors = new List<AbstractRingPropertyType>();
-                    foreach (var lineString in polygon.LineStrings.Take(1)) {
+                    foreach (var lineString in polygon.LineStrings.Skip(1)) {
                         var interior = new AbstractRingPropertyType();
 						if (!lineString.IsClosed()) {
 							lineString.Positions.Add(lineString.Positions[0]);
 						}
-                        exterior.Item = ToGmlLinearRing(lineString);
+                        interior.Item = ToGmlLinearRing(lineString);
                         interiors.Add(interior);
                     }
                     gmlPolygon.Items1 = interiors.ToArray();
@@ -480,7 +481,8 @@ namespace Terradue.GeoJson.Gml311 {
 
             int dim;
 
-            string[] coord = pos.Text.Trim().Split(' ');
+            var whitespaceSplitter = new Regex(@"\s+");
+            string[] coord = whitespaceSplitter.Split(pos.Text.Trim());
             if (string.IsNullOrEmpty(pos.srsDimension))
                 dim = 2; /* We assume that we are in 2D */
             else {
@@ -500,8 +502,8 @@ namespace Terradue.GeoJson.Gml311 {
             List<IPosition> positions = new List<IPosition>();
             int dim;
 
-            string[] coord = pos.Text.Trim().Split(' ');
-
+            var whitespaceSplitter = new Regex(@"\s+");
+            string[] coord = whitespaceSplitter.Split(pos.Text.Trim());
             if (string.IsNullOrEmpty(pos.srsDimension))
                 dim = 2; /* We assume that we are in 2D */
             else {
