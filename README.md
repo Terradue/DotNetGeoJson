@@ -49,7 +49,7 @@ git clone git@github.com:Terradue/Terradue.GeoJson.git Terradue.GeoJson
 
 Copyright (c) 2014 - 2017 Terradue
 
-Licensed under the [GPL v2 License](https://github.com/Terradue.GeoJson/Terradue.GeoJson/blob/master/LICENSE.txt)
+Licensed under the [Affero GPL v3 License](https://www.gnu.org/licenses/agpl.html)
 
 Adapted from GeoJSON.Net / https://github.com/jbattermann/GeoJSON.Net
 
