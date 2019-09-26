@@ -47,7 +47,7 @@ git clone git@github.com:Terradue/Terradue.GeoJson.git Terradue.GeoJson
 
 ## Copyright and License
 
-Copyright (c) 2014 - 2017 Terradue
+Copyright (c) 2014 - 2019 Terradue
 
 Licensed under the [Affero GPL v3 License](https://www.gnu.org/licenses/agpl.html)
 
