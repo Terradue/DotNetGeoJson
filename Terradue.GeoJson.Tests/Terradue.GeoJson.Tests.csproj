@@ -4,13 +4,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Terradue.GeoJson.Tests</RootNamespace>
     <AssemblyName>Terradue.GeoJson.Tests</AssemblyName>
-    <TargetFramework>net45</TargetFramework>
+    <_ExtraTargetFrameworks Condition="'$(OS)' == 'Windows_NT' or '$(MSBuildRuntimeType)' == 'Mono'">net472</_ExtraTargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;$(RoslynPortableTargetFrameworks);$(_ExtraTargetFrameworks)</TargetFrameworks>
     <RuntimeIdentifiers>win;linux</RuntimeIdentifiers>
     <IsPackable>false</IsPackable>
     <PackageOutputPath>$(SolutionDir)\build</PackageOutputPath>
     <RestorePackagesPath>$(SolutionDir)\packages</RestorePackagesPath>
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
     <Reference Include="System"/>
     <Reference Include="System.Xml"/>
     <Reference Include="System.Xml.Linq"/>
@@ -19,10 +20,10 @@
     <ProjectReference Include="..\Terradue.GeoJson\Terradue.GeoJson.csproj"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1"/>
     <PackageReference Include="NUnit.Runners" Version="3.10.0"/>
     <PackageReference Include="NUnit.ConsoleRunner" Version="3.10.0"/>
     <PackageReference Include="log4net" Version="2.0.8"/>
     <PackageReference Include="NUnit" Version="3.10.1"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3" />
   </ItemGroup>
 </Project>

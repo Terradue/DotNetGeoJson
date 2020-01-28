@@ -4,21 +4,21 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Terradue.GeoJson</RootNamespace>
     <AssemblyName>Terradue.GeoJson</AssemblyName>
-    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <_ExtraTargetFrameworks Condition="'$(OS)' == 'Windows_NT' or '$(MSBuildRuntimeType)' == 'Mono'">net472</_ExtraTargetFrameworks>
+    <TargetFrameworks>netstandard2.0;$(RoslynPortableTargetFrameworks);$(_ExtraTargetFrameworks)</TargetFrameworks>
     <RuntimeIdentifiers>win;linux</RuntimeIdentifiers>
-    <Title>DotNetOpenSearch</Title>
+    <Title>DotNetGeoJson</Title>
     <Description>Initially developed to provide an easy way to manage Geometry objects with serialization and deserialization functions and transformation functions from/to GeoJson, it also supports GML, georss and Well Known Text (WKT)</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>1.10.1</Version>
+    <Version>1.11.0</Version>
     <Authors>Emmanuel Mathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetGeoJson</RepositoryUrl>
     <PackageTags>OGC;Terradue;GeoJson;Geometry</PackageTags>
     <PackageOutputPath>$(SolutionDir)\build</PackageOutputPath>
-    <RestorePackagesPath>$(SolutionDir)\packages</RestorePackagesPath>
     <NoWarn>$(NoWarn);NU1605</NoWarn>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
     <Reference Include="System"/>
     <Reference Include="System.Xml"/>
     <Reference Include="System.Runtime.Serialization"/>
@@ -29,10 +29,9 @@
     <Content Include="$(SolutionDir)\LICENSE" Pack="true" PackagePath=""/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1"/>
     <PackageReference Include="log4net" Version="2.0.8"/>
     <PackageReference Include="Terradue.ServiceModel.Ogc" Version="2.1.3"/>
-    <PackageReference Include="NetTopologySuite" Version="1.14.0"/>
-    <PackageReference Include="NetTopologySuite.IO" Version="1.14.0.1"/>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3"/>
+    <PackageReference Include="NetTopologySuite" Version="2.0.0"/>
   </ItemGroup>
 </Project>
