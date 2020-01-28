@@ -28,17 +28,11 @@ using Terradue.GeoJson.Gml311;
 using System.Xml;
 using System.IO;
 
-namespace Terradue.GeoJson.GeoRss10 {
+namespace Terradue.ServiceModel.Ogc.GeoRss.GeoRss10 {
 
     public static class GeoRss10Extensions {
 
-        public static XmlReader CreateReader(this IGeoRSS georss){
-            MemoryStream stream = new MemoryStream();
-            XmlWriter writer = XmlWriter.Create(stream);
-            GeoRss10Helper.Serialize(writer, georss);
-            stream.Seek(0, SeekOrigin.Begin);
-            return XmlReader.Create(stream);
-        }
+     
 
         public static GeometryObject ToGeometry(this IGeoRSS georss) {
 

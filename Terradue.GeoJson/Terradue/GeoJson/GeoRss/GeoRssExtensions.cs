@@ -29,17 +29,11 @@ using System.Xml;
 using System.IO;
 using System.Linq;
 
-namespace Terradue.GeoJson.GeoRss {
+namespace Terradue.ServiceModel.Ogc.GeoRss.GeoRss {
     
     public static class GeoRssExtensions {
 
-        public static XmlReader CreateReader(this Terradue.GeoJson.GeoRss.IGeoRSS georss){
-            MemoryStream stream = new MemoryStream();
-            XmlWriter writer = XmlWriter.Create(stream);
-            GeoRssHelper.Serialize(writer, georss);
-            stream.Seek(0, SeekOrigin.Begin);
-            return XmlReader.Create(stream);
-        }
+        
 
         public static GeometryObject ToGeometry(this IGeoRSS georss) {
 
@@ -251,8 +245,8 @@ namespace Terradue.GeoJson.GeoRss {
             return new GeoRssPoint(){ Item = point.Position.ToGmlPos().Text };
         }
 
-        public static Terradue.GeoJson.GeoRss.GeoRssLine ToGeoRssLine(this LineString lineString) {
-            return new Terradue.GeoJson.GeoRss.GeoRssLine(){ Item = lineString.Positions.ToArray().ToGmlPosList(2).Text };
+        public static Terradue.ServiceModel.Ogc.GeoRss.GeoRss.GeoRssLine ToGeoRssLine(this LineString lineString) {
+            return new Terradue.ServiceModel.Ogc.GeoRss.GeoRss.GeoRssLine(){ Item = lineString.Positions.ToArray().ToGmlPosList(2).Text };
         }
 
         public static GeoRssPolygon ToGeoRssPolygon(this Polygon polygon) {

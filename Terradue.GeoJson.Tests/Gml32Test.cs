@@ -3,8 +3,8 @@ using System.IO;
 using System.Xml;
 using NUnit.Framework;
 using Terradue.GeoJson.Geometry;
-using Terradue.GeoJson.GeoRss;
 using Terradue.GeoJson.Gml321;
+using Terradue.ServiceModel.Ogc.GeoRss.GeoRss;
 using Terradue.ServiceModel.Ogc.Gml321;
 
 namespace Terradue.GeoJson.Tests { 
