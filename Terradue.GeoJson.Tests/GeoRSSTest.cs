@@ -4,9 +4,9 @@ using System.Xml;
 using System.Xml.Linq;
 using NUnit.Framework;
 using Terradue.GeoJson.Geometry;
-using Terradue.GeoJson.GeoRss;
-using Terradue.GeoJson.GeoRss10;
 using Terradue.GeoJson.Gml321;
+using Terradue.ServiceModel.Ogc.GeoRss.GeoRss;
+using Terradue.ServiceModel.Ogc.GeoRss.GeoRss10;
 using Terradue.ServiceModel.Ogc.Gml321;
 using Terradue.ServiceModel.Syndication;
 
@@ -22,7 +22,7 @@ namespace Terradue.GeoJson.Tests {
 
             var reader = XmlReader.Create(new StringReader(xml));
 
-            Terradue.GeoJson.GeoRss.GeoRssPoint point = (Terradue.GeoJson.GeoRss.GeoRssPoint)Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(reader);
+            GeoRssPoint point = (GeoRssPoint)GeoRssHelper.Deserialize(reader);
 
             var geom = point.ToGeometry();
 
@@ -54,7 +54,7 @@ namespace Terradue.GeoJson.Tests {
 
             var reader = XmlReader.Create(new StringReader(xml));
 
-            Terradue.GeoJson.GeoRss.GeoRssLine line = (Terradue.GeoJson.GeoRss.GeoRssLine)Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(reader);
+            GeoRssLine line = (GeoRssLine)GeoRssHelper.Deserialize(reader);
 
             var geom = line.ToGeometry();
 
@@ -88,7 +88,7 @@ namespace Terradue.GeoJson.Tests {
 
             var reader = XmlReader.Create(new StringReader(xml));
 
-            Terradue.GeoJson.GeoRss.GeoRssPolygon line = (Terradue.GeoJson.GeoRss.GeoRssPolygon)Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(reader);
+            GeoRssPolygon line = (GeoRssPolygon)GeoRssHelper.Deserialize(reader);
 
             var geom = line.ToGeometry();
 
@@ -122,7 +122,7 @@ namespace Terradue.GeoJson.Tests {
 
             var reader = XmlReader.Create(new StringReader(xml));
 
-            Terradue.GeoJson.GeoRss.GeoRssBox box = (Terradue.GeoJson.GeoRss.GeoRssBox)Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(reader);
+            GeoRssBox box = (GeoRssBox)GeoRssHelper.Deserialize(reader);
 
             var geom = box.ToGeometry();
 
@@ -166,7 +166,7 @@ namespace Terradue.GeoJson.Tests {
 
             var reader = XmlReader.Create(new StringReader(xml));
 
-            Terradue.GeoJson.GeoRss.GeoRssWhere where = (Terradue.GeoJson.GeoRss.GeoRssWhere)Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(reader);
+            GeoRssWhere where = (GeoRssWhere)GeoRssHelper.Deserialize(reader);
 
             var geom = where.ToGeometry();
 
@@ -198,7 +198,7 @@ namespace Terradue.GeoJson.Tests {
 
             var reader = XmlReader.Create(new StringReader(xml));
 
-            Terradue.GeoJson.GeoRss.GeoRssWhere where = (Terradue.GeoJson.GeoRss.GeoRssWhere)Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(reader);
+            GeoRssWhere where = (GeoRssWhere)GeoRssHelper.Deserialize(reader);
 
             var geom = where.ToGeometry();
 
@@ -232,7 +232,7 @@ namespace Terradue.GeoJson.Tests {
 
             var reader = XmlReader.Create(new StringReader(xml));
 
-            Terradue.GeoJson.GeoRss.GeoRssWhere where = (Terradue.GeoJson.GeoRss.GeoRssWhere)Terradue.GeoJson.GeoRss.GeoRssHelper.Deserialize(reader);
+            GeoRssWhere where = (GeoRssWhere)GeoRssHelper.Deserialize(reader);
 
             var geom = where.ToGeometry();
 
