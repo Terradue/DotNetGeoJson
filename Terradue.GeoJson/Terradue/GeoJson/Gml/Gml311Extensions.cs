@@ -26,9 +26,13 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Terradue.ServiceModel.Ogc.Gml311;
 using Terradue.GeoJson.Geometry;
+using System.Globalization;
 
 namespace Terradue.GeoJson.Gml311 {
     public static class Gml311Extensions {
+
+        static string specifier = "G";
+        static CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
 
         public static MultiSurfaceType ToGmlMultiSurface(this GeometryObject geometry) {
 
@@ -116,9 +120,9 @@ namespace Terradue.GeoJson.Gml311 {
                 gmlPos.srsDimension = ((GeographicPosition)position).Altitude == null ? null : "3";
                 GeographicPosition p = (GeographicPosition)position;
                 if (p.Altitude != null)
-                    gmlPos.Text = string.Format("{0} {1} {2}", p.Latitude, p.Longitude, p.Altitude);
+                    gmlPos.Text = string.Format("{0} {1} {2}", p.Latitude.ToString(specifier, culture), p.Longitude.ToString(specifier, culture), p.Altitude.Value.ToString(specifier, culture));
                 else
-                    gmlPos.Text = string.Format("{0} {1}", p.Latitude, p.Longitude);
+                    gmlPos.Text = string.Format("{0} {1}", p.Latitude.ToString(specifier, culture), p.Longitude.ToString(specifier, culture));
                 return gmlPos;
             }
             return null;
@@ -131,12 +135,12 @@ namespace Terradue.GeoJson.Gml311 {
                 gmlPosList.count = positions.Length.ToString();
                 gmlPosList.Text = string.Join(" ", positions.Cast<GeographicPosition>()
                                               .SelectMany<GeographicPosition, string>(p => (p.Altitude == null || dim == 2) ? new string[2] {
-                    p.Latitude.ToString(),
-                    p.Longitude.ToString()
+                    p.Latitude.ToString(specifier, culture),
+                    p.Longitude.ToString(specifier, culture)
                 } : new string[3] {
-                    p.Latitude.ToString(),
-                    p.Longitude.ToString(),
-                    p.Altitude.ToString()
+                    p.Latitude.ToString(specifier, culture),
+                    p.Longitude.ToString(specifier, culture),
+                    p.Altitude.HasValue? p.Altitude.Value.ToString(specifier, culture) : null
                 }).ToArray());
                 gmlPosList.srsDimension = ((GeographicPosition)positions[0]).Altitude == null ? null : "3";
                 return gmlPosList;
@@ -557,11 +561,11 @@ namespace Terradue.GeoJson.Gml311 {
 
                 string[] pos = coord.Split(cs);
 
-                double x = double.Parse(pos[1]);
-                double y = double.Parse(pos[0]);
+                double x = double.Parse(pos[1], culture);
+                double y = double.Parse(pos[0], culture);
                 double? z = null;
                 if (pos.Length > 2)
-                    z = double.Parse(pos[2]);
+                    z = double.Parse(pos[2], culture);
 
                 positions.Add(new GeographicPosition(y, x, z));
 

@@ -9,123 +9,123 @@ using Terradue.ServiceModel.Ogc.Gml311;
 namespace Terradue.GeoJson.Tests
 {
 
-	[TestFixture]
-	public class GmlTest
-	{
+    [TestFixture]
+    public class GmlTest
+    {
 
-		[Test]
-		public void GmlMultiPolygonTestCase()
-		{
+        [Test]
+        public void GmlMultiPolygonTestCase()
+        {
 
-			var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/MultiPolygon.xml"), FileMode.Open);
+            var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/MultiPolygon.xml"), FileMode.Open);
 
-			var reader = XmlReader.Create(fs);
+            var reader = XmlReader.Create(fs);
 
-			var gml = GmlHelper.Deserialize(reader);
+            var gml = GmlHelper.Deserialize(reader);
 
-			fs.Close();
+            fs.Close();
 
-			var geom = (MultiPolygon)gml.ToGeometry();
+            var geom = (MultiPolygon)gml.ToGeometry();
 
-			gml = geom.ToGmlMultiSurface();
+            gml = geom.ToGmlMultiSurface();
 
-			var sw = new StringWriter();
+            var sw = new StringWriter();
 
-			var xw = XmlWriter.Create(sw);
+            var xw = XmlWriter.Create(sw);
 
-			GmlHelper.Serialize(xw, gml);
+            GmlHelper.Serialize(xw, gml);
 
-			xw.Close();
+            xw.Close();
 
-			gml = geom.ToGmlMultiPolygon();
+            gml = geom.ToGmlMultiPolygon();
 
-			sw = new StringWriter();
+            sw = new StringWriter();
 
-			xw = XmlWriter.Create(sw);
+            xw = XmlWriter.Create(sw);
 
-			GmlHelper.Serialize(xw, gml);
+            GmlHelper.Serialize(xw, gml);
 
-			//Assert.IsTrue(XNode.DeepEquals(XDocument.Load("../Samples/MultiPolygon.xml").Root, XDocument.Parse(xml1).Root));
+            //Assert.IsTrue(XNode.DeepEquals(XDocument.Load("../Samples/MultiPolygon.xml").Root, XDocument.Parse(xml1).Root));
 
-		}
+        }
 
-		[Test]
-		public void GmlMultiCurveWithLinearStringTestCase()
-		{
+        [Test]
+        public void GmlMultiCurveWithLinearStringTestCase()
+        {
 
-			var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/MultiCurveWithLinearString.gml"), FileMode.Open);
+            var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/MultiCurveWithLinearString.gml"), FileMode.Open);
 
-			var reader = XmlReader.Create(fs);
+            var reader = XmlReader.Create(fs);
 
-			var gml = GmlHelper.Deserialize(reader);
+            var gml = GmlHelper.Deserialize(reader);
 
-			fs.Close();
+            fs.Close();
 
-			var geom = (MultiLineString)gml.ToGeometry();
+            var geom = (MultiLineString)gml.ToGeometry();
 
-			gml = geom.ToGmlMultiLineString();
+            gml = geom.ToGmlMultiLineString();
 
-			var sw = new StringWriter();
+            var sw = new StringWriter();
 
-			var xw = XmlWriter.Create(sw);
+            var xw = XmlWriter.Create(sw);
 
-			GmlHelper.Serialize(xw, gml);
+            GmlHelper.Serialize(xw, gml);
 
-			var xml1 = sw.ToString();
+            var xml1 = sw.ToString();
 
-			gml = geom.ToGmlMultiCurve();
+            gml = geom.ToGmlMultiCurve();
 
-			sw = new StringWriter();
+            sw = new StringWriter();
 
-			xw = XmlWriter.Create(sw);
+            xw = XmlWriter.Create(sw);
 
-			GmlHelper.Serialize(xw, gml);
+            GmlHelper.Serialize(xw, gml);
 
-			xw.Close();
+            xw.Close();
 
-			xml1 = sw.ToString();
+            xml1 = sw.ToString();
 
-		}
+        }
 
-		[Test]
-		public void GmlMultiSurfaceTestCase()
-		{
+        [Test]
+        public void GmlMultiSurfaceTestCase()
+        {
 
-			var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/MultiSurface311.gml"), FileMode.Open);
+            var fs = new FileStream(TestContext.CurrentContext.TestPath("../Samples/MultiSurface311.gml"), FileMode.Open);
 
-			var reader = XmlReader.Create(fs);
+            var reader = XmlReader.Create(fs);
 
-			var gml = GmlHelper.Deserialize(reader);
+            var gml = GmlHelper.Deserialize(reader);
 
-			fs.Close();
+            fs.Close();
 
-			var geom = (MultiPolygon)gml.ToGeometry();
+            var geom = (MultiPolygon)gml.ToGeometry();
 
-			gml = geom.ToGml();
+            gml = geom.ToGml();
 
-			Assert.That(gml is MultiPolygonType);
+            Assert.That(gml is MultiPolygonType);
 
-			var sw = new StringWriter();
+            var sw = new StringWriter();
 
-			var xw = XmlWriter.Create(sw);
+            var xw = XmlWriter.Create(sw);
 
-			GmlHelper.Serialize(xw, gml);
+            GmlHelper.Serialize(xw, gml);
 
-			var xml1 = sw.ToString();
+            var xml1 = sw.ToString();
 
-		}
+        }
 
-		[Test]
-		public void CreatePolygonFromNonClosedLineString()
-		{
+        [Test]
+        public void CreatePolygonFromNonClosedLineString()
+        {
 
-			var ls = new LineString(new[] { new GeographicPosition(-10, 10), new GeographicPosition(-10, 5) }.Cast<IPosition>().ToList());
+            var ls = new LineString(new[] { new GeographicPosition(-10, 10), new GeographicPosition(-10, 5) }.Cast<IPosition>().ToList());
 
-			var poly = new Polygon(new[] { ls }.ToList());
+            var poly = new Polygon(new[] { ls }.ToList());
 
-			poly.ToGml();
+            poly.ToGml();
 
-		}
+        }
 
         [Test]
         public void PoslistWithNewlines()
@@ -141,6 +141,31 @@ namespace Terradue.GeoJson.Tests
                 }
             }
         }
-	}
+
+        [Test]
+        public void CultureTest()
+        {
+            IPosition pos = new GeographicPosition(45.932, -70.123);
+
+            var dp = pos.ToGmlPos();
+            Assert.AreEqual("45.932 -70.123", dp.Text);
+
+            pos = new GeographicPosition(45.932, -70.123, 1.1);
+
+            dp = pos.ToGmlPos();
+            Assert.AreEqual("45.932 -70.123 1.1", dp.Text);
+
+            IPosition[] poss = new IPosition[2] { new GeographicPosition(45.932, -70.123), new GeographicPosition(45.932, -70.123) };
+
+            var gmlposlist = poss.ToGmlPosList();
+            Assert.AreEqual("45.932 -70.123 45.932 -70.123", gmlposlist.Text);
+
+            poss = new IPosition[2] { new GeographicPosition(45.932, -70.123, 1.1), new GeographicPosition(45.932, -70.123, 1.1) };
+
+            gmlposlist = poss.ToGmlPosList();
+            Assert.AreEqual("45.932 -70.123 1.1 45.932 -70.123 1.1", gmlposlist.Text);
+
+        }
+    }
 }
 
