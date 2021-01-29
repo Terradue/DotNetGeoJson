@@ -29,7 +29,7 @@
     <Content Include="$(SolutionDir)\LICENSE" Pack="true" PackagePath=""/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.8"/>
+    <PackageReference Include="log4net" Version="2.0.10"/>
     <PackageReference Include="Terradue.ServiceModel.Ogc" Version="2.2.0"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3"/>
     <PackageReference Include="NetTopologySuite" Version="2.0.0"/>
